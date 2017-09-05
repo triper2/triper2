@@ -28,17 +28,17 @@ video {
 <title>Rental Shop</title>
 
 <!-- Bootstrap Core CSS -->
-<link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
 <!-- Custom Fonts -->
-<link href="/vendor/font-awesome/css/font-awesome.min.css"
+<link href="../vendor/font-awesome/css/font-awesome.min.css"
 	rel="stylesheet" type="text/css">
 <link
 	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic"
 	rel="stylesheet" type="text/css">
 
 <!-- Custom CSS -->
-<link href="/css/stylish-portfolio.css" rel="stylesheet">
+<link href="../css/stylish-portfolio.css" rel="stylesheet">
 
 
 </head>
@@ -99,28 +99,28 @@ video {
 						<div class="col-md-6">
 							<div class="portfolio-item">
 								<a href="#top"> <img class="img-portfolio img-fluid"
-									src="/img/portfolio-1.jpg">
+									src="../img/portfolio-1.jpg">
 								</a>
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="portfolio-item">
 								<a href="#"> <img class="img-portfolio img-fluid"
-									src="/img/portfolio-2.jpg">
+									src="../img/portfolio-2.jpg">
 								</a>
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="portfolio-item">
 								<a href="#"> <img class="img-portfolio img-fluid"
-									src="/img/portfolio-3.jpg">
+									src="../img/portfolio-3.jpg">
 								</a>
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="portfolio-item">
 								<a href="#"> <img class="img-portfolio img-fluid"
-									src="/img/portfolio-4.jpg">
+									src="../img/portfolio-4.jpg">
 								</a>
 							</div>
 						</div>
@@ -273,18 +273,17 @@ video {
 		<a id="to-top" href="#top" class="btn btn-dark btn-lg page-scroll"><i
 			class="fa fa-chevron-up fa-fw fa-1x"></i></a>
 	</footer>
+</body>
 
 	<!-- Bootstrap core JavaScript -->
-	<script src="/vendor/jquery/jquery.min.js"></script>
-	<script src="/vendor/popper/popper.min.js"></script>
-	<script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="../vendor/jquery/jquery.min.js"></script>
+	<script src="../vendor/popper/popper.min.js"></script>
+	<script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
 
 	<!-- Plugin JavaScript -->
-	<script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
+	<script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
 
 	<!-- Custom scripts for this template -->
-	<script src="/js/stylish-portfolio.js"></script>
-
-</body>
+	<script src="../js/stylish-portfolio.js"></script>
 
 </html>
