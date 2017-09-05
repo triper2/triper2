@@ -13,7 +13,7 @@
     
     if(check==1){
     	session.setAttribute("memID", id);
-    	response.sendRedirect("index.html");
+    	response.sendRedirect("index.jsp");
     } else if (check==0){
 %>
 <script type="text/javascript">
