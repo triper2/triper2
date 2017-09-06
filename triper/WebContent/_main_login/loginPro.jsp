@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="dbconn.util.*, dbclose.util.*, kosta.rental.*"%>
 <%@ page import="java.sql.*"%>
+
 <% 
 	request.setCharacterEncoding("UTF-8");
     

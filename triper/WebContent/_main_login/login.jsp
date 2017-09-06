@@ -1,7 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="dbconn.util.*, dbclose.util.*, kosta.rental.*"%>
-<%@page import="java.sql.*"%>
+<%@ page import="java.sql.*"%>
+
+<%@ page import="java.net.URLEncoder" %>
+<%@ page import="java.security.SecureRandom" %>
+<%@ page import="java.math.BigInteger" %>
 
 <!doctype html>
 <html lang="kr">
@@ -16,7 +20,7 @@
 <style rel="stylesheet">
 html {
   width: 100%;
-  height: 100%;
+  height: 170%;
 }
 
 body {
@@ -54,11 +58,11 @@ body {
 .form-toggle {
   z-index: 10;
   position: absolute;
-  top: 60px;
-  right: 60px;
+  top: 40px;
+  right: 20px;
   background: #FFFFFF;
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   border-radius: 100%;
   -webkit-transform-origin: center;
       -ms-transform-origin: center;
@@ -192,7 +196,7 @@ body {
   text-decoration: none;
 }
 .form-panel {
-  padding: 60px calc(5% + 60px) 60px 60px;
+  padding: 20px calc(5% + 60px) 60px 60px;
   box-sizing: border-box;
 }
 .form-panel.one:before {
@@ -216,7 +220,7 @@ body {
   background: #4285F4;
   width: 100%;
   min-height: 100%;
-  padding: 60px calc(10% + 60px) 60px 60px;
+  padding: 20px calc(10% + 60px) 60px 60px;
   -webkit-transition: 0.3s ease;
           transition: 0.3s ease;
   cursor: pointer;
@@ -225,7 +229,7 @@ body {
   content: '';
   display: block;
   position: absolute;
-  top: 60px;
+  top: 40px;
   left: 1.5%;
   background: rgba(255, 255, 255, 0.2);
   height: 30px;
@@ -354,13 +358,14 @@ a.other:link, a.other:visited, a.other:hover, a.other:active {
 		
 		$('#lsubmitbtn').click(function() {
 			$("#flsubmit").submit();
-		});
+		});		
 	});
 </script>
 
 <%
 //세션에 로그인 ID, PWD기억하고 세션정보로 사용
 session.setAttribute("memID", request.getParameter("id"));
+
 %>
 
 
@@ -392,7 +397,24 @@ session.setAttribute("memID", request.getParameter("id"));
         <div class="form-group">
           <button type="submit" id="lsubmitbtn">Log In</button>
         </div>
-      </form>
+      </form>      <br>
+      
+      <div class="">
+		<%
+		String clientId = "jG6JK4zeWYdD6NtIKfw4"; //애플리케이션 클라이언트 아이디값";
+		String redirectURI = URLEncoder.encode("http://localhost:8080/triper/_main_login/index.jsp", "UTF-8");
+		SecureRandom random = new SecureRandom();
+		String state = new BigInteger(130, random).toString();
+		String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code";
+		apiURL += "&client_id=" + clientId;
+		apiURL += "&redirect_uri=" + redirectURI;
+		apiURL += "&state=" + state;
+		session.setAttribute("state", state);
+		%>
+		<button id="naverlogin">
+		<a href="<%=apiURL%>"><img height="50" src="http://static.nid.naver.com/oauth/small_g_in.PNG"/></a>
+		</button>
+      </div>        
     </div>
   </div>
   <div class="form-panel two">
