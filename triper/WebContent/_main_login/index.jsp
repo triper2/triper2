@@ -35,7 +35,7 @@ video {
 		<ul class="sidebar-nav">
 			<a id="menu-close" href="#"
 				class="btn btn-light btn-lg pull-right toggle"><i class="fa fa-times"></i></a>
-			<li class="sidebar-brand"><a href="./login.jsp" onclick=$("#menu-close").click();>Login</a></li>
+			<li class="sidebar-brand"><a href="./loginForm.jsp" onclick=$("#menu-close").click();>Login</a></li>
 			<li><a href="./mypage.jsp" onclick=$("#menu-close").click();>My Page</a></li>
 			<li><a href="#portfolio" onclick=$("#menu-close").click();>리뷰</a></li>
 			<li><a href="#contact" onclick=$("#menu-close").click();>예약(지도)</a></li>

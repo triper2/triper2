@@ -7,6 +7,11 @@
 <%@ page import="java.security.SecureRandom" %>
 <%@ page import="java.math.BigInteger" %>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt"%>
+
+<fmt:bundle basename="commandLogin"></fmt:bundle>
+
 <!doctype html>
 <html lang="kr">
 	<head>
@@ -356,18 +361,18 @@ a.other:link, a.other:visited, a.other:hover, a.other:active {
 							}
 						});
 		
-		$('#lsubmitbtn').click(function() {
+		/* $('#lsubmitbtn').click(function() {
 			$("#flsubmit").submit();
-		});		
+		});		 */
 	});
 </script>
 
-<%
-//세션에 로그인 ID, PWD기억하고 세션정보로 사용
-session.setAttribute("memID", request.getParameter("id"));
+<!-- 세션에 로그인 ID, PWD기억하고 세션정보로 사용
+session.setAttribute("memID", request.getParameter("id")); -->
 
-%>
-
+<c:out value="${ sessionScope.id }"/>
+<c:set var="memID" value="${ sessionScope.id }"/>
+<!-- <c:if test="${userid ne null}"> not null </c:if> -->
 
 </head>
 <body>
@@ -380,7 +385,7 @@ session.setAttribute("memID", request.getParameter("id"));
       <h1>Account Login</h1>
     </div>
     <div class="form-content" >
-      <form action="loginPro.jsp" id="flsubmit" method="post">
+      <form action="loginPro.do" id="flsubmit" method="post">
         <div class="form-group">
           <label for="username">ID</label>
           <input type="text" id="id" name="id" required="required"/>
@@ -395,24 +400,18 @@ session.setAttribute("memID", request.getParameter("id"));
           </label><a href="#" class="form-recovery">Forgot Password?</a>
         </div>
         <div class="form-group">
-          <button type="submit" id="lsubmitbtn">Log In</button>
+          <button type="submit">Log In</button>
         </div>
       </form>      <br>
       
       <div class="">
-		<%
-		String clientId = "jG6JK4zeWYdD6NtIKfw4"; //애플리케이션 클라이언트 아이디값";
-		String redirectURI = URLEncoder.encode("http://localhost:8080/triper/_main_login/index.jsp", "UTF-8");
-		SecureRandom random = new SecureRandom();
-		String state = new BigInteger(130, random).toString();
-		String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code";
-		apiURL += "&client_id=" + clientId;
-		apiURL += "&redirect_uri=" + redirectURI;
-		apiURL += "&state=" + state;
-		session.setAttribute("state", state);
-		%>
+	
+		<c:out value="${ sessionScope.state }"/>
+		<c:set var="state" value="${ sessionScope.state }"/>
+		<!-- <c:if test="${userid ne null}"> not null </c:if> -->
+		
 		<button id="naverlogin">
-		<a href="<%=apiURL%>"><img height="50" src="http://static.nid.naver.com/oauth/small_g_in.PNG"/></a>
+		<a href="${ apiURL }"><img height="50" src="http://static.nid.naver.com/oauth/small_g_in.PNG"/></a>
 		</button>
       </div>        
     </div>

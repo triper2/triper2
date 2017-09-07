@@ -1,4 +1,4 @@
-package kosta.rental;
+package kosta.rental.loginModel;
 
 import java.io.IOException;
 import java.io.PrintWriter;

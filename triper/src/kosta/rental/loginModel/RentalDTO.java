@@ -1,4 +1,4 @@
-package kosta.rental;
+package kosta.rental.loginModel;
 
 public class RentalDTO { //(Data Transfer Object: 데이터 전송 객체, Value Object)
 	private String member_id, member_name, member_pwd, member_phone, member_email, member_img;
