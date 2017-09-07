@@ -4,9 +4,7 @@
 <%@page import="java.sql.*"%>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <style type="text/css">
 video {
 	position: absolute;
@@ -19,34 +17,20 @@ video {
 }
 </style>
 
-<meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="">
-<meta name="author" content="">
-
 <title>Rental Shop</title>
 
 <!-- Bootstrap Core CSS -->
 <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
 <!-- Custom Fonts -->
-<link href="../vendor/font-awesome/css/font-awesome.min.css"
-	rel="stylesheet" type="text/css">
-<link
-	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic"
-	rel="stylesheet" type="text/css">
-
+<link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
 <!-- Custom CSS -->
 <link href="../css/stylish-portfolio.css" rel="stylesheet">
-
-
 </head>
 
 <body>
 	<!-- Navigation -->
 	<a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle"><i class="fa fa-bars"></i></a>
-	
 	<nav id="sidebar-wrapper">
 		<ul class="sidebar-nav">
 			<a id="menu-close" href="#"
@@ -64,8 +48,7 @@ video {
 	<video id="video" preload="auto" autoplay="true" loop="loop"
 		muted="muted" volume="0">
 		<source src="../img/Triper.mp4">
-	</video>
-		
+	</video>		
 	
 	<header class="header" id="top">
 		<div class="text-vertical-center">
@@ -74,10 +57,8 @@ video {
 			<br> <a href="#about" class="page-scroll btn btn-dark btn-lg">아래로고고</a>
 		</div>
 	</header>
-
-
+<br>
 	<!-- About -->
-	<br>
 	<!-- <section id="about" class="about">
 		<div class="container text-center">
 			<h2>Rental Shop</h2>
@@ -139,14 +120,11 @@ video {
 <!-- 예약(지도) -->
 <br/><br/>
 	<section id="contact" class="map">
-		<iframe width="100%" height="100%" frameborder="0" scrolling="no"
-			marginheight="0" marginwidth="0"
+		<iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
 			src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;aq=0&amp;oq=twitter&amp;sll=28.659344,-81.187888&amp;sspn=0.128789,0.264187&amp;ie=UTF8&amp;hq=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;t=m&amp;z=15&amp;iwloc=A&amp;output=embed"></iframe>
-		<br /> <small> <a
-			href="https://maps.google.com/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;aq=0&amp;oq=twitter&amp;sll=28.659344,-81.187888&amp;sspn=0.128789,0.264187&amp;ie=UTF8&amp;hq=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;t=m&amp;z=15&amp;iwloc=A"></a>
+		<br /> <small> <a href="https://maps.google.com/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;aq=0&amp;oq=twitter&amp;sll=28.659344,-81.187888&amp;sspn=0.128789,0.264187&amp;ie=UTF8&amp;hq=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;t=m&amp;z=15&amp;iwloc=A"></a>
 		</small>
 	</section>
-	
 	
 <!-- 고객센터 -->
 <br/><br/>
@@ -229,15 +207,14 @@ video {
 	</aside>
 	
 	
-<!-- 	<!-- Call to Action -->
+ 	<!-- Call to Action -->
 	<aside class="call-to-action bg-primary text-white">
 		<div class="container text-center">
 			<h3>~ 이건 어쩔까 2 ~</h3>
 			<a href="#" class="btn btn-lg btn-light">Click Me!</a> <a href="#"
 				class="btn btn-lg btn-dark">Look at Me!</a>
 		</div>
-	</aside> -->
-
+	</aside> 
 	
 
 	<!-- 회사소개 -->
