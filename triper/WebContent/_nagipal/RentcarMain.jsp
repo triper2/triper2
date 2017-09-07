@@ -29,7 +29,7 @@
 	<tr height="100" align="center">
 		<td  align="center" width="1000"><jsp:include page="Bottom.jsp" /></td>
 	</tr>
-	
+	<!-- 메인 페이지 -->
 </table>
 </center>
 
