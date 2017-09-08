@@ -16,7 +16,7 @@ video {
 	overflow: hidden;
 }
 </style>
-
+<%=session.getAttribute("id") %>
 <title>Rental Shop</title>
 
 <!-- Bootstrap Core CSS -->

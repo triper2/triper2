@@ -21,4 +21,4 @@ history.go(-1);
 </script>	
 </c:if>
 
-<meta http-equiv="Refresh"  content="0; url=loginForm.do ">
+<meta http-equiv="Refresh"  content="0; url=loginForm.do">

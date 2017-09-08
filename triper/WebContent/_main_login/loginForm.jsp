@@ -370,8 +370,6 @@ a.other:link, a.other:visited, a.other:hover, a.other:active {
 <!-- 세션에 로그인 ID, PWD기억하고 세션정보로 사용
 session.setAttribute("memID", request.getParameter("id")); -->
 
-<c:out value="${ sessionScope.id }"/>
-<c:set var="memID" value="${ sessionScope.id }"/>
 <!-- <c:if test="${userid ne null}"> not null </c:if> -->
 
 </head>
@@ -405,9 +403,6 @@ session.setAttribute("memID", request.getParameter("id")); -->
       </form>      <br>
       
       <div class="">
-	
-		<c:out value="${ sessionScope.state }"/>
-		<c:set var="state" value="${ sessionScope.state }"/>
 		<!-- <c:if test="${userid ne null}"> not null </c:if> -->
 		
 		<button id="naverlogin">
