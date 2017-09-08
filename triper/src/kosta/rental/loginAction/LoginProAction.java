@@ -68,12 +68,31 @@ public class LoginProAction extends HttpServlet {
 			}
 			request.setAttribute("check", check);
 			viewPage = "/_main_login/loginPro.jsp";
-
+			RequestDispatcher dp = request.getRequestDispatcher(viewPage);
+			dp.forward(request, response);
 		} else if (com.equals("/_main_login/loginForm.do")) {
 			viewPage = "/_main_login/index.jsp";
-		}
+			RequestDispatcher dp = request.getRequestDispatcher(viewPage);
+			dp.forward(request, response);
+		} 
+		else { //if (com.equals("/_main_login/naverlogin.do")) 
+			String clientId = "jG6JK4zeWYdD6NtIKfw4"; //애플리케이션 클라이언트 아이디값";
+			String redirectURI = URLEncoder.encode("http://localhost:8080/triper/_main_login/index.jsp", "UTF-8");
+			SecureRandom random = new SecureRandom();
+			String state = new BigInteger(130, random).toString();
+			String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code";
+			apiURL += "&client_id=" + clientId;
+			apiURL += "&redirect_uri=" + redirectURI;
+			apiURL += "&state=" + state;
+			//request.getSession().setAttribute("state", state);
+			//RentalDAO dao = RentalDAO.getInstance();
+			//request.getSession().setAttribute("sessionInfo", dao.getMember(clientId));
+
+			System.out.println("apiURL : "+apiURL);
+			
+			response.sendRedirect(apiURL);
+		} 
 		// System.out.println(viewPage);
-		RequestDispatcher dp = request.getRequestDispatcher(viewPage);
-		dp.forward(request, response);
+		
 	}
 }

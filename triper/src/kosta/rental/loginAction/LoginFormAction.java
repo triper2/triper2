@@ -1,4 +1,4 @@
-package kosta.rental.loginAction;
+/*package kosta.rental.loginAction;
 
 import java.io.IOException;
 import java.math.BigInteger;
@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet("/loginNaver.do")
+@WebServlet("/naverlogin.do")
 public class LoginFormAction extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -55,4 +55,4 @@ public class LoginFormAction extends HttpServlet {
 
 }
 
-//https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=jG6JK4zeWYdD6NtIKfw4&redirect_uri=http://localhost:8080/triper/_main_login/index.jsp
+//https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=jG6JK4zeWYdD6NtIKfw4&redirect_uri=http://localhost:8080/triper/_main_login/index.jsp*/

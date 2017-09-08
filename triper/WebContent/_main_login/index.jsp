@@ -22,7 +22,8 @@ video {
 
 ${ sessionScope.sessionInfo }
 ${ sessionScope.id }
-<c:set var="sessionID" value="${ sessionScope.sessionInfo }"/>
+${ sessionScope.naver_id_login }
+<c:set var="sessionInfo" value="${ sessionScope.sessionInfo }"/>
 
 <title>Rental Shop</title>
 
@@ -35,6 +36,7 @@ ${ sessionScope.id }
 <link href="../css/stylish-portfolio.css" rel="stylesheet">
 </head>
 
+
 <body>
 	<!-- Navigation -->
 	<a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle"><i class="fa fa-bars"></i></a>
@@ -42,14 +44,14 @@ ${ sessionScope.id }
 		<ul class="sidebar-nav">
 			<a id="menu-close" href="#"
 				class="btn btn-light btn-lg pull-right toggle"><i class="fa fa-times"></i></a>
-			<c:if test="${ sessionID == null }">
+			<c:if test="${ sessionInfo == null }">
 			<li class="sidebar-brand"><a href="./loginForm.jsp" onclick=$("#menu-close").click();>Login</a></li>
 			<li><a href="#portfolio" onclick=$("#menu-close").click();>리뷰</a></li>
 			<li><a href="#contact" onclick=$("#menu-close").click();>예약(지도)</a></li>
 			<li><a href="#services" onclick=$("#menu-close").click();>고객센터</a></li>
 			<li><a href="#introduce" onclick=$("#menu-close").click();>회사소개</a></li>
 			</c:if>
-			<c:if test="${ sessionID != null }">
+			<c:if test="${ sessionInfo != null }">
 			<li class="sidebar-brand"><a href="./logoutPro.jsp" onclick=$("#menu-close").click();>Log out</a></li>
 			<li><a href="./mypage.jsp" onclick=$("#menu-close").click();>My Page</a></li>
 			<li><a href="#portfolio" onclick=$("#menu-close").click();>리뷰</a></li>
@@ -278,5 +280,5 @@ ${ sessionScope.id }
 
 	<!-- Custom scripts for this template -->
 	<script src="../js/stylish-portfolio.js"></script>
-
+	
 </html>

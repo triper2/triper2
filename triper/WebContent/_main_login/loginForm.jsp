@@ -10,8 +10,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt"%>
 
-<fmt:bundle basename="commandLogin"></fmt:bundle>
-
 <!doctype html>
 <html lang="kr">
 	<head>
@@ -370,6 +368,8 @@ a.other:link, a.other:visited, a.other:hover, a.other:active {
 <c:set var="sessionInfo" value="${ sessionScope.sessionInfo }"/>
 <c:set var="id" value="${ sessionScope.id }"/>
 
+<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 </head>
 <body>
 
@@ -400,22 +400,24 @@ a.other:link, a.other:visited, a.other:hover, a.other:active {
         </div>
       </form>      <br>
       
-      <div class="">
-     <% String clientId = "jG6JK4zeWYdD6NtIKfw4"; //애플리케이션 클라이언트 아이디값";
-		String redirectURI = URLEncoder.encode("http://localhost:8080/triper/_main_login/index.jsp", "UTF-8");
-		SecureRandom random = new SecureRandom();
-		String state = new BigInteger(130, random).toString();
-		String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code";
-		apiURL += "&client_id=" + clientId;
-		apiURL += "&redirect_uri=" + redirectURI;
-		apiURL += "&state=" + state;
-		session.setAttribute("state", state);
-
-		%>
-		<button type="button" id="naverlogin">
-		<a href="${ apiURL }"><img height="50" src="http://static.nid.naver.com/oauth/small_g_in.PNG"/></a>
+      <div id="naver_id_login"></div>
+  <script type="text/javascript">
+  	var naver_id_login = new naver_id_login("jG6JK4zeWYdD6NtIKfw4", "http://localhost:8080/triper/callback.jsp");
+  	var state = naver_id_login.getUniqState();
+  	naver_id_login.setButton("white", 2,40);
+  	naver_id_login.setDomain("http://localhost:8080/triper/_main_login/index.jsp");
+  	naver_id_login.setState(state);
+  	//naver_id_login.setPopup();
+  	naver_id_login.init_naver_id_login();
+  </script>
+     
+      <!-- <form action="naverlogin.do" method="post">
+      <div>
+		<button type="submit" id="naverlogin" >
+		<img height="50" src="http://static.nid.naver.com/oauth/small_g_in.PNG"/>
 		</button>
       </div>      
+      </form> -->
         
     </div>
   </div>
