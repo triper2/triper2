@@ -2,6 +2,9 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="dbconn.util.*, dbclose.util.*, kosta.rental.*"%>
 <%@page import="java.sql.*"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,7 +19,11 @@ video {
 	overflow: hidden;
 }
 </style>
-<%=session.getAttribute("id") %>
+
+${ sessionScope.sessionInfo }
+${ sessionScope.id }
+<c:set var="sessionID" value="${ sessionScope.sessionInfo }"/>
+
 <title>Rental Shop</title>
 
 <!-- Bootstrap Core CSS -->
@@ -35,12 +42,21 @@ video {
 		<ul class="sidebar-nav">
 			<a id="menu-close" href="#"
 				class="btn btn-light btn-lg pull-right toggle"><i class="fa fa-times"></i></a>
+			<c:if test="${ sessionID == null }">
 			<li class="sidebar-brand"><a href="./loginForm.jsp" onclick=$("#menu-close").click();>Login</a></li>
+			<li><a href="#portfolio" onclick=$("#menu-close").click();>리뷰</a></li>
+			<li><a href="#contact" onclick=$("#menu-close").click();>예약(지도)</a></li>
+			<li><a href="#services" onclick=$("#menu-close").click();>고객센터</a></li>
+			<li><a href="#introduce" onclick=$("#menu-close").click();>회사소개</a></li>
+			</c:if>
+			<c:if test="${ sessionID != null }">
+			<li class="sidebar-brand"><a href="./logoutPro.jsp" onclick=$("#menu-close").click();>Log out</a></li>
 			<li><a href="./mypage.jsp" onclick=$("#menu-close").click();>My Page</a></li>
 			<li><a href="#portfolio" onclick=$("#menu-close").click();>리뷰</a></li>
 			<li><a href="#contact" onclick=$("#menu-close").click();>예약(지도)</a></li>
 			<li><a href="#services" onclick=$("#menu-close").click();>고객센터</a></li>
 			<li><a href="#introduce" onclick=$("#menu-close").click();>회사소개</a></li>
+			</c:if>
 		</ul>
 	</nav>
 

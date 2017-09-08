@@ -367,10 +367,8 @@ a.other:link, a.other:visited, a.other:hover, a.other:active {
 	});
 </script>
 
-<!-- 세션에 로그인 ID, PWD기억하고 세션정보로 사용
-session.setAttribute("memID", request.getParameter("id")); -->
-
-<!-- <c:if test="${userid ne null}"> not null </c:if> -->
+<c:set var="sessionInfo" value="${ sessionScope.sessionInfo }"/>
+<c:set var="id" value="${ sessionScope.id }"/>
 
 </head>
 <body>
@@ -403,12 +401,22 @@ session.setAttribute("memID", request.getParameter("id")); -->
       </form>      <br>
       
       <div class="">
-		<!-- <c:if test="${userid ne null}"> not null </c:if> -->
-		
-		<button id="naverlogin">
+     <% String clientId = "jG6JK4zeWYdD6NtIKfw4"; //애플리케이션 클라이언트 아이디값";
+		String redirectURI = URLEncoder.encode("http://localhost:8080/triper/_main_login/index.jsp", "UTF-8");
+		SecureRandom random = new SecureRandom();
+		String state = new BigInteger(130, random).toString();
+		String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code";
+		apiURL += "&client_id=" + clientId;
+		apiURL += "&redirect_uri=" + redirectURI;
+		apiURL += "&state=" + state;
+		session.setAttribute("state", state);
+
+		%>
+		<button type="button" id="naverlogin">
 		<a href="${ apiURL }"><img height="50" src="http://static.nid.naver.com/oauth/small_g_in.PNG"/></a>
 		</button>
-      </div>        
+      </div>      
+        
     </div>
   </div>
   <div class="form-panel two">
