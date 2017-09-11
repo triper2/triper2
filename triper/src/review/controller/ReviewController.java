@@ -11,8 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import review.command.BbsCommand;
 import review.command.Command;
+import review.command.UpdateActionCommand;
+import review.command.UpdateCommand;
 import review.command.ViewCommand;
 import review.command.WriteCommand;
+import review.command.deleteCommand;
 
 
 @WebServlet("*.review")
@@ -30,7 +33,6 @@ public class ReviewController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("get");
 		actionDo(request, response);
 	}
 
@@ -38,15 +40,15 @@ public class ReviewController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("post");
 		actionDo(request, response);
 	
 	}
 
 	private void actionDo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html;charset=UTF-8");
 		String viewPage = null;
 		Command  command = null;
-		System.out.println("actionDo");
 		String uri = request.getRequestURI();
 		String conPath = request.getContextPath();
 		String com = uri.substring(conPath.length());
@@ -54,18 +56,31 @@ public class ReviewController extends HttpServlet {
 		if(com.equals("/bbs.review")){
 			command = new BbsCommand();
 			command.execute(request,response);
-			viewPage="/review/bbs.jsp";                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+			viewPage="/_review/bbs.jsp";                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
 		}
 		else if(com.equals("/view.review")){
 			command = new ViewCommand();
 			command.execute(request,response);
-			viewPage="/review/view.jsp";
+			viewPage="/_review/view.jsp";
 		}
 		else if(com.equals("/write.review")){
-			viewPage="/review/write.jsp";
+			viewPage="/_review/write.jsp";
 		}
 		else if(com.equals("/writeAction.review")){
 			command = new WriteCommand();
+			command.execute(request,response);
+		}
+		else if(com.equals("/update.review")){
+			command = new UpdateCommand();
+			command.execute(request,response);
+			viewPage="/_review/update.jsp";
+		}
+		else if(com.equals("/updateAction.review")){
+			command = new UpdateActionCommand();
+			command.execute(request,response);
+		}
+		else if(com.equals("/deleteAction.review")){
+			command = new deleteCommand();
 			command.execute(request,response);
 		}
 				

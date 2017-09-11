@@ -69,7 +69,7 @@ public class BbsDAO {
 				bbs.setMember_ID(rs.getString(3));
 				bbs.setReview_Date(rs.getString(4)); 
 				bbs.setReview_Content(rs.getString(5));
-				bbs.setBbsAvailable(rs.getInt(6));
+				bbs.setReview_Available(rs.getInt(6));
 				list.add(bbs);
 			}
 		}catch(Exception e){
@@ -108,7 +108,7 @@ public class BbsDAO {
 				bbs.setMember_ID(rs.getString(3));
 				bbs.setReview_Date(rs.getString(4)); 
 				bbs.setReview_Content(rs.getString(5));
-				bbs.setBbsAvailable(rs.getInt(6));
+				bbs.setReview_Available(rs.getInt(6));
 				return bbs;
 			}
 		}catch(Exception e){
@@ -119,10 +119,8 @@ public class BbsDAO {
 	
 	public int update(int review_ID, String review_Title, String review_Content) {
 		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		String sql = "update review_board set review_Title=? review_Content= ? where review_ID = ?";
+		String sql = "update review_board set review_Title=?, review_Content= ? where review_ID = ?";
 		try {
-			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, review_Title);
 			pstmt.setString(2, review_Content);
@@ -135,7 +133,6 @@ public class BbsDAO {
 	}
 	public int delete(int review_ID) {
 		PreparedStatement pstmt = null;
-		ResultSet rs = null;
 		String sql = "update review_board set review_available=0 where review_ID = ?";
 		try {
 			pstmt = conn.prepareStatement(sql);

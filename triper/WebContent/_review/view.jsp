@@ -3,8 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt"%>
 <%@ page import="java.io.PrintWriter"%>
-<%@ page import="bbs.BbsVO"%>
-<%@ page import="bbs.BbsDAO"%>
+<%@ page import="review.bbs.BbsVO"%>
+<%@ page import="review.bbs.BbsDAO"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -56,7 +56,16 @@
 					</tbody>
 
 				</table>
+				
+				
 				<a href="bbs.review" class="btn btn-primary">목록</a>
+				<c:if test="${bbs.member_ID != null && bbs.member_ID.equals(bbs.getMember_ID())}">
+
+				<a href = "update.review?review_ID=${bbs.review_ID}" class="btn btn-primary">수정</a>
+				<a onclick ="return confirm('정말로 삭제하시겠습니까?')" href= "deleteAction.review?review_ID=${bbs.review_ID}" class="btn btn-primary">삭제</a>
+
+				</c:if>
+				
 			</div>
 
 		</div>

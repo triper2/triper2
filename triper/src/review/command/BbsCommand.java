@@ -19,7 +19,7 @@ public class BbsCommand implements Command {
 
 	
 		String pageNumber = request.getParameter("pageNumber");
-		String member_ID ="sdaf";
+		String member_ID ="123";
 		
 		if(pageNumber ==null)pageNumber="1";
 		int pageNum = Integer.parseInt(pageNumber);
@@ -29,7 +29,7 @@ public class BbsCommand implements Command {
 		
 		
 		request.setAttribute("list", list);
-		request.setAttribute("userID", member_ID);
+		request.setAttribute("member_ID", member_ID);
 
 	}
 

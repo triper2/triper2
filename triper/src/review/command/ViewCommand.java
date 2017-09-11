@@ -17,7 +17,6 @@ public class ViewCommand implements Command {
 
 			String getID = request.getParameter("review_ID");
 			int review_ID = Integer.parseInt(getID);
-			
 			if (review_ID == 0) {//번호가 꼭있어야 출력가능함
 				PrintWriter script;
 				try {
@@ -32,9 +31,8 @@ public class ViewCommand implements Command {
 				}
 			}
 			BbsVO bbs = new BbsDAO().getBbs(review_ID);
-			System.out.println("hi");
-			System.out.println(bbs.getReview_ID());
 			request.setAttribute("bbs", bbs);
+			request.setAttribute("review_ID", review_ID);
 
 	}
 

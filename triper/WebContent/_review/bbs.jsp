@@ -5,7 +5,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt"%>
 
 <%@ page import="java.io.PrintWriter"%>
-<%@ page import="bbs.*"%>
 <%@ page import="java.util.ArrayList"%>
 <!DOCTYPE html>
 <html>

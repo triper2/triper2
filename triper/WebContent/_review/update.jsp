@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@ page import="java.io.PrintWriter"%>
-<%@ page import="bbs.*"%>
+<%@ page import="review.bbs.*"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,7 +30,7 @@
 
 		nhn.husky.EZCreator.createInIFrame({
 			oAppRef : editor_object,
-			elPlaceHolder : "bbsContent",
+			elPlaceHolder : "review_Content",
 			sSkinURI : "se2/SmartEditor2Skin.html",
 			htParams : {
 				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
@@ -46,7 +46,7 @@
 		$("#savebutton").click(
 				function() {
 					//id가 smarteditor인 textarea에 에디터에서 대입
-					editor_object.getById["bbsContent"].exec(
+					editor_object.getById["review_Content"].exec(
 							"UPDATE_CONTENTS_FIELD", []);
 
 					// 이부분에 에디터 validation 검증
@@ -60,44 +60,11 @@
 </head>
 <body>
 
-	<%
-		String userID = "123";
-		if (session.getAttribute("userID") != null) {
-			userID = (String) session.getAttribute("userID");
-		}
-		if (userID == null) {//번호가 꼭있어야 출력가능함
-			PrintWriter script = response.getWriter();
-			script.println("<script>");
-			script.println("alert('로그인을 하세요')");
-			script.println("location.href = 'bbs.jsp'");//로그인 페이지
-			script.println("</script>");
-		}
-		int bbsID = 0;
-		if (request.getParameter("bbsID") != null) {
-			bbsID = Integer.parseInt(request.getParameter("bbsID"));
-		}
-		if (bbsID == 0) {//번호가 꼭있어야 출력가능함
-			PrintWriter script = response.getWriter();
-			script.println("<script>");
-			script.println("alert('유효하지 않은 글입니다')");
-			script.println("location.href = 'bbs.jsp'");//로그인 페이지
-			script.println("</script>");
-		}
-		Bbs bbs = new BbsDAO().getBbs(bbsID);
-		if(!userID.equals(bbs.getUserID())){
-			PrintWriter script = response.getWriter();
-			script.println("<script>");
-			script.println("alert('권한이 없습니다.')");
-			script.println("location.href='bbs.jsp'");
-			script.println("</script>");
-		}
-	%>
-
 	<center>
 		<div class="container">
 			<div class="row">
-				<form method="post" action="updateAction.jsp">
-				<input type="hidden" name="bbsID" value="<%=bbsID%>">
+				<form method="post" action="updateAction.review">
+				<input type="hidden" name="review_ID" value="${bbs.getReview_ID()}">
 					<table class="table table-striped"
 						style="text-align: center; border: 1px solid #dddddd">
 						<thead>
@@ -111,14 +78,14 @@
 						<tbody>
 							<tr>
 								<td><input type="text" class="form-control"
-									placeholder="글 제목" name="bbsTitle" maxlength="50"
-									value="<%=bbs.getBbsTitle()%>"></td>
+									placeholder="글 제목" name="review_Title" maxlength="50"
+									value="${bbs.getReview_Title()}"></td>
 							</tr>
 
 							<tr>
 								<td><textarea class="form-control" placeholder="글 내용"
-										name="bbsContent" id="bbsContent" maxlength="2048"
-										style="height: 350px;"><%=bbs.getBbsContent()%></textarea></td>
+										name="review_Content" id="review_Content" maxlength="2048"
+										style="height: 350px;">${bbs.getReview_Content()}</textarea></td>
 							</tr>
 
 						</tbody>

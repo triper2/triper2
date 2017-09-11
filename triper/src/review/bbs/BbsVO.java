@@ -1,12 +1,6 @@
 package review.bbs;
 
 public class BbsVO {
-	private int bbsID;
-	private String bbsTitle;
-	private String userID;
-	private String bbsDate;
-	private String bbsContent;
-	private int bbsAvailable;
 	
 	private int review_ID;
 	private String review_Title;
@@ -19,12 +13,6 @@ public class BbsVO {
 	private String review_Image_3;
 	private String review_Image_4;
 	private String review_Image_5;
-	
-	
-	
-	
-	
-	
 	
 	
 	
@@ -95,51 +83,6 @@ public class BbsVO {
 	public void setReview_Image_5(String review_Image_5) {
 		this.review_Image_5 = review_Image_5;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	public int getBbsID() {
-		return bbsID;
-	}
-	public void setBbsID(int bbsID) {
-		this.bbsID = bbsID;
-	}
-	public String getBbsTitle() {
-		return bbsTitle;
-	}
-	public void setBbsTitle(String bbsTitle) {
-		this.bbsTitle = bbsTitle;
-	}
-	public String getUserID() {
-		return userID;
-	}
-	public void setUserID(String userID) {
-		this.userID = userID;
-	}
-	public String getBbsDate() {
-		return bbsDate;
-	}
-	public void setBbsDate(String bbsDate) {
-		this.bbsDate = bbsDate;
-	}
-	public String getBbsContent() {
-		return bbsContent;
-	}
-	public void setBbsContent(String bbsContent) {
-		this.bbsContent = bbsContent;
-	}
-	public int getBbsAvailable() {
-		return bbsAvailable;
-	}
-	public void setBbsAvailable(int bbsAvailable) {
-		this.bbsAvailable = bbsAvailable;
-	}
+
 	
 }
