@@ -1,21 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
-<%@ page import="java.io.PrintWriter"%>
-<%@ page import="bbs.BbsDAO"%>
-<%@ page import="bbs.Bbs"%>
-<%@ page import="java.util.ArrayList"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<meta name="viewport" content="width=device-width" ,intial-scale="1">
-<link rel="stylesheet" href="css/bootstrap.css">
-<link rel="stylesheet" href="css/custom.css">
-<title>Insert title here</title>
-<script type="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-<script type="js/bootstrap.js"></script>
+@CHARSET "EUC-KR";
 
-<style rel="stylesheet">
 body {
 	background-color: #eee
 }
@@ -152,63 +136,7 @@ body {
 		width: 400px;
 	}
 }
-</style>
-
-</head>
-<body>
-	<%
-		String userID = "123";
-		if (session.getAttribute("userID") != null) {
-			userID = (String) session.getAttribute("userID");
-		}
-		int pageNumber = 1;
-		if (request.getParameter("pageNumber") != null) {
-			pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
-		}
-	%>
-	
-	<a href="write.jsp" class="btn btn-primary pull-right">글쓰기</a>
-
-	<%
-		BbsDAO bbsDAO = new BbsDAO();
-		ArrayList<Bbs> list = bbsDAO.getList(pageNumber);
-		for (int i = 0; i < list.size(); i++) {
-			if (i % 3 == 0) {
-	%>
-
-	<div class="wrap">
-		<div class="tile">
-			<img src='http://www.blueb.co.kr/SRC2/_image/s_01.jpg' />
-			<div class="text">
-				<h2 class="animate-text"><%=list.get(i).getBbsID()%></h2>
-				<p class="animate-text"><%=list.get(i).getBbsDate()%></p>
-			</div>
-		</div>
-	<%
-		} else if (i % 3 == 1) {
-	%>
-	<div class="tile">
-		<img src='http://www.blueb.co.kr/SRC2/_image/s_01.jpg' />
-		<div class="text">
-			<h2 class="animate-text"><%=list.get(i).getBbsID()%></h2>
-			<p class="animate-text"><%=list.get(i).getBbsDate()%></p>
-	</div>
-	</div>
-	<%
-		} else {
-	%>
-	<div class="tile">
-		<img src='http://www.blueb.co.kr/SRC2/_image/s_01.jpg' />
-		<div class="text">
-			<h2 class="animate-text"><%=list.get(i).getBbsID()%></h2>
-			<p class="animate-text"><%=list.get(i).getBbsDate()%></p>
-	</div>
-	</div>
-	</div>
-	<%
-			}
-		}
-	%>
-
-</body>
-</html>
+a,a:hover{
+	color:#FFFFFF;
+	text-decoration: none;
+}
