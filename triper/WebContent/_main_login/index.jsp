@@ -22,7 +22,6 @@ video {
 
 ${ sessionScope.sessionInfo }
 ${ sessionScope.id }
-${ sessionScope.naver_id_login }
 <c:set var="sessionInfo" value="${ sessionScope.sessionInfo }"/>
 
 <title>Rental Shop</title>

@@ -1,12 +1,16 @@
 package kosta.rental.loginAction;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.math.BigInteger;
 import java.net.URLEncoder;
 import java.security.SecureRandom;
+import java.sql.Connection;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -15,10 +19,12 @@ import javax.servlet.http.HttpSession;
 import javax.websocket.Session;
 
 import kosta.rental.loginModel.RentalDAO;
+import kosta.rental.loginModel.RentalDTO;
 
 @WebServlet("*.do")
 public class LoginProAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private String name;
 
 	public LoginProAction() {
 		super();
@@ -51,12 +57,11 @@ public class LoginProAction extends HttpServlet {
 		String conPath = request.getContextPath(); // http://localhost:8080/triper 여기까지 길이 구하기 /_main_login/loginPro.do
 		String com = uri.substring(conPath.length()); // 길이값 빼고(이후의) /_main_login/loginPro.do
 		int check = 0;
-		
-		if (com.equals("/_main_login/loginPro.do")) {
+		ServletRequest session = null;
+		if (com.equals("/_main_login/loginPro.do")) { ///////////////////////////////////loginPro.do
 			String id = request.getParameter("id");
 			String pwd = request.getParameter("password");
 			RentalDAO dao = RentalDAO.getInstance();
-
 			try {
 				check = dao.userCheck(id, pwd);
 			} catch (Exception e) {
@@ -70,11 +75,103 @@ public class LoginProAction extends HttpServlet {
 			viewPage = "/_main_login/loginPro.jsp";
 			RequestDispatcher dp = request.getRequestDispatcher(viewPage);
 			dp.forward(request, response);
-		} else if (com.equals("/_main_login/loginForm.do")) {
+		} 
+		else if (com.equals("/_main_login/loginForm.do")) { ///////////////////////////////////loginForm.do
 			viewPage = "/_main_login/index.jsp";
 			RequestDispatcher dp = request.getRequestDispatcher(viewPage);
 			dp.forward(request, response);
 		} 
+		else if (com.equals("/_main_login/registerPro.do")){ ///////////////////////////////////registerPro.do
+			String id = request.getParameter("member_id");
+			String pwd = request.getParameter("member_pwd");
+			RentalDAO dao = RentalDAO.getInstance();
+			RentalDTO dto = new RentalDTO();
+			dao.insert(dto);
+			System.out.println("액션");				
+			viewPage = "/_main_login/registerPro.jsp";
+			RequestDispatcher dp = request.getRequestDispatcher(viewPage);
+			dp.forward(request, response);
+		}
+		else if (com.equals("/_main_login/idCheck.do")) { ///////////////////////////////////idCheck.do
+			String id = request.getParameter("member_id");
+			RentalDAO dao = RentalDAO.getInstance();
+			try {
+				PrintWriter out = response.getWriter();
+				out.write(dao.idCheck(id)+"");
+				out.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		else if (com.equals("/_main_login/emailCheck.do")) { ///////////////////////////////////emailCheck.do
+			String email = request.getParameter("member_email");
+			RentalDAO dao = RentalDAO.getInstance();
+			try {
+				dao.emailCheck(email);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		else if (com.equals("/_main_login/pwCheck.do")) { ///////////////////////////////////pwCheck.do
+			String pwd = request.getParameter("member_pwd");
+			RentalDAO dao = RentalDAO.getInstance();
+			try {
+				dao.pwCheck(pwd);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		else if (com.equals("/_main_login/phoneCheck.do")) { ///////////////////////////////////phoneCheck.do
+			String phone = request.getParameter("member_phone");
+			RentalDAO dao = RentalDAO.getInstance();
+			try {
+				dao.phoneCheck(phone);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		 else if (com.equals("/_main_login/modifyPro.do")) { ///////////////////////////////////modifyPro.do
+			String id = request.getParameter("member_id");
+			RentalDAO dao = RentalDAO.getInstance();
+			RentalDTO dto = dao.getMember(id);
+			System.out.println(id);
+			try {
+				dao.modify(dto);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			request.getSession().setAttribute("id", id);
+			request.getSession().setAttribute("sessionInfo", dao.getMember(id));
+			viewPage = "/_main_login/index.jsp";
+			RequestDispatcher dp = request.getRequestDispatcher(viewPage);
+			dp.forward(request, response);
+		} 
+		 else if (com.equals("/_main_login/deletePro.do")) { ///////////////////////////////////deletePro.do
+			String id = (String)request.getSession().getAttribute("id");
+			String pwd = request.getParameter("password");
+			RentalDAO dao = RentalDAO.getInstance();
+			try {
+				check = dao.delete(id, pwd);
+				System.out.println(check);
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			if (check == 1) {
+				request.getSession().invalidate();
+			}
+			request.setAttribute("check", check);
+			viewPage = "/_main_login/deletePro.jsp";
+			RequestDispatcher dp = request.getRequestDispatcher(viewPage);
+			dp.forward(request, response);
+		} 
+		 else if (com.equals("/_main_login/mypage.do")) { ///////////////////////////////////mypage.do
+			viewPage = "/_main_login/mypage.jsp";
+			RequestDispatcher dp = request.getRequestDispatcher(viewPage);
+			dp.forward(request, response);
+		}
+		
+		
 		else { //if (com.equals("/_main_login/naverlogin.do")) 
 			String clientId = "jG6JK4zeWYdD6NtIKfw4"; //애플리케이션 클라이언트 아이디값";
 			String redirectURI = URLEncoder.encode("http://localhost:8080/triper/_main_login/index.jsp", "UTF-8");

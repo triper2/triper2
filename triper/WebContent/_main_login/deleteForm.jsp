@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="dbconn.util.*, dbclose.util.*, kosta.rental.*"%>
+<%@ page import="dbconn.util.*, dbclose.util.*, kosta.rental.loginModel.*"%>
 <%@page import="java.sql.*"%>
 <!DOCTYPE html>
 <html>
@@ -101,21 +101,17 @@ nav .fa.fa-angle-down {
 	margin-left: 6px;
 }
 </style>
-
+${ sessionScope.sessionInfo }
+${ sessionScope.id }
+<!-- <c:set var="sessionInfo" value="${ sessionScope.sessionInfo }"/> -->
 </head>
-<%
-	request.setCharacterEncoding("UTF-8");
-	//사용자의 id값은 세션속성값으로부터 얻어옴
-	String id = (String)session.getAttribute("memID");
-	RentalDAO dao = RentalDAO.getInstance();
-	RentalDTO dto = dao.getMember(id);
-	try{
-%>
+<c:remove scope="session" var="sessionInfo" />
+<c:remove scope="session" var="id" /> 
 <body>
 	<nav>
 		<div class="container">
 			<ul>
-				<li><a href="index.html">Home</a></li>
+				<li><a href="index.jsp">Home</a></li>
 				<li><a href="#">My page<i class='fa fa-angle-down'></i></a>
 					<ul>
 						<li><a href="#">예매결제내역조회 아직</a></li>
@@ -157,8 +153,7 @@ nav .fa.fa-angle-down {
 		});
 	</script>
 <script type="text/javascript">
-<!--
-	function begin(){
+	/* function begin(){
 		document.myform.password.focus();
 	}
 	
@@ -168,22 +163,27 @@ nav .fa.fa-angle-down {
 			document.myform.password.focus();
 			return false;
 		}
-	}
-//-->
+	} */
 </script>
+<script type="text/javascript">
+        // 비밀번호 미입력시 경고창
+        function checkValue(){
+            if(!document.deleteform.password.value){
+                alert("비밀번호를 입력하지 않았습니다.");
+                return false;
+            }
+        }
+</script>
+
 <body align="center"><br/><br/><br/><br/><br/>
-<form name="myform" action="deletePro.jsp" 
-				method="post" onSubmit="return checkIt()">
+<form name="myform"  method="post" action="deletePro.do" onsubmit="return checkValue()">
 <div id="fadeandscale" class="well">
 			<label width="100" align="center">PASSWORD 
 			<input type="password" name="password" size="15" maxlength="15">
 		<br/><br/>
-			<input type="submit" onclick="javascript:window.location='deletePro.jsp'" value="탈퇴"> 
-			<input type="submit" onclick="javascript:window.location='index.html'" value="취소">
+			<input type="submit" value="탈퇴"> 
+			<input type="submit"  value="취소" onclick="javascript:window.location='index.jsp'">
 		</div>
 </form>
 </body>
-<% } catch(Exception e) {
-	 out.print("에러!!!!!!!!!!!!"); 
- } %>
 </html>

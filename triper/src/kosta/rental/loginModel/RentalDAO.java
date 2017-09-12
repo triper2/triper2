@@ -1,16 +1,11 @@
 package kosta.rental.loginModel;
 
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
 import dbclose.util.CloseUtil;
@@ -25,7 +20,7 @@ public class RentalDAO { // Controller (Data Access Object)
 		// 연결은 JNDI & Pool 형태로 연결객체 생성해서 리턴 할거임
 		Context ctx = new InitialContext();
 		Context env = (Context) ctx.lookup("java:comp/env");
-		DataSource ds = (DataSource) env.lookup("jdbc:TriperDB");
+		DataSource ds = (DataSource) env.lookup("jdbc:MemberDB");
 
 		return ds.getConnection();
 	}//getConnection() end
@@ -39,8 +34,28 @@ public class RentalDAO { // Controller (Data Access Object)
 		}
 		return conn;
 	} // loadOracleDriver() end
-
-	public static void insert(Connection conn, RentalDTO dto) {
+	
+	public void insert(RentalDTO dto) throws Exception {
+		Connection conn = getConnection();
+		PreparedStatement pstmt = null;
+		String sql = "INSERT INTO MEMBER_LIST(MEMBER_ID, MEMBER_NAME, MEMBER_PWD, MEMBER_PHONE, MEMBER_EMAIL, MEMBER_IMG) VALUES(?,?,?,?,?,?) ";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			System.out.println("asldgja;oeirhj");
+			pstmt.setString(1, dto.getMember_id());
+			pstmt.setString(2, dto.getMember_name());
+			pstmt.setString(3, dto.getMember_pwd());
+			pstmt.setString(4, dto.getMember_phone());
+			pstmt.setString(5, dto.getMember_email());
+			pstmt.setString(6, dto.getMember_img());
+			pstmt.executeUpdate(); // pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();		
+		}
+			CloseUtil.close(conn);
+	} // insert() end
+	
+	/*public static void insert(Connection conn, RentalDTO dto) {
 		StringBuffer sb = new StringBuffer();
 		PreparedStatement ps = null;
 		try {
@@ -57,10 +72,44 @@ public class RentalDAO { // Controller (Data Access Object)
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		CloseUtil.close(ps);
-		CloseUtil.close(conn);
 	} // insert() end
+*/		
+	public boolean idCheck(String id) throws Exception {
+		String sql = "SELECT MEMBER_ID FROM MEMBER_LIST WHERE MEMBER_ID = ? ";
+		boolean result = true; //DB에 ID 있음(중복)
+		Connection conn = getConnection();
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, id);
+		ResultSet rs = pstmt.executeQuery();
+		
+		result = rs.next(); //true:DB에 ID 있음(중복) <-> false:DB에 ID 없음 (사용가능)
+	
+		CloseUtil.close(rs);
+		CloseUtil.close(pstmt);
+		return result;
+	}// idCheck() end
 
+	public boolean pwCheck(String pwd) throws Exception {
+		String pwd_regex = "/^.*(?=.{8,20})(?=.*[0-9])(?=.*[a-zA-Z]).*$/";
+		boolean result = pwd.matches(pwd_regex); //
+		System.out.println("pwd "+result);
+		return result;
+	}// emailCheck() end
+	
+	public boolean emailCheck(String email) throws Exception {
+		String email_regex = "^[_a-z0-9-]+(.[_a-z0-9-]+)*@(?:\\w+\\.)+\\w+$";
+		boolean result = email.matches(email_regex); //
+		System.out.println("email "+result);
+		return result;
+	}// emailCheck() end
+	
+	public boolean phoneCheck(String phone) throws Exception {
+		String phone_regex = "^\\d{2,3}-\\d{3,4}-\\d{4}$";
+		boolean result = phone.matches(phone_regex); //
+		System.out.println("phone "+result);
+		return result;
+	}// phoneCheck() end
+	
 	public int userCheck(String id, String pwd) throws Exception {
 		String sql = "SELECT MEMBER_PWD FROM MEMBER_LIST WHERE MEMBER_ID = ? ";
 		String dbpwd = "";
@@ -112,15 +161,15 @@ public class RentalDAO { // Controller (Data Access Object)
 		String sql="UPDATE MEMBER_LIST SET MEMBER_NAME=?, MEMBER_PWD=?, MEMBER_PHONE=?, MEMBER_EMAIL=?, MEMBER_IMG=? WHERE MEMBER_ID=? ";
 		Connection conn = getConnection();
 		PreparedStatement pstmt = conn.prepareStatement(sql);
-		//RentalDTO dto = new RentalDTO();
+		
 		pstmt.setString(1, dto.getMember_name());
 		pstmt.setString(2, dto.getMember_pwd());
 		pstmt.setString(3, dto.getMember_phone());
 		pstmt.setString(4, dto.getMember_email());
 		pstmt.setString(5, dto.getMember_img());
 		pstmt.setString(6, dto.getMember_id());
-		pstmt.executeQuery();
-		
+		pstmt.executeUpdate();
+		System.out.println(sql);
 		CloseUtil.close(pstmt); CloseUtil.close(conn);
 	}//update(dto) end
 	
@@ -134,10 +183,10 @@ public class RentalDAO { // Controller (Data Access Object)
 		pstmt.setString(1, id);
 		
 		ResultSet rs = pstmt.executeQuery();
-		
+
 		if(rs.next() ) {
 			dbpwd = rs.getString("member_pwd");
-			
+
 			if( dbpwd.equals(pwd) ) {
 				pstmt = conn.prepareStatement("DELETE FROM MEMBER_LIST WHERE MEMBER_ID = ?");
 				pstmt.setString(1, id);
@@ -150,6 +199,7 @@ public class RentalDAO { // Controller (Data Access Object)
 		}
 		CloseUtil.close(rs);   CloseUtil.close(pstmt);  CloseUtil.close(conn);
 		return result;
-	} // delete(id, pwd) end
-
+	} // delete(id, pwd) end	
+	
+	
 }

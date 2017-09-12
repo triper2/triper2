@@ -114,7 +114,7 @@ nav .fa.fa-angle-down {
 	<nav>
 		<div class="container">
 			<ul>
-				<li><a href="index.html">Home</a></li>
+				<li><a href="index.jsp">Home</a></li>
 				<li><a href="#">My page<i class='fa fa-angle-down'></i></a>
 					<ul>
 						<li><a href="#">예매결제내역조회 아직</a></li>

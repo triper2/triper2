@@ -323,46 +323,111 @@ a.other:link, a.other:visited, a.other:hover, a.other:active {
 </style>
 
 <script type="text/javascript">
-	$(function() {
-		$('#member_id').keyup(function() {
-			if ($('#member_id').val().length < 5 || $('#member_id').val().length > 15) {
-				$('#idcheck').text('ID 5~15 자리입니다.').css('color', 'red');
-			} else {
-				$('#idcheck').text('사용가능 ID 입니다.').css('color', 'blue');
-			}
-		});
-
-		$('#cpassword').keyup(function() {
-			if ($('#member_pwd').val() != $('#cpassword').val()) {
-				$('#pwcheck').text('암호불일치!').css('color', 'red');
-			} else {
-				$('#pwcheck').text('암호일치!').css('color', 'blue');
-			}
-		});
-
-		$('#ssubmitbtn')
-				.click(
-						function() {
-							if ($('#member_id').val() == ""
-									|| $('#member_name').val() == ""
-									|| $('#member_pwd').val() == ""
-									|| $('#cpassword').val() == ""
-									|| $('#member_phone').val() == ""
-									|| $('#member_email').val() == ""
-									|| ($('#member_pwd').val() != $('#cpassword').val())
-									|| ($('#member_id').val().length < 5 || $('#member_id').val().length > 15)) {
-								alert('필수 값 및 정확히 입력하세요');
-								return false;
-							} else {
-								alert('가입완료');
-								$("#fssubmit").submit();
-							}
-						});
-		
-		/* $('#lsubmitbtn').click(function() {
-			$("#flsubmit").submit();
-		});		 */
+$(function() {
+	$('#member_id').keyup(function() {
+		if ($('#member_id').val().length < 5 || $('#member_id').val().length > 15) {
+			$('#idcheck').text('ID 5~15 자리입니다.').css('color', 'red');
+		} else {
+			$.ajax({
+				type: 'post', //post방식
+				url: 'idCheck.do', //요청처리
+				data: {"member_id" : $('#member_id').val()}, //파라미터
+				success:function(result){
+					if(result == "true"){//true:DB에 ID 있음(중복)
+		                $('#idcheck').text('사용할 수 없는 아이디입니다.(중복)').css('color', 'red');
+					} else { //false:DB에 ID 없음 (사용가능)
+						$('#idcheck').text('사용할 수 있는 아이디입니다.').css('color', 'blue');
+					}
+				},
+				error:function(msg,error) {
+					alert("error");
+				}
+			});
+		}
 	});
+	
+	$('#member_pwd').focusout(function() {
+		$.ajax({
+			type: 'post', //post방식
+			url: 'pwCheck.do', //요청처리
+			data: {"member_pwd" : $('#member_pwd').val()}, //파라미터
+			success:function(result){
+				if(result == "true"){
+	                $('#pwcheck').text('비밀번호는 8~20자, 영문/숫자를 조합해야합니다').css('color', 'red');
+				} else { 
+					$('#pwcheck').text('Password OK').css('color', 'blue');
+				}
+			},
+			error:function(msg,error) {
+				alert("error");
+			}
+		});
+	});
+	
+	$('#cpassword').keyup(function() {
+		if ($('#member_pwd').val() != $('#cpassword').val()) {
+			$('#pwcheck2').text('암호불일치!').css('color', 'red');
+		} else {
+			$('#pwcheck2').text('암호일치!').css('color', 'blue');
+		}
+	});
+
+	$('#member_email').focusout(function() {
+		$.ajax({
+			type: 'post', //post방식
+			url: 'emailCheck.do', //요청처리
+			data: {"member_email" : $('#member_email').val()}, //파라미터
+			success:function(result){
+				if(result == "true"){
+	                $('#emailcheck').text('Email 형식 맞춰주세요').css('color', 'red');
+				} else { 
+					$('#emailcheck').text('Email OK').css('color', 'blue');
+				}
+			},
+			error:function(msg,error) {
+				alert("error");
+			}
+		});
+	});
+	
+	$('#member_phone').focusout(function() {
+		$.ajax({
+			type: 'post', //post방식
+			url: 'phoneCheck.do', //요청처리
+			data: {"member_phone" : $('#member_phone').val()}, //파라미터
+			success:function(result){
+				if(result == "false"){
+	                $('#phonecheck').text('(-)포함 폰 번호 맞춰주세요').css('color', 'red');
+				} else { 
+					$('#phonecheck').text('Phone OK').css('color', 'blue');
+				}
+			},
+			error:function(msg,error) {
+				alert("error");
+			}
+		});
+	});
+
+	$('#ssubmitbtn').click(function() {
+		if ($('#member_id').val() == ""
+				|| $('#member_name').val() == ""
+				|| $('#member_pwd').val() == ""
+				|| $('#cpassword').val() == ""
+				|| $('#member_phone').val() == ""
+				|| $('#member_email').val() == ""
+				|| ($('#member_pwd').val() != $(
+						'#cpassword').val())
+				|| ($('#member_id').val().length < 5 || $(
+						'#member_id').val().length > 15)) {
+			alert('필수 값 및 정확히 입력하세요');
+			return false;
+		} else {
+			alert('가입액션으로...');
+			$("#fssubmit").submit();
+		}
+	});
+});
+
 </script>
 
 <c:set var="sessionInfo" value="${ sessionScope.sessionInfo }"/>
@@ -426,7 +491,7 @@ a.other:link, a.other:visited, a.other:hover, a.other:active {
       <h1>Register Account</h1>
     </div>
     <div class="form-content">
-      <form action="registerPro.jsp" id="fssubmit" method="post">
+      <form action="registerPro.do" id="fssubmit" method="post">
         <div class="form-group">
           <label for="username">ID</label>
           <input type="text" id="member_id" name="member_id" required="required"/>
@@ -439,19 +504,22 @@ a.other:link, a.other:visited, a.other:hover, a.other:active {
         <div class="form-group">
           <label for="password">Password</label>
           <input type="password" id="member_pwd" name="member_pwd" required="required"/>
+          <font id="pwcheck" name="pwcheck"></font>
         </div>
         <div class="form-group">
           <label for="cpassword">Password Check</label>
           <input type="password" id="cpassword" name="cpassword" required="required"/>
-          <font id="pwcheck" name="pwcheck"></font>
+          <font id="pwcheck2" name="pwcheck2"></font>
         </div>
         <div class="form-group">
           <label for="phone">Phone number</label>
           <input type="phone" id="member_phone" name="member_phone" required="required"/>
+          <font id="phonecheck" name="phonecheck"></font>
         </div>
         <div class="form-group">
           <label for="email">Email Address</label>
           <input type="email" id="member_email" name="member_email" required="required"/>
+          <font id="emailcheck" name="emailcheck"></font>
         </div>
         <div class="form-group">
           <label for="image">Image</label>
@@ -472,13 +540,10 @@ $(document).ready(function() {
 
   $('.form-panel.two').not('.form-panel.two.active').on('click', function(e) {
     e.preventDefault();
-
     $('.form-toggle').addClass('visible');
     $('.form-panel.one').addClass('hidden');
     $('.form-panel.two').addClass('active');
-    $('.form').animate({
-      'height': panelTwo
-    }, 200);
+    $('.form').animate({'height': panelTwo}, 200);
   });
 
   $('.form-toggle').on('click', function(e) {

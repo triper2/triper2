@@ -5,13 +5,6 @@
 
 <c:remove scope="session" var="sessionInfo" />
 <c:remove scope="session" var="id" />
-<!DOCTYPE html>
-<html>
-<head><title></title></head>
-<body>이게 안먹혀
-	<script type="text/javascript">
-		alret("로그아웃 합니다.")
-	</script>
-	<!--<c:redirect url="index.jsp" />-->
-</body>
-</html>
+
+<meta http-equiv="Refresh" content="0; url=index.jsp">
+	

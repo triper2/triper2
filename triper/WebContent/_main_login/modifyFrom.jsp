@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="dbconn.util.*, dbclose.util.*, kosta.rental.loginModel.*"%>
+<%@ page import="dbconn.util.*, dbclose.util.*, kosta.rental.loginModel.*, kosta.rental.loginAction.*"%>
 <%@page import="java.sql.*"%>
-
+<jsp:useBean id="dto" class="kosta.rental.loginModel.RentalDTO" />
+<jsp:setProperty property="*" name="dto"  />
 <!doctype html>
 <html lang="kr">
 	<head>
@@ -336,22 +337,19 @@ a.other:link, a.other:visited, a.other:hover, a.other:active {
 								alert('필수 값 및 정확히 입력하세요');
 								return false;
 							} else {
-								alert('수정완료! 3초 후 로그인 페이지로 갑니다.');
+								alert('수정완료! 2초 후 로그인 페이지로 갑니다.');
 								$("#fssubmit").submit();
 							}
 						});
 	});
 </script>
+${ sessionScope.sessionInfo }
+${ sessionScope.id }
+
+<c:set var="sessionInfo" value="${ sessionScope.sessionInfo }"/>
 
 </head>
-<%
-	request.setCharacterEncoding("UTF-8");
-	//사용자의 id값은 세션속성값으로부터 얻어옴
-	String id = (String)session.getAttribute("memID");
-	RentalDAO dao = RentalDAO.getInstance();
-	RentalDTO dto = dao.getMember(id);
-	try{
-%>
+
 <body>
 <div class="form">
  <div class="form-panel one">
@@ -359,10 +357,10 @@ a.other:link, a.other:visited, a.other:hover, a.other:active {
       <h1>Register Account Modify</h1>
     </div>
     <div class="form-content">
-      <form action="modifyPro.jsp" id="fssubmit">
+      <form action="modifyPro.do" id="fssubmit">
         <div class="form-group">
           <label for="username">ID</label>
-          <input type="text" id="member_id" name="member_id" value="<%= dto.getMember_id() %>"/>
+          <input type="text" id="member_id" name="member_id" value="${ sessionScope.id }"/>
         </div>
         <div class="form-group">
           <label for="name">Name</label>
@@ -424,7 +422,4 @@ $(document).ready(function() {
 });
 </script>
 </body>
-<% } catch(Exception e) {
-	 out.print("에러!!!!!!!!!!!!"); 
- } %>
 </html>
