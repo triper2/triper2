@@ -15,7 +15,7 @@ public class WriteCommand implements Command {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
-		String member_ID = "123";
+		String member_ID = "qqqqq";
 		String review_Title =request.getParameter("review_Title");
 		String review_Content = request.getParameter("review_Content");
 		/*if (session.getAttribute("userID") != null) {

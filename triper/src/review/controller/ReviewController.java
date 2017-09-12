@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.sun.java.swing.plaf.windows.resources.windows;
+
 import review.command.BbsCommand;
 import review.command.Command;
 import review.command.UpdateActionCommand;
@@ -49,42 +51,48 @@ public class ReviewController extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 		String viewPage = null;
 		Command  command = null;
+		RequestDispatcher dp = null;
 		String uri = request.getRequestURI();
 		String conPath = request.getContextPath();
 		String com = uri.substring(conPath.length());
+		com = com.split("/")[2];
+		System.out.println(com);
 		
-		if(com.equals("/bbs.review")){
+		if(com.equals("bbs.review")){
 			command = new BbsCommand();
 			command.execute(request,response);
-			viewPage="/_review/bbs.jsp";                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+			viewPage="../_review/bbs.jsp";                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
 		}
-		else if(com.equals("/view.review")){
+		else if(com.equals("view.review")){
 			command = new ViewCommand();
 			command.execute(request,response);
-			viewPage="/_review/view.jsp";
+			viewPage="../_review/view.jsp";
 		}
-		else if(com.equals("/write.review")){
-			viewPage="/_review/write.jsp";
+		else if(com.equals("write.review")){
+			viewPage="../_review/write.jsp";
 		}
-		else if(com.equals("/writeAction.review")){
+		else if(com.equals("writeAction.review")){
 			command = new WriteCommand();
 			command.execute(request,response);
+			viewPage="bbs.review";
 		}
-		else if(com.equals("/update.review")){
+		else if(com.equals("update.review")){
 			command = new UpdateCommand();
 			command.execute(request,response);
-			viewPage="/_review/update.jsp";
+			viewPage="../_review/update.jsp";
 		}
-		else if(com.equals("/updateAction.review")){
+		else if(com.equals("updateAction.review")){
 			command = new UpdateActionCommand();
 			command.execute(request,response);
+			viewPage="bbs.review"; 
 		}
-		else if(com.equals("/deleteAction.review")){
+		else if(com.equals("deleteAction.review")){
 			command = new deleteCommand();
 			command.execute(request,response);
+			viewPage="bbs.review"; 
 		}
 				
-		RequestDispatcher  dp = request.getRequestDispatcher(viewPage);
+		dp = request.getRequestDispatcher(viewPage);
 		dp.forward(request, response);
 		
 	}

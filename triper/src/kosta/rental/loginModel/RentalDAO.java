@@ -25,7 +25,7 @@ public class RentalDAO { // Controller (Data Access Object)
 		// 연결은 JNDI & Pool 형태로 연결객체 생성해서 리턴 할거임
 		Context ctx = new InitialContext();
 		Context env = (Context) ctx.lookup("java:comp/env");
-		DataSource ds = (DataSource) env.lookup("jdbc:MemberDB");
+		DataSource ds = (DataSource) env.lookup("jdbc:TriperDB");
 
 		return ds.getConnection();
 	}//getConnection() end
@@ -57,6 +57,8 @@ public class RentalDAO { // Controller (Data Access Object)
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		CloseUtil.close(ps);
+		CloseUtil.close(conn);
 	} // insert() end
 
 	public int userCheck(String id, String pwd) throws Exception {

@@ -1,34 +1,50 @@
 package review.bbs;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
+
+import dbclose.util.CloseUtil;
+import dbconn.util.ConnectionUtil;
+
 public class BbsDAO {
+	private static BbsDAO instance = new BbsDAO();
+	public static BbsDAO getInstance() {
+		return instance;
+	}
+	public static Connection getConnection() throws Exception {
+		// 연결은 JNDI & Pool 형태로 연결객체 생성해서 리턴 할거임
+		Context ctx = new InitialContext();
+		Context env = (Context) ctx.lookup("java:comp/env");
+		DataSource ds = (DataSource) env.lookup("jdbc:TriperDB");
 
-	private Connection conn;
-	private ResultSet rs;
+		return ds.getConnection();
+	}//getConnection() end
 
-	public BbsDAO() {
+	
+	public static Connection loadOracleDriver() {
+		Connection conn = null;
 		try {
-			String dbURL = "jdbc:oracle:thin:@localhost:1521:xe";
-			String dbID = "dan";
-			String dbPassword = "1004";
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-
-			conn = DriverManager.getConnection(dbURL, dbID, dbPassword);
-
+			conn = ConnectionUtil.getConnection("oracle");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
-
+		return conn;
+	} // loadOracleDriver() end
 
 
 	public int write(String review_Title, String member_ID, String review_Content) {
+		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = "insert into review_board values(seq_review_ID.NEXTVAL,?,?,SYSDATE,?,?,?,?,?,?,?)";
 		try {
+			conn = ConnectionUtil.getConnection("oracle");
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, review_Title);
 			pstmt.setString(2, member_ID);
@@ -43,23 +59,20 @@ public class BbsDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			try {
-				if (rs != null)
-					rs.close();
-				if (pstmt != null)
-					pstmt.close();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+			CloseUtil.close(rs);   CloseUtil.close(pstmt);  CloseUtil.close(conn);
 		}
 
 		return -1;
 	}
 	public ArrayList<BbsVO> getList(int pageNumber){
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 		String sql = "select*from review_board where review_available = 1 order by review_id";
 		ArrayList<BbsVO>list = new ArrayList<BbsVO>();
 		try{
-			PreparedStatement pstmt = conn.prepareStatement(sql);
+			conn = ConnectionUtil.getConnection("oracle");
+			pstmt = conn.prepareStatement(sql);
 			//pstmt.setInt(1,rs.getInt(1) -(pageNumber-1)*10);
 			rs = pstmt.executeQuery();
 			while(rs.next()){
@@ -74,15 +87,21 @@ public class BbsDAO {
 			}
 		}catch(Exception e){
 			e.printStackTrace();
+		}finally {
+			CloseUtil.close(rs);   CloseUtil.close(pstmt);  CloseUtil.close(conn);
 		}
 		return list;
 	}
 	
 	public boolean nextPage(int pageNumber){
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 		String sql = "select*from review_board order by setReview_ID aesc";
 		ArrayList<BbsVO>list = new ArrayList<BbsVO>();
 		try{
-			PreparedStatement pstmt = conn.prepareStatement(sql);
+			conn = ConnectionUtil.getConnection("oracle");
+			pstmt = conn.prepareStatement(sql);
 			//pstmt.setInt(1, rs.getInt(1) - (pageNumber-1)*10);
 			rs = pstmt.executeQuery();
 			if(rs.next()){
@@ -90,15 +109,21 @@ public class BbsDAO {
 			}
 		}catch(Exception e){
 			e.printStackTrace();
+		}finally {
+			CloseUtil.close(rs);   CloseUtil.close(pstmt);  CloseUtil.close(conn);
 		}
 		return false;
 	}
 	
 	
 	public BbsVO getBbs(int review_ID){//특정한 아이디의 정보를 가져오기 (게시글 보기)
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 		String sql = "select*from review_board where review_id = ?";
 		try{
-			PreparedStatement pstmt = conn.prepareStatement(sql);
+			conn = ConnectionUtil.getConnection("oracle");
+			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, review_ID);
 			rs = pstmt.executeQuery();
 			if(rs.next()){
@@ -113,14 +138,19 @@ public class BbsDAO {
 			}
 		}catch(Exception e){
 			e.printStackTrace();
+		}finally {
+			CloseUtil.close(rs);   CloseUtil.close(pstmt);  CloseUtil.close(conn);
 		}
 		return null;
 	}
 	
 	public int update(int review_ID, String review_Title, String review_Content) {
+		Connection conn = null;
 		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 		String sql = "update review_board set review_Title=?, review_Content= ? where review_ID = ?";
 		try {
+			conn = ConnectionUtil.getConnection("oracle");
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, review_Title);
 			pstmt.setString(2, review_Content);
@@ -128,19 +158,26 @@ public class BbsDAO {
 			return pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
-		} 
+		} finally {
+			CloseUtil.close(rs);   CloseUtil.close(pstmt);  CloseUtil.close(conn);
+		}
 		return -1;
 	}
 	public int delete(int review_ID) {
+		Connection conn = null;
 		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 		String sql = "update review_board set review_available=0 where review_ID = ?";
 		try {
+			conn = ConnectionUtil.getConnection("oracle");
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, review_ID);
 			return pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
-		} 
+		} finally {
+			CloseUtil.close(rs);   CloseUtil.close(pstmt);  CloseUtil.close(conn);
+		}
 		return -1;
 	}
 

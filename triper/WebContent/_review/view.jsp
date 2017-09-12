@@ -10,11 +10,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <meta name="viewport" content="width=device-width" ,intial-scale="1">
-<link rel="stylesheet" href="./css/bootstrap.css">
-<link rel="stylesheet" href="./css/custom.css">
+<link rel="stylesheet" href="../css/bootstrap.css">
+<link rel="stylesheet" href="../css/custom.css">
 <title>Insert title here</title>
 <script type="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-<script type="./js/bootstrap.js"></script>
+<script type="../js/bootstrap.js"></script>
 
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
@@ -23,6 +23,7 @@
 
 </head>
 <body>
+<jsp:include page="../_main/mainForm.jsp"></jsp:include>
 
 	<center>
 		<div class="container">

@@ -19,15 +19,15 @@ public class ConnectionUtil {
 				//DriverManager.setLogWriter(new PrintWriter(System.out));
 				
 				conn = DriverManager.getConnection(
-						"jdbc:oracle:thin:@192.168.0.127:1521:xe", 
-						"ssung", "oracle");
+						"jdbc:oracle:thin:@192.168.0.125:1521:xe", 
+						"triper", "triper");
 				
 			} else if( dns.equals("mysql") ) {
 				Class.forName("com.mysql.jdbc.Driver");
 				DriverManager.setLogWriter(new PrintWriter(System.out));
 				conn = DriverManager.getConnection(
 						"jdbc:mysql://localhost:3306/sampleDB",
-						"ssung", "1004");
+						"triper", "triper");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
