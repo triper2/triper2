@@ -41,7 +41,6 @@ public class RentalDAO { // Controller (Data Access Object)
 		String sql = "INSERT INTO MEMBER_LIST(MEMBER_ID, MEMBER_NAME, MEMBER_PWD, MEMBER_PHONE, MEMBER_EMAIL, MEMBER_IMG) VALUES(?,?,?,?,?,?) ";
 		try {
 			pstmt = conn.prepareStatement(sql);
-			System.out.println("asldgja;oeirhj");
 			pstmt.setString(1, dto.getMember_id());
 			pstmt.setString(2, dto.getMember_name());
 			pstmt.setString(3, dto.getMember_pwd());
@@ -55,25 +54,6 @@ public class RentalDAO { // Controller (Data Access Object)
 			CloseUtil.close(conn);
 	} // insert() end
 	
-	/*public static void insert(Connection conn, RentalDTO dto) {
-		StringBuffer sb = new StringBuffer();
-		PreparedStatement ps = null;
-		try {
-			conn = ConnectionUtil.getConnection("oracle");
-			sb.append("INSERT INTO MEMBER_LIST(MEMBER_ID, MEMBER_NAME, MEMBER_PWD, MEMBER_PHONE, MEMBER_EMAIL, MEMBER_IMG) VALUES(?,?,?,?,?,?) ");
-			ps = conn.prepareStatement(sb.toString());
-			ps.setString(1, dto.getMember_id());
-			ps.setString(2, dto.getMember_name());
-			ps.setString(3, dto.getMember_pwd());
-			ps.setString(4, dto.getMember_phone());
-			ps.setString(5, dto.getMember_email());
-			ps.setString(6, dto.getMember_img());
-			ps.executeUpdate(); // pstmt.executeUpdate();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	} // insert() end
-*/		
 	public boolean idCheck(String id) throws Exception {
 		String sql = "SELECT MEMBER_ID FROM MEMBER_LIST WHERE MEMBER_ID = ? ";
 		boolean result = true; //DB에 ID 있음(중복)
@@ -90,27 +70,24 @@ public class RentalDAO { // Controller (Data Access Object)
 	}// idCheck() end
 
 	public boolean pwCheck(String pwd) throws Exception {
-		String pwd_regex = "/^.*(?=.{8,20})(?=.*[0-9])(?=.*[a-zA-Z]).*$/";
+		String pwd_regex = "^(?=.*[a-zA-Z]+)(?=.*[0-9]+).{6,20}$";
 		boolean result = pwd.matches(pwd_regex); //
-		System.out.println("pwd "+result);
-		return result;
-	}// emailCheck() end
-	
-	public boolean emailCheck(String email) throws Exception {
-		String email_regex = "^[_a-z0-9-]+(.[_a-z0-9-]+)*@(?:\\w+\\.)+\\w+$";
-		boolean result = email.matches(email_regex); //
-		System.out.println("email "+result);
 		return result;
 	}// emailCheck() end
 	
 	public boolean phoneCheck(String phone) throws Exception {
 		String phone_regex = "^\\d{2,3}-\\d{3,4}-\\d{4}$";
 		boolean result = phone.matches(phone_regex); //
-		System.out.println("phone "+result);
 		return result;
 	}// phoneCheck() end
 	
-	public int userCheck(String id, String pwd) throws Exception {
+	public boolean emailCheck(String email) throws Exception {
+		String email_regex = "^[_a-z0-9-]+(.[_a-z0-9-]+)*@(?:\\w+\\.)+\\w+$";
+		boolean result = email.matches(email_regex); //
+		return result;
+	}// emailCheck() end
+	
+		public int userCheck(String id, String pwd) throws Exception {
 		String sql = "SELECT MEMBER_PWD FROM MEMBER_LIST WHERE MEMBER_ID = ? ";
 		String dbpwd = "";
 		int result = -1;
@@ -169,7 +146,6 @@ public class RentalDAO { // Controller (Data Access Object)
 		pstmt.setString(5, dto.getMember_img());
 		pstmt.setString(6, dto.getMember_id());
 		pstmt.executeUpdate();
-		System.out.println(sql);
 		CloseUtil.close(pstmt); CloseUtil.close(conn);
 	}//update(dto) end
 	

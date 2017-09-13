@@ -23,7 +23,7 @@
 <style rel="stylesheet">
 html {
   width: 100%;
-  height: 170%;
+  height: 200%;
 }
 
 body {
@@ -55,7 +55,7 @@ body {
   border-radius: 4px;
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
-  margin: 100px auto 10px;
+  margin: 60px auto 10px;
   overflow: hidden;
 }
 .form-toggle {
@@ -199,7 +199,7 @@ body {
   text-decoration: none;
 }
 .form-panel {
-  padding: 20px calc(5% + 60px) 60px 60px;
+  padding: 20px calc(5% + 40px) 60px 60px;
   box-sizing: border-box;
 }
 .form-panel.one:before {
@@ -222,7 +222,7 @@ body {
   left: 95%;
   background: #4285F4;
   width: 100%;
-  min-height: 100%;
+  min-height: 200%;
   padding: 20px calc(10% + 60px) 60px 60px;
   -webkit-transition: 0.3s ease;
           transition: 0.3s ease;
@@ -324,6 +324,16 @@ a.other:link, a.other:visited, a.other:hover, a.other:active {
 
 <script type="text/javascript">
 $(function() {
+	/* $('#temp_img').hide(); */
+	
+	$('#member_img').click(function() {
+		$('#temp_img').click();
+	});
+	
+	$('#temp_img').change(function() {
+		document.getElementById("member_img").value = $(this).val();
+	});
+	
 	$('#member_id').keyup(function() {
 		if ($('#member_id').val().length < 5 || $('#member_id').val().length > 15) {
 			$('#idcheck').text('ID 5~15 자리입니다.').css('color', 'red');
@@ -352,8 +362,8 @@ $(function() {
 			url: 'pwCheck.do', //요청처리
 			data: {"member_pwd" : $('#member_pwd').val()}, //파라미터
 			success:function(result){
-				if(result == "true"){
-	                $('#pwcheck').text('비밀번호는 8~20자, 영문/숫자를 조합해야합니다').css('color', 'red');
+				if(result == "false"){
+	                $('#pwcheck').text('비밀번호는 6~20자, 영문/숫자를 조합해야합니다').css('color', 'red');
 				} else { 
 					$('#pwcheck').text('Password OK').css('color', 'blue');
 				}
@@ -378,7 +388,7 @@ $(function() {
 			url: 'emailCheck.do', //요청처리
 			data: {"member_email" : $('#member_email').val()}, //파라미터
 			success:function(result){
-				if(result == "true"){
+				if(result == "false"){
 	                $('#emailcheck').text('Email 형식 맞춰주세요').css('color', 'red');
 				} else { 
 					$('#emailcheck').text('Email OK').css('color', 'blue');
@@ -422,16 +432,18 @@ $(function() {
 			alert('필수 값 및 정확히 입력하세요');
 			return false;
 		} else {
-			alert('가입액션으로...');
 			$("#fssubmit").submit();
 		}
 	});
 });
 
+
 </script>
 
-<c:set var="sessionInfo" value="${ sessionScope.sessionInfo }"/>
+${ sessionScope.sessionInfo }
+${ sessionScope.id }
 <c:set var="id" value="${ sessionScope.id }"/>
+<c:set var="sessionInfo" value="${ sessionScope.dto }"/>
 
 <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
@@ -483,7 +495,7 @@ $(function() {
 		</button>
       </div>      
       </form> -->
-        
+        <input type="file" id="temp_img" name="temp_img" />
     </div>
   </div>
   <div class="form-panel two">
@@ -521,10 +533,13 @@ $(function() {
           <input type="email" id="member_email" name="member_email" required="required"/>
           <font id="emailcheck" name="emailcheck"></font>
         </div>
-        <div class="form-group">
+        
+          <div class="form-group">
           <label for="image">Image</label>
-          <input type="text" id="member_img" name="member_img" />
+          <input type="file" id="member_img" name="member_img"  onclick="imgClick()"/>
         </div>
+        
+        <br>
         <div class="form-group">
           <button type="submit" id="ssubmitbtn">Register</button>
         </div>

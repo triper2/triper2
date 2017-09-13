@@ -4,8 +4,9 @@
 <%@page import="java.sql.*"%>
 <jsp:useBean id="dto" class="kosta.rental.loginModel.RentalDTO" />
 <jsp:setProperty property="*" name="dto"  />
-<c:remove scope="session" var="sessionInfo" />
-<c:remove scope="session" var="id" />
+
+<!-- <c:remove scope="session" var="sessionInfo" />
+<c:remove scope="session" var="id" /> -->
 
 
 <meta http-equiv="Refresh" content="2; url=index.jsp">
