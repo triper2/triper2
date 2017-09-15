@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>  </title>
+<style type="text/css">
+aaa{
+background-image:url(../image/event_sale1.JPG);
+}
+</style>
+<script type="text/javascript">
+//self.resizeTo(484, 535);
+</script>
+<link rel="stylesheet" href="../css/bootstrap.css">
+<link rel="stylesheet" href="../css/custom.css">
+<script type="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script type="./js/bootstrap.js"></script>
+<script type="text/javascript">
+function setCookie(name, value, expiredays) {
+	var today = new Date();
+    today.setDate(today.getDate() + expiredays);
+    document.cookie = name + '=' + escape(value) + '; path=/; expires=' + today.toGMTString() + ';'
+}
+
+function closePop() {        
+	setCookie('todayPop', 'popBox', 1);
+	self.close();
+}
+</script>
+</head>
+<body id="aaa" >
+이벤트 페이지 입니당~!<br/>
+<img class="media-object img-circle" src="../image/Penguins.jpg" height="100" width="100" alt="">
+&nbsp;&nbsp;<input type="checkbox" value="popBox" name="todayPop" onClick="closePop()" style="margin-top:390px"/>
+<label style="float:left margin-top:390px">오늘 그만 보기
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<label onclick="self.close()">닫기</a></label></label>
+<!-- <label style="float:right" style="margin-top:390px" onclick="self.close()">닫기</label>  -->
+</body>
+</html>
