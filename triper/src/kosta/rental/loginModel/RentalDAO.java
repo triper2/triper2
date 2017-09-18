@@ -8,6 +8,8 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import com.oreilly.servlet.MultipartRequest;
+
 import dbclose.util.CloseUtil;
 import dbconn.util.ConnectionUtil;
 
@@ -138,7 +140,7 @@ public class RentalDAO { // Controller (Data Access Object)
 		String sql="UPDATE MEMBER_LIST SET MEMBER_NAME=?, MEMBER_PWD=?, MEMBER_PHONE=?, MEMBER_EMAIL=?, MEMBER_IMG=? WHERE MEMBER_ID=? ";
 		Connection conn = getConnection();
 		PreparedStatement pstmt = conn.prepareStatement(sql);
-		
+
 		pstmt.setString(1, dto.getMember_name());
 		pstmt.setString(2, dto.getMember_pwd());
 		pstmt.setString(3, dto.getMember_phone());
@@ -146,6 +148,7 @@ public class RentalDAO { // Controller (Data Access Object)
 		pstmt.setString(5, dto.getMember_img());
 		pstmt.setString(6, dto.getMember_id());
 		pstmt.executeUpdate();
+		System.out.println(dto.getMember_img());
 		CloseUtil.close(pstmt); CloseUtil.close(conn);
 	}//update(dto) end
 	

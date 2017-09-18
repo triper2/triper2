@@ -58,9 +58,10 @@ video {
 #pagination .on {font-weight: bold; cursor: default;color:#777;}
 </style>
 
-${ sessionScope.sessionInfo }
+${ sessionScope.dto }
 ${ sessionScope.id }
-<c:set var="sessionInfo" value="${ sessionScope.sessionInfo }"/>
+<c:set var="id" value="${ sessionScope.id }"/>
+<c:set var="dto" value="${ sessionScope.dto }"/>
 
 <title>Rental Shop</title>
 
@@ -110,14 +111,14 @@ if ( getcookie( "todayPop" ) != "popBox" )
 		<ul class="sidebar-nav">
 			<a id="menu-close" href="#"
 				class="btn btn-light btn-lg pull-right toggle"><i class="fa fa-times"></i></a>
-			<c:if test="${ sessionInfo == null }">
+			<c:if test="${ dto == null }">
 			<li class="sidebar-brand"><a href="./loginForm.jsp" onclick=$("#menu-close").click();>Login</a></li>
 			<li><a href="#portfolio" onclick=$("#menu-close").click();>리뷰</a></li>
 			<li><a href="#contact" onclick=$("#menu-close").click();>예약(지도)</a></li>
 			<li><a href="#services" onclick=$("#menu-close").click();>고객센터</a></li>
 			<li><a href="#introduce" onclick=$("#menu-close").click();>회사소개</a></li>
 			</c:if>
-			<c:if test="${ sessionInfo != null }">
+			<c:if test="${ dto != null }">
 			<li><a href="./mypage.jsp" onclick=$("#menu-close").click();>
 			<img class="media-object img-circle" src="../image/Penguins.jpg" height="100" width="100" alt=""></a>
 			</li>

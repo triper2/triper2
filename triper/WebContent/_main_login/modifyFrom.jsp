@@ -421,10 +421,10 @@ $(function() {
 });
 </script>
 
-${ sessionScope.sessionInfo }
+${ sessionScope.dto }
 ${ sessionScope.id }
 <c:set var="id" value="${ sessionScope.id }"/>
-<c:set var="sessionInfo" value="${ sessionScope.dto }"/>
+<c:set var="dto" value="${ sessionScope.dto }"/>
 
 </head>
 
@@ -435,15 +435,15 @@ ${ sessionScope.id }
       <h1>Register Account Modify</h1>
     </div>
     <div class="form-content">
-      <form action="modifyPro.do" id="fssubmit">
+      <form action="modifyPro.do" id="fssubmit" encType="multipart/form-data" method="post" >
         <div class="form-group">
           <label for="username">ID</label>
-          <input type="text" id="member_id" name="member_id" value="${ sessionScope.id }"/>
+          <input type="text" id="member_id" name="member_id" value="${ dto.member_id }"/>
           <font id="idcheck" name="idcheck"></font>
         </div>
         <div class="form-group">
           <label for="name">Name</label>
-          <input type="text" id="member_name" name="member_name" required="required"/>
+          <input type="text" id="member_name" name="member_name" value="${ dto.member_name }"/>
         </div>
         <div class="form-group">
           <label for="password">Password</label>
@@ -457,12 +457,12 @@ ${ sessionScope.id }
         </div>
         <div class="form-group">
           <label for="phone">Phone number</label>
-          <input type="phone" id="member_phone" name="member_phone" required="required"/>
+          <input type="phone" id="member_phone" name="member_phone" value="${ dto.member_phone }"/>
           <font id="phonecheck" name="phonecheck"></font>
         </div>
         <div class="form-group">
           <label for="email">Email Address</label>
-          <input type="email" id="member_email" name="member_email" required="required"/>
+          <input type="email" id="member_email" name="member_email" value="${ dto.member_email }"/>
           <font id="emailcheck" name="emailcheck"></font>
         </div>
         

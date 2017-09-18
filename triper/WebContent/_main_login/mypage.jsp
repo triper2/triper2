@@ -108,6 +108,12 @@ nav .fa.fa-angle-down {
 	margin-left: 6px;
 }
 </style>
+
+${ sessionScope.dto }
+${ sessionScope.id }
+<c:set var="id" value="${ sessionScope.id }"/>
+<c:set var="dto" value="${ sessionScope.dto }"/>
+
 </head>
 
 <body align="center">
@@ -138,9 +144,9 @@ nav .fa.fa-angle-down {
 					</ul></li>
 				<li><a href="#">회사소개 아직</a></li>
 				<c:if test="${ sessionScope.id != null }">
-				<li style="float:right"><a href="logoutPro.jsp">Log out</li>
-				<li style="float:right">  
-				<img class="media-object img-circle" src="../image/Penguins.jpg" height="25" width="25" alt=""></a>
+				<li style="float:right"><a href="logoutPro.jsp">Log out</a></li>
+				<li style="float:right; margin-top:10px;">  
+				<img class="media-object img-circle" src="./mem_img/${ dto.member_img }" height="30" width="30" alt="">
 					<ul>
 						<li><a href="#">예매결제내역조회 아직</a></li>
 						<li><a href="modifyFrom.jsp">회원 정보 수정</a></li>

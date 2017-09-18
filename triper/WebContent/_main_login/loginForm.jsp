@@ -440,10 +440,10 @@ $(function() {
 
 </script>
 
-${ sessionScope.sessionInfo }
+${ sessionScope.dto }
 ${ sessionScope.id }
 <c:set var="id" value="${ sessionScope.id }"/>
-<c:set var="sessionInfo" value="${ sessionScope.dto }"/>
+<c:set var="dto" value="${ sessionScope.dto }"/>
 
 <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
@@ -503,7 +503,7 @@ ${ sessionScope.id }
       <h1>Register Account</h1>
     </div>
     <div class="form-content">
-      <form action="registerPro.do" id="fssubmit" method="post">
+      <form action="registerPro.do" id="fssubmit" method="post" encType="multipart/form-data" >
         <div class="form-group">
           <label for="username">ID</label>
           <input type="text" id="member_id" name="member_id" required="required"/>
