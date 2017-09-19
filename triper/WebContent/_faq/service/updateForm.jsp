@@ -139,7 +139,7 @@ function previewImage(targetObj, View_area) {
   <tr>
   	<td colspan="2" align="center">
 	<div align="center" id='View_area' style='position:relative; width: 100px; height: 100px; color: black; border: 0px solid black; dispaly: inline;'>
-		<img id="prevImg" src="./_faq/service/upload/${album.service_img}" width="50" height="50" >	 
+		<img id="prevImg" src="../_faq/service/upload/${album.service_img}" width="50" height="50" >	 
 	</div>
   	</td>
   </tr>
