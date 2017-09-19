@@ -10,7 +10,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 public class FileUtil {
 
-    public static final String UPLOAD_PATH = "C:/java160/jsp/workspace/project03/WebContent/faq/service/upload";
+    public static final String UPLOAD_PATH = "C:/java160/jsp/workspace/project03/WebContent/_faq/service/upload";
     public static final String  ENCODING_TYPE = "utf-8";
     public static final int MAX_SIZE = 10*1024*1024;//10M
     

@@ -47,7 +47,7 @@
 </c:if>    
 </tr>
 <tr><td>이미지</td><td>
-<img src="./faq/service/upload/${album.service_img}">
+<img src="./_faq/service/upload/${album.service_img}">
 </td></tr>
 <tr><td>글제목</td><td>
 ${album.service_title}
