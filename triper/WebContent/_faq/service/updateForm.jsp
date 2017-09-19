@@ -117,10 +117,6 @@ function previewImage(targetObj, View_area) {
 <td>${album.service_id}</td>
 </tr>
 <tr>
-    <td>이름</td>
-    <td><input type="text" name="member_id" value="${album.member_id}" size="10"></td>
-</tr>
-<tr>
     <td>이메일</td>
     <td><input type="text" name="service_email" value="${album.service_email}" size="30"></td>
 </tr>
@@ -155,6 +151,7 @@ function previewImage(targetObj, View_area) {
 <tr>
     <td colspan="2"  align="center">
     <input type="hidden" name="service_level" value="${album.service_level}">
+    
   <input type="submit" value="수정하기" >  
   <input type="reset" value="다시작성">
   <input type="button" value="목록보기" onClick="location.href='list.service'">    

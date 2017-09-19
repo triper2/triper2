@@ -114,11 +114,7 @@ function previewImage(targetObj, View_area) {
 <input type="hidden" name="service_level" value="${ service_level }">
 
 <table width="400" border="1" cellspacing="0" cellpadding="0" align="center">
-   <tr>
-    <td  width="70" align="center">이 름</td>
-    <td  width="330">
-       <input type="text" size="10" maxlength="10" name="member_id"></td>
-  </tr>
+       <input type="hidden" size="10" maxlength="10" name="member_id" value="${sessionScope.dto.member_id }">
   <tr>
     <td  width="70" align="center" >제 목</td>
     <td  width="330">
