@@ -141,7 +141,7 @@ ${ sessionScope.dto }
 						<li><a href="#">샘플4</a></li>
 					</ul></li>
 				<li style="z-index: 999;"><a href="#">회사소개 아직</a></li>
-				<c:if test="${ sessionScope.id != null }">
+				<c:if test="${ sessionScope.dto != null }">
 				<li style="float:right"><a href="logoutPro.jsp">Log out</a></li>
 				<li style="float:right; margin-top:10px;">  
 				<img class="media-object img-circle" src="./mem_img/${ dto.member_img }" height="30" width="30" alt="">
@@ -153,7 +153,7 @@ ${ sessionScope.dto }
 					</ul>
 				</li>
 				</c:if>
-				<c:if test="${ sessionScope.id == null }">
+				<c:if test="${ sessionScope.dto == null }">
 				<li style="float:right"> <a href="loginForm.jsp">Login</a></li>
 				</c:if>
 			</ul>
