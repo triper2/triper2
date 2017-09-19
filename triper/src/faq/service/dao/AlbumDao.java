@@ -278,9 +278,8 @@ public class AlbumDao {
             
             try{
                 conn =getConnection();
-                sql = "update service_board set member_id=?,service_email=?, service_title=?, service_img=?, service_content=? where service_id=?";
-                pstmt =conn.prepareStatement(sql);                
-                pstmt.setString(++cnt, album.getMember_id());
+                sql = "update service_board set service_email=?, service_title=?, service_img=?, service_content=? where service_id=?";
+                pstmt =conn.prepareStatement(sql);
                 pstmt.setString(++cnt, album.getService_email());
                 pstmt.setString(++cnt, album.getService_title());    
                 pstmt.setString(++cnt, album.getService_img());    
