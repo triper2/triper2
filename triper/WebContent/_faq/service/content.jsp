@@ -10,7 +10,7 @@
 
 </head>
 <body>
-
+<jsp:include page="../../_main_login/header.jsp"></jsp:include>
 <table width ="70%" border ="1" cellpadding="0" cellspacing="0" align="center">
 <tr><td  colspan="2" align="center"><h1>상세보기</h1></tr>
 <tr>
