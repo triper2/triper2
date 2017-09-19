@@ -2,13 +2,13 @@
 
 <Context reloadable="true">
 <WatchedResource>WEB-INF/web.xml</WatchedResource>
-<Resource name="jdbc:MemberDB"
+<Resource name="jdbc:TriperDB"
 		auth="Container"
-		username="ssung"
-		password="oracle"
+		username="triper"
+		password="triper"
 		type="javax.sql.DataSource"
 		driverClassName="oracle.jdbc.OracleDriver"
-		url="jdbc:oracle:thin:@192.168.0.127:1521:xe"
+		url="jdbc:oracle:thin:@192.168.0.125:1521:xe"
 		maxActive="20"
 		maxIdle="10"
 		maxWait="-1"

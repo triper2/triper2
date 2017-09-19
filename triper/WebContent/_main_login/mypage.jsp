@@ -1,13 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="dbconn.util.*, dbclose.util.*, kosta.rental.*"%>
-<%@page import="java.sql.*"%>
+<%@ page import="dbconn.util.*, dbclose.util.*, kosta.rental.loginModel.*, kosta.rental.loginAction.*"%>
+<%@ page import="java.sql.*"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt"%>
 <!doctype html>
 <html>
 <head>
 <meta charset="utf-8">
 <title> mypage.jsp </title>
-
+<link rel="stylesheet" href="../css/bootstrap.css">
+<link rel="stylesheet" href="../css/custom.css">
+<script type="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script type="./js/bootstrap.js"></script>
 <!-- Bootstrap styles -->
 <link rel="stylesheet"
 	href="http://netdna.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css">
@@ -104,9 +109,10 @@ nav .fa.fa-angle-down {
 }
 </style>
 
-<%
-	String id = (String)session.getAttribute("memID");
-%>
+${ sessionScope.dto }
+${ sessionScope.id }
+<c:set var="id" value="${ sessionScope.id }"/>
+<c:set var="dto" value="${ sessionScope.dto }"/>
 
 </head>
 
@@ -114,18 +120,10 @@ nav .fa.fa-angle-down {
 	<nav>
 		<div class="container">
 			<ul>
-				<li><a href="index.jsp">Home</a></li>
-				<li><a href="#">My page<i class='fa fa-angle-down'></i></a>
-					<ul>
-						<li><a href="#">예매결제내역조회 아직</a></li>
-						<li><a href="modifyFrom.jsp">회원 정보 수정</a></li>
-
-						<!-- Fade & scale -->
-						<li><a href="deleteForm.jsp">회원 탈퇴</a></li>
-					</ul>
+				<li><a href="../_main_login/index.jsp">Home</a></li>
 				<li><a href="#">리뷰 아직<i class='fa fa-angle-down'></i></a>
 					<ul>
-						<li><a href="#">샘플1</a></li>
+						<li><a href="#">리뷰 테스트</a></li>
 						<li><a href="#">샘플2</a></li>
 						<li><a href="#">샘플3</a></li>
 						<li><a href="#">샘플4</a></li>
@@ -145,6 +143,21 @@ nav .fa.fa-angle-down {
 						<li><a href="#">샘플4</a></li>
 					</ul></li>
 				<li><a href="#">회사소개 아직</a></li>
+				<c:if test="${ sessionScope.id != null }">
+				<li style="float:right"><a href="logoutPro.jsp">Log out</a></li>
+				<li style="float:right; margin-top:10px;">  
+				<img class="media-object img-circle" src="./mem_img/${ dto.member_img }" height="30" width="30" alt="">
+					<ul>
+						<li><a href="#">예매결제내역조회 아직</a></li>
+						<li><a href="modifyFrom.jsp">회원 정보 수정</a></li>
+						<!-- Fade & scale -->
+						<li><a href="deleteForm.jsp">회원 탈퇴</a></li>
+					</ul>
+				</li>
+				</c:if>
+				<c:if test="${ sessionScope.id == null }">
+				<li style="float:right"> <a href="loginForm.jsp">Login</a></li>
+				</c:if>
 			</ul>
 		</div>
 	</nav>

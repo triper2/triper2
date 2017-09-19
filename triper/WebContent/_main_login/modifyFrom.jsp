@@ -2,8 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="dbconn.util.*, dbclose.util.*, kosta.rental.loginModel.*, kosta.rental.loginAction.*"%>
 <%@page import="java.sql.*"%>
-<jsp:useBean id="dto" class="kosta.rental.loginModel.RentalDTO" />
-<jsp:setProperty property="*" name="dto"  />
+
 <!doctype html>
 <html lang="kr">
 	<head>
@@ -17,7 +16,7 @@
 <style rel="stylesheet">
 html {
   width: 100%;
-  height: 100%;
+  height: 200%;
 }
 
 body {
@@ -49,7 +48,7 @@ body {
   border-radius: 4px;
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
-  margin: 100px auto 10px;
+  margin: 60px auto 10px;
   overflow: hidden;
 }
 .form-toggle {
@@ -317,36 +316,115 @@ a.other:link, a.other:visited, a.other:hover, a.other:active {
 </style>
 
 <script type="text/javascript">
-	$(function() {		
-		$('#cpassword').keyup(function() {
-			if ($('#member_pwd').val() != $('#cpassword').val()) {
-				$('#pwcheck').text('암호불일치!').css('color', 'red');
-			} else {
-				$('#pwcheck').text('암호일치!').css('color', 'blue');
+$(function() {
+	$('#member_id').keyup(function() {
+		if ($('#member_id').val().length < 5 || $('#member_id').val().length > 15) {
+			$('#idcheck').text('ID 5~15 자리입니다.').css('color', 'red');
+		} else {
+			$.ajax({
+				type: 'post', //post방식
+				url: 'idCheck.do', //요청처리
+				data: {"member_id" : $('#member_id').val()}, //파라미터
+				success:function(result){
+					if(result == "true"){//true:DB에 ID 있음(중복)
+		                $('#idcheck').text('사용할 수 없는 아이디입니다.(중복)').css('color', 'red');
+					} else { //false:DB에 ID 없음 (사용가능)
+						$('#idcheck').text('사용할 수 있는 아이디입니다.').css('color', 'blue');
+					}
+				},
+				error:function(msg,error) {
+					alert("error");
+				}
+			});
+		}
+	});
+	
+	$('#member_pwd').focusout(function() {
+		$.ajax({
+			type: 'post', //post방식
+			url: 'pwCheck.do', //요청처리
+			data: {"member_pwd" : $('#member_pwd').val()}, //파라미터
+			success:function(result){
+				if(result == "false"){
+	                $('#pwcheck').text('비밀번호는 6~20자, 영문/숫자를 조합해야합니다').css('color', 'red');
+				} else { 
+					$('#pwcheck').text('Password OK').css('color', 'blue');
+				}
+			},
+			error:function(msg,error) {
+				alert("error");
 			}
 		});
-
-		$('#ssubmitbtn')
-				.click(function() {
-							if ($('#member_name').val() == ""
-									|| $('#member_pwd').val() == ""
-									|| $('#cpassword').val() == ""
-									|| $('#member_phone').val() == ""
-									|| $('#member_email').val() == ""
-									|| ($('#member_pwd').val() != $('#cpassword').val())) {
-								alert('필수 값 및 정확히 입력하세요');
-								return false;
-							} else {
-								alert('수정완료! 2초 후 로그인 페이지로 갑니다.');
-								$("#fssubmit").submit();
-							}
-						});
 	});
-</script>
-${ sessionScope.sessionInfo }
-${ sessionScope.id }
+	
+	$('#cpassword').keyup(function() {
+		if ($('#member_pwd').val() != $('#cpassword').val()) {
+			$('#pwcheck2').text('암호불일치!').css('color', 'red');
+		} else {
+			$('#pwcheck2').text('암호일치!').css('color', 'blue');
+		}
+	});
 
-<c:set var="sessionInfo" value="${ sessionScope.sessionInfo }"/>
+	$('#member_email').focusout(function() {
+		$.ajax({
+			type: 'post', //post방식
+			url: 'emailCheck.do', //요청처리
+			data: {"member_email" : $('#member_email').val()}, //파라미터
+			success:function(result){
+				if(result == "false"){
+	                $('#emailcheck').text('Email 형식 맞춰주세요').css('color', 'red');
+				} else { 
+					$('#emailcheck').text('Email OK').css('color', 'blue');
+				}
+			},
+			error:function(msg,error) {
+				alert("error");
+			}
+		});
+	});
+	
+	$('#member_phone').focusout(function() {
+		$.ajax({
+			type: 'post', //post방식
+			url: 'phoneCheck.do', //요청처리
+			data: {"member_phone" : $('#member_phone').val()}, //파라미터
+			success:function(result){
+				if(result == "false"){
+	                $('#phonecheck').text('(-)포함 폰 번호 맞춰주세요').css('color', 'red');
+				} else { 
+					$('#phonecheck').text('Phone OK').css('color', 'blue');
+				}
+			},
+			error:function(msg,error) {
+				alert("error");
+			}
+		});
+	});
+
+	$('#ssubmitbtn').click(function() {
+		if ($('#member_id').val() == ""
+				|| $('#member_name').val() == ""
+				|| $('#member_pwd').val() == ""
+				|| $('#cpassword').val() == ""
+				|| $('#member_phone').val() == ""
+				|| $('#member_email').val() == ""
+				|| ($('#member_pwd').val() != $(
+						'#cpassword').val())
+				|| ($('#member_id').val().length < 5 || $(
+						'#member_id').val().length > 15)) {
+			alert('필수 값 및 정확히 입력하세요');
+			return false;
+		} else {
+			$("#fssubmit").submit();
+		}
+	});
+});
+</script>
+
+${ sessionScope.dto }
+${ sessionScope.id }
+<c:set var="id" value="${ sessionScope.id }"/>
+<c:set var="dto" value="${ sessionScope.dto }"/>
 
 </head>
 
@@ -357,36 +435,45 @@ ${ sessionScope.id }
       <h1>Register Account Modify</h1>
     </div>
     <div class="form-content">
-      <form action="modifyPro.do" id="fssubmit">
+      <form action="modifyPro.do" id="fssubmit" encType="multipart/form-data" method="post" >
         <div class="form-group">
           <label for="username">ID</label>
-          <input type="text" id="member_id" name="member_id" value="${ sessionScope.id }"/>
+          <input type="text" id="member_id" name="member_id" value="${ dto.member_id }"/>
+          <font id="idcheck" name="idcheck"></font>
         </div>
         <div class="form-group">
           <label for="name">Name</label>
-          <input type="text" id="name" name="name" required="required"/>
+          <input type="text" id="member_name" name="member_name" value="${ dto.member_name }"/>
         </div>
         <div class="form-group">
           <label for="password">Password</label>
           <input type="password" id="member_pwd" name="member_pwd" required="required"/>
+          <font id="pwcheck" name="pwcheck"></font>
         </div>
         <div class="form-group">
           <label for="cpassword">Password Check</label>
           <input type="password" id="cpassword" name="cpassword" required="required"/>
-          <font id="pwcheck" name="pwcheck"></font>
+          <font id="pwcheck2" name="pwcheck2"></font>
         </div>
         <div class="form-group">
           <label for="phone">Phone number</label>
-          <input type="phone" id="member_phone" name="member_phone" required="required"/>
+          <input type="phone" id="member_phone" name="member_phone" value="${ dto.member_phone }"/>
+          <font id="phonecheck" name="phonecheck"></font>
         </div>
         <div class="form-group">
           <label for="email">Email Address</label>
-          <input type="email" id="member_email" name="member_email" required="required"/>
+          <input type="email" id="member_email" name="member_email" value="${ dto.member_email }"/>
+          <font id="emailcheck" name="emailcheck"></font>
         </div>
-        <div class="form-group">
+        
+        
+          <div class="form-group">
           <label for="image">Image</label>
-          <input type="text" id="member_img" name="member_img" />
+          <input type="file" class="member_img" id="member_img" name="member_img"/>
         </div>
+        
+        
+        <br>
         <div class="form-group">
           <button type="submit" id="ssubmitbtn">수정완료</button>
         </div>

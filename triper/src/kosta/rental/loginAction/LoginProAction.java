@@ -5,8 +5,6 @@ import java.io.PrintWriter;
 import java.math.BigInteger;
 import java.net.URLEncoder;
 import java.security.SecureRandom;
-import java.sql.Connection;
-import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,11 +13,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import javax.websocket.Session;
+
+import com.oreilly.servlet.MultipartRequest;
 
 import kosta.rental.loginModel.RentalDAO;
 import kosta.rental.loginModel.RentalDTO;
+import kosta.rental.loginAction.*;
 
 @WebServlet("*.do")
 public class LoginProAction extends HttpServlet {
@@ -62,14 +61,17 @@ public class LoginProAction extends HttpServlet {
 			String id = request.getParameter("id");
 			String pwd = request.getParameter("password");
 			RentalDAO dao = RentalDAO.getInstance();
+			RentalDTO dto = dao.getMember(id);
+
 			try {
 				check = dao.userCheck(id, pwd);
+				
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 			if (check == 1) {
 				request.getSession().setAttribute("id", id);
-				request.getSession().setAttribute("sessionInfo", dao.getMember(id));
+				request.getSession().setAttribute("dto", dto);
 			}
 			request.setAttribute("check", check);
 			viewPage = "/_main_login/loginPro.jsp";
@@ -82,12 +84,20 @@ public class LoginProAction extends HttpServlet {
 			dp.forward(request, response);
 		} 
 		else if (com.equals("/_main_login/registerPro.do")){ ///////////////////////////////////registerPro.do
-			String id = request.getParameter("member_id");
-			String pwd = request.getParameter("member_pwd");
+			MultipartRequest multi = FileUtil.createFile(request);
+			String member_img = multi.getFilesystemName("member_img");
+			
 			RentalDAO dao = RentalDAO.getInstance();
 			RentalDTO dto = new RentalDTO();
+			dto.setMember_id(request.getParameter("member_id"));
+			dto.setMember_name(request.getParameter("member_name"));
+			dto.setMember_pwd(request.getParameter("member_pwd"));
+			dto.setMember_phone(request.getParameter("member_phone"));
+			dto.setMember_email(request.getParameter("member_email"));
+			dto.setMember_img(request.getParameter("member_img"));
 			dao.insert(dto);
-			System.out.println("액션");				
+			request.getSession().setAttribute("dto", dto);
+
 			viewPage = "/_main_login/registerPro.jsp";
 			RequestDispatcher dp = request.getRequestDispatcher(viewPage);
 			dp.forward(request, response);
@@ -96,8 +106,30 @@ public class LoginProAction extends HttpServlet {
 			String id = request.getParameter("member_id");
 			RentalDAO dao = RentalDAO.getInstance();
 			try {
-				PrintWriter out = response.getWriter();
+				PrintWriter out = response.getWriter(); //ajax때문에 이렇게 write를 써야함
 				out.write(dao.idCheck(id)+"");
+				out.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		else if (com.equals("/_main_login/pwCheck.do")) { ///////////////////////////////////pwCheck.do
+			String pwd = request.getParameter("member_pwd");
+			RentalDAO dao = RentalDAO.getInstance();
+			try {
+				PrintWriter out = response.getWriter();
+				out.write(dao.pwCheck(pwd)+""); //ajax때문에 이렇게 write를 써야함
+				out.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		else if (com.equals("/_main_login/phoneCheck.do")) { ///////////////////////////////////phoneCheck.do
+			String phone = request.getParameter("member_phone");
+			RentalDAO dao = RentalDAO.getInstance();
+			try {
+				PrintWriter out = response.getWriter();
+				out.write(dao.phoneCheck(phone)+""); //ajax때문에 이렇게 write를 써야함
 				out.close();
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -107,42 +139,37 @@ public class LoginProAction extends HttpServlet {
 			String email = request.getParameter("member_email");
 			RentalDAO dao = RentalDAO.getInstance();
 			try {
-				dao.emailCheck(email);
+				PrintWriter out = response.getWriter();
+				out.write(dao.emailCheck(email)+""); //ajax때문에 이렇게 write를 써야함
+				out.close();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
-		else if (com.equals("/_main_login/pwCheck.do")) { ///////////////////////////////////pwCheck.do
-			String pwd = request.getParameter("member_pwd");
-			RentalDAO dao = RentalDAO.getInstance();
-			try {
-				dao.pwCheck(pwd);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		else if (com.equals("/_main_login/phoneCheck.do")) { ///////////////////////////////////phoneCheck.do
-			String phone = request.getParameter("member_phone");
-			RentalDAO dao = RentalDAO.getInstance();
-			try {
-				dao.phoneCheck(phone);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
+		}		
 		 else if (com.equals("/_main_login/modifyPro.do")) { ///////////////////////////////////modifyPro.do
-			String id = request.getParameter("member_id");
+			MultipartRequest multi = FileUtil.createFile(request);
+			String member_img = multi.getFilesystemName("member_img");
 			RentalDAO dao = RentalDAO.getInstance();
-			RentalDTO dto = dao.getMember(id);
-			System.out.println(id);
-			try {
-				dao.modify(dto);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			request.getSession().setAttribute("id", id);
-			request.getSession().setAttribute("sessionInfo", dao.getMember(id));
-			viewPage = "/_main_login/index.jsp";
+			RentalDTO dto = new RentalDTO();
+			dto.setMember_id(multi.getParameter("member_id"));
+			dto.setMember_name(multi.getParameter("member_name"));
+			dto.setMember_pwd(multi.getParameter("member_pwd"));
+			dto.setMember_phone(multi.getParameter("member_phone"));
+			dto.setMember_email(multi.getParameter("member_email"));
+			dto.setMember_img(multi.getParameter("member_img"));
+//			dto.setMember_img(request.getParameter("member_img"));
+			/*if (member_img != null) {
+				// 이미지가 변경되었을 경우
+				dto.setMember_img(FileUtil.rename(member_img));
+			} else {
+				// 이미지가 변경되지 않았을경우
+				dto.setMember_img(member_img);
+			}*/
+			System.out.println(member_img);
+			dto.setMember_img(member_img);
+			dao.modify(dto);
+			request.getSession().setAttribute("dto", dto);
+			viewPage = "/_main_login/mypage.jsp";
 			RequestDispatcher dp = request.getRequestDispatcher(viewPage);
 			dp.forward(request, response);
 		} 
@@ -169,6 +196,12 @@ public class LoginProAction extends HttpServlet {
 			viewPage = "/_main_login/mypage.jsp";
 			RequestDispatcher dp = request.getRequestDispatcher(viewPage);
 			dp.forward(request, response);
+		} else if (com.equals("/_main_login/member_img.do")) { ///////////////////////////////////mem_image.do
+			
+			
+			
+			
+			
 		}
 		
 		

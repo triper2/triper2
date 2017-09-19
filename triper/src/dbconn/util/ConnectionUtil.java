@@ -27,7 +27,7 @@ public class ConnectionUtil {
 				DriverManager.setLogWriter(new PrintWriter(System.out));
 				conn = DriverManager.getConnection(
 						"jdbc:mysql://localhost:3306/sampleDB",
-						"triper", "triper");
+						"ssung", "oracle");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
