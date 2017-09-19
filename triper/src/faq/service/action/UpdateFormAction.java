@@ -19,6 +19,6 @@ public class UpdateFormAction implements Action{
 
         request.setAttribute("album", album);
         
-        return "/faq/service/updateForm.jsp";
+        return "/_faq/service/updateForm.jsp";
     }
 }

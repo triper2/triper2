@@ -35,6 +35,6 @@ public class WriteProAction  implements Action{
         AlbumDao manager = AlbumDao.getInstance();
         manager.insertArticle(album);
         
-        return "/faq/service/writePro.jsp";
+        return "/_faq/service/writePro.jsp";
     }
 }

@@ -58,6 +58,6 @@ public class UpdateProAction implements Action{
         
         request.setAttribute("check", new Integer(check));
 
-        return "/faq/service/updatePro.jsp;";
+        return "/_faq/service/updatePro.jsp;";
     }
 }

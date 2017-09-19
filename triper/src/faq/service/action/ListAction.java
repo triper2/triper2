@@ -59,6 +59,6 @@ public class ListAction implements Action{
     request.setAttribute("page", page);
     request.setAttribute("albumList", albumList);
 
-    return "/faq/service/list.jsp";
+    return "/_faq/service/list.jsp";
     }
 }

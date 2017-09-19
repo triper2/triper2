@@ -34,6 +34,6 @@ public class DeleteProAction implements Action{
 
         request.setAttribute("check", new Integer(check));
         
-        return "/faq/service/deletePro.jsp";
+        return "/_faq/service/deletePro.jsp";
     }
 }

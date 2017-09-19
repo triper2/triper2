@@ -17,6 +17,6 @@ public class DeleteFormAction implements Action{
     	request.setAttribute("service_id", service_id);
     	request.setAttribute("service_img", service_img);
     	
-        return "/faq/service/deleteForm.jsp";
+        return "/_faq/service/deleteForm.jsp";
     }
 }

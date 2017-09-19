@@ -30,7 +30,7 @@ package faq.service.action;
 	        request.setAttribute("service_id", new Integer(service_id));
 	        request.setAttribute("album", album);
 	        
-	        return "/faq/service/content.jsp;";
+	        return "/_faq/service/content.jsp;";
 	    }
 	
 }

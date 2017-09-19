@@ -31,6 +31,6 @@ public class WriteFormAction implements Action{
 		request.setAttribute("service_level", service_level);
 		
 		
-        return "/faq/service/writeForm.jsp";
+        return "/_faq/service/writeForm.jsp";
     }
 }
