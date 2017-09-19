@@ -26,3 +26,22 @@ minvalue 0
 increment by 1
 cycle
 nocache;
+
+//이게 댓글 테이블
+create table review_comment(
+review_comment_id number, 
+review_ID number, 
+member_ID varchar2(30),
+review_comment_date date,
+review_comment_content varchar2(500),
+review_comment_available number,
+member_image varchar2(30)
+)
+
+create sequence seq_review_comment_id
+start with 1
+maxvalue 9999
+minvalue 1
+increment by 1
+cycle
+nocache;

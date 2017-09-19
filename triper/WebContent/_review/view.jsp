@@ -111,7 +111,7 @@ function addComment(commentName, commentContent, commentTime) {
 
 </head>
 <body>
-<jsp:include page="../_main/mainForm.jsp"></jsp:include>
+<jsp:include page="../_main_login/header.jsp"></jsp:include>
 
 	<center>
 		<div class="container">

@@ -110,8 +110,6 @@ nav .fa.fa-angle-down {
 </style>
 
 ${ sessionScope.dto }
-${ sessionScope.id }
-<c:set var="id" value="${ sessionScope.id }"/>
 <c:set var="dto" value="${ sessionScope.dto }"/>
 
 </head>
@@ -120,10 +118,10 @@ ${ sessionScope.id }
 	<nav>
 		<div class="container">
 			<ul>
-				<li><a href="../_main_login/index.jsp">Home</a></li>
+				<li><a href="#">Home</a></li>
 				<li><a href="#">리뷰 아직<i class='fa fa-angle-down'></i></a>
 					<ul>
-						<li><a href="#">리뷰 테스트</a></li>
+						<li><a href="bbs.review">리뷰 테스트</a></li>
 						<li><a href="#">샘플2</a></li>
 						<li><a href="#">샘플3</a></li>
 						<li><a href="#">샘플4</a></li>
