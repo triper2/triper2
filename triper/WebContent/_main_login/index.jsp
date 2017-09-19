@@ -112,22 +112,22 @@ if ( getcookie( "todayPop" ) != "popBox" )
 			<a id="menu-close" href="#"
 				class="btn btn-light btn-lg pull-right toggle"><i class="fa fa-times"></i></a>
 			<c:if test="${ dto == null }">
-			<li class="sidebar-brand"><a href="./loginForm.jsp" onclick=$("#menu-close").click();>Login</a></li>
-			<li><a href="#portfolio" onclick=$("#menu-close").click();>리뷰</a></li>
-			<li><a href="#contact" onclick=$("#menu-close").click();>예약(지도)</a></li>
-			<li><a href="#services" onclick=$("#menu-close").click();>고객센터</a></li>
-			<li><a href="#introduce" onclick=$("#menu-close").click();>회사소개</a></li>
+			<li class="sidebar-brand"><a href="./loginForm.jsp" onclick='$("#menu-close").click();'>Login</a></li>
+			<li><a href="#portfolio" onclick='$("#menu-close").click();'>리뷰</a></li>
+			<li><a href="#contact" onclick='$("#menu-close").click();'>예약(지도)</a></li>
+			<li><a href="#services" onclick='$("#menu-close").click();'>고객센터</a></li>
+			<li><a href="#introduce" onclick='$("#menu-close").click();'>회사소개</a></li>
 			</c:if>
 			<c:if test="${ dto != null }">
-			<li><a href="./mypage.jsp" onclick=$("#menu-close").click();>
+			<li><a href="./mypage.jsp" onclick='$("#menu-close").click();'>
 			<img class="media-object img-circle" src="../image/Penguins.jpg" height="100" width="100" alt=""></a>
 			</li>
-			<li class="sidebar-brand"><a href="./logoutPro.jsp" onclick=$("#menu-close").click();>Log out</a></li>
+			<li class="sidebar-brand"><a href="./logoutPro.jsp" onclick='$("#menu-close").click();'>Log out</a></li>
 			<!-- <li><a href="./mypage.jsp" onclick=$("#menu-close").click();>My Page</a></li> -->
-			<li><a href="#portfolio" onclick=$("#menu-close").click();>리뷰</a></li>
-			<li><a href="#contact" onclick=$("#menu-close").click();>예약(지도)</a></li>
-			<li><a href="#services" onclick=$("#menu-close").click();>고객센터</a></li>
-			<li><a href="#introduce" onclick=$("#menu-close").click();>회사소개</a></li>
+			<li><a href="#portfolio" onclick='$("#menu-close").click();'>리뷰</a></li>
+			<li><a href="#contact" onclick='$("#menu-close").click();'>예약(지도)</a></li>
+			<li><a href="#services" onclick='$("#menu-close").click();'>고객센터</a></li>
+			<li><a href="#introduce" onclick='$("#menu-close").click();'>회사소개</a></li>
 			</c:if>
 		</ul>
 	</nav>
@@ -165,7 +165,7 @@ if ( getcookie( "todayPop" ) != "popBox" )
 					<h2>리뷰 채팅+썸네일</h2>
 					<hr class="small">
 					<div class="row">
-						<div class="col-md-6">
+						<!-- <div class="col-md-6">
 							<div class="portfolio-item">
 								<a href="#top"> <img class="img-portfolio img-fluid"
 									src="../img/portfolio-1.jpg">
@@ -192,7 +192,7 @@ if ( getcookie( "todayPop" ) != "popBox" )
 									src="../img/portfolio-4.jpg">
 								</a>
 							</div>
-						</div>
+						</div> -->
 					</div>
 					<!-- /.row (nested) -->
 					<a href="#" class="btn btn-dark">View More Items</a>
@@ -316,6 +316,7 @@ if ( getcookie( "todayPop" ) != "popBox" )
 	        // mouseout 했을 때는 인포윈도우를 닫습니다
 	        (function(marker, title) {
 	            daum.maps.event.addListener(marker, 'click', function() {
+	            	alert("클릭");
 	                displayInfowindow(marker, title);
 	            });
 

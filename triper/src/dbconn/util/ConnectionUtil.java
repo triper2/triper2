@@ -19,8 +19,8 @@ public class ConnectionUtil {
 				//DriverManager.setLogWriter(new PrintWriter(System.out));
 				
 				conn = DriverManager.getConnection(
-						"jdbc:oracle:thin:@localhost:1521:xe", 
-						"ssung", "oracle");
+						"jdbc:oracle:thin:@192.168.0.125:1521:xe", 
+						"triper", "triper");
 				
 			} else if( dns.equals("mysql") ) {
 				Class.forName("com.mysql.jdbc.Driver");
