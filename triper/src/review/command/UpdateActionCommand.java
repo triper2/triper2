@@ -17,7 +17,7 @@ public class UpdateActionCommand implements Command {
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
 		String member_ID = request.getParameter("member_ID");
-		member_ID = "123";
+		member_ID = "qqqqq";
 		/*if (session.getAttribute("member_ID") != null) {
 			member_ID = (String) session.getAttribute("userID");
 		}

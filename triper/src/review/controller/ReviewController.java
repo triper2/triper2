@@ -74,7 +74,6 @@ public class ReviewController extends HttpServlet {
 		else if(com.equals("writeAction.review")){
 			command = new WriteCommand();
 			command.execute(request,response);
-			viewPage="bbs.review";
 		}
 		else if(com.equals("update.review")){
 			command = new UpdateCommand();
@@ -84,12 +83,10 @@ public class ReviewController extends HttpServlet {
 		else if(com.equals("updateAction.review")){
 			command = new UpdateActionCommand();
 			command.execute(request,response);
-			viewPage="bbs.review"; 
 		}
 		else if(com.equals("deleteAction.review")){
 			command = new deleteCommand();
 			command.execute(request,response);
-			viewPage="bbs.review"; 
 		}
 				
 		dp = request.getRequestDispatcher(viewPage);

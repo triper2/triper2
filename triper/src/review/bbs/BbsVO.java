@@ -15,6 +15,50 @@ public class BbsVO {
 	private String review_Image_5;
 	
 	
+	private int review_comment_id;
+	private String review_comment_date;
+	private String review_comment_content;
+	private int review_comment_available;
+	private String member_image;
+	
+	
+	
+	
+	
+	public int getReview_comment_id() {
+		return review_comment_id;
+	}
+	public void setReview_comment_id(int review_comment_id) {
+		this.review_comment_id = review_comment_id;
+	}
+	public String getReview_comment_date() {
+		return review_comment_date;
+	}
+	public void setReview_comment_date(String review_comment_date) {
+		this.review_comment_date = review_comment_date;
+	}
+	public String getReview_comment_content() {
+		return review_comment_content;
+	}
+	public void setReview_comment_content(String review_comment_content) {
+		this.review_comment_content = review_comment_content;
+	}
+	public int getReview_comment_available() {
+		return review_comment_available;
+	}
+	public void setReview_comment_available(int review_comment_available) {
+		this.review_comment_available = review_comment_available;
+	}
+	public String getMember_image() {
+		return member_image;
+	}
+	public void setMember_image(String member_image) {
+		this.member_image = member_image;
+	}
+	
+	
+	
+	
 	
 	
 	public int getReview_ID() {

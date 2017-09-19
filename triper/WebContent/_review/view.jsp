@@ -21,6 +21,94 @@
 
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
+<script type="text/javascript">
+
+$(document).ready(function(){
+	commentListFunction('today');
+});
+
+function submitFunction() {
+	
+	var review_comment_content = $('#review_comment_content').val();
+	var review_ID = ${bbs.review_ID};
+	var member_ID = "123";
+	$.ajax({
+		type : "POST",
+		url : "../commentSubmitServlet",
+		data : {
+			review_comment_content :  encodeURIComponent(review_comment_content),
+			review_ID :  encodeURIComponent(review_ID),
+			member_ID :  encodeURIComponent(member_ID)
+		},
+		success : function(result) {
+			if (result == 1) {
+				commentFunction('today');
+				autoClosingAlert('#successMessage', 2000);
+			} else if (result == 0) {
+				autoClosingAlert('#dangerMessage', 2000);
+			} else {
+				autoClosingAlert('#warningMessage', 2000);
+			}
+			
+			
+		}, error : function(msg, error) {
+			alert(error);
+		}
+	});
+	$('#review_comment_content').val('');
+ 
+}
+function commentListFunction(type) {
+	var review_ID = ${bbs.review_ID};
+	$.ajax({
+		type : "POST",
+		url : "../CommentServlet",
+		data : {
+			review_ID :  encodeURIComponent(review_ID),
+			listType : type,
+			
+		},
+		success : function(data) {
+			if(data == "") return;
+			var parsed = JSON.parse(data);
+			var result = parsed.result;
+			for (var i = 0; i < result.length; i++) {
+				addComment(result[i][0].value, result[i][1].value,
+						result[i][2].value);
+			}
+		}
+	});
+}
+function commentFunction(type) {
+	var review_ID = ${bbs.review_ID};
+	$.ajax({
+		type : "POST",
+		url : "../CommentServlet",
+		data : {
+			review_ID :  encodeURIComponent(review_ID),
+			listType : type,
+			
+		},
+		success : function(data) {
+			if(data == "") return;
+			var parsed = JSON.parse(data);
+			var result = parsed.result;
+			var i=result.length;
+			addComment(result[i-1][0].value, result[i-1][1].value,result[i-1][2].value);
+			document.body.scrollTop = document.body.scrollHeight;
+
+		}
+	});
+}
+function addComment(commentName, commentContent, commentTime) {
+	$('#commentList').append(
+	'<tr><td rowspan="2" colspan="1" width="20"><img class="media-object img-circle" src="../image/sugi.gif" height="100" width="100" alt=""></td>'
+	+'<td colspan="2" colspan="1">'+commentName+' &nbsp;&nbsp;&nbsp;&nbsp; '+commentTime+'</td></tr>'
+	+'<tr height="80"><td colspan="3">'+commentContent+'</td></tr>');
+
+}
+</script>
+
 </head>
 <body>
 <jsp:include page="../_main/mainForm.jsp"></jsp:include>
@@ -55,21 +143,54 @@
 						</tr>
 
 					</tbody>
-
-				</table>
-				
-				
-				<a href="bbs.review" class="btn btn-primary">목록</a>
+				<tr style="background-color: #eeeeee; text-align: center;">
+				<td colspan="3">
+				<a href="bbs.review?pageNumber=1" class="btn btn-primary">목록</a>
 				<c:if test="${bbs.member_ID != null && bbs.member_ID.equals(bbs.getMember_ID())}">
 
 				<a href = "update.review?review_ID=${bbs.review_ID}" class="btn btn-primary">수정</a>
 				<a onclick ="return confirm('정말로 삭제하시겠습니까?')" href= "deleteAction.review?review_ID=${bbs.review_ID}" class="btn btn-primary">삭제</a>
 
 				</c:if>
+				</td>
+				</tr>
+				</table>
+				
 				
 			</div>
 
 		</div>
+		
+		
+		<div class="container">
+			<div class="row">
+				<table class="table table-striped" style="text-align: left;">
+					<thead>
+						<tr>
+							<th colspan="3"
+								style="background-color: #eeeeee; text-align: center;">댓글</th>
+
+						</tr>
+					</thead>
+					<tbody id = commentList>
+
+					</tbody>
+					<tr>
+							<td colspan="3"><textarea class="form-control"
+									placeholder="댓글 달기" name="review_comment_content"
+									id="review_comment_content" maxlength="500"
+									style="height: 100px;"></textarea></td>
+						</tr>
+						<tr>
+							<td colspan="3"><button type="button" class="btn btn-default pull-right"
+											onclick="submitFunction();">댓글 달기</button></td>
+						</tr>
+				</table>
+
+			</div>
+
+		</div>
+		
 	</center>
 </body>
 </html>
