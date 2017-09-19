@@ -22,6 +22,7 @@
 
 </head>
 <body>
+	<jsp:include page="../_main_login/header.jsp"></jsp:include>
 	<div class="form-group" style="text-align: center; ma rgin: 0 auto;">
 	<form method="post" action="writeAction.review">
 	<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
@@ -31,7 +32,7 @@
 	<td  colspan="1">
 	<input type="submit" class="btn btn-primary" value="검색">
 	</form>
-	<a class="btn btn-primary">글쓰기</a>
+	<a class="btn btn-primary" href="write.review?member_ID=${ sessionScope.dto.member_id}">글쓰기</a>
 	</td>
 	</tr>
 	</table>
