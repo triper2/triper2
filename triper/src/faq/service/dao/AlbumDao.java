@@ -33,7 +33,7 @@ public class AlbumDao {
     private Connection getConnection() throws Exception{
         Context initCtx= new InitialContext();
         Context envCtx=(Context)initCtx.lookup("java:comp/env");
-        DataSource ds=(DataSource)envCtx.lookup("jdbc:service");
+        DataSource ds=(DataSource)envCtx.lookup("jdbc:TriperDB");
 
         return ds.getConnection();
     }

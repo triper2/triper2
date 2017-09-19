@@ -6,5 +6,5 @@
 <c:remove scope="session" var="sessionInfo" />
 <c:remove scope="session" var="id" />
 
-<meta http-equiv="Refresh" content="0; url=index.jsp">
+<meta http-equiv="Refresh" content="0; url=header.jsp">
 	

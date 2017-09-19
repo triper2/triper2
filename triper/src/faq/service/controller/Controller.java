@@ -79,7 +79,8 @@ public class Controller extends HttpServlet {
         try {
             String command = request.getRequestURI();
             if (command.indexOf(request.getContextPath()) == 0) {
-            	command = command.substring(request.getContextPath().length() + 1);
+            	command = command.substring(request.getContextPath().length());
+            	command = command.split("/")[2];
             }
             
             System.out.println(command);

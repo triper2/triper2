@@ -118,29 +118,29 @@ ${ sessionScope.dto }
 	<nav>
 		<div class="container">
 			<ul>
-				<li><a href="#">Home</a></li>
-				<li><a href="#">리뷰 아직<i class='fa fa-angle-down'></i></a>
+				<li style="z-index: 999;"><a href="#">Home</a></li>
+				<li style="z-index: 999;"><a href="#">리뷰 아직<i class='fa fa-angle-down'></i></a>
 					<ul>
 						<li><a href="bbs.review">리뷰 테스트</a></li>
 						<li><a href="#">샘플2</a></li>
 						<li><a href="#">샘플3</a></li>
 						<li><a href="#">샘플4</a></li>
 					</ul></li>
-				<li><a href="#">예약(지도) 아직<i class='fa fa-angle-down'></i></a>
+				<li style="z-index: 999;"><a href="#">예약(지도) 아직<i class='fa fa-angle-down'></i></a>
 					<ul>
 						<li><a href="#">샘플1</a></li>
 						<li><a href="#">샘플2</a></li>
 						<li><a href="#">샘플3</a></li>
 						<li><a href="#">샘플4</a></li>
 					</ul></li>
-				<li><a href="#">고객센터 아직<i class='fa fa-angle-down'></i></a>
+				<li style="z-index: 999;"><a href="#">고객센터 아직<i class='fa fa-angle-down'></i></a>
 					<ul>
-						<li><a href="#">샘플1</a></li>
+						<li><a href="list.service">고객센터 테스트</a></li>
 						<li><a href="#">샘플2</a></li>
 						<li><a href="#">샘플3</a></li>
 						<li><a href="#">샘플4</a></li>
 					</ul></li>
-				<li><a href="#">회사소개 아직</a></li>
+				<li style="z-index: 999;"><a href="#">회사소개 아직</a></li>
 				<c:if test="${ sessionScope.id != null }">
 				<li style="float:right"><a href="logoutPro.jsp">Log out</a></li>
 				<li style="float:right; margin-top:10px;">  
