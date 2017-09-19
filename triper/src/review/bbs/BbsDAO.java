@@ -8,8 +8,6 @@ import java.util.ArrayList;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
-
-import dbclose.util.CloseUtil;
 import dbconn.util.ConnectionUtil;
 
 public class BbsDAO {
@@ -44,6 +42,7 @@ public int write(String review_Title, String member_ID, String review_Content) {
 	ResultSet rs = null;
 	String sql = "insert into review_board values(seq_review_ID.NEXTVAL,?,?,SYSDATE,?,?,?,?,?,?,?)";
 	try {
+		conn = loadOracleDriver();
 		pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, review_Title);
 		pstmt.setString(2, member_ID);
@@ -79,6 +78,7 @@ public int commentWrite(int review_ID, String member_ID, String review_comment_c
 	ResultSet rs = null;
 	String sql = "insert into review_comment values(seq_review_comment_id.NEXTVAL,?,?,SYSDATE,?,?,?)";
 	try {
+		conn = loadOracleDriver();
 		pstmt = conn.prepareStatement(sql);
 		pstmt.setInt(1, review_ID);
 		pstmt.setString(2, member_ID);
@@ -110,6 +110,7 @@ public ArrayList<BbsVO> getComment(int review_ID){
 
 	ArrayList<BbsVO>list1 = new ArrayList<BbsVO>();
 	try{
+		conn = loadOracleDriver();
 		pstmt = conn.prepareStatement(sql);
 		pstmt.setInt(1,review_ID);
 		rs = pstmt.executeQuery();
@@ -138,6 +139,7 @@ public ArrayList<BbsVO> getComment(int review_ID){
 	      String sql = "select count(*) from review_board where review_available = 1";
 	      int pageCount = 0;
 	      try{
+	    	  conn = loadOracleDriver();
 	         pstmt = conn.prepareStatement(sql);
 	         rs = pstmt.executeQuery();
 	         if(rs.next()){
@@ -158,6 +160,7 @@ public ArrayList<BbsVO> getComment(int review_ID){
 	      String sql = "select*from review_board where review_available = 1 order by review_id desc";
 	      ArrayList<BbsVO>list = new ArrayList<BbsVO>();
 	      try{
+	    	  conn = loadOracleDriver();
 	         pstmt = conn.prepareStatement(sql);
 	         rs = pstmt.executeQuery();
 	         while(rs.next()){
@@ -186,6 +189,7 @@ public ArrayList<BbsVO> getComment(int review_ID){
 	      String sql = "select*from(select rownum as rnum, data.*from(select*from review_board where review_available = 1 order by review_id desc)data)where rnum>? and rnum<= ?";
 	      ArrayList<BbsVO>list = new ArrayList<BbsVO>();
 	      try{
+	    	  conn = loadOracleDriver();
 	         pstmt = conn.prepareStatement(sql);
 	         //pstmt.setInt(1, (review_ID+1) - pageNumber);
 	         pstmt.setInt(1, (pageNumber-1)*6);
@@ -215,6 +219,7 @@ public ArrayList<BbsVO> getComment(int review_ID){
 		   String sql = "select*from review_board where review_id < ? and review_available = 1";
 	      
 	      try{
+	    	  conn = loadOracleDriver();
 	         pstmt = conn.prepareStatement(sql);
 	         pstmt.setInt(1, (review_ID+1) - (pageNumber-1) * 6);
 	         rs = pstmt.executeQuery();
@@ -235,6 +240,7 @@ public BbsVO getBbs(int review_ID){//특정한 아이디의 정보를 가져오�
 	ResultSet rs = null;
 	String sql = "select*from review_board where review_id = ?";
 	try{
+		conn = loadOracleDriver();
 		 pstmt = conn.prepareStatement(sql);
 		pstmt.setInt(1, review_ID);
 		rs = pstmt.executeQuery();
@@ -258,9 +264,9 @@ public BbsVO getBbs(int review_ID){//특정한 아이디의 정보를 가져오�
 public int update(int review_ID, String review_Title, String review_Content) {
 	Connection conn = null;
 	PreparedStatement pstmt = null;
-	ResultSet rs = null;
 	String sql = "update review_board set review_Title=?, review_Content= ? where review_ID = ?";
 	try {
+		conn = loadOracleDriver();
 		pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, review_Title);
 		pstmt.setString(2, review_Content);
@@ -274,9 +280,9 @@ public int update(int review_ID, String review_Title, String review_Content) {
 public int delete(int review_ID) {
 	Connection conn = null;
 	PreparedStatement pstmt = null;
-	ResultSet rs = null;
 	String sql = "update review_board set review_available=0 where review_ID = ?";
 	try {
+		conn = loadOracleDriver();
 		pstmt = conn.prepareStatement(sql);
 		pstmt.setInt(1, review_ID);
 		return pstmt.executeUpdate();

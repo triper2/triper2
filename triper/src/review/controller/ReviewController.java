@@ -61,7 +61,7 @@ public class ReviewController extends HttpServlet {
 		if(com.equals("bbs.review")){
 			command = new BbsCommand();
 			command.execute(request,response);
-			viewPage="../_review/bbs.jsp";                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+			viewPage="../_review/bbs.jsp";                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
 		}
 		else if(com.equals("view.review")){
 			command = new ViewCommand();
