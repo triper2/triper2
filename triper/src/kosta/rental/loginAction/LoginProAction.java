@@ -89,14 +89,16 @@ public class LoginProAction extends HttpServlet {
 			
 			RentalDAO dao = RentalDAO.getInstance();
 			RentalDTO dto = new RentalDTO();
-			dto.setMember_id(request.getParameter("member_id"));
-			dto.setMember_name(request.getParameter("member_name"));
-			dto.setMember_pwd(request.getParameter("member_pwd"));
-			dto.setMember_phone(request.getParameter("member_phone"));
-			dto.setMember_email(request.getParameter("member_email"));
-			dto.setMember_img(request.getParameter("member_img"));
+			dto.setMember_id(multi.getParameter("member_id"));
+			dto.setMember_name(multi.getParameter("member_name"));
+			dto.setMember_pwd(multi.getParameter("member_pwd"));
+			dto.setMember_phone(multi.getParameter("member_phone"));
+			dto.setMember_email(multi.getParameter("member_email"));
+			dto.setMember_img(multi.getParameter("member_img"));
+			System.out.println(member_img);
+			dto.setMember_img(member_img);
 			dao.insert(dto);
-			request.getSession().setAttribute("dto", dto);
+			//request.getSession().setAttribute("dto", dto);
 
 			viewPage = "/_main_login/registerPro.jsp";
 			RequestDispatcher dp = request.getRequestDispatcher(viewPage);
