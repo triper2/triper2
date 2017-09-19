@@ -51,7 +51,7 @@
 	&nbsp;&nbsp;&nbsp;
 	</c:forEach>
 	<c:if test="${album.service_level > 0}" >
-	<img src="./faq/service/images/reply_icon.gif"> 
+	<img src="./_faq/service/images/reply_icon.gif"> 
 	</c:if>
 
      <a href="content.service?service_id=${album.service_id}">${album.service_title}</a></td>
