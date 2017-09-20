@@ -25,7 +25,6 @@ public class CommentSubmitServlet extends HttpServlet {
 		int review_ID = Integer.parseInt(URLDecoder.decode(request.getParameter("review_ID"),"UTF-8"));
 		String member_ID = URLDecoder.decode(request.getParameter("member_ID"),"UTF-8");
 		if(review_comment_content ==null || review_comment_content.equals("")){
-	
 			response.getWriter().write("0");
 		}
 		else{
