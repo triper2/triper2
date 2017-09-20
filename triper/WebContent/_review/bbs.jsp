@@ -32,7 +32,7 @@
 	<td  colspan="1">
 	<input type="submit" class="btn btn-primary" value="검색">
 	</form>
-	<a class="btn btn-primary" href="write.review?member_ID=${ sessionScope.dto.member_id}">글쓰기</a>
+	<a class="btn btn-primary" href="write.review">글쓰기</a>
 	</td>
 	</tr>
 	</table>
@@ -47,7 +47,7 @@
 
 			<a href="view.review?review_ID=${list.review_ID}">
 				<div class="tile">
-					<img src='../image/test_2.jpg' />
+					<img src="${list.review_Image_1}" />
 					<div class="text">
 						<h1>${list.review_Title}</h1>
 						<h2 class="animate-text">${list.review_ID}</h2>

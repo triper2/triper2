@@ -30,6 +30,7 @@
 <script type="text/javascript">
 var oEditors = [];
 $(function(){
+	 var review_Image_1=null;
       nhn.husky.EZCreator.createInIFrame({
           oAppRef: oEditors,
           elPlaceHolder: "review_Content", //textarea에서 지정한 id와 일치해야 합니다. 
@@ -74,7 +75,7 @@ function pasteHTML(filepath){
 									placeholder="글 제목" name="review_Title" maxlength="50"></td>
 							</tr>
 
-							<tr>
+						<!-- 	<tr>
 								<td>
 									<div class="form-group"
 										style="text-align: center; ma rgin: 0 auto;">
@@ -89,8 +90,7 @@ function pasteHTML(filepath){
 										</div>
 									</div>
 								</td>
-							</tr>
-
+							</tr> -->
 
 							<tr>
 								<td><textarea class="form-control" placeholder="글 내용"

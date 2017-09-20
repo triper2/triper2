@@ -23,9 +23,8 @@ public class BbsCommand implements Command {
 			pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
 		}
 		
-		
-		
-		String member_ID ="123";
+		String member_ID = String.valueOf(request.getSession().getAttribute("member_id"));
+		System.out.println(member_ID);
 		BbsDAO dao = new BbsDAO();
 		
 		ArrayList<BbsVO> list = dao.getList(pageNumber);
@@ -33,8 +32,9 @@ public class BbsCommand implements Command {
 		
 		request.setAttribute("list", list);
 		request.setAttribute("pageNumber", pageNumber);
-		request.setAttribute("member_ID", member_ID);
 		request.setAttribute("pageCount", dao.pageingCount());
+		request.setAttribute("member_ID", member_ID);
+		
 	}
 
 }

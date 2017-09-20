@@ -6,8 +6,8 @@
 <%@page import="com.oreilly.servlet.MultipartRequest"%>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%
-
-String path = request.getSession().getServletContext().getRealPath("/") + File.separator + "image" ;
+String path = request.getSession().getServletContext().getRealPath("/") + File.separator + "image";
+/* String path = "C:/Users/Administrator/git/triper2/triper/WebContent/image"; */
 String filename = "";
 
 if(request.getContentLength() > 10*1024*1024 ){

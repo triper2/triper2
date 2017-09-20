@@ -36,7 +36,7 @@ public class BbsDAO {
 	} // loadOracleDriver() end
 
 
-public int write(String review_Title, String member_ID, String review_Content) {
+public int write(String review_Title, String member_ID, String review_Content, String review_Image_1) {
 	Connection conn = null;
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
@@ -48,9 +48,7 @@ public int write(String review_Title, String member_ID, String review_Content) {
 		pstmt.setString(2, member_ID);
 		pstmt.setString(3, review_Content);
 		pstmt.setInt(4, 1);
-		String test = review_Content.substring(review_Content.indexOf("<img src=")+10);
-		System.out.println(test);
-		pstmt.setString(5, "1");
+		pstmt.setString(5, review_Image_1);
 		pstmt.setString(6, "1");
 		pstmt.setString(7, "1");
 		pstmt.setString(8, "1");
@@ -102,34 +100,58 @@ public int commentWrite(int review_ID, String member_ID, String review_comment_c
 	return -1;
 }
 
-public ArrayList<BbsVO> getComment(int review_ID){
+public ArrayList<BbsVO> getComment(int review_ID, int commentPageNumber) {
 	Connection conn = null;
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
-	String sql = "select*from review_comment where review_comment_available = 1 and review_ID = ? order by review_comment_id";
+	String sql = "select*from(select rownum as rnum, data.*from(select*from review_comment where review_comment_available = 1 and review_ID = ? order by review_comment_id desc)data)where rnum>? and rnum<= ?";
 
-	ArrayList<BbsVO>list1 = new ArrayList<BbsVO>();
-	try{
+	ArrayList<BbsVO> list1 = new ArrayList<BbsVO>();
+	try {
 		conn = loadOracleDriver();
 		pstmt = conn.prepareStatement(sql);
-		pstmt.setInt(1,review_ID);
+		pstmt.setInt(1, review_ID);
+		pstmt.setInt(2, (commentPageNumber - 1) * 10);
+		pstmt.setInt(3, (commentPageNumber) * 10);
 		rs = pstmt.executeQuery();
-		while(rs.next()){
+		while (rs.next()) {
 			BbsVO bbs = new BbsVO();
-			bbs.setReview_comment_id(rs.getInt(1));
-			bbs.setReview_ID(rs.getInt(2));
-			bbs.setMember_ID(rs.getString(3));
-			bbs.setReview_comment_date(rs.getString(4));
-			bbs.setReview_comment_content(rs.getString(5).replaceAll(" ", "&nbsp;").replaceAll(">", "&gt;")
-					.replaceAll("\n", "<br>"));
-			bbs.setReview_comment_available(rs.getInt(6));
-			bbs.setMember_image(rs.getString(7));
+			bbs.setReview_comment_id(rs.getInt("review_comment_id"));
+			bbs.setReview_ID(rs.getInt("review_ID"));
+			bbs.setMember_ID(rs.getString("member_ID"));
+			bbs.setReview_comment_date(rs.getString("review_comment_date"));
+			bbs.setReview_comment_content(
+					rs.getString("review_comment_content").replaceAll(" ", "&nbsp;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
+			bbs.setReview_comment_available(rs.getInt("review_comment_available"));
+			bbs.setMember_image(rs.getString("member_image"));
 			list1.add(bbs);
 		}
-	}catch(Exception e){
+	} catch (Exception e) {
 		e.printStackTrace();
 	}
 	return list1;
+}
+
+public int commentPageingCount(int review_ID) {
+	Connection conn = null;
+	PreparedStatement pstmt = null;
+	ResultSet rs = null;
+	String sql = "select count(*) from review_comment where review_comment_available = 1 and review_ID = ?";
+	int commentPageingCount = 0;
+	try {
+		conn = loadOracleDriver();
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, review_ID);
+		rs = pstmt.executeQuery();
+		if (rs.next()) {
+
+			commentPageingCount = ((rs.getInt(1)) / 10 + 1);
+
+		}
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+	return commentPageingCount;
 }
 
    public int pageingCount() {
@@ -204,6 +226,7 @@ public ArrayList<BbsVO> getComment(int review_ID){
 	            bbs.setReview_Date(rs.getString("review_Date")); 
 	            bbs.setReview_Content(rs.getString("review_Content"));
 	            bbs.setReview_Available(rs.getInt("review_Available"));
+	            bbs.setReview_Image_1(rs.getString("review_Image_1"));
 	            list.add(bbs);
 	         }
 	      }catch(Exception e){
@@ -211,28 +234,6 @@ public ArrayList<BbsVO> getComment(int review_ID){
 	      }
 	      return list;
 	   }
-	   
-	   public boolean nextPage(int pageNumber,int review_ID){//페이징처리함수
-		   Connection conn = null;
-			PreparedStatement pstmt = null;
-			ResultSet rs = null;
-		   String sql = "select*from review_board where review_id < ? and review_available = 1";
-	      
-	      try{
-	    	  conn = loadOracleDriver();
-	         pstmt = conn.prepareStatement(sql);
-	         pstmt.setInt(1, (review_ID+1) - (pageNumber-1) * 6);
-	         rs = pstmt.executeQuery();
-	         if(rs.next()){
-	            return true;
-	         }
-	      }catch(Exception e){
-	         e.printStackTrace();
-	      }
-	      return false;
-	   }
-	   
-
 
 public BbsVO getBbs(int review_ID){//특정한 아이디의 정보를 가져오기 (게시글 보기)
 	Connection conn = null;
@@ -261,16 +262,18 @@ public BbsVO getBbs(int review_ID){//특정한 아이디의 정보를 가져오�
 	return null;
 }
 
-public int update(int review_ID, String review_Title, String review_Content) {
+public int update(int review_ID, String review_Title, String review_Content, String review_Image_1) {
 	Connection conn = null;
 	PreparedStatement pstmt = null;
-	String sql = "update review_board set review_Title=?, review_Content= ? where review_ID = ?";
+	String sql = "update review_board set review_Title= ?, review_Content= ?,review_Image_1= ? where review_ID = ?";
+
 	try {
 		conn = loadOracleDriver();
 		pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, review_Title);
 		pstmt.setString(2, review_Content);
-		pstmt.setInt(3, review_ID);
+		pstmt.setString(3, review_Image_1);
+		pstmt.setInt(4, review_ID);
 		return pstmt.executeUpdate();
 	} catch (Exception e) {
 		e.printStackTrace();

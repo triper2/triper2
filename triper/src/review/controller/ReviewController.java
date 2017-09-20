@@ -88,6 +88,10 @@ public class ReviewController extends HttpServlet {
 			command = new deleteCommand();
 			command.execute(request,response);
 		}
+		else if(com.equals("view.page")){
+			command = new ViewCommand();
+			command.execute(request,response);
+		}
 				
 		dp = request.getRequestDispatcher(viewPage);
 		dp.forward(request, response);

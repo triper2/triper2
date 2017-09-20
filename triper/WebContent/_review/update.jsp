@@ -47,7 +47,7 @@ $(function(){
 function pasteHTML(filepath){
        var sHTML = '<img src="<%=request.getContextPath()%>/image/'+filepath+'">';
        oEditors.getById["review_Content"].exec("PASTE_HTML", [sHTML]);
-   }
+}
 </script>
 
 </head>

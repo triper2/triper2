@@ -42,7 +42,8 @@ function submitFunction() {
 		},
 		success : function(result) {
 			if (result == 1) {
-				commentFunction('today');
+				
+				commentListFunction('today');
 				autoClosingAlert('#successMessage', 2000);
 			} else if (result == 0) {
 				autoClosingAlert('#dangerMessage', 2000);
@@ -60,16 +61,19 @@ function submitFunction() {
 }
 function commentListFunction(type) {
 	var review_ID = ${bbs.review_ID};
+	var commentPageNumber = ${commentPageNumber};
 	$.ajax({
 		type : "POST",
 		url : "../CommentServlet",
 		data : {
 			review_ID :  encodeURIComponent(review_ID),
+			commentPageNumber :  encodeURIComponent(commentPageNumber),
 			listType : type,
 			
 		},
 		success : function(data) {
 			if(data == "") return;
+			$('#commentList').html("");
 			var parsed = JSON.parse(data);
 			var result = parsed.result;
 			for (var i = 0; i < result.length; i++) {
@@ -78,28 +82,10 @@ function commentListFunction(type) {
 			}
 		}
 	});
-}
-function commentFunction(type) {
-	var review_ID = ${bbs.review_ID};
-	$.ajax({
-		type : "POST",
-		url : "../CommentServlet",
-		data : {
-			review_ID :  encodeURIComponent(review_ID),
-			listType : type,
-			
-		},
-		success : function(data) {
-			if(data == "") return;
-			var parsed = JSON.parse(data);
-			var result = parsed.result;
-			var i=result.length;
-			addComment(result[i-1][0].value, result[i-1][1].value,result[i-1][2].value);
-			document.body.scrollTop = document.body.scrollHeight;
 
-		}
-	});
 }
+
+
 function addComment(commentName, commentContent, commentTime) {
 	$('#commentList').append(
 	'<tr><td rowspan="2" colspan="1" width="20"><img class="media-object img-circle" src="../image/sugi.gif" height="100" width="100" alt=""></td>'
@@ -146,7 +132,7 @@ function addComment(commentName, commentContent, commentTime) {
 				<tr style="background-color: #eeeeee; text-align: center;">
 				<td colspan="3">
 				<a href="bbs.review?pageNumber=1" class="btn btn-primary">목록</a>
-				<c:if test="${bbs.member_ID != null && bbs.member_ID.equals(bbs.getMember_ID())}">
+				<c:if test="${bbs.member_ID != null && bbs.member_ID.equals(member_ID)}">
 
 				<a href = "update.review?review_ID=${bbs.review_ID}" class="btn btn-primary">수정</a>
 				<a onclick ="return confirm('정말로 삭제하시겠습니까?')" href= "deleteAction.review?review_ID=${bbs.review_ID}" class="btn btn-primary">삭제</a>
@@ -161,7 +147,6 @@ function addComment(commentName, commentContent, commentTime) {
 
 		</div>
 		
-		
 		<div class="container">
 			<div class="row">
 				<table class="table table-striped" style="text-align: left;">
@@ -172,9 +157,6 @@ function addComment(commentName, commentContent, commentTime) {
 
 						</tr>
 					</thead>
-					<tbody id = commentList>
-
-					</tbody>
 					<tr>
 							<td colspan="3"><textarea class="form-control"
 									placeholder="댓글 달기" name="review_comment_content"
@@ -183,12 +165,25 @@ function addComment(commentName, commentContent, commentTime) {
 						</tr>
 						<tr>
 							<td colspan="3"><button type="button" class="btn btn-default pull-right"
-											onclick="submitFunction();">댓글 달기</button></td>
+									onclick="submitFunction();">댓글 달기</button></td>
+						</tr> 
+					<tbody id = commentList>
+
+					</tbody>
+					
+						<tr>
+							<td colspan="3">
+								<c:forEach var="page" begin="1" end="${commentPageCount}" step="1">
+									<a href="view.review?review_ID=${review_ID}&commentPageNumber=${page}"
+					
+										class="btn btn-success" onclick="commentListFunction('today');"> ${page} </a>
+								</c:forEach>
+							</td>
 						</tr>
 				</table>
 
 			</div>
-
+			
 		</div>
 		
 	</center>

@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import kosta.rental.loginModel.RentalDTO;
 import review.bbs.BbsDAO;
 import review.bbs.BbsVO;
 
@@ -15,26 +16,44 @@ public class WriteCommand implements Command {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
-		String member_ID = "qqqqq";
+		
+		
+		
+		String member_id = null;
 		String review_Title =request.getParameter("review_Title");
 		String review_Content = request.getParameter("review_Content");
-		/*if (session.getAttribute("userID") != null) {
-			userID = (String) session.getAttribute("userID");
+		String review_Image_1 = null;
+		
+		
+		
+		try {
+			review_Image_1 = review_Content.substring(review_Content.indexOf("<img src=")+10,review_Content.indexOf(">")-1);
+		} catch (Exception e) {
+			review_Image_1 = "/triper/image/test_1.jpg";
 		}
-		if (userID == null) {
+		
+		
+		try {
+			RentalDTO dto = (RentalDTO)request.getSession().getAttribute("dto");
+			member_id = dto.getMember_id();
+		} catch (Exception e) {
+			member_id = null;
+		}
+		
+		if (member_id == null) {
 			PrintWriter script;
 			try {
 				script = response.getWriter();
 				script.println("<script>");
 				script.println("alert('로그인을 하세요')");
-				script.println("location.href = 'login.jsp'");// 로그인 페이지
+				script.println("location.href = 'bbs.review'");
 				script.println("</script>");
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 
-		} else {*/
+		} else {
 			if (review_Title.equals("")|| review_Content.equals("")) {
 				PrintWriter script;
 				try {
@@ -50,7 +69,7 @@ public class WriteCommand implements Command {
 
 			} else {
 				BbsDAO bbsDAO = new BbsDAO();
-				int result = bbsDAO.write(review_Title, member_ID, review_Content);
+				int result = bbsDAO.write(review_Title, member_id, review_Content, review_Image_1);
 				if (result == -1) {
 					PrintWriter script;
 					try {
@@ -69,7 +88,7 @@ public class WriteCommand implements Command {
 					try {
 						script = response.getWriter();
 						script.println("<script>");
-						script.println("location.href = 'bbs.review'");// 로그인 페이지
+						script.println("location.href = 'bbs.review?pageNumber=1'");// 로그인 페이지
 						script.println("</script>");
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
@@ -81,5 +100,5 @@ public class WriteCommand implements Command {
 			}
 		}
 	
-
+	}
 }
