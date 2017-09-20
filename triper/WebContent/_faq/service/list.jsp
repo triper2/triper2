@@ -5,7 +5,15 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<link rel="stylesheet" href="../../css/bootstrap.css">
+<link rel="stylesheet" href="../../css/custom.css">
+
 <title>글목록</title>
+
+<script type="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script type="../../js/bootstrap.js"></script>
+
+
 <script type="text/javascript">
   function searchMessage(){
    if(document.search.keyWord.value==""){
@@ -16,6 +24,8 @@
    return true;
   }
 </script>
+
+
 </head>
 <body>
 <jsp:include page="../../_main_login/header.jsp"></jsp:include>
@@ -29,22 +39,21 @@
 </c:if>
 
 <c:if test="${page.service_readcount > 0}">
-<table width="70%" border="1" cellpadding="0" cellspacing="0" align="center">
-<tr><td colspan="6" align="center"><h1>게시판</h1></td></tr>
-<tr bgcolor="gray">
-    <td width="70">번호</td>
-    <td width="70">글번호</td>    
-    <td>글제목</td>
-    <td width="120">작성자</td>
-    
-    <td width="70">조회수</td>
-    <td width="120">작성일 </td>
+
+
+<table class="table table-striped"style="text-align: center; border: 3px solid #dddddd">
+<!-- <table  width="70%" border="1" cellpadding="0" cellspacing="0" align="center"> -->
+<tr>
+<th width="70" style="background-color: #eeeeee; text-align: center;">번호</th>
+<th style="background-color: #eeeeee; text-align: center;">글제목</th>
+<th width="120" style="background-color: #eeeeee; text-align: center;">작성자</th>
+<th width="70" style="background-color: #eeeeee; text-align: center;">조회수</th>
+<th width="180" style="background-color: #eeeeee; text-align: center;">작성일</th>
 </tr>
 <c:set var="number" value="${page.number}"/>
 <c:forEach var="album" items="${albumList}">
 <tr> 
     <td>${number}<c:set var="number" value="${number - 1}"/></td>
-    <td>${album.service_id}</td>    
     		
 	
     <td align="left">
@@ -62,9 +71,19 @@
 </tr>
 </c:forEach>
 </table>
+
+
+
+
+
 </c:if>
+
+
+
+
+
  <form action="list.service" name="search" method="get" onsubmit="return searchMessage()">
-<table width="70%" border="1" align="center" cellpadding="4" cellspacing="0">
+<table class="table table-striped"style="text-align: center; border: 3px solid #dddddd">
   <tr><td width="200"><a href="writeForm.service">글쓰기</a></td>
     <td align="center" valign="bottom">
       <select name="keyField">
@@ -72,7 +91,7 @@
           <option value="member_id">이름</option>
           <option value="service_content">내용</option>
       </select></td>
-        <td><input type="text" size=16 name="keyWord"><input type="submit" value="찾기"></td>
+        <td><input type="text" size=16 name="keyWord"><input type="submit" class="btn btn-success" value="찾 기"></td>
    </tr> 
    <tr><td colspan="3" align="center">
    
@@ -86,22 +105,18 @@
         <c:set var="endPage" value="${pageCount}"/>
    </c:if> 
           
-   <c:if test="${startPage > pageBlock}">
-         <a href="list.service?pageNum=${startPage - pageBlock }&keyField=${page.keyField}&keyWord=${page.keyWord}">[이전]</a>
-   </c:if>
 
    <c:forEach var="i" begin="${startPage}" end="${endPage}">
-       <c:if test="${i == page.currentPage}">
-          [${i}]
-       </c:if>
-       <c:if test="${i != page.currentPage}">
-          <a href="list.service?pageNum=${i}&keyField=${page.keyField}&keyWord=${page.keyWord}">[${i}]</a>
-       </c:if>
+      
+          <a href="list.service?pageNum=${i}&keyField=${page.keyField}&keyWord=${page.keyWord}"class="btn btn-success btn-arraw-left">${i}</a>
+     
+       <%-- 
+       <a href="bbs.review?pageNumber=${page}"
+				class="btn btn-success btn-arraw-left"> ${page} </a> --%>
+       
    </c:forEach>
+   
 
-   <c:if test="${endPage < pageCount}">
-       <a href="list.service?pageNum=${startPage + pageBlock}&keyField=${page.keyField}&keyWord=${page.keyWord}">[다음]</a>
-   </c:if>
 </c:if>
    </td></tr>
 </table>

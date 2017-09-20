@@ -1,6 +1,7 @@
 package review.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.URLDecoder;
 
 import javax.servlet.ServletException;
@@ -24,7 +25,9 @@ public class CommentSubmitServlet extends HttpServlet {
 		String review_comment_content = URLDecoder.decode(request.getParameter("review_comment_content"),"UTF-8");
 		int review_ID = Integer.parseInt(URLDecoder.decode(request.getParameter("review_ID"),"UTF-8"));
 		String member_ID = URLDecoder.decode(request.getParameter("member_ID"),"UTF-8");
-		if(review_comment_content ==null || review_comment_content.equals("")){
+
+		
+		if(review_comment_content ==null || review_comment_content.equals("")|| member_ID == null || member_ID.equals("")){
 			response.getWriter().write("0");
 		}
 		else{
