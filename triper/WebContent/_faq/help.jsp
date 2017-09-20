@@ -16,13 +16,21 @@ dl {
 dt {
 	cursor: pointer;
 	font-size: 20px;
+	text-align: left;
+	border: 1px;
 }
 
 dd {
 	display: none;
-	height: 70px;
+	height: 100px;
 	margin: 0;
 	font-size: 17px;
+	text-align: left;
+	border: 1px;
+}
+
+th {
+	text-align: left;
 }
 
 
@@ -37,7 +45,7 @@ dd {
                 //dd 의 display 속성이 block 이라면
                 if ( $( this ).next().css( 'display' ) == 'block' ) {
                     $( this ).next().slideUp( 100 );    //조건이 참일 때 실행
-                    obj.src="./images/sort_down.png";
+                    obj.src="./help/images/sort_down.png";
                     
                     
                 }
@@ -45,13 +53,13 @@ dd {
                 else{
                 	
                     $( this ).next().slideDown( 100 );//조건이 거짓일 때 실행
-                    obj.src="./images/sort_up.png"; 
+                    obj.src="./help/images/sort_up.png"; 
                 } 
             } );
         } );
 
  		
-        function toggle_object(e)
+/*         function toggle_object(e)
         {   
         	e.target.name = 1 + e.target.name;
         	alert(e.target.name);
@@ -68,7 +76,7 @@ dd {
                 obj.src="./images/sort_down.png";
             }
         }
-
+ */
     </script>
 </head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -80,46 +88,41 @@ dd {
 </head>
 <body>
 		<jsp:include page="../_main_login/header.jsp"></jsp:include>
-			<th><font size="6"><b>자주 묻는 질문(FAQ)</b></font></th>
-			<tr>
+			<th><font size="6" style="float:left; margin-left: 30px;"><b>자주 묻는 질문(FAQ)</b></font></th><br><br>
 			<hr style="border: solid 3px red;">
-				<br><dt id="dt_0" ><a id="a_0" href="#" style="text-decoration: none; color: black;" ><img id="img1_0" src="./images/faq_q.png" align="left"><b id="b_0">고객센터 전화번호가 어떻게 되나요?</b><img id="img2_0" src="./images/sort_down.png" align="right" /></a></dt>
-				<dd id="0"><br><img src="./images/faq_a.png" align="left">
-				<div style="margin-left: 30px;">010-000-0000 으로 연락 주시면 됩니다.<br>
-				010-000-0000 으로 연락 주시면 됩니다.<br>
-				010-000-0000 으로 연락 주시면 됩니다.<br></div>
+				<br><dt id="dt_0" ><a id="a_0"  style="text-decoration: none; color: black; margin-left: 12px;" ><img id="img1_0" src="./help/images/faq_q.png" align="left" style="width: 25px;"><b id="b_0">회원 아이디와 비밀번호는 변경이 가능한가요?</b><img id="img2_0" src="./help/images/sort_down.png" align="right" width="40px"/></a></dt>
+				<dd id="0"><br><img src="./help/images/faq_a.png" align="left">
+				<div style="margin-left: 30px;">아이디의 변경은 불가능합니다. <br>
+				아이디 변경을 하시려면 탈퇴 후 재가입(동일 아이디 사용 불가)을 하셔야 하며,<br>
+				비밀번호 변경은 사이트에서 로그인 후 [회원정보수정］에서 변경하실 수 있습니다.<br></div>
 				</dd><br>
-			</tr>	
 			<hr style="border: solid 1px;">
-				<br><dt id="dt_1" ><a id="a_1"  href="#" style="text-decoration: none; color: black;" ><img src="./images/faq_q.png" align="left"><b id="b_1">고객센터 위치가 어떻게 되나요?</b><img id="img2_1" src="./images/sort_down.png" align="right" /></a></dt>
-				<dd><br><img src="./images/faq_a.png" align="left">
-				<div style="margin-left: 30px;">판교 입니다<br>
-				판교 입니다<br>
-				판교 입니다<br>
+				<br><dt id="dt_1" ><a id="a_1"   style="text-decoration: none; color: black; margin-left: 12px;" ><img src="./help/images/faq_q.png" align="left"><b id="b_1">회원탈퇴는 어떻게 하나요?</b><img id="img2_1" src="./help/images/sort_down.png" align="right" /></a></dt>
+				<dd><br><img src="./help/images/faq_a.png" align="left">
+				<div style="margin-left: 30px;">탈퇴신청은 로그인 후 홈페이지 상단의 ［회원탈퇴]에서 신청해 주시면 됩니다.<br>
+				탈퇴와 관련한 자세한 사항은 회원 이용약관을 참고하여 주시길 바랍니다.<br>
 				</div>
 				</dd><br>
 			<hr style="border: solid 1px;">
-				<br><dt id="dt_2" ><a id="a_2"  href="#" style="text-decoration: none; color: black;" ><img src="./images/faq_q.png" align="left"><b id="b_2">고객센터 위치가 어떻게 되나요?</b><img id="img2_2" src="./images/sort_down.png" align="right" /></a></dt>
-				<dd><br><img src="./images/faq_a.png" align="left">
-				<div style="margin-left: 30px;">판교 입니다<br>
-				판교 입니다<br>
-				판교 입니다<br>
+				<br><dt id="dt_2" ><a id="a_2"   style="text-decoration: none; color: black; margin-left: 12px;" ><img src="./help/images/faq_q.png" align="left"><b id="b_2">정기 세일 기간이 있나요?</b><img id="img2_2" src="./help/images/sort_down.png" align="right" /></a></dt>
+				<dd><br><img src="./help/images/faq_a.png" align="left">
+				<div style="margin-left: 30px;">정기 세일이나 할인은 하지 않습니다.<br>
+				그러나 세일이 행사나 이벤트를 지속적으로 시행하고 있으며,<br>
+				행사 시작 전 메인 팝업창을 통해 고객님들께 홍보하고 있습니다.<br>
 				</div>
 				</dd><br>
 			<hr style="border: solid 1px;">
-				<br><dt id="dt_3" ><a id="a_3"  href="#" style="text-decoration: none; color: black;" ><img src="./images/faq_q.png" align="left"><b id="b_3">고객센터 위치가 어떻게 되나요?</b><img  id="img2_3" src="./images/sort_down.png" align="right" /></a></dt>
-				<dd><br><img src="./images/faq_a.png" align="left">
-				<div style="margin-left: 30px;">판교 입니다<br>
-				판교 입니다<br>
-				판교 입니다<br>
+				<br><dt id="dt_3" ><a id="a_3"   style="text-decoration: none; color: black; margin-left: 12px;" ><img src="./help/images/faq_q.png" align="left"><b id="b_3">렌탈 가능한 제품의 종류는 어떻게 되나요?</b><img  id="img2_3" src="./help/images/sort_down.png" align="right" /></a></dt>
+				<dd><br><img src="./help/images/faq_a.png" align="left">
+				<div style="margin-left: 30px;">차, 보드 등이 있습니다.<br>
+				차후 렌탈 가능한 제품을 늘려서 고객분들에게 도움이 되도록 노력하겠습니다.<br>
 				</div>
 				</dd><br>
 			<hr style="border: solid 1px;">
-				<br><dt id="dt_4" ><a id="a_4"  href="#" style="text-decoration: none; color: black;" ><img src="./images/faq_q.png" align="left"><b id="b_4">고객센터 위치가 어떻게 되나요?</b> <img  id="img2_4" src="./images/sort_down.png" align="right" /></a></dt>
-				<dd><br><img src="./images/faq_a.png" align="left">
-				<div style="margin-left: 30px;">판교 입니다<br>
-				판교 입니다<br>
-				판교 입니다<br>
+				<br><dt id="dt_4" ><a id="a_4"   style="text-decoration: none; color: black; margin-left: 12px;" ><img src="./help/images/faq_q.png" align="left"><b id="b_4">위치가 어떻게 되나요?</b> <img  id="img2_4" src="./help/images/sort_down.png" align="right" /></a></dt>
+				<dd><br><img src="./help/images/faq_a.png" align="left">
+				<div style="margin-left: 30px;">판교에 위치하고 있습니다.<br>
+				자세한 문의는 010-000-0000으로 전화 주시면 감사하겠습니다<br>
 				</div>
 				</dd><br>
 			<hr style="border: solid 1px;">	
