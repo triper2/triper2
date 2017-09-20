@@ -89,7 +89,7 @@ function commentListFunction(type) {
 function addComment(commentName, commentContent, commentTime) {
 	$('#commentList').append(
 	'<tr><td rowspan="2" colspan="1" width="20"><img class="media-object img-circle" src="../image/sugi.gif" height="100" width="100" alt=""></td>'
-	+'<td colspan="2" colspan="1">'+commentName+' &nbsp;&nbsp;&nbsp;&nbsp; '+commentTime+'</td></tr>'
+	+'<td colspan="3">'+commentName+' &nbsp;&nbsp;&nbsp;&nbsp; '+commentTime+' <a class="btn btn-default pull-right" href="write.review">삭제</a><a class="btn btn-default pull-right" href="write.review">수정</a></td></tr>'
 	+'<tr height="80"><td colspan="3">'+commentContent+'</td></tr>');
 
 }
