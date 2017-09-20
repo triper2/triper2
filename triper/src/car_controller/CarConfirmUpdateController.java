@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import car_db.CarConfirmBean;
 import car_db.CarDAO;
 
-@WebServlet("/CarConfirmUpdateController.do")
+@WebServlet("/_car/CarConfirmUpdateController.do")
 public class CarConfirmUpdateController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -37,17 +37,17 @@ public class CarConfirmUpdateController extends HttpServlet {
 			String carimg = request.getParameter("carimg");
 			int orderid = Integer.parseInt(request.getParameter("orderid"));
 			
-			//µ¥º£ ¿¬°á
+			//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			
 			CarDAO cdao = new CarDAO();
 			
-			//ÇÏ³ªÀÇ ÁÖ¹® Á¤º¸¸¦ ¾ò¾î¿À´Â ¸Þ¼Òµå È£Ãâ
+			//ï¿½Ï³ï¿½ï¿½ï¿½ ï¿½Ö¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¼Òµï¿½ È£ï¿½ï¿½
 			CarConfirmBean cbean = cdao.getOnOrder(orderid);
-			//Â÷·®ÀÌ¹ÌÁö¸¦ ÀúÀå
+			//ï¿½ï¿½ï¿½ï¿½ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			cbean.setProduct_carimg(carimg);
 			
 			request.setAttribute("cbean", cbean);
-			RequestDispatcher dis = request.getRequestDispatcher("/_car/CarMain.jsp?center=CarConfirmUpdate.jsp&top=_Top.jsp");
+			RequestDispatcher dis = request.getRequestDispatcher("../_car/CarMain.jsp?center=CarConfirmUpdate.jsp&top=_Top.jsp");
 			dis.forward(request, response);
 	
 	}

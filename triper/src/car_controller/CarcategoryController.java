@@ -16,7 +16,7 @@ import car_db.CarListBean;
 /**
  * Servlet implementation class CarcategoryController
  */
-@WebServlet("/CarcategoryController.do")
+@WebServlet("/_car/CarcategoryController.do")
 public class CarcategoryController extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -47,7 +47,7 @@ public class CarcategoryController extends HttpServlet {
 		Vector<CarListBean> v = dao.getCategoryCarList(carcategory);
 		
 		request.setAttribute("v",v);
-		RequestDispatcher dis = request.getRequestDispatcher("./_car/CarMain.jsp?center=CarList.jsp&top=_Top.jsp");
+		RequestDispatcher dis = request.getRequestDispatcher("../_car/CarMain.jsp?center=CarList.jsp&top=_Top.jsp");
 		dis.forward(request, response);
 	}
 

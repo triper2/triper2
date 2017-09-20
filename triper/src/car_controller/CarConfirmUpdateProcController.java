@@ -15,7 +15,7 @@ import car_db.CarOrderBean;
 /**
  * Servlet implementation class CarConfirmUpdateProcController
  */
-@WebServlet("/CarConfirmUpdateProcController.do")
+@WebServlet("/_car/CarConfirmUpdateProcController.do")
 public class CarConfirmUpdateProcController extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -38,7 +38,7 @@ public class CarConfirmUpdateProcController extends HttpServlet {
 		
 		request.setCharacterEncoding("UTF-8");
 	      response.setContentType("text/html;charset=UTF-8");
-		//»ç¿ëÀÚ·ÎºÎÅÍ ³Ñ¾î¿Â µ¥ÀÌÅÍ¸¦ ÀÔ·Â
+		//ï¿½ï¿½ï¿½ï¿½Ú·Îºï¿½ï¿½ï¿½ ï¿½Ñ¾ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½Ô·ï¿½
 		int orderid = Integer.parseInt(request.getParameter("orderid"));
 		int carqty=Integer.parseInt(request.getParameter("carqty"));
 		int carins=Integer.parseInt(request.getParameter("carins"));
@@ -48,7 +48,7 @@ public class CarConfirmUpdateProcController extends HttpServlet {
 		String carbegindate = request.getParameter("carbegindate");
 		String memberpass = request.getParameter("memberpass");
 		
-		//carorderbean Å¬·¡½º ÀÌ¿ëÇÏ¿© µ¥ÀÌÅÍ¸¦ ÀúÁ¤ ÈÄ ºóÅ¬·¡½º·Î DAO
+		//carorderbean Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¿ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ DAO
 		CarOrderBean bean = new CarOrderBean();
 		
 		bean.setOrderid(orderid);
@@ -60,12 +60,12 @@ public class CarConfirmUpdateProcController extends HttpServlet {
 		bean.setReserved_carbegindate(carbegindate);
 		bean.setMemberpass(memberpass);
 		
-		//µ¥ÀÌÅÍ º£ÀÌ½º °´Ã¼
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì½ï¿½ ï¿½ï¿½Ã¼
 		CarDAO cdao = new CarDAO();
 		cdao.CarOrderUpdate(bean);
 		
 		request.setAttribute("bean", bean);
-		RequestDispatcher dis = request.getRequestDispatcher("/_car/CarMain.jsp?center=CarReserveConfirm.jsp&top=_Top.jsp");
+		RequestDispatcher dis = request.getRequestDispatcher("../_car/CarMain.jsp?center=CarReserveConfirm.jsp&top=_Top.jsp");
 		dis.forward(request, response);
 		
 		

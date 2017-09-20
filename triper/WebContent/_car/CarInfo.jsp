@@ -52,7 +52,7 @@
 		<input type="hidden" name="carno" value="${bean.product_carno }">
 		<input type="hidden" name="carimg" value="${bean.product_carimg }">
 		<input type="hidden" name="carprice" value="${bean.product_carprice }">
-		<input type="button" value="이전" onclick="location.href='./CarListController.do'">
+		<input type="button" value="이전" onclick="location.href='../_car/CarListController.do'">
 		</td>
 		<td align="center" width="200"> 
 			<input type="submit" value="옵션 선택하기">

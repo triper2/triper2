@@ -17,6 +17,7 @@
 	<c:set var="top" value="Top.jsp" />
 	</c:if>
 	<center>
+	<jsp:include page="../_main_login/header.jsp"></jsp:include>
 		<table width="1000" height="700">
 		
 		<tr align="center" >

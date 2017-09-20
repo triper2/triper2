@@ -25,7 +25,7 @@ public class CarDAO {
 			/*Context initctx =new InitialContext();*/
 			Context ctx = new InitialContext();
 			Context envctx =(Context) ctx.lookup("java:comp/env");
-			DataSource ds = (DataSource) envctx.lookup("jdbc:CarReserveDB");
+			DataSource ds = (DataSource) envctx.lookup("jdbc:TriperDB");
 			//DataSource ds = (DataSource)ctx.lookup("java:comp/env/jdbc:RentCarDB");
 			conn =ds.getConnection();
 		} catch (Exception e) {
@@ -34,9 +34,9 @@ public class CarDAO {
 		}
 	}
 	
-	//ÀüÃ¼ Â÷·®º¸±â
+	//ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public Vector<CarListBean> getAllCarlist(){
-		//¸®ÅÏÇÒ vector °´Ã¼ ¼±¾ð
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ vector ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½
 		Vector<CarListBean> v = new Vector<CarListBean>();
 		CarListBean bean = null;
 		
@@ -71,10 +71,10 @@ public class CarDAO {
 	}
 
 	
-		//category º° µ¥ÀÌÅÍ º£ÀÌ½º
+		//category ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì½ï¿½
 	public Vector<CarListBean> getCategoryCarList(String carcategory) {
 		
-		//¸®ÅÏÇÒ vector °´Ã¼ ¼±¾ð
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ vector ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½
 				Vector<CarListBean> v = new Vector<CarListBean>();
 				CarListBean bean = null;
 				
@@ -105,7 +105,7 @@ public class CarDAO {
 	}
 
 	
-	//ÇÏ³ªÀÇ ÀÚµ¿Â÷ Á¤º¸ ¸®ÅÏ
+	//ï¿½Ï³ï¿½ï¿½ï¿½ ï¿½Úµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	public CarListBean getOneCar(int carno) {
 		CarListBean bean = null;
 		
@@ -135,17 +135,17 @@ public class CarDAO {
 		return bean;
 	}
 	
-	//ÁÖ¹®ÇöÈ² ÀúÀåÇÏ´Â ¸Þ¼Òµå
+	//ï¿½Ö¹ï¿½ï¿½ï¿½È² ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Þ¼Òµï¿½
 	public void insertCarOrder(CarOrderBean cbean){
 		try {
 			getCon();
-			//Äõ¸®
+			//ï¿½ï¿½ï¿½ï¿½
 			String sql = "insert into reserved_list values(order_seq.NEXTVAL,?,?,?,?,?,?,?,?,?,?,?,?)";
 			
 			
-			//½ÇÇàÇÒ °´Ã¼ ¼±¾ð
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½
 			pstmt=conn.prepareStatement(sql);
-			//? °ª ´ëÀÔ
+			//? ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			pstmt.setInt(1, cbean.getProduct_carno());
 			pstmt.setInt(2, cbean.getReserved_product_count());
 			pstmt.setString(3, cbean.getReserved_carbegindate());
@@ -166,10 +166,10 @@ public class CarDAO {
 		}
 	}
 	
-	//ÇØ´ç ÀüÈ­¹øÈ£¿Í ÆÐ½º¿öµå·Î ¿¹¾àÇÑ ÁÖ¹®Á¤º¸¸¦ ¸ðµÎ °¡Á®¿Â´Ù
+	//ï¿½Ø´ï¿½ ï¿½ï¿½È­ï¿½ï¿½È£ï¿½ï¿½ ï¿½Ð½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Â´ï¿½
 	public Vector<CarConfirmBean> getAllCarOrder(String memberphone, String memberpass){
 		
-		//return Å¸ÀÔ
+		//return Å¸ï¿½ï¿½
 		Vector<CarConfirmBean> v =new Vector<CarConfirmBean>();
 		
 		CarConfirmBean bean = null;
@@ -210,7 +210,7 @@ public class CarDAO {
 
 	public CarConfirmBean getOnOrder(int orderid) {
 		
-		//¸®ÅÏ Å¸ÀÔ¼±¾ð
+		//ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½Ô¼ï¿½ï¿½ï¿½
 		CarConfirmBean cbean = null;
 		try {
 			getCon();
@@ -238,7 +238,7 @@ public class CarDAO {
 	}
 
 	
-	//ÇÏ³ªÀÇ ÁÖ¹® Á¤º¸¸¦ »èÁ¦ÇÏ´Â ¸Þ¼Òµå
+	//ï¿½Ï³ï¿½ï¿½ï¿½ ï¿½Ö¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Þ¼Òµï¿½
 	public int CarOrderDelete(int orderid, String memberpass) {
 		int result=0;
 		try {
@@ -246,10 +246,10 @@ public class CarDAO {
 			
 			String sql ="delete from reserved_list  where orderid=? and memberpass=?";
 			pstmt = conn.prepareStatement(sql);
-			//?¿¡ °ªÀ» ´ëÀÔ
+			//?ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			pstmt.setInt(1, orderid);
 			pstmt.setString(2, memberpass);
-			//Äõ¸®°¡ ½ÇÇàµÇÁö ¾Ê¾Ò´Ù¸é 0°ªÀÌ ¸®ÅÏ ½ÇÇàÀÌ µÇ¸é 1ÀÌ ¸®ÅÏµË´Ï´Ù.
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¾Ò´Ù¸ï¿½ 0ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç¸ï¿½ 1ï¿½ï¿½ ï¿½ï¿½ï¿½ÏµË´Ï´ï¿½.
 			result = pstmt.executeUpdate();
 			conn.close();
 		} catch (Exception e) {

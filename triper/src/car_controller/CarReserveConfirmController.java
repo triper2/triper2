@@ -14,7 +14,7 @@ import car_db.CarConfirmBean;
 import car_db.CarDAO;
 
 
-@WebServlet("/CarReserveConfirmController.do")
+@WebServlet("/_car/CarReserveConfirmController.do")
 public class CarReserveConfirmController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -29,19 +29,19 @@ public class CarReserveConfirmController extends HttpServlet {
 		
 		request.setCharacterEncoding("UTF-8");
 	      response.setContentType("text/html;charset=UTF-8");
-		//»ç¿ëÀÚ·Î ºÎÅÍ ³Ñ¾î¿Â ÀüÈ­¹øÈ£¿Í ºñ¹Ð¹øÈ£¸¦ ÀÐ¾îµå¸²
+		//ï¿½ï¿½ï¿½ï¿½Ú·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ¾ï¿½ï¿½ ï¿½ï¿½È­ï¿½ï¿½È£ï¿½ï¿½ ï¿½ï¿½Ð¹ï¿½È£ï¿½ï¿½ ï¿½Ð¾ï¿½å¸²
 		String memberphone=request.getParameter("memberphone");
 		String memberpass = request.getParameter("memberpass");
 		
-		//µ¥ÀÌÅÍ º£ÀÌ½º °´Ã¼¼±¾ð
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì½ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ï¿½ï¿½
 		CarDAO cdao = new CarDAO();
 		
-		//carconfirmbean Å¸ÀÔÀ¸·Î µÈ º£¤¡ÅÍ Å¬·¡½º ¼±¾ð
+		//carconfirmbean Å¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		Vector<CarConfirmBean> v = cdao.getAllCarOrder(memberphone, memberpass);
 		
-		//jsp·Î µ¥ÀÌÅÍ ³Ñ°ÜÁÖ¾î¾ßÇÏ±â¿¡ request°´Ã¼
+		//jspï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ°ï¿½ï¿½Ö¾ï¿½ï¿½ï¿½Ï±â¿¡ requestï¿½ï¿½Ã¼
 		request.setAttribute("v", v);
-		RequestDispatcher dis = request.getRequestDispatcher("/_car/CarMain.jsp?center=CarReserveResult.jsp&top=_Top.jsp");
+		RequestDispatcher dis = request.getRequestDispatcher("../_car/CarMain.jsp?center=CarReserveResult.jsp&top=_Top.jsp");
 		dis.forward(request, response);
 	
 	}

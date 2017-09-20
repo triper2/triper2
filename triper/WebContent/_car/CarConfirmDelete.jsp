@@ -7,7 +7,7 @@
 <center>
 	<h1> 차량 주문 정보 삭제 </h1>
 	
-	<form action="../CarConfirmDeleteController.do" method="post">
+	<form action="../_car/CarConfirmDeleteController.do" method="post">
 	<p>
 	<table width="400" border="0">
 	<c:set var="result" value="${ result }"  />

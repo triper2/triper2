@@ -46,10 +46,10 @@
 			<c:if test="${v.reserved_option_carseat==0 }">미대여</c:if>
 		</td>
 		<td align="center" width="100">
-			<button onclick="location.href='CarConfirmUpdateController.do?orderid=${v.orderid}&carimg=${v.product_carimg }'">수정</button>
+			<button onclick="location.href='../_car/CarConfirmUpdateController.do?orderid=${v.orderid}&carimg=${v.product_carimg }'">수정</button>
 		</td>
 		<td align="center" width="100">
-			<button onclick="location.href='/CarReserVationProject/_car/CarMain.jsp?center=CarConfirmDelete.jsp&orderid=${v.orderid}'">삭제</button>
+			<button onclick="location.href='../_car/CarMain.jsp?center=CarConfirmDelete.jsp&orderid=${v.orderid}'">삭제</button>
 		</td>	
 	
 	</c:forEach>	

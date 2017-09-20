@@ -15,7 +15,7 @@ import car_db.CarListBean;
 /**
  * Servlet implementation class CarInfoController
  */
-@WebServlet("/CarInfoController.do")
+@WebServlet("/_car/CarInfoController.do")
 public class CarInfoController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -33,16 +33,16 @@ public class CarInfoController extends HttpServlet {
 	      response.setContentType("text/html;charset=UTF-8");
 		
 		
-		//»ç¿ëÀÚ°¡ ¼±ÅÃÇÑ ÀÚµ¿Â÷ ¹øÈ£¸¦ ÀÔ·Â
+		//ï¿½ï¿½ï¿½ï¿½Ú°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½ï¿½ï¿½ ï¿½ï¿½È£ï¿½ï¿½ ï¿½Ô·ï¿½
 		int carno=Integer.parseInt(request.getParameter("product_carno"));
 		
-		//µ¥ÀÌÅÍº£ÀÌ½º¿¡ ¿¬°áÇÏ¿© ÇÏ³ªÀÇ Á¤º¸ ÀÐ¾îµå¸²
+		//ï¿½ï¿½ï¿½ï¿½ï¿½Íºï¿½ï¿½Ì½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½Ï³ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ð¾ï¿½å¸²
 		CarDAO dao =new CarDAO();
 		
 		CarListBean bean = dao.getOneCar(carno);
 		
 		request.setAttribute("bean", bean);
-		RequestDispatcher dis = request.getRequestDispatcher("CarMain.jsp?center=CarInfo.jsp&top=_Top.jsp");
+		RequestDispatcher dis = request.getRequestDispatcher("../_car/CarMain.jsp?center=CarInfo.jsp&top=_Top.jsp");
 		dis.forward(request, response);
 	}
 

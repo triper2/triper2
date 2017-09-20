@@ -31,7 +31,7 @@
 
 	<img alt="" src="img/haki.jpg" border="0">
 	
-	<form action="CarOrderController.do" method="post">
+	<form action="../_car/CarOrderController.do" method="post">
 	<p>
 	<font size="13" color="blue">차량 렌트 비용 : ￦ ${totalreserve } 원</font>
 	<p>

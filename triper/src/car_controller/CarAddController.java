@@ -14,7 +14,7 @@ import com.oreilly.servlet.MultipartRequest;
 import car_db.CarDAO;
 import car_db.CarListBean;
 
-@WebServlet("/CarAddController.do")
+@WebServlet("/_car/CarAddController.do")
 public class CarAddController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
      
@@ -58,9 +58,9 @@ public class CarAddController extends HttpServlet {
 
 		
 		CarDAO cdao = new CarDAO();
-		//ÁÖ¹® ÇöÈ²À» ÀúÀå
+		//ï¿½Ö¹ï¿½ ï¿½ï¿½È²ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		cdao.insertCarAdd(cbean);
-		RequestDispatcher dis =request.getRequestDispatcher("/CarReserVationProject/CarListController.do");
+		RequestDispatcher dis =request.getRequestDispatcher("/_car/CarListController.do");
 		dis.forward(request, response);
 	}
 

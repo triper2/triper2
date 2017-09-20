@@ -79,6 +79,7 @@ dd {
 <title>자주 묻는 질문(FAQ)</title>
 </head>
 <body>
+		<jsp:include page="../_main_login/header.jsp"></jsp:include>
 			<th><font size="6"><b>자주 묻는 질문(FAQ)</b></font></th>
 			<tr>
 			<hr style="border: solid 3px red;">

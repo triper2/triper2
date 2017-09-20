@@ -10,7 +10,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 
 public class Fileutil {
-    public static final String UPLOAD_PATH = "C:/Users/Administrator/web/CarReserVationProject/WebContent/img"; //ÀúÀå°æ·Î
+    public static final String UPLOAD_PATH = "C:/Users/kosta/git/triper2/triper/WebContent/_car/img"; //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     public static final String  ENCODING_TYPE = "utf-8";
     public static final int MAX_SIZE = 10*1024*1024;//10M
     
@@ -18,18 +18,18 @@ public class Fileutil {
         return new MultipartRequest(request,UPLOAD_PATH,MAX_SIZE,ENCODING_TYPE,new DefaultFileRenamePolicy());
     }
     
-    //¾Ë¾Æ¼­ ÆÄÀÏ¸íÀ» ¸¸µé¾îÁÜ
+    //ï¿½Ë¾Æ¼ï¿½ ï¿½ï¿½ï¿½Ï¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     public static String rename(String filename) throws Exception{
         if(filename ==null) return null;
         String newName = Long.toString(System.currentTimeMillis())+(int)(Math.random()*50);
         return rename(filename, newName);
     }
     
-    //ÁöÁ¤ÇÑ ÆÄÀÏ¸íÀ» »ç¿ëÇÑ´Ù.
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
     public static String rename(String filename, String newName) throws Exception{
         if(filename == null) return null;
         File file = new File(UPLOAD_PATH,filename);
-        //ÆÄÀÏ¸íÀ» ¿øÇÏ´Â Çü½ÄÀ¸·Î º¯°æÇÏ±â
+        //ï¿½ï¿½ï¿½Ï¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
         int idx = filename.lastIndexOf(".");
         String extention = "";
         String newFileName = "";
@@ -37,7 +37,7 @@ public class Fileutil {
         if(idx != -1) {
             extention = filename.substring(idx);
         }
-        // newName Àü´Þ½Ã È®ÀåÀÚ¸¦ Á¦¿ÜÇØ¾ß ÇÏÁö¸¸ È®ÀåÀÚ¸¦ Æ÷ÇÔÇÒ °æ¿ì Á¦°ÅÇÔ
+        // newName ï¿½ï¿½ï¿½Þ½ï¿½ È®ï¿½ï¿½ï¿½Ú¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½Ú¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         int newIdx = newName.lastIndexOf(".");
         if(newIdx !=-1){
             newName = newName.substring(0,newIdx);
@@ -50,7 +50,7 @@ public class Fileutil {
         return newFileName;
     }
     
-    //ÆÄÀÏ»èÁ¦
+    //ï¿½ï¿½ï¿½Ï»ï¿½ï¿½ï¿½
     public static void removeFile(String filename){
         if(filename != null){
             File file = new File(UPLOAD_PATH,filename);

@@ -18,9 +18,9 @@ import car_db.CarListBean;
 /**
  * Servlet implementation class CarListController
  */
-@WebServlet("/CarListController.do")
+@WebServlet("/_car/CarListController.do")
 public class CarListController extends HttpServlet {
-	//ÀüÃ¼ Â÷·® º¸±â Å¬·¡½ºÀÔ´Ï´Ù.
+	//ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½.
    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		requestpro(request,response);
@@ -28,7 +28,7 @@ public class CarListController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		requestpro(request,response);
 	}
-	//doGet,doPost ¹æ½ÄÀ¸·Î µ¥ÀÌÅÍ°¡ ³Ñ¾î¿À´ø ¸ðµÎ requestpro¸Þ¼Òµå¿¡¼­ Ã³¸®
+	//doGet,doPost ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í°ï¿½ ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ requestproï¿½Þ¼Òµå¿¡ï¿½ï¿½ Ã³ï¿½ï¿½
 	private void requestpro(HttpServletRequest request,
 			HttpServletResponse response)throws ServletException, IOException  {
 		
@@ -43,18 +43,18 @@ public class CarListController extends HttpServlet {
 	      response.setContentType("text/html;charset=UTF-8");
 		
 		
-		//µ¥ÀÌÅÍ º£ÀÌ½º¿¡ Á¢±ÙÇÏ±âÀ§ÇÑ ModelÅ¬·¡½º¸¦ »ý¼º
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ï¿½ï¿½ï¿½ï¿½ ModelÅ¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		CarDAO cdao = new CarDAO();
-		//½ÇÁ¦ µ¥ÀÌÅÍ º£ÀÌ½º¿¡ Á¢±ÙÇÏ¿© ÀÚµ¿Â÷ Á¤º¸¸¦ ¸ðµÎ ÀÐ¾î¼­ ¹éÅÍ¿¡ ÀúÀå
+		//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½Úµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ð¾î¼­ ï¿½ï¿½ï¿½Í¿ï¿½ ï¿½ï¿½ï¿½ï¿½
 		Vector<CarListBean> v = cdao.getAllCarlist();
 		
-		//È­¸é¿¡ º¸¿©Áú ºäÆäÀÌÁö·Î ÀÌµ¿½ÃÅ´ - request°´Ã¼ ´ã¾Æ¼­ º¸³»ÁÝ´Ï´Ù.
+		//È­ï¿½é¿¡ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ï¿½ï¿½Å´ - requestï¿½ï¿½Ã¼ ï¿½ï¿½Æ¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ý´Ï´ï¿½.
 		request.setAttribute("v", v);
 		
 		System.out.println();
-		RequestDispatcher dis = request.getRequestDispatcher("./_car/CarMain.jsp?center=CarList.jsp&top=_Top.jsp");
+		RequestDispatcher dis = request.getRequestDispatcher("../_car/CarMain.jsp?center=CarList.jsp&top=_Top.jsp");
 		
-		//µ¥ÀÌÅÍ¸¦ ³Ñ°ÜÁÖ½Ã¿À
+		//ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½Ñ°ï¿½ï¿½Ö½Ã¿ï¿½
 		dis.forward(request, response);
 	}
 
