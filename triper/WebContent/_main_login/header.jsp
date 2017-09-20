@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title> mypage.jsp </title>
+<title> header.jsp </title>
 <link rel="stylesheet" href="../css/bootstrap.css">
 <link rel="stylesheet" href="../css/custom.css">
 <script type="https://code.jquery.com/jquery-3.1.1.min.js"></script>
@@ -144,7 +144,7 @@ ${ sessionScope.dto }
 				<c:if test="${ sessionScope.dto != null }">
 				<li style="float:right"><a href="logoutPro.jsp">Log out</a></li>
 				<li style="float:right; margin-top:10px;">  
-				<img class="media-object img-circle" src="./mem_img/${ dto.member_img }" height="30" width="30" alt="">
+				<img class="media-object img-circle" src="./mem_img/${ dto.member_img }" height="35" width="35" alt="">
 					<ul>
 						<li><a href="#">예매결제내역조회 아직</a></li>
 						<li><a href="modifyFrom.jsp">회원 정보 수정</a></li>

@@ -85,7 +85,7 @@ public class LoginProAction extends HttpServlet {
 		} 
 		else if (com.equals("/_main_login/registerPro.do")){ ///////////////////////////////////registerPro.do
 			MultipartRequest multi = FileUtil.createFile(request);
-			String member_img = multi.getFilesystemName("member_img");
+			//String member_img = multi.getFilesystemName("member_img");
 			
 			RentalDAO dao = RentalDAO.getInstance();
 			RentalDTO dto = new RentalDTO();
@@ -94,9 +94,9 @@ public class LoginProAction extends HttpServlet {
 			dto.setMember_pwd(multi.getParameter("member_pwd"));
 			dto.setMember_phone(multi.getParameter("member_phone"));
 			dto.setMember_email(multi.getParameter("member_email"));
-			dto.setMember_img(multi.getParameter("member_img"));
-			System.out.println(member_img);
-			dto.setMember_img(member_img);
+			dto.setMember_img("basicface.jpg");
+			//System.out.println(member_img);
+			//dto.setMember_img(member_img);
 			dao.insert(dto);
 			//request.getSession().setAttribute("dto", dto);
 
