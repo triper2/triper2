@@ -447,7 +447,6 @@ ${ sessionScope.dto }
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 </head>
 <body>
-
 <!-- Form-->
 <div class="form">
   <div class="form-toggle"></div>
@@ -475,7 +474,7 @@ ${ sessionScope.dto }
         </div>
         <a style="color: gray;" href="">아이디 찾기</a>, 
         <a style="color: gray;" href="">비밀번호 찾기</a>
-        <a style="float:right ;color: gray;" onclick="$('.form-panel.two').click()">회원가입</a>
+        <a style="float:right ;color: gray;" href="#" onclick="$('.form-panel.two').click()">회원가입</a>
       </form>      <br>
       
       <div id="naver_id_login"></div>

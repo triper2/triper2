@@ -118,7 +118,7 @@ ${ sessionScope.dto }
 	<nav>
 		<div class="container">
 			<ul>
-				<li style="z-index: 999;"><a href="../_main_login/header.jsp">Home</a></li>
+				<li style="z-index: 999;"><a href="../_main_login/main.jsp">Home</a></li>
 				<li style="z-index: 999;"><a href="bbs.review">리뷰 아직<i class='fa fa-angle-down'></i></a>
 					<ul>
 						<li><a href="bbs.review">리뷰 테스트</a></li>

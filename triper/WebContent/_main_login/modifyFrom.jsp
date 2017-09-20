@@ -422,8 +422,6 @@ $(function() {
 </script>
 
 ${ sessionScope.dto }
-${ sessionScope.id }
-<c:set var="id" value="${ sessionScope.id }"/>
 <c:set var="dto" value="${ sessionScope.dto }"/>
 
 </head>
