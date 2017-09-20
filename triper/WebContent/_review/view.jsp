@@ -31,7 +31,7 @@ function submitFunction() {
 	
 	var review_comment_content = $('#review_comment_content').val();
 	var review_ID = ${bbs.review_ID};
-	var member_ID = "${ sessionScope.id }";
+	var member_ID = "${sessionScope.id}";
 	$.ajax({
 		type : "POST",
 		url : "../commentSubmitServlet",
