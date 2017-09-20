@@ -473,6 +473,9 @@ ${ sessionScope.dto }
         <div class="form-group">
           <button type="submit">Log In</button>
         </div>
+        <a style="color: gray;" href="">아이디 찾기</a>, 
+        <a style="color: gray;" href="">비밀번호 찾기</a>
+        <a style="float:right ;color: gray;" onclick="$('.form-panel.two').click()">회원가입</a>
       </form>      <br>
       
       <div id="naver_id_login"></div>

@@ -118,22 +118,22 @@ ${ sessionScope.dto }
 	<nav>
 		<div class="container">
 			<ul>
-				<li style="z-index: 999;"><a href="#">Home</a></li>
-				<li style="z-index: 999;"><a href="#">리뷰 아직<i class='fa fa-angle-down'></i></a>
+				<li style="z-index: 999;"><a href="../_main_login/header.jsp">Home</a></li>
+				<li style="z-index: 999;"><a href="bbs.review">리뷰 아직<i class='fa fa-angle-down'></i></a>
 					<ul>
 						<li><a href="bbs.review">리뷰 테스트</a></li>
 						<li><a href="#">샘플2</a></li>
 						<li><a href="#">샘플3</a></li>
 						<li><a href="#">샘플4</a></li>
 					</ul></li>
-				<li style="z-index: 999;"><a href="#">예약(지도) 아직<i class='fa fa-angle-down'></i></a>
+				<li style="z-index: 999;"><a href="../_car/CarMain.jsp">예약(지도) 아직<i class='fa fa-angle-down'></i></a>
 					<ul>
 						<li><a href="../_car/CarMain.jsp">렌트카 테스트</a></li>
 						<li><a href="#">샘플2</a></li>
 						<li><a href="#">샘플3</a></li>
 						<li><a href="#">샘플4</a></li>
 					</ul></li>
-				<li style="z-index: 999;"><a href="#">고객센터 아직<i class='fa fa-angle-down'></i></a>
+				<li style="z-index: 999;"><a href="../_faq/help.jsp">고객센터 아직<i class='fa fa-angle-down'></i></a>
 					<ul>
 						<li><a href="../_faq/help.jsp">FAQ</a></li>
 						<li><a href="list.service">고객센터 테스트</a></li>
@@ -142,19 +142,19 @@ ${ sessionScope.dto }
 					</ul></li>
 				<li style="z-index: 999;"><a href="#">회사소개 아직</a></li>
 				<c:if test="${ sessionScope.dto != null }">
-				<li style="float:right"><a href="logoutPro.jsp">Log out</a></li>
+				<li style="float:right"><a href="../_main_login/logoutPro.jsp">Log out</a></li>
 				<li style="float:right; margin-top:10px;">  
-				<img class="media-object img-circle" src="./mem_img/${ dto.member_img }" height="35" width="35" alt="">
+				<img class="media-object img-circle" src="../_main_login/mem_img/${ dto.member_img }" height="35" width="35" alt="">
 					<ul>
 						<li><a href="#">예매결제내역조회 아직</a></li>
-						<li><a href="modifyFrom.jsp">회원 정보 수정</a></li>
+						<li><a href="../_main_login/modifyFrom.jsp">회원 정보 수정</a></li>
 						<!-- Fade & scale -->
-						<li><a href="deleteForm.jsp">회원 탈퇴</a></li>
+						<li><a href="../_main_login/deleteForm.jsp">회원 탈퇴</a></li>
 					</ul>
 				</li>
 				</c:if>
 				<c:if test="${ sessionScope.dto == null }">
-				<li style="float:right"> <a href="loginForm.jsp">Login</a></li>
+				<li style="float:right"> <a href="../_main_login/loginForm.jsp">Login</a></li>
 				</c:if>
 			</ul>
 		</div>

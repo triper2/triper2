@@ -24,6 +24,7 @@
 
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <body>
+<jsp:include page="../_main_login/header.jsp"></jsp:include>
 	<div class="w3-container w3-blue">
 		<h2>차량 등록 하기<button class="button button2" style="float: right;" onclick="location.href='CarMain.jsp'">되돌아가기</button></h2>
 	
