@@ -10,7 +10,7 @@
 
 </head>
 <body>
-
+<jsp:include page="../../_main_login/header.jsp"></jsp:include>
 <table width ="70%" border ="1" cellpadding="0" cellspacing="0" align="center">
 <tr><td  colspan="2" align="center"><h1>상세보기</h1></tr>
 <tr>
@@ -56,8 +56,9 @@ ${album.service_title}
 ${album.service_content}
 </td></tr>
 <tr><td colspan="2" align="center">
-<c:if test="${album.member_id == sessionScope.dto.member_id}">
+
 <input type = "button" value ="답글작성" onclick="document.location.href='writeForm.service?service_id=${album.service_id}&service_ref=${album.service_ref}&service_re_step=${album.service_re_step}&service_level=${album.service_level}'">
+<c:if test="${album.member_id == sessionScope.dto.member_id}">
  <input type="button" value="수정하기" onClick="location.href='updateForm.service?service_id=${album.service_id}'">  
   <input type="button" value="삭제하기" onClick="location.href='deleteForm.service?service_id=${album.service_id}'">
   </c:if>

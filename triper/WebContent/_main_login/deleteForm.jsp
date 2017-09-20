@@ -182,7 +182,7 @@ ${ sessionScope.id }
 			<input type="password" name="password" size="15" maxlength="15">
 		<br/><br/>
 			<input type="submit" value="탈퇴"> 
-			<input type="submit"  value="취소" onclick="javascript:window.location='index.jsp'">
+			<input type="submit"  value="취소" onclick="javascript:window.location='header.jsp'">
 		</div>
 </form>
 </body>

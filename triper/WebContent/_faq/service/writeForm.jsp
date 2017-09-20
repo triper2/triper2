@@ -105,6 +105,7 @@ function previewImage(targetObj, View_area) {
 </script>
 </head>
 <body>
+<jsp:include page="../../_main_login/header.jsp"></jsp:include>
 <center><b>글쓰기</b></center>
 <br>
 <form method="post" name="writeform" action="writePro.service" encType="multipart/form-data" onsubmit="return writeSave()">

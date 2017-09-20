@@ -106,6 +106,7 @@ function previewImage(targetObj, View_area) {
 </script>
 </head>
 <body>
+<jsp:include page="../../_main_login/header.jsp"></jsp:include>
 <form action="updatePro.service" method="post" encType="multipart/form-data" name="userinput"  >  
 <input type="hidden" name="service_id" value="${album.service_id}">
 <table width ="70%" border ="1" cellpadding="0" cellspacing="0" align="center">

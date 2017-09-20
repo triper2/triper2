@@ -441,8 +441,6 @@ $(function() {
 </script>
 
 ${ sessionScope.dto }
-${ sessionScope.id }
-<c:set var="id" value="${ sessionScope.id }"/>
 <c:set var="dto" value="${ sessionScope.dto }"/>
 
 <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
@@ -468,9 +466,9 @@ ${ sessionScope.id }
           <input type="password" id="password" name="password" required="required"/>
         </div>
         <div class="form-group">
-          <label class="form-remember">
+          <!-- <label class="form-remember">
             <input type="checkbox"/>Remember Me
-          </label><a href="#" class="form-recovery">Forgot Password?</a>
+          </label><a href="#" class="form-recovery">Forgot Password?</a> -->
         </div>
         <div class="form-group">
           <button type="submit">Log In</button>
@@ -534,10 +532,10 @@ ${ sessionScope.id }
           <font id="emailcheck" name="emailcheck"></font>
         </div>
         
-          <div class="form-group">
+          <!-- <div class="form-group">
           <label for="image">Image</label>
-          <input type="file" id="member_img" name="member_img"  onclick="imgClick()"/>
-        </div>
+          <input type="file" id="member_img" name="member_img"/>
+        </div> -->
         
         <br>
         <div class="form-group">
