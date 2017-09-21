@@ -109,26 +109,29 @@ function previewImage(targetObj, View_area) {
 <jsp:include page="../../_main_login/header.jsp"></jsp:include>
 <form action="updatePro.service" method="post" encType="multipart/form-data" name="userinput"  >  
 <input type="hidden" name="service_id" value="${album.service_id}">
-<table width ="70%" border ="1" cellpadding="0" cellspacing="0" align="center">
+<div class="container">
+<div class="row">
+<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
 <tr>
-<td colspan="2" align="center"><h1>수정하기</h1></td>
+<th colspan="2"style="background-color: #eeeeee; text-align: center;">수 정</td>
 </tr>
+
+
 <tr>
-<td>글번호</td>
-<td>${album.service_id}</td>
+<td colspan=2><input type="text" class="form-control" placeholder="Email" size="40" name="service_email" maxlength="30" value="${album.service_email}"></td>
 </tr>
+
 <tr>
-    <td>이메일</td>
-    <td><input type="text" name="service_email" value="${album.service_email}" size="30"></td>
-</tr>
-<tr>
-    <td>제목</td>
-    <td><input type="text" name="service_title" value="${album.service_title}" size="50"></td>
+    <td colspan=2><input type="text" class="form-control" placeholder="제목" size="40" name="service_title" maxlength="50" value="${album.service_title}"></td>
 </tr>
 <tr>
     <input type="hidden" name="originImage" value="${album.service_img}">
 </tr>
-  <tr>
+  
+<tr>
+<td colspan=2><textarea class="form-control" placeholder="글 내용" name="service_content" maxlength="2048" style="height: 350px;">${album.service_content}</textarea></td>
+</tr>
+<tr>
     <td  width="70" align="center" >이미지</td>
     <td  width="330" >
      <input width="70" align="center" type="file" name="service_img" id="service_img" onchange="previewImage(this,'View_area')" >
@@ -139,26 +142,22 @@ function previewImage(targetObj, View_area) {
 		<img id="prevImg" src="../_faq/service/upload/${album.service_img}" width="50" height="50" >	 
 	</div>
   	</td>
-  </tr>
+ </tr>
+
 <tr>
-    <td>내용</td>
-    <td><textarea name="service_content" rows="5" cols="50">${album.service_content}</textarea></td>
+<td colspan=2><input type="password" class="form-control" size="8" name="service_pwd" maxlength="12" placeholder="암호와 동일해야 글이 수정됩니다."></td>
 </tr>
-    <tr>
-    <td>암호</td>
-    <td><input type="password" name ="service_pwd" size="10">
-     암호와 동일해야 글이 수정됩니다.</td>
-</tr>
+
 <tr>
     <td colspan="2"  align="center">
     <input type="hidden" name="service_level" value="${album.service_level}">
     
-  <input type="submit" value="수정하기" >  
-  <input type="reset" value="다시작성">
-  <input type="button" value="목록보기" onClick="location.href='list.service'">    
+  <input type="submit" value="수정하기" class="btn btn-success">  
+  <input type="reset" value="다시작성" class="btn btn-success">
+  <input type="button" value="목록보기" class="btn btn-success" onClick="location.href='list.service'">    
     </td>
 </tr>
-</table>    
+</table></div></div>  
 </form>  
 </body>
 </html>
