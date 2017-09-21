@@ -7,6 +7,8 @@
 <html>
 <head>
 <title>게시판</title>
+
+
 <script type="text/javaScript">
 function writeSave(){
     
@@ -106,50 +108,46 @@ function previewImage(targetObj, View_area) {
 </head>
 <body>
 <jsp:include page="../../_main_login/header.jsp"></jsp:include>
-<center><b>글쓰기</b></center>
 <br>
 <form method="post" name="writeform" action="writePro.service" encType="multipart/form-data" onsubmit="return writeSave()">
 <input type="hidden" name="service_id" value="${ service_id }" >
 <input type="hidden" name="service_ref" value="${ service_ref }">
 <input type="hidden" name="service_re_step" value="${ service_re_step }">
 <input type="hidden" name="service_level" value="${ service_level }">
-
-<table width="400" border="1" cellspacing="0" cellpadding="0" align="center">
+<div class="container">
+			<div class="row">
+<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
        <input type="hidden" size="10" maxlength="10" name="member_id" value="${sessionScope.dto.member_id }">
+ <tr>
+<th colspan="2"style="background-color: #eeeeee; text-align: center;">글쓰기</th></tr>
   <tr>
-    <td  width="70" align="center" >제 목</td>
-    <td  width="330">
-
 <!-- 	답변인것에 대한 처리 -->
-
 <c:if test="${ service_id == 0 }">  <!-- 제목글 -->
-	<input type= "text" size = "40" maxlength="50" name = "service_title"></td>
+	<td colspan=2><input type="text" class="form-control" placeholder="제목" size="40" name="service_title" maxlength="50"></td>
 </c:if>
 <c:if test="${ service_id != 0 }">  <!-- 답변글 -->
-	<input type= "text" size = "40" maxlength="50" name = "service_title" value ="[답변] "></td>
+	<td colspan=2><input type="text" class="form-control" placeholder="제목" size="40" name="service_title" maxlength="50" value ="[답변] "></td>
 </c:if>
-  </tr> 
-  <tr>
-    <td  width="70" align="center">Email</td>
-    <td  width="330">
-       <input type="text" size="40" maxlength="30" name="service_email" ></td>
   </tr>
-  <tr>
-    <td  width="70" align="center" >내 용</td>
-    <td  width="330" >
-     <textarea name="service_content" rows="13" cols="40"></textarea> </td>
-  </tr>
-  <tr>
-    <td  width="70" align="center" >비밀번호</td>
-    <td  width="330" >
-     <input type="password" size="8" maxlength="12" name="service_pwd"> 
-     </td>
-  </tr>
+  
+<tr>
+<td colspan=2><input type="text" class="form-control" placeholder="Email" size="40" name="service_email" maxlength="30"></td>
+</tr>
+
+<tr>
+<td colspan=2><textarea class="form-control" placeholder="글 내용" name="service_content" maxlength="2048" style="height: 350px;"></textarea></td>
+</tr>
+  
+<tr>
+<td colspan=2><input type="password" class="form-control" placeholder="비밀번호" size="8" name="service_pwd" maxlength="12"></td>
+</tr>
   <tr>
     <td  width="70" align="center" >이미지</td>
     <td  width="330" >
-     <input width="70" align="center" type="file" name="service_img" id="service_img" onchange="previewImage(this,'View_area')"> 
-     </td>
+	
+    <input width="70" align="center" type="file" name="service_img" id="service_img"  onchange="previewImage(this,'View_area')">
+
+    </td>
   </tr>
   <tr>
   	<td colspan="2" align="center">
@@ -159,10 +157,10 @@ function previewImage(targetObj, View_area) {
 
 <tr>      
  <td colspan=2 align="center"> 
-  <input type="submit" value="글쓰기" >  
-  <input type="reset" value="다시작성">
-  <input type="button" value="목록보기" onClick="location.href='list.service'">
-</td></tr></table>
+  <input type="submit" value="글쓰기" class="btn btn-success">  
+  <input type="reset" value="다시작성" class="btn btn-success">
+  <input type="button" value="목록보기" class="btn btn-success" onClick="location.href='list.service'">
+</td></tr></table></div></div>
 </form>            
 </body>
 </html>

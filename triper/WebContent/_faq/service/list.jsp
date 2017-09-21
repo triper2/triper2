@@ -84,14 +84,21 @@
 
  <form action="list.service" name="search" method="get" onsubmit="return searchMessage()">
 <table class="table table-striped"style="text-align: center; border: 3px solid #dddddd">
-  <tr><td width="200"><a href="writeForm.service">글쓰기</a></td>
+  <tr><td width="200"><a href="writeForm.service" class="btn btn-success">글쓰기</a></td>
     <td align="center" valign="bottom">
-      <select name="keyField">
+      <select class="form-control" name="keyField" >
           <option value="service_title">제목</option>      
           <option value="member_id">이름</option>
           <option value="service_content">내용</option>
-      </select></td>
-        <td><input type="text" size=16 name="keyWord"><input type="submit" class="btn btn-success" value="찾 기"></td>
+      </select>
+     </td>
+     <td>
+     <div class="col-xs-9">
+     <input type="text" size=16 id="keyWord" placeholder="검 색 하 기" name="keyWord" class="form-control">
+     </div>
+     <input type="submit" class="btn btn-success"value="검 색 하 기">
+     
+     </td>
    </tr> 
    <tr><td colspan="3" align="center">
    
@@ -110,9 +117,6 @@
       
           <a href="list.service?pageNum=${i}&keyField=${page.keyField}&keyWord=${page.keyWord}"class="btn btn-success btn-arraw-left">${i}</a>
      
-       <%-- 
-       <a href="bbs.review?pageNumber=${page}"
-				class="btn btn-success btn-arraw-left"> ${page} </a> --%>
        
    </c:forEach>
    

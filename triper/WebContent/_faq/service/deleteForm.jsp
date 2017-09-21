@@ -6,8 +6,15 @@
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+
+
+<link rel="stylesheet" href="../../css/bootstrap.css">
+<link rel="stylesheet" href="../../css/custom.css">
+
 <head><title>글삭제</title>
 <link href="style.css" rel="stylesheet" type="text/css">
+<script type="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script type="../../js/bootstrap.js"></script>
 
    <script type="text/javascript">
      <!--
@@ -26,23 +33,26 @@
      //-->
    </script>
 </head>
-
+<jsp:include page="../../_main_login/header.jsp"></jsp:include>
 <BODY onload="begin()">
 <form name="myform" action="deletePro.service?service_id=${service_id}" method="post" onSubmit="return checkIt()">
-<table cellspacing=1 cellpadding=1 width="260" border=1 align="center" >
+<div class="container">
+<div class="row">
+<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
   <tr height="30">
     <td colspan="2" align="center">
       <font size="+1" ><b>글삭제</b></font></td></tr>
   
-  <tr height="30">
-    <td width="110" align=center>비밀번호</td>
-    <td width="150" align=center>
-      <input type=password name="service_pwd"  size="15" maxlength="12"></td></tr>
+  <tr>
+<td colspan=2><input type="password" class="form-control" placeholder="비밀번호" size="8" name="service_pwd" maxlength="12"></td>
+</tr>
   <tr height="30">
     <td colspan="2" align="center">
-      <input type=submit value="글삭제하기"> 
-      <input type="button" value="취  소" onclick="location.href='list.service'"></TD></TR>
+      <input type=submit value="글삭제하기" class="btn btn-success"> 
+      <input type="button" value="취  소" class="btn btn-success" onclick="location.href='list.service'"></TD></TR>
 </TABLE>
+</div>
+</div>
 </form>
 </BODY>
 </HTML>
