@@ -6,7 +6,7 @@
 <body>
 <center>
 	<img alt="" src="img/cis.jpg" border="0">
-	<form action="_car/CarMain.jsp?center=CarOption.jsp" method="post">
+	<form action="CarMain.jsp?center=CarOption.jsp" method="post">
 	<table width="1000" border="0" align="center">
 	<tr align="center">
 		<td rowspan="6" width="600">
