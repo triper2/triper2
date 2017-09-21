@@ -22,6 +22,7 @@ public class WriteCommand implements Command {
 		String member_id = null;
 		String review_Title =request.getParameter("review_Title");
 		String review_Content = request.getParameter("review_Content");
+		String member_image=null;
 		String review_Image_1 = null;
 		
 		
@@ -36,8 +37,10 @@ public class WriteCommand implements Command {
 		try {
 			RentalDTO dto = (RentalDTO)request.getSession().getAttribute("dto");
 			member_id = dto.getMember_id();
+			member_image = dto.getMember_img();
 		} catch (Exception e) {
 			member_id = null;
+			member_image = null;
 		}
 		
 		if (member_id == null) {
@@ -69,7 +72,7 @@ public class WriteCommand implements Command {
 
 			} else {
 				BbsDAO bbsDAO = new BbsDAO();
-				int result = bbsDAO.write(review_Title, member_id, review_Content, review_Image_1);
+				int result = bbsDAO.write(review_Title, member_id, review_Content, review_Image_1,member_image);
 				if (result == -1) {
 					PrintWriter script;
 					try {

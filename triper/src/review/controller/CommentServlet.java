@@ -28,7 +28,6 @@ public class CommentServlet extends HttpServlet {
 		int review_ID = Integer.parseInt(URLDecoder.decode(request.getParameter("review_ID"),"UTF-8"));
 		String listType = request.getParameter("listType");
 		int	commentPageNumber = Integer.parseInt(URLDecoder.decode(request.getParameter("commentPageNumber"),"UTF-8"));
-		
 
 		if(listType == null || listType.equals("")){
 			response.getWriter().write("");
@@ -47,6 +46,8 @@ public class CommentServlet extends HttpServlet {
 		for(int i =0; i<commentList.size();i++){
 			result.append("[{\"value\": \"" + commentList.get(i).getMember_ID()+"\"},");
 			result.append("{\"value\": \"" + commentList.get(i).getReview_comment_content()+"\"},");
+			result.append("{\"value\": \"" + commentList.get(i).getMember_image()+"\"},");
+			result.append("{\"value\": \"" + commentList.get(i).getReview_comment_id()+"\"},");
 			result.append("{\"value\": \"" + commentList.get(i).getReview_comment_date()+"\"}]");
 			if(i !=commentList.size() - 1)result.append(",");
 		}

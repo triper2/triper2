@@ -23,21 +23,8 @@
 </head>
 <body>
 	<jsp:include page="../_main_login/header.jsp"></jsp:include>
-	<div class="form-group" style="text-align: center; ma rgin: 0 auto;">
-	<form method="post" action="writeAction.review">
-	<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
-	<tr>
-	<td colspan="2" width="500"><input type="text" class="form-control" placeholder="글 제목" name="review_Title" maxlength="50"></td>
-	
-	<td  colspan="1">
-	<input type="submit" class="btn btn-primary" value="검색">
-	</form>
-	<a class="btn btn-primary" href="write.review">글쓰기</a>
-	</td>
-	</tr>
-	</table>
-	</div>
-	
+
+
 	<div>
 		<c:set var="num" value="0" />
 		<c:forEach var="list" items="${list }">
@@ -47,7 +34,7 @@
 
 			<a href="view.review?review_ID=${list.review_ID}">
 				<div class="tile">
-					<img src="${list.review_Image_1}" />
+				<img src="${list.review_Image_1}" alt="찾을수 없음"/>
 					<div class="text">
 						<h1>${list.review_Title}</h1>
 						<h2 class="animate-text">${list.review_ID}</h2>
@@ -63,11 +50,29 @@
 	</c:forEach>
 	</div>
 
+
+
+
+
 	<div class="form-group" style="text-align: center; ma rgin: 0 auto;">
 		<c:forEach var="page" begin="1" end="${pageCount}" step="1">
 			<a href="bbs.review?pageNumber=${page}"
 				class="btn btn-success btn-arraw-left"> ${page} </a>
 		</c:forEach>
+		<form method="post" action="writeAction.review">
+			<table class="table table-striped"
+				style="text-align: center; border: 1px solid #dddddd">
+				<tr>
+					<td colspan="2" width="500"><input type="text"
+						class="form-control" placeholder="글 제목" name="review_Title"
+						maxlength="50"></td>
+
+					<td colspan="1"><input type="submit" class="btn btn-primary"
+						value="검색"> <a class="btn btn-primary" href="write.review">글쓰기</a>
+					</td>
+				</tr>
+			</table>
+		</form>
 	</div>
 </body>
 </html>

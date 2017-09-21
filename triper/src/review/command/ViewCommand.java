@@ -65,7 +65,7 @@ public class ViewCommand implements Command {
 			BbsDAO dao = new BbsDAO();
 			request.setAttribute("commentPageNumber", commentPageNumber);
 			request.setAttribute("commentPageCount", dao.commentPageingCount(review_ID));
-			
+			request.setAttribute("commentCount", dao.commentCount(review_ID));
 			BbsVO bbs = new BbsDAO().getBbs(review_ID);
 			request.setAttribute("bbs", bbs);
 			request.setAttribute("review_ID", review_ID);

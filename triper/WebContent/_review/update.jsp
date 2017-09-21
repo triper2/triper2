@@ -53,10 +53,8 @@ function pasteHTML(filepath){
 </head>
 <body>
 <jsp:include page="../_main_login/header.jsp"></jsp:include>
-
-	<center>
-		<div class="container">
-			<div class="row">
+<div class="container">
+<div class="row">
 				<form method="post" action="updateAction.review">
 				<input type="hidden" name="review_ID" value="${bbs.getReview_ID()}">
 					<table class="table table-striped"
@@ -88,9 +86,8 @@ function pasteHTML(filepath){
 					<input type="submit" name=savebutton id="savebutton"
 						class="btn btn-primary pull-right" value="글수정">
 				</form>
-			</div>
+				</div>
+				</div>
 
-		</div>
-	</center>
 </body>
 </html>

@@ -9,10 +9,9 @@ public class BbsVO {
 	private String review_Content;
 	private int review_Available;
 	private String review_Image_1;
-	private String review_Image_2;
-	private String review_Image_3;
-	private String review_Image_4;
-	private String review_Image_5;
+	private int review_Like;
+	private int review_Hate;
+	private int review_Viewcount;
 	
 	
 	private int review_comment_id;
@@ -22,8 +21,24 @@ public class BbsVO {
 	private String member_image;
 	
 	
-	
-	
+	public int getReview_Like() {
+		return review_Like;
+	}
+	public void setReview_Like(int review_Like) {
+		this.review_Like = review_Like;
+	}
+	public int getReview_Hate() {
+		return review_Hate;
+	}
+	public void setReview_Hate(int review_Hate) {
+		this.review_Hate = review_Hate;
+	}
+	public int getReview_Viewcount() {
+		return review_Viewcount;
+	}
+	public void setReview_Viewcount(int review_Viewcount) {
+		this.review_Viewcount = review_Viewcount;
+	}
 	
 	public int getReview_comment_id() {
 		return review_comment_id;
@@ -103,30 +118,7 @@ public class BbsVO {
 	public void setReview_Image_1(String review_Image_1) {
 		this.review_Image_1 = review_Image_1;
 	}
-	public String getReview_Image_2() {
-		return review_Image_2;
-	}
-	public void setReview_Image_2(String review_Image_2) {
-		this.review_Image_2 = review_Image_2;
-	}
-	public String getReview_Image_3() {
-		return review_Image_3;
-	}
-	public void setReview_Image_3(String review_Image_3) {
-		this.review_Image_3 = review_Image_3;
-	}
-	public String getReview_Image_4() {
-		return review_Image_4;
-	}
-	public void setReview_Image_4(String review_Image_4) {
-		this.review_Image_4 = review_Image_4;
-	}
-	public String getReview_Image_5() {
-		return review_Image_5;
-	}
-	public void setReview_Image_5(String review_Image_5) {
-		this.review_Image_5 = review_Image_5;
-	}
+
 
 	
 }

@@ -13,6 +13,7 @@ import com.sun.java.swing.plaf.windows.resources.windows;
 
 import review.command.BbsCommand;
 import review.command.Command;
+import review.command.LikeHateCommand;
 import review.command.UpdateActionCommand;
 import review.command.UpdateCommand;
 import review.command.ViewCommand;
@@ -88,9 +89,10 @@ public class ReviewController extends HttpServlet {
 			command = new deleteCommand();
 			command.execute(request,response);
 		}
-		else if(com.equals("view.page")){
-			command = new ViewCommand();
-			command.execute(request,response);
+		else if(com.equals("LikeHateCommand.review")){
+			System.out.println("문제1");
+			command = new LikeHateCommand();
+			command.execute(request,response);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
 		}
 				
 		dp = request.getRequestDispatcher(viewPage);

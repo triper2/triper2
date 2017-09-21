@@ -36,7 +36,7 @@ public class BbsDAO {
 	} // loadOracleDriver() end
 
 
-public int write(String review_Title, String member_ID, String review_Content, String review_Image_1) {
+public int write(String review_Title, String member_ID, String review_Content, String review_Image_1, String member_Image) {
 	Connection conn = null;
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
@@ -49,7 +49,7 @@ public int write(String review_Title, String member_ID, String review_Content, S
 		pstmt.setString(3, review_Content);
 		pstmt.setInt(4, 1);
 		pstmt.setString(5, review_Image_1);
-		pstmt.setString(6, "1");
+		pstmt.setString(6, member_Image);
 		pstmt.setString(7, "1");
 		pstmt.setString(8, "1");
 		pstmt.setString(9, "1");
@@ -70,7 +70,7 @@ public int write(String review_Title, String member_ID, String review_Content, S
 	return -1;
 }
 
-public int commentWrite(int review_ID, String member_ID, String review_comment_content) {
+public int commentWrite(int review_ID, String member_ID, String review_comment_content, String member_Image) {
 	Connection conn = null;
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
@@ -82,7 +82,7 @@ public int commentWrite(int review_ID, String member_ID, String review_comment_c
 		pstmt.setString(2, member_ID);
 		pstmt.setString(3, review_comment_content);
 		pstmt.setInt(4, 1);
-		pstmt.setString(5, "1");
+		pstmt.setString(5, member_Image);
 		return pstmt.executeUpdate();
 	} catch (Exception e) {
 		e.printStackTrace();
@@ -152,6 +152,27 @@ public int commentPageingCount(int review_ID) {
 		e.printStackTrace();
 	}
 	return commentPageingCount;
+}
+public int commentCount(int review_ID) {
+	Connection conn = null;
+	PreparedStatement pstmt = null;
+	ResultSet rs = null;
+	String sql = "select count(*) from review_comment where review_comment_available = 1 and review_ID = ?";
+	int commentCount = 0;
+	try {
+		conn = loadOracleDriver();
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, review_ID);
+		rs = pstmt.executeQuery();
+		if (rs.next()) {
+
+			commentCount = rs.getInt(1);
+
+		}
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+	return commentCount;
 }
 
    public int pageingCount() {
@@ -247,13 +268,14 @@ public BbsVO getBbs(int review_ID){//특정한 아이디의 정보를 가져오�
 		rs = pstmt.executeQuery();
 		if(rs.next()){
 			BbsVO bbs = new BbsVO();
-			bbs.setReview_ID(rs.getInt(1));
-			bbs.setReview_Title(rs.getString(2).replaceAll(" ", "&nbsp;").replaceAll(">", "&gt;")
+			bbs.setReview_ID(rs.getInt("review_ID"));
+			bbs.setReview_Title(rs.getString("review_Title").replaceAll(" ", "&nbsp;").replaceAll(">", "&gt;")
 					.replaceAll("\n", "<br>")); 
-			bbs.setMember_ID(rs.getString(3));
-			bbs.setReview_Date(rs.getString(4)); 
-			bbs.setReview_Content(rs.getString(5));
-			bbs.setReview_Available(rs.getInt(6));
+			bbs.setMember_ID(rs.getString("member_ID"));
+			bbs.setReview_Date(rs.getString("review_Date")); 
+			bbs.setReview_Content(rs.getString("review_Content"));
+			bbs.setReview_Available(rs.getInt("review_Available"));
+			bbs.setMember_image(rs.getString("review_Image_2"));
 			return bbs;
 		}
 	}catch(Exception e){
@@ -280,6 +302,42 @@ public int update(int review_ID, String review_Title, String review_Content, Str
 	} 
 	return -1;
 }
+
+public int likeUpdate(int review_Like,int review_ID) {
+	Connection conn = null;
+	PreparedStatement pstmt = null;
+	String sql = "update review_board set review_Like= ? where review_ID = ?";
+
+	try {
+		conn = loadOracleDriver();
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, review_Like);
+		pstmt.setInt(2, review_ID);
+		return pstmt.executeUpdate();
+	} catch (Exception e) {
+		e.printStackTrace();
+	} 
+	return -1;
+}
+
+public int hateUpdate(int review_Hate,int review_ID) {
+	Connection conn = null;
+	PreparedStatement pstmt = null;
+	String sql = "update review_board set review_Hate= ? where review_ID = ?";
+
+	try {
+		conn = loadOracleDriver();
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, review_Hate);
+		pstmt.setInt(2, review_ID);
+		return pstmt.executeUpdate();
+	} catch (Exception e) {
+		e.printStackTrace();
+	} 
+	return -1;
+}
+
+
 public int delete(int review_ID) {
 	Connection conn = null;
 	PreparedStatement pstmt = null;
@@ -294,5 +352,22 @@ public int delete(int review_ID) {
 	} 
 	return -1;
 }
+
+public int commentdelete(int review_comment_id) {
+	System.out.println(review_comment_id);
+	Connection conn = null;
+	PreparedStatement pstmt = null;
+	String sql = "update REVIEW_COMMENT set review_comment_available=0 where review_comment_id = ?";
+	try {
+		conn = loadOracleDriver();
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, review_comment_id);
+		return pstmt.executeUpdate();
+	} catch (Exception e) {
+		e.printStackTrace();
+	} 
+	return -1;
+}
+
 
 }
