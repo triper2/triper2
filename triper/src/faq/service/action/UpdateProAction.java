@@ -24,13 +24,12 @@ public class UpdateProAction implements Action{
         AlbumDao manager = AlbumDao.getInstance();      
         //인증
        String kim=null;
-        System.out.println(multi.getParameter("service_pwd"));
-        int check = manager.userCheck(Integer.parseInt(multi.getParameter("service_id")),multi.getParameter("service_pwd"));
-                
-        if(check==1){        
+        System.out.println(multi.getParameter("pwd1:" + "service_pwd"));
+       
+        Album album =new Album();  
             String originImage = multi.getParameter("originImage");            
 
-            Album album =new Album();        
+                  
 
             album.setService_id(Integer.parseInt(multi.getParameter("service_id")));
             album.setMember_id(multi.getParameter("member_id"));
@@ -39,7 +38,7 @@ public class UpdateProAction implements Action{
             album.setService_pwd(multi.getParameter("service_pwd"));
             album.setService_content(multi.getParameter("service_content"));
             album.setService_ip(request.getRemoteAddr());
-
+            System.out.println("pwd2:" + multi.getParameter("service_pwd"));
             if(service_img !=null){      
                 //이미지가 변경되었을 경우
                 album.setService_img(FileUtil.rename(service_img));
@@ -51,13 +50,15 @@ public class UpdateProAction implements Action{
             if(service_img !=null){
                 FileUtil.removeFile(originImage);
             }
-        }else{
+            
+            if(service_img !=null)FileUtil.removeFile(service_img);
+/*        }else{
             //비번이 틀려 인증 실패시 올리려고 전송된 이미지 삭제
             if(service_img !=null)FileUtil.removeFile(service_img);
-        }
+        }*/
         
-        request.setAttribute("check", new Integer(check));
-
+        request.setAttribute("album", album);
+        System.out.println("pwd3:" + multi.getParameter("service_pwd"));
         return "/_faq/service/updatePro.jsp;";
     }
 }

@@ -44,7 +44,8 @@
       <font size="+1" ><b>글삭제</b></font></td></tr>
   
   <tr>
-<td colspan=2><input type="password" class="form-control" placeholder="비밀번호" size="8" name="service_pwd" maxlength="12"></td>
+<!-- <td colspan=2><input type="password" class="form-control" placeholder="비밀번호" size="8" name="service_pwd" maxlength="12"></td> -->
+<td colspan="2"><input type="text" class="form-control" value="글을 삭제하실거면 삭제 버튼을 다시 눌러주세요">
 </tr>
   <tr height="30">
     <td colspan="2" align="center">

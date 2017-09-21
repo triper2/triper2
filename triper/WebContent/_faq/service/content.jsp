@@ -7,7 +7,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
 
+
+</script>
 </head>
 <body>
 <jsp:include page="../../_main_login/header.jsp"></jsp:include>
@@ -52,15 +55,16 @@ ${album.service_content}
 
 <tr>
 <td colspan="2" align="center">
-
+<form name="myform" action="deletePro.service?service_id=${service_id}" method="post" onSubmit="return checkIt()">
 <input type = "button" value ="답글작성"  class="btn btn-success" onclick="document.location.href='writeForm.service?service_id=${album.service_id}&service_ref=${album.service_ref}&service_re_step=${album.service_re_step}&service_level=${album.service_level}'">
 <c:if test="${album.member_id == sessionScope.dto.member_id}">
  <input type="button" value="수정하기"  class="btn btn-success" onClick="location.href='updateForm.service?service_id=${album.service_id}'">  
-  <input type="button" value="삭제하기"  class="btn btn-success" onClick="location.href='deleteForm.service?service_id=${album.service_id}'">
+   <input type=submit value="삭제하기" class="btn btn-success"> 
+  <%-- <input type="button" value="삭제하기"  class="btn btn-success" onClick="location.href='deleteForm.service?service_id=${album.service_id}'"> --%>
   </c:if>
   <input type="button" value="목록보기"  class="btn btn-success" onClick="location.href='list.service'">      
 </td></tr>
 </table>
-
+</form>
 </body>
 </html>

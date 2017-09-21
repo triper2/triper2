@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import ="faq.service.dao.AlbumDao" %>   
+<%@ page import ="faq.service.dao.AlbumDao" %>
 <%@ page import ="faq.service.domain.Album" %>   
 <%@ taglib prefix="c"  uri="http://java.sun.com/jstl/core_rt" %>
 <%@ taglib prefix="fmt"  uri="http://java.sun.com/jstl/fmt_rt" %>
@@ -145,7 +145,7 @@ function previewImage(targetObj, View_area) {
  </tr>
 
 <tr>
-<td colspan=2><input type="password" class="form-control" size="8" name="service_pwd" maxlength="12" placeholder="암호와 동일해야 글이 수정됩니다."></td>
+<td colspan=2><input type="password" class="form-control" size="8" name="service_pwd" maxlength="12" placeholder="비공개글을 원하시면 암호를 넣어주세요" value="${album.service_pwd}"></td>
 </tr>
 
 <tr>

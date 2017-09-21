@@ -278,13 +278,15 @@ public class AlbumDao {
             
             try{
                 conn =getConnection();
-                sql = "update service_board set service_email=?, service_title=?, service_img=?, service_content=? where service_id=?";
+                sql = "update service_board set service_email=?, service_title=?, service_img=?, service_content=?, service_pwd=? where service_id=?";
                 pstmt =conn.prepareStatement(sql);
                 pstmt.setString(++cnt, album.getService_email());
                 pstmt.setString(++cnt, album.getService_title());    
                 pstmt.setString(++cnt, album.getService_img());    
-                pstmt.setString(++cnt, album.getService_content());    
+                pstmt.setString(++cnt, album.getService_content()); 
+                pstmt.setString(++cnt, album.getService_pwd());
                 pstmt.setInt(++cnt, album.getService_id());
+                
                 
                 pstmt.executeUpdate();
                 
@@ -337,8 +339,10 @@ public class AlbumDao {
                 dbpasswd =rs.getString("service_pwd");
                 if(dbpasswd.equals(service_pwd)){
                     x=1;//인증성공
-                }else
-                    x=0;//비밀전호 틀림
+                }else{
+                    //x=0;//비밀전호 틀림
+                	x=0;
+                }
             }            
         }catch(Exception ex){
             ex.printStackTrace();

@@ -12,7 +12,7 @@
 
 <script type="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script type="../../js/bootstrap.js"></script>
-
+<script src="./js/jquery.bpopup.min.js"></script>
 
 <script type="text/javascript">
   function searchMessage(){
@@ -23,6 +23,11 @@
    }
    return true;
   }
+  
+  function openWin(url,name){  //opneWin()호출시 팝업창띄움 url경로와 name값을 받는다.
+	  window.open(url,name,"scrollbars=no,status=no,resizable=no,width=300,height=150");
+	 }
+
 </script>
 
 
@@ -63,8 +68,18 @@
 	<c:if test="${album.service_level > 0}" >
 	<img src="../_faq/service/images/reply_icon.gif"> 
 	</c:if>
-
-     <a href="content.service?service_id=${album.service_id}">${album.service_title}</a></td>
+	
+     <a href="content.service?service_id=${album.service_id}">
+     <c:if test="${album.service_pwd == null }">
+     	 ${album.service_title}
+     </c:if>
+     <c:if test="${album.service_pwd != null }">
+     	
+    	<%-- <a href="checkForm.service?service_id=${album.service_id}" onclick="window.open(this.href, '_blanck', 'width=550, height=400', 'scrollbars=no','status=no','resizable=no'); return false">비공개 글 입니다</a>  --%>
+		<a href="checkForm.service?service_id=${album.service_id}" id="bpopup1" onclick="window.open(this.href, '_blanck', 'width=550, height=400, left=380px, top=150px', 'scrollbars=no','status=no','resizable=no', 'location=no'); return false">비공개 글 입니다</a>
+		
+     </c:if>
+    <%--  ${album.service_title}</a></td> --%>
     <td>${album.member_id}</td>
      <td>${album.service_readcount}</td>
     <td><fmt:formatDate value="${album.service_reg_date}" pattern="yyyy년MM월dd일"/></td>

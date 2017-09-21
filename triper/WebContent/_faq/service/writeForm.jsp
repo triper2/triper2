@@ -29,11 +29,11 @@ function writeSave(){
       return false;
     }
         
-    if(document.writeform.service_pwd.value==""){
+/*     if(document.writeform.service_pwd.value==""){
       alert(" 비밀번호를 입력하십시요.");
       document.writeform.service_pwd.focus();
       return false;
-    }
+    } */
     return true;
  }    
  
@@ -139,7 +139,7 @@ function previewImage(targetObj, View_area) {
 </tr>
   
 <tr>
-<td colspan=2><input type="password" class="form-control" placeholder="비밀번호" size="8" name="service_pwd" maxlength="12"></td>
+<td colspan=2><input type="password" class="form-control" placeholder="비밀번호(입력하면 비밀글이 됩니다)" size="8" name="service_pwd" maxlength="12"></td>
 </tr>
   <tr>
     <td  width="70" align="center" >이미지</td>
