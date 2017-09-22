@@ -11,8 +11,8 @@
 <title>글목록</title>
 
 <script type="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-<script type="../../js/bootstrap.js"></script>
-<script src="./js/jquery.bpopup.min.js"></script>
+<script type="../../js/bootstrap.js"></script>\
+<!-- <script src="./js/jquery.bpopup.min.js"></script> -->
 
 <script type="text/javascript">
   function searchMessage(){
@@ -28,8 +28,27 @@
 	  window.open(url,name,"scrollbars=no,status=no,resizable=no,width=300,height=150");
 	 }
 
-</script>
 
+	</script>
+	<style type="text/css">
+	.Pstyle {
+	   opacity : 0;
+	   display : none;
+	   position : relative;
+	   width : auto;
+	   border : 5px solid #fff;
+	   padding : 20px;
+	   background-color : #fff;
+	}
+	.b-close {
+	   position : absolute;
+	   right : 5px;
+	   top : 5px;
+	   padding : 0px; /* padding : 5px; */
+	   display : inline-block;
+	   cursor : pointer;
+	}
+	</style>
 
 </head>
 <body>
@@ -55,6 +74,7 @@
 <th width="70" style="background-color: #eeeeee; text-align: center;">조회수</th>
 <th width="180" style="background-color: #eeeeee; text-align: center;">작성일</th>
 </tr>
+
 <c:set var="number" value="${page.number}"/>
 <c:forEach var="album" items="${albumList}">
 <tr> 
@@ -70,14 +90,21 @@
 	</c:if>
 	
      <a href="content.service?service_id=${album.service_id}">
-     <c:if test="${album.service_pwd == null }">
+     <c:if test="${album.service_pwd == null }">   	
      	 ${album.service_title}
+     	 <c:if test="${album.service_img != null }">
+		 <span class="glyphicon glyphicon-floppy-disk aria-hidden="true"></span>
+		 </c:if>
      </c:if>
      <c:if test="${album.service_pwd != null }">
      	
     	<%-- <a href="checkForm.service?service_id=${album.service_id}" onclick="window.open(this.href, '_blanck', 'width=550, height=400', 'scrollbars=no','status=no','resizable=no'); return false">비공개 글 입니다</a>  --%>
-		<a href="checkForm.service?service_id=${album.service_id}" id="bpopup1" onclick="window.open(this.href, '_blanck', 'width=550, height=400, left=380px, top=150px', 'scrollbars=no','status=no','resizable=no', 'location=no'); return false">비공개 글 입니다</a>
-		
+		<a href="checkForm.service?service_id=${album.service_id}"  onclick="window.open(this.href, '_blanck', 'width=550, height=400, left=380px, top=150px', 'scrollbars=no','status=no','resizable=no', 'location=no'); return false">
+		비공개 글 입니다. &nbsp; <span class="glyphicon glyphicon-lock aria-hidden="true"></span>
+		 <c:if test="${album.service_img != null }">
+		 <span class="glyphicon glyphicon-floppy-disk aria-hidden="true"></span>
+		 </c:if>
+		 </a>
      </c:if>
     <%--  ${album.service_title}</a></td> --%>
     <td>${album.member_id}</td>
@@ -138,7 +165,10 @@
 
 </c:if>
    </td></tr>
+
 </table>
+
 </form>
+
 </body>
 </html>
