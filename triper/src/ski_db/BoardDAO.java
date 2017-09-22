@@ -26,7 +26,7 @@ public class BoardDAO {
 			/*Context initctx =new InitialContext();*/
 			Context ctx = new InitialContext();
 			Context envctx =(Context) ctx.lookup("java:comp/env");
-			DataSource ds = (DataSource) envctx.lookup("jdbc:SkiReserveDB");
+			DataSource ds = (DataSource) envctx.lookup("jdbc:TriperDB");
 			//DataSource ds = (DataSource)ctx.lookup("java:comp/env/jdbc:RentCarDB");
 			conn =ds.getConnection();
 		} catch (Exception e) {
