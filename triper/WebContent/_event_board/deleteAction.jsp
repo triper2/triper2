@@ -8,6 +8,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title> JSP 게시판 웹 사이트 </title>
+${ sessionScope.dto }
+<c:set var="dto" value="${ sessionScope.dto }"/>
 </head>
 <body>
 
@@ -20,7 +22,7 @@
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
 		script.println("alert('로그인 하세요.')");
-		script.println("location.href='login.jsp'");
+		script.println("location.href='../_main_login/loginForm.jsp'");
 		script.println("</script>");
 	}
 	int ebNum = 0;

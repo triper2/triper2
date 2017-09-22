@@ -130,7 +130,7 @@ ${ sessionScope.dto }
 					<ul>
 						<li><a href="../_car/CarMain.jsp">렌트카 테스트</a></li>
 						<li><a href="../_business/businessSelectForm.jsp">다음지도</a></li>
-						<li><a href="#">샘플3</a></li>
+						<li><a href="../_event_board/eblist.jsp">게시판 테스트</a></li>
 						<li><a href="#">샘플4</a></li>
 					</ul></li>
 				<li style="z-index: 999;"><a href="../_faq/help.jsp">고객센터 아직<i class='fa fa-angle-down'></i></a>
