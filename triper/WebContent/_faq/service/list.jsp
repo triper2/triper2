@@ -108,7 +108,7 @@
     <td align="center" valign="bottom">
       <select class="form-control" name="keyField" >
           <option value="service_title">제목</option>      
-          <option value="member_id">이름</option>
+          <option value="member_id">아이디</option>
           <option value="service_content">내용</option>
       </select>
      </td>

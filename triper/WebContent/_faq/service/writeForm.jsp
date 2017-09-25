@@ -132,7 +132,7 @@ function previewImage(targetObj, View_area) {
   </tr>
   
 <tr>
-<td colspan=2><input type="text" class="form-control" value="${sessionScope.dto.member_email }" size="40" name="service_email" maxlength="30"></td>
+<td colspan=2><input readonly="readonly" type="text" class="form-control" value="${sessionScope.dto.member_email }" size="40" name="service_email" maxlength="30"></td>
 </tr>
  
 <tr>

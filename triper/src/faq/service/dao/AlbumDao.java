@@ -158,11 +158,14 @@ public class AlbumDao {
                 pstmt.setInt(1, startRow);
                 pstmt.setInt(2, endRow);    
             }else{
-                sql ="select * from(select a.*, rownum rnum from(select * from service_board where "+keyField+" like ? order by service_id desc)a) where rnum >=? and rnum <=?";
+                sql ="select * from(select a.*, rownum rnum from(select * from service_board where "+keyField+" like ? order by service_id desc)a) where rnum >=? and rnum <=? and service_pwd is null";
                 pstmt =conn.prepareStatement(sql);    
+                Album album =new Album();
+                
                 pstmt.setString(1, "%"+keyWord+"%");
                 pstmt.setInt(2, startRow);
                 pstmt.setInt(3, endRow);
+                
             }
             rs = pstmt.executeQuery();
             if(rs.next()){

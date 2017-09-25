@@ -16,7 +16,7 @@ public class CheckProAction implements Action{
     	request.setCharacterEncoding("utf-8");
         int service_id = Integer.parseInt(request.getParameter("service_id"));
         String service_pwd = request.getParameter("service_pwd");
-        System.out.println("service_id" + service_id);
+        //System.out.println("service_id" + service_id);
         AlbumDao manager = AlbumDao.getInstance();
         int check = manager.userCheck(service_id, service_pwd);
 
@@ -29,7 +29,7 @@ public class CheckProAction implements Action{
         request.setAttribute("service_id", service_id);
         request.setAttribute("check", new Integer(check));
         
-        System.out.println("service_id2" + service_id);
+        //System.out.println("service_id2" + service_id);
         return "/_faq/service/checkPro.jsp";
     }
 }

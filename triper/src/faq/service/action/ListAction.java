@@ -31,6 +31,7 @@ public class ListAction implements Action{
         pageNum = "1";
     }    
     
+    
     int pageSize = 20;
     int currentPage = Integer.parseInt(pageNum);
     int startRow =(currentPage-1)*pageSize +1;
