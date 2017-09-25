@@ -455,7 +455,7 @@ ${ sessionScope.dto }
       <h1>Account Login</h1>
     </div>
     <div class="form-content" >
-      <form action="loginPro.do" id="flsubmit" method="post">
+      <form action="loginPro.do?page=${param.page}" id="flsubmit" method="post">
         <div class="form-group">
           <label for="username">ID</label>
           <input type="text" id="id" name="id" required="required"/>

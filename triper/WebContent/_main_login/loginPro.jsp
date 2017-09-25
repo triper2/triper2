@@ -21,4 +21,16 @@ history.go(-1);
 </script>	
 </c:if>
 
+<c:if test="${ page == 'businessAdd'}">
+<script type="text/javascript">
+location.href = "../_business/businessAddSelectForm.jsp";
+</script>	
+</c:if>
+
+<c:if test="${ page == 'businessMyList'}">
+<script type="text/javascript">
+location.href = "../_business/myList.business";
+</script>	
+</c:if>
+
 <meta http-equiv="Refresh"  content="0; url=loginForm.do">

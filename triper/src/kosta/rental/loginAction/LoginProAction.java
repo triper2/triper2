@@ -57,6 +57,7 @@ public class LoginProAction extends HttpServlet {
 		String com = uri.substring(conPath.length()); // 길이값 빼고(이후의) /_main_login/loginPro.do
 		int check = 0;
 		ServletRequest session = null;
+		String page = request.getParameter("page");
 		if (com.equals("/_main_login/loginPro.do")) { ///////////////////////////////////loginPro.do
 			String id = request.getParameter("id");
 			String pwd = request.getParameter("password");
@@ -75,6 +76,9 @@ public class LoginProAction extends HttpServlet {
 			}
 			request.setAttribute("check", check);
 			viewPage = "/_main_login/loginPro.jsp";
+			if(!(page.equals("") || page == null)) {
+				request.setAttribute("page", page);
+			} 
 			RequestDispatcher dp = request.getRequestDispatcher(viewPage);
 			dp.forward(request, response);
 		} 
