@@ -7,6 +7,15 @@ public class EboardDTO {
 	private String member_id;
 	private String ebDate;
 	private String ebContent;
+	private int ebAvailable;
+	private String ebImg;
+
+	public String getEbImg() {
+		return ebImg;
+	}
+	public void setEbImg(String ebImg) {
+		this.ebImg = ebImg;
+	}		
 	public int getEbNum() {
 		return ebNum;
 	}
@@ -43,7 +52,5 @@ public class EboardDTO {
 	public void setEbAvailable(int ebAvailable) {
 		this.ebAvailable = ebAvailable;
 	}
-	private int ebAvailable;
-	
 	
 }

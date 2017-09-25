@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.oreilly.servlet.MultipartRequest;
+
+import kosta.rental.loginAction.FileUtil;
 import kosta.rental.loginModel.RentalDTO;
 
 @WebServlet("*.eb")
@@ -40,12 +43,11 @@ public class EboardAction extends HttpServlet {
 
 	private void actionDo(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, Exception {
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html;charset=UTF-8");
 		String uri = request.getRequestURI(); // http://localhost:8080/triper/_event_board/loginPro.eb
-		String conPath = request.getContextPath(); // http://localhost:8080/triper
-													// 여기까지 길이 구하기
-													// /_event_board/loginPro.eb
-		String com = uri.substring(conPath.length()); // 길이값 빼고(이후의)
-														// /_event_board/loginPro.eb
+		String conPath = request.getContextPath(); // http://localhost:8080/triper 여기까지 길이 구하기 /_event_board/loginPro.eb
+		String com = uri.substring(conPath.length()); // 길이값 빼고(이후의) /_event_board/loginPro.eb
 		String member_id = null;
 		String ebTitle = request.getParameter("ebTitle");
 		String ebContent = request.getParameter("ebContent");
@@ -58,8 +60,6 @@ public class EboardAction extends HttpServlet {
 			} catch (Exception e) {
 				member_id = null;
 			}
-			System.out.println(member_id);
-			EboardDTO ebdto = new EboardDTO();
 			if (member_id == null) {
 				try {
 					script.println("<script>");
@@ -70,7 +70,16 @@ public class EboardAction extends HttpServlet {
 					e.printStackTrace();
 				}
 			} else {
-				if (ebTitle.equals("") || ebContent.equals("")) {
+				MultipartRequest multi = FileUtil.createFile(request);
+				EboardDAO ebdao = new EboardDAO();
+				EboardDTO ebdto = new EboardDTO();
+				ebdto.setMember_id(multi.getParameter("member_id"));
+				ebdto.setEbTitle(multi.getParameter("ebTitle"));
+				ebdto.setEbContent(multi.getParameter("ebContent"));
+				ebdto.setEbImg(multi.getParameter("ebImg"));
+				System.out.println(multi.getParameter("ebTitle")+"  111");
+				System.out.println(multi.getParameter("ebContent")+"  222");
+				if (multi.getParameter("ebTitle").equals("") || multi.getParameter("ebContent").equals("")) {
 					try {
 						script.println("<script>");
 						script.println("alert('입력 안 된 사항이 있습니다.')");
@@ -79,9 +88,8 @@ public class EboardAction extends HttpServlet {
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
-				} else {
-					EboardDAO ebdao = new EboardDAO();
-					int result = ebdao.write(ebTitle, member_id, ebContent);
+				} else {					
+					int result = ebdao.write(ebdto);
 					if (result == -1) {
 						script.println("<script>");
 						script.println("alert('글쓰기 실패')");
@@ -103,7 +111,7 @@ public class EboardAction extends HttpServlet {
 			}
 			if (member_id == null) {
 				script.println("<script>");
-				script.println("alert('로그인 하세요.9999')");
+				script.println("alert('로그인 하세요.')");
 				script.println("location.href='../_main_login/loginForm.jsp'");
 				script.println("</script>");
 			}
@@ -113,37 +121,41 @@ public class EboardAction extends HttpServlet {
 			}
 			if (ebNum == 0) {
 				script.println("<script>");
-				script.println("alert('유효하지 않은 글입니다.8888')");
+				script.println("alert('유효하지 않은 글입니다.')");
 				script.println("location.href='eblist.jsp'");
 				script.println("</script>");
 			}
 			EboardDTO ebdto = new EboardDAO().getEboardDTO(ebNum);
-			System.out.println(ebdto.getMember_id());
-			// System.out.println(ebdto.getMember_id());
-
 			if (!member_id.equals(ebdto.getMember_id())) {
 				script.println("<script>");
-				script.println("alert('권한이 없습니다.11111')");
+				script.println("alert('권한이 없습니다.')");
 				script.println("location.href='eblist.jsp'");
 				script.println("</script>");
 			} else {
 				if (request.getParameter("ebTitle") == null || request.getParameter("ebContent") == null
 						|| request.getParameter("ebTitle") == " " || request.getParameter("ebContent") == " ") {
 					script.println("<script>");
-					script.println("alert('입력 안 된 사항이 있습니다.22222')");
+					script.println("alert('입력 안 된 사항이 있습니다.')");
 					script.println("history.back()");
 					script.println("</script>");
 				} else {
+					MultipartRequest multi = FileUtil.createFile(request);
 					EboardDAO ebdao = new EboardDAO();
-					int result = ebdao.update(ebNum, ebTitle, ebContent);
+					String ebImg = multi.getFilesystemName("ebImg");
+					ebdto.setMember_id(multi.getParameter("member_id"));
+					ebdto.setEbTitle(multi.getParameter("ebTitle"));
+					ebdto.setEbContent(multi.getParameter("ebContent"));
+					ebdto.setEbImg(multi.getParameter("ebImg"));
+					ebdto.setEbImg(ebImg);
+					int result = ebdao.update(ebdto);
 					if (result == -1) {
 						script.println("<script>");
-						script.println("alert('글 수정 실패3333')");
+						script.println("alert('글 수정 실패')");
 						script.println("history.back()");
 						script.println("</script>");
 					} else {
 						script.println("<script>");
-						script.println("alert('4444')");
+						script.println("alert('글 수정 완료')");
 						script.println("location.href='eblist.jsp'");
 						script.println("</script>");
 					}

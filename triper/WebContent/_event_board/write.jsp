@@ -27,7 +27,7 @@ ${ sessionScope.dto }
 	
 	<div class="container">
 		<div class="row">
-		<form action="writeAction.eb" method="post">
+		<form action="writeAction.eb" method="post" enctype="multipart/form-data">
 			<table class="table table-striped" style="text-align:center; border: 1px solid #dddddd">
 				<thead>
 					<tr>
@@ -40,6 +40,9 @@ ${ sessionScope.dto }
 						</tr>
 						<tr>
 							<td><textarea class="form-control" placeholder="글 내용" name="ebContent" maxlenght="2048" style="height:350px;"></textarea></td>
+						</tr>
+						<tr>
+							<td><input type="file" class="form-control" placeholder="이미지" name="ebImg" maxlenght="50"></td>
 						</tr>
 					</tbody>
 				</table>
