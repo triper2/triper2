@@ -92,7 +92,7 @@ function pasteHTML(filepath){
 								</td>
 							</tr> -->
 
-							<tr>
+							<tr style="background-color: white;">
 								<td><textarea class="form-control" placeholder="글 내용"
 										name="review_Content" id="review_Content" maxlength="2048"
 										style="height: 350px;"></textarea></td>

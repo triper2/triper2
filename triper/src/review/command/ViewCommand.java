@@ -18,6 +18,8 @@ public class ViewCommand implements Command {
 
 			String getID = request.getParameter("review_ID");
 			String member_id = null;
+			
+			
 			try {
 				RentalDTO dto = (RentalDTO)request.getSession().getAttribute("dto");
 				member_id = dto.getMember_id();
@@ -39,8 +41,6 @@ public class ViewCommand implements Command {
 				}
 
 			}
-			
-			
 			int review_ID = Integer.parseInt(getID);
 			if (review_ID == 0) {//번호가 꼭있어야 출력가능함
 				PrintWriter script;
@@ -60,13 +60,13 @@ public class ViewCommand implements Command {
 			if(request.getParameter("commentPageNumber") !=null){
 				commentPageNumber = Integer.parseInt(request.getParameter("commentPageNumber"));
 			}
-			
-			System.out.println(commentPageNumber);
 			BbsDAO dao = new BbsDAO();
+			BbsVO bbs = new BbsDAO().getBbs(review_ID);
+			dao.viewcountUpdate(bbs.getReview_Viewcount(), review_ID);
+			bbs = new BbsDAO().getBbs(review_ID);
 			request.setAttribute("commentPageNumber", commentPageNumber);
 			request.setAttribute("commentPageCount", dao.commentPageingCount(review_ID));
-			request.setAttribute("commentCount", dao.commentCount(review_ID));
-			BbsVO bbs = new BbsDAO().getBbs(review_ID);
+			request.setAttribute("commentCount", dao.commentCount(review_ID));	
 			request.setAttribute("bbs", bbs);
 			request.setAttribute("review_ID", review_ID);
 			request.setAttribute("member_ID", member_id);

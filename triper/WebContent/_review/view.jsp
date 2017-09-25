@@ -176,13 +176,10 @@ function addComment(commentName, commentContent,commentImage,commentID, commentT
 							<input type="hidden" name="review_ID" value="${bbs.review_ID}">
 						</button>
 						</form>
-						<hr> <span class="glyphicon glyphicon-thumbs-up pull-left"
-						aria-hidden="true"> 좋아요:</span> <br> <span
-						class="glyphicon glyphicon-thumbs-down pull-left"
-						aria-hidden="true"> 나빠요:</span> <br> <span
-						class="glyphicon glyphicon-eye-open pull-left" aria-hidden="true">
-							조회수:</span> <br> <span class="glyphicon glyphicon-user pull-left"
-						aria-hidden="true"> 댓 글:</span>${commentCount}
+						<hr> <span class="glyphicon glyphicon-thumbs-up pull-left"aria-hidden="true"> 좋아요:</span>${bbs.review_Like}<br> 
+						<span class="glyphicon glyphicon-thumbs-down pull-left" aria-hidden="true"> 나빠요:</span>${bbs.review_Hate}<br> 
+						<span class="glyphicon glyphicon-eye-open pull-left" aria-hidden="true"> 조회수:</span>${bbs.review_Viewcount}<br> 
+						<span class="glyphicon glyphicon-user pull-left" aria-hidden="true"> 댓 글:</span>${commentCount}
 					</td>
 				</tr>
 				

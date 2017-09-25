@@ -4,74 +4,28 @@
 <html>
 <body>
 	<center>
-		<table width="400" border="0">
-			<h1>  <img height="50" src="img/ccs.jpg" border="0"></h1>
-		<form action ="../_car/CarcategoryController.do" method="post">
+		
+		<img alt="" width="100%" src="../image/giphy.gif">
+		
+		<table class="table table-striped" style="text-align: left; border: 1px solid #dddddd">
+			<form action ="../_car/CarcategoryController.do" method="post">
 				<tr align="center">
-					<td width="100">차량종류</td>
-					<td width="100" height="50">
-					<select name="carcategory">
-						<option value="Small">소형</option>
-						<option value="Mid">중형</option>
-						<option value="Big">대형</option>
-						
-					</select>
-				</td>
-					<td align="center">
-						<input type="submit" value="검색">
+				<td width="50%"></td>
+					<td width="30%">
+						<select class=" form-control" name="carcategory">
+							<option value="Small">소형</option>
+							<option value="Mid">중형</option>
+							<option value="Big">대형</option>
+						</select>
+					</td>
+					<td>
+						<input class="btn btn-primary" type="submit" value="검색">
+						<input class="btn btn-primary" type="button" value="전체검색" onclick="location.href='../_car/CarListController1.do'">
 					</td>
 				
-					<td align="center">
-					<input type="button" value="전체검색" onclick="location.href='../_car/CarListController1.do'">
-					</td>
-				</tr>
-				
-			</table>
-		<table width="1000" border="0">
-		<tr>
-			<td aling="center" width="333">
-				<!-- <a href = "carMain.jsp?center=CarEvent.jsp"> -->
-					<img alt="" src="img/lfsonata.jpg" width="280">
-				</a>
-			</td>
-			<td aling="center" width="333">
-				<!-- <a href = "carMain.jsp?center=CarEvent.jsp"> -->
-					<img alt="" src="img/k5.jpg" width="280">
-				</a>
-			</td>
-			<td aling="center" width="333">
-				<!-- <a href = "carMain.jsp?center=CarEvent.jsp"> -->
-					<img alt="" src="img/avante.jpg" width="280">
-				</a>
-			</td>
-		</tr>
+				</tr>	
+			</form>
 		</table>
-	
-		<!-- 	<table width="400" border="0">
-			<h1><img height="50" src="img/ccs.jpg" border="0"></h1>
-		<form action ="CarcategoryController.do" method="post">
-				<tr align="center">
-					<td width="100">차량종류</td>
-					<td width="100" height="50">
-					<select name="carcategory">
-						<option value="Small">소형</option>
-						<option value="Mid">중형</option>
-						<option value="Big">대형</option>
-						
-					</select>
-				</td>
-					<td align="center">
-						<input type="submit" value="검색">
-					</td>
-				
-					<td align="center">
-					<input type="button" value="전체검색" onclick="location.href='CarListController.do'">
-					</td>
-				</tr>
-				
-			</table> -->
-		</form>
-	
 	</center>
 </body>
 </html>

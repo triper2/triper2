@@ -30,7 +30,7 @@
 	
 	</div>
 
-	<form class="w3-container" action="../_car/CarAddController.do" method="post" encType="multipart/form-data">
+	<form class="w3-container" action="../_car/CarAddController.do" method="post" encType="multipart/form-data" style="text-align: left;">
 	
 		<p>
 			<label>차량 번호</label> <input class="w3-input" type="text" name="product_carno" placeholder="숫자만 입력하세요">

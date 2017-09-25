@@ -19,22 +19,26 @@ public class BbsCommand implements Command {
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		
 		int pageNumber = 1;
+		String review_Title = null;
+		BbsDAO dao = new BbsDAO();
 		if(request.getParameter("pageNumber") !=null){
 			pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
 		}
 		
-		String member_ID = String.valueOf(request.getSession().getAttribute("member_id"));
-		System.out.println(member_ID);
-		BbsDAO dao = new BbsDAO();
 		
+		if(review_Title == null){
 		ArrayList<BbsVO> list = dao.getList(pageNumber);
-		
-		
 		request.setAttribute("list", list);
 		request.setAttribute("pageNumber", pageNumber);
 		request.setAttribute("pageCount", dao.pageingCount());
-		request.setAttribute("member_ID", member_ID);
-		
+		}
+		if(request.getParameter("review_Title") !=null){
+		review_Title = request.getParameter("review_Title");
+		ArrayList<BbsVO> list = dao.getList(pageNumber,review_Title);
+		request.setAttribute("list", list);
+		request.setAttribute("pageNumber", pageNumber);
+		request.setAttribute("pageCount", dao.pageingCount(review_Title));
+		}
 	}
 
 }

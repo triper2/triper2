@@ -25,6 +25,7 @@
 	<jsp:include page="../_main_login/header.jsp"></jsp:include>
 
 
+
 	<div>
 		<c:set var="num" value="0" />
 		<c:forEach var="list" items="${list }">
@@ -52,27 +53,26 @@
 
 
 
-
-
 	<div class="form-group" style="text-align: center; ma rgin: 0 auto;">
 		<c:forEach var="page" begin="1" end="${pageCount}" step="1">
 			<a href="bbs.review?pageNumber=${page}"
 				class="btn btn-success btn-arraw-left"> ${page} </a>
 		</c:forEach>
-		<form method="post" action="writeAction.review">
+		
 			<table class="table table-striped"
 				style="text-align: center; border: 1px solid #dddddd">
 				<tr>
+					<form method="post" action="bbs.review">
 					<td colspan="2" width="500"><input type="text"
 						class="form-control" placeholder="글 제목" name="review_Title"
 						maxlength="50"></td>
 
-					<td colspan="1"><input type="submit" class="btn btn-primary"
-						value="검색"> <a class="btn btn-primary" href="write.review">글쓰기</a>
+					<td colspan="1"><input type="submit" class="btn btn-primary" value="검색"> 
+					</form>
+						<a class="btn btn-primary" href="write.review">글쓰기</a>
 					</td>
 				</tr>
 			</table>
-		</form>
 	</div>
 </body>
 </html>
