@@ -9,7 +9,7 @@ product_carimg varchar2(500) not null,
 product_carcategory varchar2(10) not null,
  PRIMARY KEY (product_carno)
  );
- delete from product_list where	product_carno=22222;
+ delete from product_list where	product_carno=868686;
  delete from product_list where	product_carno=123;
  delete from product_list where	product_carno=3434;
  delete from product_list where	product_carno=444;
@@ -47,7 +47,8 @@ product_carcategory varchar2(10) not null,
  memberphone varchar2(50) not null,
  memberpass varchar2(50) not null,
  totalprice number,
- calDateDays number
+ calDateDays number,
+ c_total number
  );
  select * from reserved_list;
 drop table reserved_list;
@@ -62,8 +63,8 @@ maxvalue 999;
 select * from RESERVED_LIST;
 
  select * from product_list natural join reserved_list  where 
-sysdate > to_date(reserved_carbegindate  , 'YYYY-MM-DD') 
-and memberphone='1234' and memberpass='234';
+sysdate < to_date(reserved_carbegindate  , 'YYYY-MM-DD') 
+and memberphone='skrlvkf' and memberpass='skrlvkf';
 
 
 select * from product_list natural join reserved_list where 
@@ -81,9 +82,9 @@ update reserved_list set reserved_product_count =3
  
  delete from reserved_list  where orderid=10 and memberpass='12345';
  
- 
- select * from reserved_list where orderid=123;
+ select * from product_list where memberphone='skrlvkf';
+ select * from reserved_list;
  
  select * from RESERVED_LIST where memberphone='qwe'; 
- 
+
  

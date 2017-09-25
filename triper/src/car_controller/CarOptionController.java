@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import car_db.CarOrderBean;
 
 
-@WebServlet("/_car/CarOptionController.do")
+@WebServlet("/CarOptionController.do")
 public class CarOptionController extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -41,7 +41,7 @@ public class CarOptionController extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 	      response.setContentType("text/html;charset=UTF-8");
 		
-		//ï¿½Ý¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¾ï¿½ï¿½ï¿½
+		//±Ý¾× ¿¬»êÀ» Ÿ¢¤¿¿© µ¥ÀÌÅÍ¸¦ ÀÏÀÏÀÌ ¹Þ¾ÆÁÜ
 		int carqty= Integer.parseInt(request.getParameter("carqty"));
 		int carprice= Integer.parseInt(request.getParameter("carprice"));
 		String carbegindate =request.getParameter("carbegindate");
@@ -52,24 +52,24 @@ public class CarOptionController extends HttpServlet {
 		int carwifi= Integer.parseInt(request.getParameter("carwifi"));
 		int carnavi= Integer.parseInt(request.getParameter("carnavi"));
 		int carbabyseat= Integer.parseInt(request.getParameter("carbabyseat"));
-		System.out.println("CarOptionController ï¿½ï¿½ï¿½ï¿½");
+		
 		
 		
 	
 		
 		
-		/*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ CarOrder.jspï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½Ñ°ï¿½ï¿½ï¿½
-		ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ = ï¿½ï¿½ï¿½ï¿½ * ï¿½ë¿©ï¿½â°£ * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		/*¿¬»êÈÄ °á°ú CarOrder.jsp·Î µ¥ÀÌÅÍ¸¦ ³Ñ°ÜÁÜ
+		Â÷·®°¡¾× = ¼ö·® * ´ë¿©±â°£ * Â÷·®°¡°Ý
 		
 		int totalreserve =carqty *  (DateFormat. carenddate-carbegindate) * carprice;
 		int totalreserve =carqty *  carprice;
-		ï¿½É¼Ç±Ý¾ï¿½ = ï¿½ï¿½ï¿½ï¿½ ï¿½É¼ï¿½ï¿½ï¿½ ï¿½ë¿©ï¿½â°£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ø¼ï¿½
+		¿É¼Ç±Ý¾× = °¢Á¾ ¿É¼ÇÀÇ ´ë¿©±â°£°ú ¼ö·®À» °öÇØ¼­
 		int totaloption = (carins*(carenddate-carbegindate))+(carwifi*(carenddate-carbegindate))
 					+(carbabyseat*(carenddate-carbegindate))*10000 * carqty;
 		int totaloption =  carqty;*/
 		
-		//jsp ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ñ°ï¿½ï¿½ï¿½
-		//carorderbean Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		//jsp ÂÊÀ¸·Î ¼±ÅÃµ¥ÀÌÅÍ ¸ðµÎ ³Ñ°ÜÁÜ
+		//carorderbean Å¬·¡½º·Î
 		
 		CarOrderBean cbean = new CarOrderBean();
 		cbean.setProduct_carno(Integer.parseInt(request.getParameter("carno")));
@@ -82,48 +82,48 @@ public class CarOptionController extends HttpServlet {
 		cbean.setReserved_option_carbabyseat(carbabyseat);
 		cbean.setReserved_carbegindate(request.getParameter("carbegindate"));
 		
-		//ï¿½ï¿½Â¥ ï¿½ï¿½
+		//³¯Â¥ ºñ±³
 		
 		Date d1=new Date();
 		Date d2=new Date();
 		Date d3=new Date();
-		//ï¿½ï¿½Â¥ï¿½ï¿½ 2016-4-4 ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ö´ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+		//³¯Â¥¸¦ 2016-4-4 Æ÷¸Ë ÇØÁÖ´Â Å¬·¡½º ¼±¾ð
 		SimpleDateFormat sdf =new SimpleDateFormat("yyyy-MM-dd");
 		
 		d1=sdf.parse(cbean.getReserved_carbegindate());
 		d2=sdf.parse(cbean.getReserved_carenddate());
 		d3=sdf.parse(sdf.format(d3));
 		
-		//ï¿½ï¿½Â¥ ï¿½ï¿½ ï¿½Þ¼Òµå¸¦ ï¿½ï¿½ï¿½
+		//³¯Â¥ ºñ±³ ¸Þ¼Òµå¸¦ »ç¿ë
 		 long calDate = d1.getTime() - d2.getTime(); 
 	        
-	        // Date.getTime() ï¿½ï¿½ ï¿½Ø´ç³¯Â¥ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½1970ï¿½ï¿½ 00:00:00 ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ê°ï¿½ ï¿½ê·¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯ï¿½ï¿½ï¿½Ø´ï¿½. 
-	        // ï¿½ï¿½ï¿½ï¿½ 24*60*60*1000(ï¿½ï¿½ ï¿½Ã°ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½) ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ ï¿½Ï¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â´ï¿½.
+	        // Date.getTime() Àº ÇØ´ç³¯Â¥¸¦ ±âÁØÀ¸·Î1970³â 00:00:00 ºÎÅÍ ¸î ÃÊ°¡ Èê·¶´ÂÁö¸¦ ¹ÝÈ¯ÇØÁØ´Ù. 
+	        // ÀÌÁ¦ 24*60*60*1000(°¢ ½Ã°£°ª¿¡ µû¸¥ Â÷ÀÌÁ¡) À» ³ª´²ÁÖ¸é ÀÏ¼ö°¡ ³ª¿Â´Ù.
 	        int calDateDays = (int) (calDate / ( 24*60*60*1000)); 
 	 
 	        calDateDays = Math.abs(calDateDays);
 
 		int compare =d1.compareTo(d3);
 		int compare1 =d2.compareTo(d3);
-		//ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ï¿½ï¿½ ï¿½ï¿½Â¥ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ç³¯Â¥ï¿½ï¿½ Å©ï¿½Ù¸ï¿½ -1
-		//ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ï¿½ï¿½ ï¿½ï¿½Â¥ï¿½ï¿½ ï¿½ï¿½ï¿½ç³¯Â¥ï¿½ï¿½ ï¿½ï¿½ï¿½Ù¸ï¿½ 0
-		//ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ï¿½ï¿½ ï¿½ï¿½Â¥ï¿½ï¿½ ï¿½ï¿½ Å©ï¿½Ù¸ï¿½ 1ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+		//¿¹¾àÇÏ·Á´Â ³¯Â¥º¸´Ù ÇöÀç³¯Â¥°¡ Å©´Ù¸é -1
+		//¿¹¾àÇÏ·Á´Â ³¯Â¥¿Í ÇöÀç³¯Â¥°¡ °°´Ù¸é 0
+		//¿¹¾àÇÏ·Á´Â ³¯Â¥°¡ ´õ Å©´Ù¸é 1À» ¸®ÅÏ
 
-		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ CarOrder.jspï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½Ñ°ï¿½ï¿½ï¿½
-		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ = ï¿½ï¿½ï¿½ï¿½ * ï¿½ë¿©ï¿½â°£ * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		//¿¬»êÈÄ °á°ú CarOrder.jsp·Î µ¥ÀÌÅÍ¸¦ ³Ñ°ÜÁÜ
+		//Â÷·®°¡¾× = ¼ö·® * ´ë¿©±â°£ * Â÷·®°¡°Ý
 		
 		/*int totalreserve =carqty *  (DateFormat. carenddate-carbegindate) * carprice;*/
 		int totalreserve =(int) (carqty *  carprice * calDateDays);
-		//ï¿½É¼Ç±Ý¾ï¿½ = ï¿½ï¿½ï¿½ï¿½ ï¿½É¼ï¿½ï¿½ï¿½ ï¿½ë¿©ï¿½â°£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ø¼ï¿½
+		//¿É¼Ç±Ý¾× = °¢Á¾ ¿É¼ÇÀÇ ´ë¿©±â°£°ú ¼ö·®À» °öÇØ¼­
 		int totaloption = (int) ((carins+carwifi+carbabyseat)*calDateDays*10000 * carqty);
 		int totalprice = totalreserve + totaloption;
 		
-		//jsp ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ñ°ï¿½ï¿½ï¿½
-		//carorderbean Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		//jsp ÂÊÀ¸·Î ¼±ÅÃµ¥ÀÌÅÍ ¸ðµÎ ³Ñ°ÜÁÜ
+		//carorderbean Å¬·¡½º·Î
 		cbean.setTotalprice(totalprice);
 		cbean.setCalDateDays(calDateDays);
 		System.out.println(totalprice);
-		//carOrder.jsp ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ±ï¿½
+		//carOrder.jsp µ¥ÀÌÅÍ ³Ñ±è
 		request.setAttribute("cbean", cbean);
 		request.setAttribute("totalreserve", totalreserve);
 		request.setAttribute("totaloption", totaloption);
@@ -131,7 +131,7 @@ public class CarOptionController extends HttpServlet {
 		request.setAttribute("compare1",compare1);
 		request.setAttribute("calDateDays", calDateDays);
 	
-		RequestDispatcher dis = request.getRequestDispatcher("../_car/CarMain.jsp?center=CarOrder.jsp&top=_Top.jsp");
+		RequestDispatcher dis = request.getRequestDispatcher("/_car/CarMain.jsp?center=CarOrder.jsp&top=_Top.jsp");
 		dis.forward(request, response);
 	}
 }

@@ -9,7 +9,7 @@
 <body>
 <!--  <a href="CarMain.jsp?center=NoticeListController.do"> -->
  <a href="CarMain.jsp">
- 	<img src="../image/giphy.gif" width="1000" border="0">
+ 	<img src="img/main2.jpg" width="1000" border="0">
  </a>
 </body>
 </html>

@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import car_db.CarDAO;
 import car_db.CarOrderBean;
 
-@WebServlet("/_car/CarOrderController.do")
+@WebServlet("/CarOrderController.do")
 public class CarOrderController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
   
@@ -36,7 +36,7 @@ public class CarOrderController extends HttpServlet {
 		
 		request.setCharacterEncoding("UTF-8");
 	      response.setContentType("text/html;charset=UTF-8");
-		//jspï¿½ï¿½ ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+		//jsp¸¦ ÅëÇØ¼­ ³Ñ¾î¿À¤¤ µ¥ÀÌÅÍ¸¦ ºóÅ¬·¡½º¿¡ ÀúÀå
 		CarOrderBean cbean = new CarOrderBean();
 		cbean.setProduct_carno(Integer.parseInt(request.getParameter("carno")));
 		cbean.setReserved_product_count(Integer.parseInt(request.getParameter("carqty")));
@@ -50,12 +50,12 @@ public class CarOrderController extends HttpServlet {
 		cbean.setMemberpass(request.getParameter("memberpass"));
 		cbean.setTotalprice(Integer.parseInt(request.getParameter("totalprice")));
 		cbean.setCalDateDays(Integer.parseInt(request.getParameter("caldateDays")));
-		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì½ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½
+		//µ¥ÀÌÅÍ º£ÀÌ½º °´Ã¼ »ý¼º
 		CarDAO cdao = new CarDAO();
-		//ï¿½Ö¹ï¿½ ï¿½ï¿½È²ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+		//ÁÖ¹® ÇöÈ²À» ÀúÀå
 		cdao.insertCarOrder(cbean);
 		
-		RequestDispatcher dis = request.getRequestDispatcher("/_car/CarListController.do");
+		RequestDispatcher dis = request.getRequestDispatcher("CarListController.do");
 		
 		dis.forward(request, response);
 	}

@@ -7,7 +7,7 @@
 <center>
 	<h1> 차량 주문 정보 삭제 </h1>
 	
-	<form action="../_car/CarConfirmDeleteController.do" method="post">
+	<form action="../CarConfirmDeleteController.do" method="post">
 	<p>
 	<table width="400" border="0">
 	<c:set var="result" value="${ result }"  />
@@ -17,8 +17,9 @@
 	
 	<c:if test="${result==0 }">
 		<script>
-			alert("비밀번호가 틀립니다.");		
-		</script>
+			alert("비밀번호가 틀립니다.");
+			history.go(-1);
+			</script>
 	</c:if>
 	
 	

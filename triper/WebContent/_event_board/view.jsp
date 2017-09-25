@@ -69,12 +69,13 @@ ${ sessionScope.dto }
 						<td colspan="2"><%= ebdto.getMember_id() %></td>
 					</tr>
 					<tr>
-						<td>작성일자</td>
+						<td>작성일</td>
 						<td colspan="2"><%= ebdto.getEbDate().substring(0, 11)+ebdto.getEbDate().substring(11, 13)+"시"+ ebdto.getEbDate().substring(14, 16)+"분" %></td>
 					</tr>
 					<tr>
 						<td>내용</td>
-						<td colspan="2" style="min-height:200px; text-align_left;"><%= ebdto.getEbContent() %></td> <!-- .replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>") -->
+						<td colspan="2" style="min-height:200px; text-align_left;"><%= ebdto.getEbContent() %><%= ebdto.getEbImg() %></td> <!-- .replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>") -->
+						<%-- <td colspan="2" style="min-height:200px; text-align_left;"><%= ebdto.getEbImg() %></td> --%>
 					</tr>
 				</tbody>
 			</table>
