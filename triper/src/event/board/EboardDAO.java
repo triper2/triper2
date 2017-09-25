@@ -6,10 +6,19 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpServletRequest;
+
+import kosta.rental.loginModel.RentalDAO;
+import kosta.rental.loginModel.RentalDTO;
+import kosta.rental.loginAction.*;
+
 public class EboardDAO {
 
 	private Connection conn;
 	private ResultSet rs;
+	ServletRequest session;
+	HttpServletRequest request;
 	
 	public EboardDAO() {
 		try {
@@ -52,8 +61,10 @@ public class EboardDAO {
 		return -1; //DB 오류
 	}
 	
-	public int write(String ebTitle, String member_id, String ebContent) {
+	public int write(String ebTitle, String member_id, String ebContent) throws Exception {
 		String sql="insert into event_board values (?, ?, ?, SYSDATE, ?, ?)"; // 마지막에 쓰인 글 번호 가져옴
+		//RentalDTO dto = (RentalDTO)request.getSession().getAttribute("dto");
+		//member_id = dto.getMember_id();
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, getNext());
@@ -68,9 +79,9 @@ public class EboardDAO {
 		return -1; //DB 오류
 	}
 	
-	public ArrayList<EboardDTO> getList(int pageNumber) {
+	public ArrayList<EboardDTO> getList(int pageNumber) throws Exception {
 		String sql="select * from (select rownum as rnum, data.* from (select * from event_board where ebAvailable=1 order by ebNum desc)data)where rnum>? and rnum<=?";
-	    //String sql = "select*from(select rownum as rnum, data.*from(select*from review_board where review_available = 1 order by review_id desc)data)where rnum>? and rnum<= ?";
+		//String sql = "select*from(select rownum as rnum, data.*from(select*from review_board where review_available = 1 order by review_id desc)data)where rnum>? and rnum<= ?";
 		//String sql="select * from bbs where ebNum < ? AND ebAvailable=1 order by desc limit 10"; 
 		ArrayList<EboardDTO> list = new ArrayList<EboardDTO>();
 		try {
@@ -111,30 +122,29 @@ public class EboardDAO {
 		return false; 
 	}
 	
-	public EboardDTO getEboardDTO(int ebNum) {
+	public EboardDTO getEboardDTO(int ebNum) throws Exception {
+		EboardDTO ebdto = null;
 		String sql="select * from event_board where ebNum =?"; 
-		ArrayList<EboardDTO> list = new ArrayList<EboardDTO>();
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, ebNum);
 			rs = pstmt.executeQuery();
 			if (rs.next()){
-				EboardDTO ebdto = new EboardDTO();
+				ebdto = new EboardDTO();
 				ebdto.setEbNum(rs.getInt("ebNum"));
 				ebdto.setEbTitle(rs.getString("ebTitle"));
 				ebdto.setMember_id(rs.getString("member_id"));
 				ebdto.setEbDate(rs.getString("ebDate"));
 				ebdto.setEbContent(rs.getString("ebContent"));
 				ebdto.setEbAvailable(rs.getInt("ebAvailable"));
-				return ebdto;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return null; 		
+		return ebdto; 		
 	}
 	
-	public int update(int ebNum, String ebTitle, String ebContent) {
+	public int update(int ebNum, String ebTitle, String ebContent) throws Exception {
 		String sql="update event_board set ebTitle=?, ebContent=? where ebNum=?"; 
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -148,7 +158,7 @@ public class EboardDAO {
 		return -1; //DB 오류
 	} 
 	
-	public int delete(int ebNum) {
+	public int delete(int ebNum) throws Exception {
 		String sql="update event_board set ebAvailable=0 where ebNum=?"; 
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);

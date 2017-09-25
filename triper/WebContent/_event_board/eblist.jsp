@@ -7,14 +7,17 @@
 <!-- Latest compiled and minified JavaScript -->
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
+<%@ page import="event.board.EboardDAO, event.board.EboardDTO" %>
+<%@ page import="dbconn.util.*, dbclose.util.*, kosta.rental.loginModel.*"%>
 <%@ page import="java.io.PrintWriter" %>
-<%@ page import="event.board.*" %>
 <%@ page import="java.util.ArrayList" %>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <meta name="viewport" content="width=device-width", initial-scale="1">
 <link rel="stylesheet" href="css/bootstrap/css">
 <title>JSP 게시판 웹 사이트</title>
@@ -31,9 +34,14 @@ ${ sessionScope.dto }
 <jsp:include page="../_main_login/header.jsp"></jsp:include>
 	
 	<%
-	String member_id = null;
-	if(session.getAttribute("member_id") != null) {
-		member_id = (String) session.getAttribute("member_id");
+	String member_id=null;
+	//RentalDTO dto = (RentalDTO)request.getSession().getAttribute("dto");
+	//String member_id = dto.getMember_id();
+	try {
+		RentalDTO dto = (RentalDTO)request.getSession().getAttribute("dto");
+		member_id = dto.getMember_id();
+	} catch (Exception e) {
+		member_id = null;
 	}
 	int pageNumber = 1; //기본페이지
 	if(request.getParameter("pageNumber") != null) {
@@ -60,7 +68,7 @@ ${ sessionScope.dto }
 					%>	
 					<tr>
 						<td><%= list.get(i).getEbNum()%></td>
-						<td><a href="view.jsp?ebNum=<%= list.get(i).getEbNum() %>"><%=list.get(i).getEbTitle().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>")%></a></td>
+						<td><a href="view.jsp?ebNum=<%= list.get(i).getEbNum() %>"><%=list.get(i).getEbTitle()%></a></td>
 						<td><%= list.get(i).getMember_id() %></td>
 						<td><%= list.get(i).getEbDate().substring(0, 11) + list.get(i).getEbDate().substring(11, 13) + "시" + list.get(i).getEbDate().substring(14, 16)+"분" %> </td>
 					</tr>

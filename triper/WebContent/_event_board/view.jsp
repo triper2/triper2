@@ -7,8 +7,13 @@
 <!-- Latest compiled and minified JavaScript -->
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-<%@ page import="event.board.*" %>
+<%@ page import="event.board.EboardDAO, event.board.EboardDTO" %>
+<%@ page import="dbconn.util.*, dbclose.util.*, kosta.rental.loginModel.*"%>
 <%@ page import="java.io.PrintWriter" %>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt"%>
+<fmt:requestEncoding value="utf-8"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,9 +28,14 @@ ${ sessionScope.dto }
 <jsp:include page="../_main_login/header.jsp"></jsp:include>
 	
 	<%
-	String member_id = null;
-	if(session.getAttribute("member_id") != null) {
-		member_id = (String) session.getAttribute("member_id");
+	String member_id=null;
+	//RentalDTO dto = (RentalDTO)request.getSession().getAttribute("dto");
+	//String member_id = dto.getMember_id();
+	try {
+		RentalDTO dto = (RentalDTO)request.getSession().getAttribute("dto");
+		member_id = dto.getMember_id();
+	} catch (Exception e) {
+		member_id = null;
 	}
 	int ebNum = 0;
 	if(request.getParameter("ebNum") != null) {
@@ -52,7 +62,7 @@ ${ sessionScope.dto }
 				<tbody>
 					<tr>
 						<td style="width:20%;">글제목</td>
-						<td colspan="2"><%= ebdto.getEbTitle().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>") %></td>
+						<td colspan="2"><%= ebdto.getEbTitle() %></td> <!-- .replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>") -->
 					</tr>
 					<tr>
 						<td>작성자</td>
@@ -64,7 +74,7 @@ ${ sessionScope.dto }
 					</tr>
 					<tr>
 						<td>내용</td>
-						<td colspan="2" style="min-height:200px; text-align_left;"><%= ebdto.getEbContent().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>") %></td>
+						<td colspan="2" style="min-height:200px; text-align_left;"><%= ebdto.getEbContent() %></td> <!-- .replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>") -->
 					</tr>
 				</tbody>
 			</table>

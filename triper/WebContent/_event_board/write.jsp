@@ -6,8 +6,12 @@
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 <!-- Latest compiled and minified JavaScript -->
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
+<%@ page import="event.board.EboardDAO, event.board.EboardDTO" %>
+<%@ page import="dbconn.util.*, dbclose.util.*, kosta.rental.loginModel.*"%>
 <%@ page import="java.io.PrintWriter" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt"%>
+<fmt:requestEncoding value="utf-8"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,16 +25,9 @@ ${ sessionScope.dto }
 <body>
 <jsp:include page="../_main_login/header.jsp"></jsp:include>
 	
-	<%
-	String member_id = null;
-	if(session.getAttribute("member_id") != null) {
-		member_id = (String) session.getAttribute("member_id");
-	}
-	%>
-	
 	<div class="container">
 		<div class="row">
-		<form action="writeAction.jsp" method="post">
+		<form action="writeAction.eb" method="post">
 			<table class="table table-striped" style="text-align:center; border: 1px solid #dddddd">
 				<thead>
 					<tr>

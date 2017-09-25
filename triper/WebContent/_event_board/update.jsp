@@ -6,9 +6,13 @@
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 <!-- Latest compiled and minified JavaScript -->
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<%@ page import="event.board.*" %>
-
+<%@ page import="event.board.EboardDAO, event.board.EboardDTO" %>
+<%@ page import="dbconn.util.*, dbclose.util.*, kosta.rental.loginModel.*"%>
 <%@ page import="java.io.PrintWriter" %>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt"%>
+<fmt:requestEncoding value="utf-8"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,17 +27,16 @@ ${ sessionScope.dto }
 <jsp:include page="../_main_login/header.jsp"></jsp:include>
 	
 	<%
-	String member_id = null;
-	if(session.getAttribute("member_id") != null) {
-		member_id = (String) session.getAttribute("member_id");
+	String member_id=null;
+	//RentalDTO dto = (RentalDTO)request.getSession().getAttribute("dto");
+	//String member_id = dto.getMember_id();
+	try {
+		RentalDTO dto = (RentalDTO)request.getSession().getAttribute("dto");
+		member_id = dto.getMember_id();
+	} catch (Exception e) {
+		member_id = null;
 	}
-	if (member_id == null) {
-		PrintWriter script = response.getWriter();
-		script.println("<script>");
-		script.println("alert('로그인 하세요.')");
-		script.println("location.href='../loginForm.jsp'");
-		script.println("</script>");
-	}
+
 	int ebNum = 0;
 	if(request.getParameter("ebNum") != null) {
 		ebNum = Integer.parseInt(request.getParameter("ebNum"));
@@ -46,18 +49,13 @@ ${ sessionScope.dto }
 			script.println("</script>");
 	}
 	EboardDTO ebdto = new EboardDAO().getEboardDTO(ebNum);
-	if(!member_id.equals(ebdto.getMember_id())) {
-		PrintWriter script = response.getWriter();
-		script.println("<script>");
-		script.println("alert('권한이 없습니다.')");
-		script.println("location.href='eblist.jsp'");
-		script.println("</script>");
-	}
+	
 	%>
 	
 	<div class="container">
 		<div class="row">
-		<form action="updateAction.jsp?ebNum=<%=ebNum %>" method="post">
+		<form action="updateAction.eb" method="post">
+			<input name="ebNum" value="<%=ebNum%>">
 			<table class="table table-striped" style="text-align:center; border: 1px solid #dddddd">
 				<thead>
 					<tr>

@@ -7,3 +7,5 @@ ebContent varchar(2048),
 ebAvailable int,
 primary key (ebNum)
 );
+
+SELECT * FROM event_board;
