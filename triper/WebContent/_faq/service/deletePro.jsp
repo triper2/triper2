@@ -14,10 +14,8 @@ location.href="list.service";
     </script>
 </c:if> --%>
 <script type="text/javascript">
-	var msg = "게시글을 삭제하시겠습니까?";
-	if(confirm(msg)){
+
 		location.href="list.service";
-	}
 
 
 </script>

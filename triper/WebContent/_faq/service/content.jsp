@@ -34,6 +34,12 @@ ${album.service_title}
 </tr>
 
 <tr>
+<td>이메일</td>
+<td><A href="mailto:${album.service_email}">${album.service_email}</A></td>
+</tr>
+
+
+<tr>
 <td>조회수</td>
 <td>${album.service_readcount}</td>
 </tr>
@@ -62,7 +68,10 @@ ${album.service_content}
 <input type = "button" value ="답글작성"  class="btn btn-success" onclick="document.location.href='writeForm.service?service_id=${album.service_id}&service_ref=${album.service_ref}&service_re_step=${album.service_re_step}&service_level=${album.service_level}'">
 <c:if test="${album.member_id == sessionScope.dto.member_id}">
  <input type="button" value="수정하기"  class="btn btn-success" onClick="location.href='updateForm.service?service_id=${album.service_id}'">  
-   <input type=submit value="삭제하기" class="btn btn-success"> 
+   <a onclick="return confirm('정말로 삭제하시겠습니까?')"
+							href="deletePro.service?service_id=${album.service_id}"
+							class="btn btn-success">삭제하기</a>
+   <!-- <input type=submit value="삭제하기" class="btn btn-success">  -->
   <%-- <input type="button" value="삭제하기"  class="btn btn-success" onClick="location.href='deleteForm.service?service_id=${album.service_id}'"> --%>
   </c:if>
   <input type="button" value="목록보기"  class="btn btn-success" onClick="location.href='list.service'">      
