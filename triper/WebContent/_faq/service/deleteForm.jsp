@@ -31,7 +31,9 @@
        return true;
        }   
      //-->
-   </script>
+
+
+			</script>
 </head>
 <jsp:include page="../../_main_login/header.jsp"></jsp:include>
 <BODY onload="begin()">
