@@ -79,8 +79,8 @@ function previewImage(targetObj, View_area) {
 			img.id = "prevImg";
 			img.classList.add("obj");
 			img.file = file;
-			img.style.width = '100px'; 
-			img.style.height = '100px';
+			img.style.width = '250px'; 
+			img.style.height = '250px';
 			preview.appendChild(img);
 			if (window.FileReader) { // FireFox, Chrome, Opera 확인.
 				var reader = new FileReader();
@@ -138,8 +138,10 @@ function previewImage(targetObj, View_area) {
   </tr>
   <tr>
   	<td colspan="2" align="center">
-	<div align="center" id='View_area' style='position:relative; width: 100px; height: 100px; color: black; border: 0px solid black; dispaly: inline;'>
-		<img id="prevImg" src="../_faq/service/upload/${album.service_img}" width="50" height="50" >	 
+	<div align="center" id='View_area' style='position:relative;  color: black; border: 0px solid black; dispaly: inline;'>
+		<c:if test="${album.service_img != null}">
+		<img id="prevImg" src="../_faq/service/upload/${album.service_img}" width="250" height="250" >
+		</c:if>	 
 	</div>
   	</td>
  </tr>
