@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import car_db.CarDAO;
 
-@WebServlet("/_car/CarConfirmDeleteController.do")
+@WebServlet("/CarConfirmDeleteController.do")
 public class CarConfirmDeleteController extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -28,24 +28,24 @@ public class CarConfirmDeleteController extends HttpServlet {
 		
 		request.setCharacterEncoding("UTF-8");
 	      response.setContentType("text/html;charset=UTF-8");
-		//ï¿½ï¿½ï¿½ï¿½Ú·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½
+		//»ç¿ëÀÚ·Î ºÎÅÍ ÀÔ·Â
 		int orderid= Integer.parseInt(request.getParameter("orderid"));
 		String memberpass = request.getParameter("memberpass");
 		
-		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì½ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+		//µ¥ÀÌÅÍ º£ÀÌ½º °´Ã¼¸¦ »ý¼º
 		CarDAO cdao = new CarDAO();
 
 		int result = cdao.CarOrderDelete(orderid,memberpass);
 		
-		if(result!=0){//1. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ï¿½Ù¸ï¿½
+		if(result!=0){//1. Äõ¸®°¡ Á¦´ë·Î ½ÇÇàµÇ¾ú´Ù¸é
 			RequestDispatcher dis = 
-				request.getRequestDispatcher("/_car/CarListController.do");
+				request.getRequestDispatcher("CarListController.do");
 			dis.forward(request, response);
-		}else{//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¾Ò´Ù¸ï¿½ = passwordï¿½ï¿½ Æ²ï¿½ï¿½
+		}else{//Äõ¸®°¡ Á¦´ë·Î ½ÇÇàµÇÁö ¾Ê¾Ò´Ù¸é = password°¡ Æ²¸²
 			
-			request.setAttribute("result", result);//resultï¿½ï¿½ï¿½ï¿½ 0ï¿½Ô´Ï´ï¿½.
+			request.setAttribute("result", result);//result°ªÀº 0ÀÔ´Ï´Ù.
 			RequestDispatcher dis = 
-					request.getRequestDispatcher("../_car/CarMain.jsp?center=CarConfirmDelete.jsp&top=_Top.jsp");
+					request.getRequestDispatcher("/_car/CarMain.jsp?center=CarConfirmDelete.jsp&top=_Top.jsp");
 				dis.forward(request, response);
 		}
 	

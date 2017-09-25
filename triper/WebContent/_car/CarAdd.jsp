@@ -24,13 +24,12 @@
 
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <body>
-<jsp:include page="../_main_login/header.jsp"></jsp:include>
 	<div class="w3-container w3-blue">
 		<h2>차량 등록 하기<button class="button button2" style="float: right;" onclick="location.href='CarMain.jsp'">되돌아가기</button></h2>
 	
 	</div>
 
-	<form class="w3-container" action="../_car/CarAddController.do" method="post" encType="multipart/form-data" style="text-align: left;">
+	<form class="w3-container" action="../CarAddController.do" method="post" encType="multipart/form-data">
 	
 		<p>
 			<label>차량 번호</label> <input class="w3-input" type="text" name="product_carno" placeholder="숫자만 입력하세요">

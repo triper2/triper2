@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import car_db.CarConfirmBean;
 import car_db.CarDAO;
 
-@WebServlet("/_car/CarConfirmUpdateController.do")
+@WebServlet("/CarConfirmUpdateController.do")
 public class CarConfirmUpdateController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -24,30 +24,25 @@ public class CarConfirmUpdateController extends HttpServlet {
 	}
 
 	protected void requestpro(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String uri = request.getRequestURI();
-	      String conPath = request.getContextPath();
-	      String com = uri.substring(conPath.length());
-	      
-	      System.out.println(uri);
-	      System.out.println(conPath);
-	      System.out.println(com);
 		
-		request.setCharacterEncoding("UTF-8");
-	      response.setContentType("text/html;charset=UTF-8");
+		
+			request.setCharacterEncoding("UTF-8");
+			response.setContentType("text/html;charset=UTF-8");
 			String carimg = request.getParameter("carimg");
 			int orderid = Integer.parseInt(request.getParameter("orderid"));
 			
-			//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+			//µ¥º£ ¿¬°á
 			
 			CarDAO cdao = new CarDAO();
-			
-			//ï¿½Ï³ï¿½ï¿½ï¿½ ï¿½Ö¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¼Òµï¿½ È£ï¿½ï¿½
+			CarConfirmBean cpbean = cdao.getOneprice(carimg);
+			//ÇÏ³ªÀÇ ÁÖ¹® Á¤º¸¸¦ ¾ò¾î¿À´Â ¸Þ¼Òµå È£Ãâ
 			CarConfirmBean cbean = cdao.getOnOrder(orderid);
-			//ï¿½ï¿½ï¿½ï¿½ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+			//Â÷·®ÀÌ¹ÌÁö¸¦ ÀúÀå
 			cbean.setProduct_carimg(carimg);
 			
 			request.setAttribute("cbean", cbean);
-			RequestDispatcher dis = request.getRequestDispatcher("../_car/CarMain.jsp?center=CarConfirmUpdate.jsp&top=_Top.jsp");
+			request.setAttribute("cpbean", cpbean);
+			RequestDispatcher dis = request.getRequestDispatcher("/_car/CarMain.jsp?center=CarConfirmUpdate.jsp&top=_Top.jsp");
 			dis.forward(request, response);
 	
 	}

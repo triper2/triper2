@@ -9,6 +9,7 @@ public class CarConfirmBean {
 	private int product_carprice;
 	private int orderid;
 	private String reserved_carbegindate;
+	private String reserved_carenddate;
 	private int reserved_product_count;
 	private int reserved_option_usein;
 	private int reserved_option_carwifi;
@@ -16,6 +17,13 @@ public class CarConfirmBean {
 	private int reserved_option_carseat;
 	private int totalprice;
 	private long calDateDays;
+	
+	public String getReserved_carenddate() {
+		return reserved_carenddate;
+	}
+	public void setReserved_carenddate(String reserved_carenddate) {
+		this.reserved_carenddate = reserved_carenddate;
+	}
 	public long getCalDateDays() {
 		return calDateDays;
 	}

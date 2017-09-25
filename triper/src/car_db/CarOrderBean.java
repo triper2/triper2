@@ -18,6 +18,13 @@ public class CarOrderBean {
 	private String memberpass;
 	private int totalprice;
 	private int calDateDays;
+	private int c_total;
+	public int getC_total() {
+		return c_total;
+	}
+	public void setC_total(int c_total) {
+		this.c_total = c_total;
+	}
 	public int getTotalprice() {
 		return totalprice;
 	}
