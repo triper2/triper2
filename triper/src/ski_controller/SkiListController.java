@@ -16,7 +16,7 @@ import ski_db.SkiListBean;
 /**
  * Servlet implementation class SkiListController
  */
-@WebServlet("/SkiListController1.do")
+@WebServlet("/SkiListController2.ski")
 public class SkiListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
  
@@ -29,8 +29,7 @@ public class SkiListController extends HttpServlet {
 		requestpro(request, response);
 	}
 	protected void requestpro(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			String ski = request.getParameter("ski");
-			System.out.println(ski);
+			
 		//데이터 베이스에 접근하기위한 Model클래스를 생성
 				SkiDAO sdao = new SkiDAO();
 				//실제 데이터 베이스에 접근하여 자동차 정보를 모두 읽어서 백터에 저장

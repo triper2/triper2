@@ -109,7 +109,6 @@ nav .fa.fa-angle-down {
 }
 </style>
 
-<c:set var="dto" value="${ sessionScope.dto }"/>
 
 </head>
 
@@ -117,30 +116,22 @@ nav .fa.fa-angle-down {
 	<nav>
 		<div class="container">
 			<ul>
-				<li style="z-index: 999;"><a href="../_main_login/main.jsp"><img src="../image/tripericon.png" height="40px" width="80px"></a></li>
-				<li style="z-index: 999;"><a href="bbs.review">리뷰 아직<i class='fa fa-angle-down'></i></a>
+				<li style="z-index: 999;"><a href="/triper/_main_login/main.jsp">Home</a></li>
+				<li style="z-index: 999;"><a href="/triper/_ski/Skimain2.jsp">Ski Home</a></li>
+				<li style="z-index: 999;"><a href="#">SKI<i class='fa fa-angle-down'></i></a>
 					<ul>
-						<li><a href="bbs.review">리뷰 테스트</a></li>
-						<li><a href="../_ski/Skimain2.jsp">SKI</a></li>
-						<li><a href="#">샘플3</a></li>
-						<li><a href="#">샘플4</a></li>
+						<li><a href="/triper/SkiListController2.ski">SKI</a></li>
+						<li><a href="/triper/SkiClothListController.do">SKICLOTH</a></li>
+						
 					</ul></li>
-				<li style="z-index: 999;"><a href="../_car/CarMain.jsp">예약(지도) 아직<i class='fa fa-angle-down'></i></a>
+				<li style="z-index: 999;"><a href="#">BOARD<i class='fa fa-angle-down'></i></a>
 					<ul>
-						<li><a href="../_car/CarMain.jsp">렌트카 테스트</a></li>
-						<li><a href="../_business/businessAddSelectForm.jsp">다음지도</a></li>
-						<li><a href="../_event_board/eblist.jsp">게시판 테스트</a></li>
-						<li><a href="../_business/myList.business">사업장리스트</a></li>
-						<li><a href="../_business/businessAllListForm.jsp">렌트하기</a></li>
+						<li><a href="/triper/BoardListController.do">BOARD</a></li>
+						<li><a href="/triper/BoardClothListController.do">BOARDCLOTH</a></li>
 					</ul></li>
-				<li style="z-index: 999;"><a href="../_faq/help.jsp">고객센터 아직<i class='fa fa-angle-down'></i></a>
-					<ul>
-						<li><a href="../_faq/help.jsp">FAQ</a></li>
-						<li><a href="list.service">고객센터 테스트</a></li>
-						<li><a href="#">샘플3</a></li>
-						<li><a href="#">샘플4</a></li>
-					</ul></li>
-				<li style="z-index: 999;"><a href="#">회사소개 아직</a></li>
+				<li style="z-index: 999;"><a href="/triper/_ski/SkiMain.jsp?center=ReserveConfirm.jsp">예약확인<i class='fa fa-angle-down'></i></a>
+					</li>
+				<li style="z-index: 999;"><a href="/triper/_ski/SkiMain.jsp?center=Add.jsp">상품추가</a></li>
 				<c:if test="${ sessionScope.dto != null }">
 				<li style="float:right"><a href="../_main_login/logoutPro.jsp">Log out</a></li>
 				<li style="float:right; margin-top:10px;">  

@@ -11,8 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import car_db.CarDAO;
 import car_db.CarOrderBean;
+import kosta.rental.loginModel.RentalDTO;
 
-@WebServlet("/CarOrderController.do")
+@WebServlet("/_car/CarOrderController.do")
 public class CarOrderController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
   
@@ -36,7 +37,7 @@ public class CarOrderController extends HttpServlet {
 		
 		request.setCharacterEncoding("UTF-8");
 	      response.setContentType("text/html;charset=UTF-8");
-		//jsp¸¦ ÅëÇØ¼­ ³Ñ¾î¿À¤¤ µ¥ÀÌÅÍ¸¦ ºóÅ¬·¡½º¿¡ ÀúÀå
+		//jspï¿½ï¿½ ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		CarOrderBean cbean = new CarOrderBean();
 		cbean.setProduct_carno(Integer.parseInt(request.getParameter("carno")));
 		cbean.setReserved_product_count(Integer.parseInt(request.getParameter("carqty")));
@@ -50,12 +51,14 @@ public class CarOrderController extends HttpServlet {
 		cbean.setMemberpass(request.getParameter("memberpass"));
 		cbean.setTotalprice(Integer.parseInt(request.getParameter("totalprice")));
 		cbean.setCalDateDays(Integer.parseInt(request.getParameter("caldateDays")));
-		//µ¥ÀÌÅÍ º£ÀÌ½º °´Ã¼ »ý¼º
+		cbean.setMember_id(((RentalDTO)request.getSession().getAttribute("dto")).getMember_id());
+		cbean.setBusiness_id(request.getParameter("business_id"));
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì½ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½
 		CarDAO cdao = new CarDAO();
-		//ÁÖ¹® ÇöÈ²À» ÀúÀå
+		//ï¿½Ö¹ï¿½ ï¿½ï¿½È²ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		cdao.insertCarOrder(cbean);
 		
-		RequestDispatcher dis = request.getRequestDispatcher("CarListController.do");
+		RequestDispatcher dis = request.getRequestDispatcher("/_car/CarListController.do?business="+request.getParameter("business_id"));
 		
 		dis.forward(request, response);
 	}

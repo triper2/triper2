@@ -20,7 +20,7 @@
 	
 	<c:set var="top" value="${param.top}"/>
 	<c:if test="${param.top == null}">
-	<c:set var="top" value="Top.jsp" />
+	<c:set var="top" value="Skimain2.jsp" />
 	</c:if>
 	<center>
 		<table width="1000" height="700">

@@ -16,7 +16,7 @@ import car_db.CarListBean;
 /**
  * Servlet implementation class CarcategoryController
  */
-@WebServlet("/CarcategoryController.do")
+@WebServlet("/_car/CarcategoryController.do")
 public class CarcategoryController extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -35,19 +35,18 @@ public class CarcategoryController extends HttpServlet {
 	      String conPath = request.getContextPath();
 	      String com = uri.substring(conPath.length());
 	      
-	      System.out.println(uri);
-	      System.out.println(conPath);
-	      System.out.println(com);
+	      String business_id = request.getParameter("business_id");
+	      
 		request.setCharacterEncoding("UTF-8");
 	      response.setContentType("text/html;charset=UTF-8");
 		String carcategory = request.getParameter("carcategory");
 		
 		CarDAO dao=new CarDAO();
 		
-		Vector<CarListBean> v = dao.getCategoryCarList(carcategory);
+		Vector<CarListBean> v = dao.getCategoryCarList(carcategory, business_id);
 		
 		request.setAttribute("v",v);
-		RequestDispatcher dis = request.getRequestDispatcher("./_car/CarMain.jsp?center=CarList.jsp&top=_Top.jsp");
+		RequestDispatcher dis = request.getRequestDispatcher("/_car/CarMain.jsp?center=CarList.jsp&top=_Top.jsp&business_id="+business_id);
 		dis.forward(request, response);
 	}
 

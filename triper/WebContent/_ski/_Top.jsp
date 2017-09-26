@@ -220,7 +220,7 @@ body {
 		<div class='menu'>
 			<ul>
 				<li>
-					<a href='/SkiReserVation/_ski/SkiMain.jsp'>Home</a>
+					<a href='/triper/_main_login/main.jsp'>Home</a>
 				</li>
 				<li>
 					<a href='#'>About Us</a>
@@ -232,10 +232,10 @@ body {
 							<a href='#'>SKI</a>
 							<ul>
 								<li>
-									<a href='/SkiReserVation/SkiListController1.do'>SKI</a>
+									<a href='../SkiListController1.do'>SKI</a>
 								</li>
 								<li class='last'>
-									<a href='/SkiReserVation/SkiClothListController.do'>SKI CLOTH</a>
+									<a href='/triper/SkiClothListController.do'>SKI CLOTH</a>
 								</li>
 							</ul>
 						</li>
@@ -243,17 +243,17 @@ body {
 							<a href='#'>Board</a>
 							<ul>
 								<li>
-									<a href='/SkiReserVation/BoardListController.do'>Board</a>
+									<a href='/triper/BoardListController.do'>Board</a>
 								</li>
 								<li class='last'>
-									<a href='/SkiReserVation/BoardClothListController.do'>Board Cloth</a>
+									<a href='/triper/BoardClothListController.do'>Board Cloth</a>
 								</li>
 							</ul>
 						</li>
 					</ul>
 				</li>
 				<li>
-					<a href='/SkiReserVation/_ski/SkiMain.jsp?center=ReserveConfirm.jsp'>예약확인</a>
+					<a href='/triper/_ski/SkiMain.jsp?center=ReserveConfirm.jsp'>예약확인</a>
 				</li>
 				<li class='last'>
 					<a href='#'>Downloads</a>

@@ -1,12 +1,12 @@
 package car_db;
 
-//Â÷·® ·»Æ®¿¡ ´ëÇÑ Á¤º¸¸¦ ÀúÀåÇÏ´Â ºó
+//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½
 public class CarOrderBean {
 
 	private int orderid;
 	private int product_carno;
-	private int reserved_product_count ; // carqty¼ö·®
-	private String reserved_carbegindate ;//carbegindate ºô¸°³¯
+	private int reserved_product_count ; // carqtyï¿½ï¿½ï¿½ï¿½
+	private String reserved_carbegindate ;//carbegindate ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	private String reserved_carbegintime;
 	private String reserved_carenddate;
 	private String reserved_carendtime;
@@ -19,6 +19,20 @@ public class CarOrderBean {
 	private int totalprice;
 	private int calDateDays;
 	private int c_total;
+	private String member_id;
+	private String business_id;
+	public String getMember_id() {
+		return member_id;
+	}
+	public void setMember_id(String member_id) {
+		this.member_id = member_id;
+	}
+	public String getBusiness_id() {
+		return business_id;
+	}
+	public void setBusiness_id(String business_id) {
+		this.business_id = business_id;
+	}
 	public int getC_total() {
 		return c_total;
 	}

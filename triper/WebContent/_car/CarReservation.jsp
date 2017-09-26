@@ -2,11 +2,10 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<body>
 	<center>
 		<table width="400" border="0">
 			<h1>  <img height="50" src="img/ccs.jpg" border="0"></h1>
-		<form action ="../CarcategoryController.do" method="post">
+		<form action ="../_car/CarcategoryController.do?business_id=${param.business_id }" method="post">
 				<tr align="center">
 					<td width="100">차량종류</td>
 					<td width="100" height="50">
@@ -22,7 +21,7 @@
 					</td>
 				
 					<td align="center">
-					<input type="button" value="전체검색" onclick="location.href='../CarListController.do'">
+					<input type="button" value="전체검색" onclick="location.href='../_car/CarListController.do?business_id=${param.business_id }'">
 					</td>
 				</tr>
 				

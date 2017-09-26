@@ -13,6 +13,13 @@ public class CarListBean {
 	private String product_carinfo;
 	private String product_carimg;
 	private String product_carcategory;
+	private String business_id;
+	public String getBusiness_id() {
+		return business_id;
+	}
+	public void setBusiness_id(String business_id) {
+		this.business_id = business_id;
+	}
 	public int getProduct_carno() {
 		return product_carno;
 	}

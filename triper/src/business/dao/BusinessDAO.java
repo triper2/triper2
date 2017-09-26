@@ -116,11 +116,30 @@ public class BusinessDAO {
 		}
 	    return list;
 	}
-	public ArrayList<BusinessVO> allBusinessList() {
+	public ArrayList<BusinessVO> allBusinessList(String keyword, String category) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "select * from business_list where BUSINESS_ASSENT='승인'";
+		String sql = "select * from business_list where BUSINESS_ASSENT='승인' "
+				+ " and business_category='"+category+"' and (";
+		
+		String[] kwd = keyword.split(" ");
+		int kwdLength = kwd.length;
+		ArrayList<String> arr = new ArrayList<String>();
+		boolean first = true;
+		for(int i=0; i<kwdLength; i++) {
+			if(kwd[i] != "") {
+				if(!first) {
+					sql += " or ";
+				}
+				first = false;
+				sql += " business_road_address LIKE '%"+kwd[i]+"%'"
+					+ " or business_address LIKE '%"+kwd[i]+"%'"
+					+ " or business_name LIKE '%"+kwd[i]+"%'";
+			}
+		}
+		sql += ")";
+		
 		ArrayList<BusinessVO> list = new ArrayList<BusinessVO>();
 		try {
 			conn = loadOracleDriver();
