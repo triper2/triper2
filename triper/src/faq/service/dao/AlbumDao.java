@@ -158,11 +158,14 @@ public class AlbumDao {
                 pstmt.setInt(1, startRow);
                 pstmt.setInt(2, endRow);    
             }else{
-                sql ="select * from(select a.*, rownum rnum from(select * from service_board where "+keyField+" like ? order by service_id desc)a) where rnum >=? and rnum <=?";
+                sql ="select * from(select a.*, rownum rnum from(select * from service_board where "+keyField+" like ? order by service_id desc)a) where rnum >=? and rnum <=? and service_pwd is null";
                 pstmt =conn.prepareStatement(sql);    
+                Album album =new Album();
+                
                 pstmt.setString(1, "%"+keyWord+"%");
                 pstmt.setInt(2, startRow);
                 pstmt.setInt(3, endRow);
+                
             }
             rs = pstmt.executeQuery();
             if(rs.next()){
@@ -298,10 +301,11 @@ public class AlbumDao {
     }
     
     //삭제
-    public void  deleteArticle(int service_id)throws Exception{
+    public int  deleteArticle(int service_id)throws Exception{
         Connection conn =null;
         PreparedStatement pstmt=null;
-        String sql=null;        
+        String sql=null;
+        int cnt = 0;
         
         try{            
             conn= getConnection();
@@ -309,14 +313,14 @@ public class AlbumDao {
             sql="delete from service_board where service_id=?";
             pstmt =conn.prepareStatement(sql);
             pstmt.setInt(1, service_id);
-            pstmt.executeUpdate();
+            cnt = pstmt.executeUpdate();
 
         }catch(Exception ex){
             ex.printStackTrace();
         }finally{
             execClose(null,pstmt,conn);
         }        
-        return ;
+        return cnt;
     }
         
     //인증

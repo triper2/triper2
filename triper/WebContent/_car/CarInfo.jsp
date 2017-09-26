@@ -2,30 +2,22 @@
     pageEncoding="UTF-8"%>
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<link rel="stylesheet" href="../css/bootstrap.css">
-<link rel="stylesheet" href="../css/custom.css">
-<link rel="stylesheet" href="../css/review.css">
-
-<script type="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-<script type="../js/bootstrap.js"></script>
-
-
-
 <html>
 <body>
-	<form action="CarMain.jsp?center=CarOption.jsp" method="post">
-	<table class="table table-striped"style="background-color: white; text-align: center; border: 1px solid #dddddd">
+<center>
+	<img alt="" src="img/cis.jpg" border="0">
+	<form action="_car/CarMain.jsp?center=CarOption.jsp" method="post">
+	<table width="1000" border="0" align="center">
 	<tr align="center">
-		<td rowspan="6" width="70%">
+		<td rowspan="6" width="600">
 		<img alt="" src="img/${bean.product_carimg }" width="450" border="0">
 		</td>
-		<td align="center" width="20%"> 차량이름  </td>
-		<td align="center"> ${bean.product_carname } </td> 
+		<td align="center" width="200"> 차량이름  </td>
+		<td align="center" width="200"> ${bean.product_carname } </td> 
 	</tr>
 	<tr>
-		<td align="center"> 대여수량  </td>
-		<td align="center"> <select class=" form-control" name="carqty">
+		<td align="center" width="200"> 대여수량  </td>
+		<td align="center" width="200"> <select name="carqty">
 										<option value="1">1</option>
 										<option value="2">2</option>
 										<option value="3">3</option>
@@ -60,17 +52,18 @@
 		<input type="hidden" name="carno" value="${bean.product_carno }">
 		<input type="hidden" name="carimg" value="${bean.product_carimg }">
 		<input type="hidden" name="carprice" value="${bean.product_carprice }">
-		<input type="button" value="이전" class="btn btn-primary" onclick="location.href='../_car/CarListController.do'">
+		<input type="button" value="이전" onclick="location.href='./CarListController.do'">
 		</td>
 		<td align="center" width="200"> 
-			<input class="btn btn-primary" type="submit" value="옵션 선택하기">
-		 </td>  
+			<input type="submit" value="옵션 선택하기">
+		 </td> 
 	</tr>
 	</table>
 	</form>	
 	<p>
 	<b>차량 정보 상세 보기</b><p>
 	${bean.product_carinfo }
+	</center>
 
 </body>
 </html>

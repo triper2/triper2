@@ -54,8 +54,7 @@ ${ sessionScope.dto }
 	
 	<div class="container">
 		<div class="row">
-		<form action="updateAction.eb" method="post">
-			<input name="ebNum" value="<%=ebNum%>">
+		<form action="updateAction.eb" method="post" enctype="multipart/form-data">
 			<table class="table table-striped" style="text-align:center; border: 1px solid #dddddd">
 				<thead>
 					<tr>
@@ -67,7 +66,10 @@ ${ sessionScope.dto }
 							<td><input type="text" class="form-control" placeholder="글 제목" name="ebTitle" maxlenght="50" value="<%=ebdto.getEbTitle() %>"></td>
 						</tr>
 						<tr>
-							<td><textarea class="form-control" placeholder="글 내용" name="ebContent" maxlenght="2048" style="height:350px;"><%=ebdto.getEbContent() %>"</textarea></td>
+							<td><textarea class="form-control" placeholder="글 내용" name="ebContent" maxlenght="2048" style="height:350px;"><%=ebdto.getEbContent() %></textarea></td>
+						</tr>
+						<tr>
+							<td><input type="file" class="form-control" placeholder="이미지" name="ebImg" maxlenght="50"></td>
 						</tr>
 					</tbody>
 				</table>

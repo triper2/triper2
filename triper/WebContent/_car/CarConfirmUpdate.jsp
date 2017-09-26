@@ -10,7 +10,7 @@
 <body>
 <center>
 	<h1> 차량 주문 수정 페이지 </h1>
-	<form action ="../_car/CarConfirmUpdateProcController.do?orderid=${cbean.orderid }" method="post">
+	<form action ="CarConfirmUpdateProcController.do?orderid=${cbean.orderid }&carprice=${cpbean.product_carprice}" method="post">
 	<table width="1000" border="0" align="center">
 		<tr align="center">
 			<td rowspan="8" width="600">
@@ -21,6 +21,11 @@
 		<td align="center" >대여일</td>
 		<td align="center">
 		<input type="date" name="carbegindate" value="${cbean.reserved_carbegindate }"></td>
+	</tr>
+	<tr>
+		<td align="center" >반납일</td>
+		<td align="center">
+		<input type="date" name="carenddate" value="${cbean.reserved_carenddate }"></td>
 	</tr>
 	<tr>
 		<td align="center" width="200"> 차량수량 </td>

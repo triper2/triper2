@@ -23,8 +23,8 @@ public class UpdateProAction implements Action{
         
         AlbumDao manager = AlbumDao.getInstance();      
         //인증
-       String kim=null;
-        System.out.println(multi.getParameter("pwd1:" + "service_pwd"));
+       //String kim=null;
+        //System.out.println(multi.getParameter("pwd1:" + "service_pwd"));
        
         Album album =new Album();  
             String originImage = multi.getParameter("originImage");            
@@ -38,7 +38,7 @@ public class UpdateProAction implements Action{
             album.setService_pwd(multi.getParameter("service_pwd"));
             album.setService_content(multi.getParameter("service_content"));
             album.setService_ip(request.getRemoteAddr());
-            System.out.println("pwd2:" + multi.getParameter("service_pwd"));
+            //System.out.println("pwd2:" + multi.getParameter("service_pwd"));
             if(service_img !=null){      
                 //이미지가 변경되었을 경우
                 album.setService_img(FileUtil.rename(service_img));
@@ -58,7 +58,7 @@ public class UpdateProAction implements Action{
         }*/
         
         request.setAttribute("album", album);
-        System.out.println("pwd3:" + multi.getParameter("service_pwd"));
+       // System.out.println("pwd3:" + multi.getParameter("service_pwd"));
         return "/_faq/service/updatePro.jsp;";
     }
 }

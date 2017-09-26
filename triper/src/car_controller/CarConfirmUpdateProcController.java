@@ -1,6 +1,8 @@
 package car_controller;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,57 +17,97 @@ import car_db.CarOrderBean;
 /**
  * Servlet implementation class CarConfirmUpdateProcController
  */
-@WebServlet("/_car/CarConfirmUpdateProcController.do")
+@WebServlet("/CarConfirmUpdateProcController.do")
 public class CarConfirmUpdateProcController extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		requestpro(request, response);
+		try {
+			requestpro(request, response);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		requestpro(request, response);
+		try {
+			requestpro(request, response);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
-	protected void requestpro(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		String uri = request.getRequestURI();
-	      String conPath = request.getContextPath();
-	      String com = uri.substring(conPath.length());
-	      
-	      System.out.println(uri);
-	      System.out.println(conPath);
-	      System.out.println(com);
+	protected void requestpro(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		request.setCharacterEncoding("UTF-8");
 	      response.setContentType("text/html;charset=UTF-8");
-		//ï¿½ï¿½ï¿½ï¿½Ú·Îºï¿½ï¿½ï¿½ ï¿½Ñ¾ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½Ô·ï¿½
+		//»ç¿ëÀÚ·ÎºÎÅÍ ³Ñ¾î¿Â µ¥ÀÌÅÍ¸¦ ÀÔ·Â
 		int orderid = Integer.parseInt(request.getParameter("orderid"));
 		int carqty=Integer.parseInt(request.getParameter("carqty"));
 		int carins=Integer.parseInt(request.getParameter("carins"));
 		int carwifi=Integer.parseInt(request.getParameter("carwifi"));
 		
 		int carseat=Integer.parseInt(request.getParameter("carbabyseat"));
-		String carbegindate = request.getParameter("carbegindate");
+		String reserved_carbegindate = request.getParameter("carbegindate");
+		String reserved_carenddate= request.getParameter("carenddate");
 		String memberpass = request.getParameter("memberpass");
-		
-		//carorderbean Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¿ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ DAO
+		int carprice = Integer.parseInt(request.getParameter("carprice"));
+		System.out.println(reserved_carbegindate);
+		//carorderbean Å¬·¡½º ÀÌ¿ëÇÏ¿© µ¥ÀÌÅÍ¸¦ ÀúÁ¤ ÈÄ ºóÅ¬·¡½º·Î DAO
 		CarOrderBean bean = new CarOrderBean();
 		
 		bean.setOrderid(orderid);
 		bean.setReserved_product_count(carqty);
 		bean.setReserved_option_carwifi(carwifi);
-	
+		//³¯Â¥ ºñ±³
+		bean.setReserved_carbegindate(reserved_carbegindate);
+		bean.setReserved_carenddate(reserved_carenddate);
+		Date d1=new Date();
+		Date d2=new Date();
+		Date d3=new Date();
+		//³¯Â¥¸¦ 2016-4-4 Æ÷¸Ë ÇØÁÖ´Â Å¬·¡½º ¼±¾ð
+		SimpleDateFormat sdf =new SimpleDateFormat("yyyy-MM-dd");
+		
+		d1=sdf.parse(bean.getReserved_carbegindate());
+		d2=sdf.parse(bean.getReserved_carenddate());
+		d3=sdf.parse(sdf.format(d3));
+		
+		//³¯Â¥ ºñ±³ ¸Þ¼Òµå¸¦ »ç¿ë
+		 long calDate = d1.getTime() - d2.getTime(); 
+	        
+	        // Date.getTime() Àº ÇØ´ç³¯Â¥¸¦ ±âÁØÀ¸·Î1970³â 00:00:00 ºÎÅÍ ¸î ÃÊ°¡ Èê·¶´ÂÁö¸¦ ¹ÝÈ¯ÇØÁØ´Ù. 
+	        // ÀÌÁ¦ 24*60*60*1000(°¢ ½Ã°£°ª¿¡ µû¸¥ Â÷ÀÌÁ¡) À» ³ª´²ÁÖ¸é ÀÏ¼ö°¡ ³ª¿Â´Ù.
+	        int calDateDays = (int) (calDate / ( 24*60*60*1000)); 
+	 
+	        calDateDays = Math.abs(calDateDays);
+
+		int compare =d1.compareTo(d3);
+		int compare1 =d2.compareTo(d3);
+		
+		int totalprice =( carprice * carqty* calDateDays)
+		 + ((( carins +  carwifi +  carseat) * calDateDays)*10000);
+		
 		bean.setReserved_option_usein(carins);
 		bean.setReserved_option_carbabyseat(carseat);
-		bean.setReserved_carbegindate(carbegindate);
+		bean.setCalDateDays(calDateDays);
 		bean.setMemberpass(memberpass);
-		
-		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì½ï¿½ ï¿½ï¿½Ã¼
+		bean.setTotalprice(totalprice);
+		//µ¥ÀÌÅÍ º£ÀÌ½º °´Ã¼
+		System.out.println(totalprice);
+		System.out.println(carprice);
+		System.out.println(calDateDays);
 		CarDAO cdao = new CarDAO();
 		cdao.CarOrderUpdate(bean);
+		System.out.println(carprice);
+		System.out.println(carqty);
+		System.out.println(calDateDays);
+		System.out.println(carins);
+		System.out.println(carwifi);
+		System.out.println(carseat);
 		
 		request.setAttribute("bean", bean);
-		RequestDispatcher dis = request.getRequestDispatcher("../_car/CarMain.jsp?center=CarReserveConfirm.jsp&top=_Top.jsp");
+		RequestDispatcher dis = request.getRequestDispatcher("/CarListController.do");
 		dis.forward(request, response);
 		
 		

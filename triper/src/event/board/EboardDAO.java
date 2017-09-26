@@ -9,9 +9,7 @@ import java.util.ArrayList;
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 
-import kosta.rental.loginModel.RentalDAO;
-import kosta.rental.loginModel.RentalDTO;
-import kosta.rental.loginAction.*;
+import com.oreilly.servlet.MultipartRequest;
 
 public class EboardDAO {
 
@@ -19,7 +17,7 @@ public class EboardDAO {
 	private ResultSet rs;
 	ServletRequest session;
 	HttpServletRequest request;
-	
+
 	public EboardDAO() {
 		try {
 			String dbURL = "jdbc:oracle:thin:@192.168.0.125:1521:xe";
@@ -61,17 +59,18 @@ public class EboardDAO {
 		return -1; //DB 오류
 	}
 	
-	public int write(String ebTitle, String member_id, String ebContent) throws Exception {
-		String sql="insert into event_board values (?, ?, ?, SYSDATE, ?, ?)"; // 마지막에 쓰인 글 번호 가져옴
-		//RentalDTO dto = (RentalDTO)request.getSession().getAttribute("dto");
-		//member_id = dto.getMember_id();
+	public int write(EboardDTO ebdto) throws Exception {
+		String sql="insert into event_board values (?, ?, ?, SYSDATE, ?, ?, ?)"; // 마지막에 쓰인 글 번호 가져옴
+		//MultipartRequest multi = FileUtil.createFile(request);
+		//String ebImg = multi.getFilesystemName("ebImg");
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, getNext());
-			pstmt.setString(2, ebTitle);
-			pstmt.setString(3, member_id);
-			pstmt.setString(4, ebContent);
+			pstmt.setString(2, ebdto.getEbTitle());
+			pstmt.setString(3, ebdto.getMember_id());
+			pstmt.setString(4, ebdto.getEbContent());
 			pstmt.setInt(5, 1); //삭제안된거니 1넣어줌
+			pstmt.setString(6, ebdto.getEbImg());
 			return pstmt.executeUpdate(); 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -98,6 +97,7 @@ public class EboardDAO {
 				ebdto.setEbDate(rs.getString("ebDate"));
 				ebdto.setEbContent(rs.getString("ebContent"));
 				ebdto.setEbAvailable(rs.getInt("ebAvailable"));
+				ebdto.setEbImg(rs.getString("ebImg"));
 				list.add(ebdto);
 			}
 		} catch (Exception e) {
@@ -137,6 +137,7 @@ public class EboardDAO {
 				ebdto.setEbDate(rs.getString("ebDate"));
 				ebdto.setEbContent(rs.getString("ebContent"));
 				ebdto.setEbAvailable(rs.getInt("ebAvailable"));
+				ebdto.setEbImg(rs.getString("ebImg"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -144,13 +145,14 @@ public class EboardDAO {
 		return ebdto; 		
 	}
 	
-	public int update(int ebNum, String ebTitle, String ebContent) throws Exception {
-		String sql="update event_board set ebTitle=?, ebContent=? where ebNum=?"; 
+	public int update(EboardDTO ebdto) throws Exception {
+		String sql="update event_board set ebTitle=?, ebContent=?, ebImg=? where ebNum=?"; 
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, ebTitle);
-			pstmt.setString(2, ebContent);
-			pstmt.setInt(3, ebNum);
+			pstmt.setString(1, ebdto.getEbTitle());
+			pstmt.setString(2, ebdto.getEbContent());
+			pstmt.setString(3, ebdto.getEbImg());
+			pstmt.setInt(4, ebdto.getEbNum());
 			return pstmt.executeUpdate(); 
 		} catch (Exception e) {
 			e.printStackTrace();

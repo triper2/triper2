@@ -116,14 +116,14 @@ function previewImage(targetObj, View_area) {
 <th colspan="2"style="background-color: #eeeeee; text-align: center;">수 정</td>
 </tr>
 
-
-<tr>
-<td colspan=2><input type="text" class="form-control" placeholder="Email" size="40" name="service_email" maxlength="30" value="${album.service_email}"></td>
-</tr>
-
 <tr>
     <td colspan=2><input type="text" class="form-control" placeholder="제목" size="40" name="service_title" maxlength="50" value="${album.service_title}"></td>
 </tr>
+
+<%-- <tr>
+<td colspan=2><input type="text" class="form-control" placeholder="Email" size="40" name="service_email" maxlength="30" value="${album.service_email}"></td>
+</tr>
+ --%>
 <tr>
     <input type="hidden" name="originImage" value="${album.service_img}">
 </tr>

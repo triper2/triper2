@@ -118,6 +118,7 @@ function previewImage(targetObj, View_area) {
 			<div class="row">
 <table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
        <input type="hidden" size="10" maxlength="10" name="member_id" value="${sessionScope.dto.member_id }">
+      <%--  <input type="hidden" size="10" maxlength="10" name="member_email" value="${sessionScope.dto.member_email }"> --%>
  <tr>
 <th colspan="2"style="background-color: #eeeeee; text-align: center;">글쓰기</th></tr>
   <tr>
@@ -131,9 +132,9 @@ function previewImage(targetObj, View_area) {
   </tr>
   
 <tr>
-<td colspan=2><input type="text" class="form-control" placeholder="Email" size="40" name="service_email" maxlength="30"></td>
+<td colspan=2><input readonly="readonly" type="text" class="form-control" value="${sessionScope.dto.member_email }" size="40" name="service_email" maxlength="30"></td>
 </tr>
-
+ 
 <tr>
 <td colspan=2><textarea class="form-control" placeholder="글 내용" name="service_content" maxlength="2048" style="height: 350px;"></textarea></td>
 </tr>
