@@ -5,7 +5,7 @@
 <body>
 <center>
 	<img alt="" src="img/hwakin.jpg" border="0">
-	<form action="../CarReserveConfirmController.do" method="post">
+	<form action="../_car/CarReserveConfirmController.do?business_id=${business_id }" method="post">
 	<table width="400" border="0">
 		<tr height="60" align="center">
 			<td align="center"	width="200"> 전화번호 입력 : </td>

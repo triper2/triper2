@@ -6,10 +6,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
+import javax.sql.DataSource;
 
 import com.oreilly.servlet.MultipartRequest;
+
+import business.dao.BusinessDAO;
+import dbconn.util.ConnectionUtil;
 
 public class EboardDAO {
 
@@ -17,17 +23,27 @@ public class EboardDAO {
 	private ResultSet rs;
 	ServletRequest session;
 	HttpServletRequest request;
+	
+	private static EboardDAO instance = new EboardDAO();
+	public static EboardDAO getInstance() {
+		return instance;
+	}
+	public static Connection getConnection() throws Exception {
+		Context ctx = new InitialContext();
+		Context env = (Context) ctx.lookup("java:comp/env");
+		DataSource ds = (DataSource) env.lookup("jdbc:TriperDB");
 
-	public EboardDAO() {
+		return ds.getConnection();
+	}
+	
+	public static Connection loadOracleDriver() {
+		Connection conn = null;
 		try {
-			String dbURL = "jdbc:oracle:thin:@192.168.0.125:1521:xe";
-			String dbID = "triper";
-			String dbPassword = "triper";
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-			conn = DriverManager.getConnection(dbURL, dbID, dbPassword);
+			conn = ConnectionUtil.getConnection("oracle");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return conn;
 	}
 	
 /*	public String getDate() {
@@ -47,6 +63,7 @@ public class EboardDAO {
 	public int getNext() {
 		String sql="select ebNum from event_board order by ebNum desc"; // 마지막에 쓰인 글 번호 가져옴
 		try {
+			conn = loadOracleDriver();
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			if(rs.next()){
@@ -64,6 +81,7 @@ public class EboardDAO {
 		//MultipartRequest multi = FileUtil.createFile(request);
 		//String ebImg = multi.getFilesystemName("ebImg");
 		try {
+			conn = loadOracleDriver();
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, getNext());
 			pstmt.setString(2, ebdto.getEbTitle());
@@ -84,6 +102,7 @@ public class EboardDAO {
 		//String sql="select * from bbs where ebNum < ? AND ebAvailable=1 order by desc limit 10"; 
 		ArrayList<EboardDTO> list = new ArrayList<EboardDTO>();
 		try {
+			conn = loadOracleDriver();
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, (pageNumber-1)*10);
 	        pstmt.setInt(2, (pageNumber)*10);
@@ -110,6 +129,7 @@ public class EboardDAO {
 		String sql="select * from event_board where ebNum < ? AND ebAvailable=1"; 
 		ArrayList<EboardDTO> list = new ArrayList<EboardDTO>();
 		try {
+			conn = loadOracleDriver();
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, getNext() - (pageNumber-1)*10);
 			rs = pstmt.executeQuery();
@@ -126,6 +146,7 @@ public class EboardDAO {
 		EboardDTO ebdto = null;
 		String sql="select * from event_board where ebNum =?"; 
 		try {
+			conn = loadOracleDriver();
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, ebNum);
 			rs = pstmt.executeQuery();
@@ -148,6 +169,7 @@ public class EboardDAO {
 	public int update(EboardDTO ebdto) throws Exception {
 		String sql="update event_board set ebTitle=?, ebContent=?, ebImg=? where ebNum=?"; 
 		try {
+			conn = loadOracleDriver();
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, ebdto.getEbTitle());
 			pstmt.setString(2, ebdto.getEbContent());
@@ -163,6 +185,7 @@ public class EboardDAO {
 	public int delete(int ebNum) throws Exception {
 		String sql="update event_board set ebAvailable=0 where ebNum=?"; 
 		try {
+			conn = loadOracleDriver();
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, ebNum);
 			return pstmt.executeUpdate(); 

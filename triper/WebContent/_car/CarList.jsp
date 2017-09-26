@@ -6,17 +6,16 @@
 <body>
 <center>
 
-
 	<img alt="" src="img/cis.jpg" border="0">
 	<!-- 카테고리 분류 검색을 위하여 form데이터 처리 -->
-	<form action="CarcategoryController.do" method="post">
+	<form action="../_car/CarcategoryController.do?business_id=${param.business_id}" method="post">
 	<table width="1000" border="0" height="470">
 	<c:set var="j" value="0" />
 		<c:forEach var="v" items="${v}">
 		<c:if test="${j%4==0}">
 		<tr align="center">
 		</c:if>
-			<td><a href="CarInfoController.do?product_carno=${v.product_carno}">
+			<td><a href="CarInfoController.do?product_carno=${v.product_carno}&business_id=${param.business_id}">
 				<img src="./_car/img/${v.product_carimg}" border="0" width="220" height="180"></a><p>
 				차량명 : ${v.product_carname }<br>
 				
@@ -34,7 +33,7 @@
 			</select>&nbsp;&nbsp;&nbsp;
 			<input type="submit" value="차량검색">&nbsp;&nbsp;&nbsp;
 			
-					<input type="button" value="전체검색" onclick="location.href='CarListController.do'">
+					<input type="button" value="전체검색" onclick="location.href='../_car/CarListController.do?business_id=${param.business_id}'">
 			</td>
 		</tr>
 	</table>	

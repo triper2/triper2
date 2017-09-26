@@ -6,7 +6,7 @@
 <body>
 <center>
 	<img alt="" src="img/cis.jpg" border="0">
-	<form action="_car/CarMain.jsp?center=CarOption.jsp" method="post">
+	<form action="./CarMain.jsp?center=CarOption.jsp&business_id=${param.business_id }" method="post">
 	<table width="1000" border="0" align="center">
 	<tr align="center">
 		<td rowspan="6" width="600">
@@ -52,7 +52,7 @@
 		<input type="hidden" name="carno" value="${bean.product_carno }">
 		<input type="hidden" name="carimg" value="${bean.product_carimg }">
 		<input type="hidden" name="carprice" value="${bean.product_carprice }">
-		<input type="button" value="이전" onclick="location.href='./CarListController.do'">
+		<input type="button" value="이전" onclick="location.href='../_car/CarListController.do?business_id=${param.business_id }'">
 		</td>
 		<td align="center" width="200"> 
 			<input type="submit" value="옵션 선택하기">

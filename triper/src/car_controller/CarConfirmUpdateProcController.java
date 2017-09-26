@@ -17,7 +17,7 @@ import car_db.CarOrderBean;
 /**
  * Servlet implementation class CarConfirmUpdateProcController
  */
-@WebServlet("/CarConfirmUpdateProcController.do")
+@WebServlet("/_car/CarConfirmUpdateProcController.do")
 public class CarConfirmUpdateProcController extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -42,7 +42,9 @@ public class CarConfirmUpdateProcController extends HttpServlet {
 		
 		request.setCharacterEncoding("UTF-8");
 	      response.setContentType("text/html;charset=UTF-8");
-		//»ç¿ëÀÚ·ÎºÎÅÍ ³Ñ¾î¿Â µ¥ÀÌÅÍ¸¦ ÀÔ·Â
+	      
+	      String business_id = request.getParameter("business_id");
+		//ï¿½ï¿½ï¿½ï¿½Ú·Îºï¿½ï¿½ï¿½ ï¿½Ñ¾ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½Ô·ï¿½
 		int orderid = Integer.parseInt(request.getParameter("orderid"));
 		int carqty=Integer.parseInt(request.getParameter("carqty"));
 		int carins=Integer.parseInt(request.getParameter("carins"));
@@ -54,30 +56,30 @@ public class CarConfirmUpdateProcController extends HttpServlet {
 		String memberpass = request.getParameter("memberpass");
 		int carprice = Integer.parseInt(request.getParameter("carprice"));
 		System.out.println(reserved_carbegindate);
-		//carorderbean Å¬·¡½º ÀÌ¿ëÇÏ¿© µ¥ÀÌÅÍ¸¦ ÀúÁ¤ ÈÄ ºóÅ¬·¡½º·Î DAO
+		//carorderbean Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¿ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ DAO
 		CarOrderBean bean = new CarOrderBean();
 		
 		bean.setOrderid(orderid);
 		bean.setReserved_product_count(carqty);
 		bean.setReserved_option_carwifi(carwifi);
-		//³¯Â¥ ºñ±³
+		//ï¿½ï¿½Â¥ ï¿½ï¿½
 		bean.setReserved_carbegindate(reserved_carbegindate);
 		bean.setReserved_carenddate(reserved_carenddate);
 		Date d1=new Date();
 		Date d2=new Date();
 		Date d3=new Date();
-		//³¯Â¥¸¦ 2016-4-4 Æ÷¸Ë ÇØÁÖ´Â Å¬·¡½º ¼±¾ð
+		//ï¿½ï¿½Â¥ï¿½ï¿½ 2016-4-4 ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ö´ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		SimpleDateFormat sdf =new SimpleDateFormat("yyyy-MM-dd");
 		
 		d1=sdf.parse(bean.getReserved_carbegindate());
 		d2=sdf.parse(bean.getReserved_carenddate());
 		d3=sdf.parse(sdf.format(d3));
 		
-		//³¯Â¥ ºñ±³ ¸Þ¼Òµå¸¦ »ç¿ë
+		//ï¿½ï¿½Â¥ ï¿½ï¿½ ï¿½Þ¼Òµå¸¦ ï¿½ï¿½ï¿½
 		 long calDate = d1.getTime() - d2.getTime(); 
 	        
-	        // Date.getTime() Àº ÇØ´ç³¯Â¥¸¦ ±âÁØÀ¸·Î1970³â 00:00:00 ºÎÅÍ ¸î ÃÊ°¡ Èê·¶´ÂÁö¸¦ ¹ÝÈ¯ÇØÁØ´Ù. 
-	        // ÀÌÁ¦ 24*60*60*1000(°¢ ½Ã°£°ª¿¡ µû¸¥ Â÷ÀÌÁ¡) À» ³ª´²ÁÖ¸é ÀÏ¼ö°¡ ³ª¿Â´Ù.
+	        // Date.getTime() ï¿½ï¿½ ï¿½Ø´ç³¯Â¥ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½1970ï¿½ï¿½ 00:00:00 ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ê°ï¿½ ï¿½ê·¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯ï¿½ï¿½ï¿½Ø´ï¿½. 
+	        // ï¿½ï¿½ï¿½ï¿½ 24*60*60*1000(ï¿½ï¿½ ï¿½Ã°ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½) ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ ï¿½Ï¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â´ï¿½.
 	        int calDateDays = (int) (calDate / ( 24*60*60*1000)); 
 	 
 	        calDateDays = Math.abs(calDateDays);
@@ -93,7 +95,7 @@ public class CarConfirmUpdateProcController extends HttpServlet {
 		bean.setCalDateDays(calDateDays);
 		bean.setMemberpass(memberpass);
 		bean.setTotalprice(totalprice);
-		//µ¥ÀÌÅÍ º£ÀÌ½º °´Ã¼
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì½ï¿½ ï¿½ï¿½Ã¼
 		System.out.println(totalprice);
 		System.out.println(carprice);
 		System.out.println(calDateDays);
@@ -107,7 +109,7 @@ public class CarConfirmUpdateProcController extends HttpServlet {
 		System.out.println(carseat);
 		
 		request.setAttribute("bean", bean);
-		RequestDispatcher dis = request.getRequestDispatcher("/CarListController.do");
+		RequestDispatcher dis = request.getRequestDispatcher("/_car/CarListController.do?business_id="+business_id);
 		dis.forward(request, response);
 		
 		

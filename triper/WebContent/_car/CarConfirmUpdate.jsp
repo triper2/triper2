@@ -10,7 +10,7 @@
 <body>
 <center>
 	<h1> 차량 주문 수정 페이지 </h1>
-	<form action ="CarConfirmUpdateProcController.do?orderid=${cbean.orderid }&carprice=${cpbean.product_carprice}" method="post">
+	<form action ="CarConfirmUpdateProcController.do?orderid=${cbean.orderid }&carprice=${cpbean.product_carprice}&business_id=${param.business_id}" method="post">
 	<table width="1000" border="0" align="center">
 		<tr align="center">
 			<td rowspan="8" width="600">

@@ -20,6 +20,7 @@ public class AllBusinessListService implements Service {
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		
 		BusinessDAO dao = new BusinessDAO();
-		list = dao.allBusinessList();
+		list = dao.allBusinessList(request.getParameter("keyword"),
+				request.getParameter("category"));
 	}
 }
