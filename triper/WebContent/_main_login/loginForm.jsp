@@ -457,11 +457,11 @@ ${ sessionScope.dto }
     <div class="form-content" >
       <form action="loginPro.do?page=${param.page}" id="flsubmit" method="post">
         <div class="form-group">
-          <label for="username">ID</label>
+          <label for="username"><b>ID</b></label>
           <input type="text" id="id" name="id" required="required"/>
         </div>
         <div class="form-group">
-          <label for="password">Password</label>
+          <label for="password"><b>Password</b></label>
           <input type="password" id="password" name="password" required="required"/>
         </div>
         <div class="form-group">
@@ -472,12 +472,12 @@ ${ sessionScope.dto }
         <div class="form-group">
           <button type="submit">Log In</button>
         </div>
-        <a style="color: gray;" href="../_event_board/eblist.jsp">아이디 찾기</a>, 
-        <a style="color: gray;" href="">비밀번호 찾기</a>
-        <a style="float:right ;color: gray;" href="#" onclick="$('.form-panel.two').click()">회원가입</a>
+        <br/>
+        <a style="color: gray;" href="../_main_login/findForm.jsp">ID & 비번 찾기</a>
+        <a style="float:right ;color: gray;" href="#" onclick="$('.form-panel.two').click()">회원가입>></a>
       </form>      <br>
       
-      <div id="naver_id_login"></div>
+      <!-- <div id="naver_id_login"></div>
   <script type="text/javascript">
   	var naver_id_login = new naver_id_login("jG6JK4zeWYdD6NtIKfw4", "http://localhost:8080/triper/callback.jsp");
   	var state = naver_id_login.getUniqState();
@@ -486,16 +486,7 @@ ${ sessionScope.dto }
   	naver_id_login.setState(state);
   	//naver_id_login.setPopup();
   	naver_id_login.init_naver_id_login();
-  </script>
-     
-      <!-- <form action="naverlogin.do" method="post">
-      <div>
-		<button type="submit" id="naverlogin" >
-		<img height="50" src="http://static.nid.naver.com/oauth/small_g_in.PNG"/>
-		</button>
-      </div>      
-      </form> -->
-        <input type="file" id="temp_img" name="temp_img" />
+  </script> -->
     </div>
   </div>
   <div class="form-panel two">

@@ -17,6 +17,8 @@ import com.oreilly.servlet.MultipartRequest;
 import business.dao.BusinessDAO;
 import dbconn.util.ConnectionUtil;
 
+import review.bbs.BbsDAO;
+
 public class EboardDAO {
 
 	private Connection conn;
@@ -25,6 +27,7 @@ public class EboardDAO {
 	HttpServletRequest request;
 	
 	private static EboardDAO instance = new EboardDAO();
+
 	public static EboardDAO getInstance() {
 		return instance;
 	}
@@ -76,7 +79,7 @@ public class EboardDAO {
 		return -1; //DB 오류
 	}
 	
-	public int write(EboardDTO ebdto) throws Exception {
+	public int write(String ebTitle, String ebContent, String member_id) throws Exception {
 		String sql="insert into event_board values (?, ?, ?, SYSDATE, ?, ?, ?)"; // 마지막에 쓰인 글 번호 가져옴
 		//MultipartRequest multi = FileUtil.createFile(request);
 		//String ebImg = multi.getFilesystemName("ebImg");
@@ -84,11 +87,11 @@ public class EboardDAO {
 			conn = loadOracleDriver();
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, getNext());
-			pstmt.setString(2, ebdto.getEbTitle());
-			pstmt.setString(3, ebdto.getMember_id());
-			pstmt.setString(4, ebdto.getEbContent());
+			pstmt.setString(2, ebTitle);
+			pstmt.setString(3, member_id);
+			pstmt.setString(4, ebContent);
 			pstmt.setInt(5, 1); //삭제안된거니 1넣어줌
-			pstmt.setString(6, ebdto.getEbImg());
+			pstmt.setString(6, "1");
 			return pstmt.executeUpdate(); 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -166,15 +169,15 @@ public class EboardDAO {
 		return ebdto; 		
 	}
 	
-	public int update(EboardDTO ebdto) throws Exception {
+	public int update(int ebNum, String ebTitel, String ebContent) throws Exception {
 		String sql="update event_board set ebTitle=?, ebContent=?, ebImg=? where ebNum=?"; 
 		try {
 			conn = loadOracleDriver();
 			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, ebdto.getEbTitle());
-			pstmt.setString(2, ebdto.getEbContent());
-			pstmt.setString(3, ebdto.getEbImg());
-			pstmt.setInt(4, ebdto.getEbNum());
+			pstmt.setString(1, ebTitel);
+			pstmt.setString(2, ebContent);
+			pstmt.setString(3, "1");
+			pstmt.setInt(4, ebNum);
 			return pstmt.executeUpdate(); 
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -152,6 +152,29 @@ public class LoginProAction extends HttpServlet {
 				e.printStackTrace();
 			}
 		}		
+		else if (com.equals("/_main_login/findID.do")) { ///////////////////////////////////emailCheck.do
+			String member_email = request.getParameter("member_email");
+			RentalDAO dao = RentalDAO.getInstance();
+			try {
+				PrintWriter out = response.getWriter();
+				out.write(dao.findID(member_email)+""); //ajax때문에 이렇게 write를 써야함
+				out.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		else if (com.equals("/_main_login/findPWD.do")) { ///////////////////////////////////emailCheck.do
+			String member_id = request.getParameter("member_id");
+			String member_phone = request.getParameter("member_phone");
+			RentalDAO dao = RentalDAO.getInstance();
+			try {
+				PrintWriter out = response.getWriter();
+				out.write(dao.findPWD(member_id, member_phone)+""); //ajax때문에 이렇게 write를 써야함
+				out.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		 else if (com.equals("/_main_login/modifyPro.do")) { ///////////////////////////////////modifyPro.do
 			MultipartRequest multi = FileUtil.createFile(request);
 			String member_img = multi.getFilesystemName("member_img");
@@ -202,6 +225,10 @@ public class LoginProAction extends HttpServlet {
 			viewPage = "/_main_login/header.jsp";
 			RequestDispatcher dp = request.getRequestDispatcher(viewPage);
 			dp.forward(request, response);
+		} 	
+		/*else { //if (com.equals("/_main_login/naverlogin.do")) 
+			String clientId = "jG6JK4zeWYdD6NtIKfw4"; //애플리케이션 클라이언트 아이디값";
+=======
 		} else if (com.equals("/_main_login/member_img.do")) { ///////////////////////////////////mem_image.do
 			
 			
@@ -213,6 +240,7 @@ public class LoginProAction extends HttpServlet {
 		
 		else { //if (com.equals("/_main_login/naverlogin.do")) 
 			String clientId = "jG6JK4zeWYdD6NtIKfw4"; //�븷�뵆由ъ��씠�뀡 �겢�씪�씠�뼵�듃 �븘�씠�뵒媛�";
+>>>>>>> branch 'master' of https://github.com/triper2/triper2.git
 			String redirectURI = URLEncoder.encode("http://localhost:8080/triper/_main_login/index.jsp", "UTF-8");
 			SecureRandom random = new SecureRandom();
 			String state = new BigInteger(130, random).toString();
@@ -227,7 +255,7 @@ public class LoginProAction extends HttpServlet {
 			System.out.println("apiURL : "+apiURL);
 			
 			response.sendRedirect(apiURL);
-		} 
+		} */
 		// System.out.println(viewPage);
 		
 	}

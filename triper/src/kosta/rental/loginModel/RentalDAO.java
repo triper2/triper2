@@ -112,8 +112,51 @@ public class RentalDAO { // Controller (Data Access Object)
 		return result;
 	}//userCheck(id,pwd) end
 
+	public String findID(String member_email) throws Exception {
+		String sql = "SELECT Member_id FROM MEMBER_LIST WHERE MEMBER_email = ? ";
+		RentalDTO dto = new RentalDTO();
+		String member_id = null;
+		try {
+		Connection conn = getConnection();
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, member_email);
+		ResultSet rs = pstmt.executeQuery();
+		if(rs.next()) {
+			member_id=rs.getString("member_id");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
+		return member_id;
+	}
 	
-	// MY PAGE 에서 수정할 부분 -update
+	public String findPWD(String member_id, String member_phone) throws Exception {
+		String sql1 = "SELECT member_pwd FROM MEMBER_LIST WHERE MEMBER_id = ? ";
+		String sql2 = "SELECT member_pwd FROM MEMBER_LIST WHERE MEMBER_phone = ? ";
+		RentalDTO dto = new RentalDTO();
+		String member_pwd1 = null, member_pwd2 = null;
+		try {
+		Connection conn = getConnection();
+		PreparedStatement pstmt = conn.prepareStatement(sql1);
+		pstmt.setString(1, member_id);
+		ResultSet rs1 = pstmt.executeQuery();
+
+		pstmt = conn.prepareStatement(sql2);
+		pstmt.setString(1, member_phone);
+		ResultSet rs2 = pstmt.executeQuery();
+
+		if(rs1.next() && rs2.next()) {
+			member_pwd1=rs1.getString("member_pwd");
+			member_pwd2=rs2.getString("member_pwd");
+			if(member_pwd1 == member_pwd2)
+				return member_pwd1;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
+		return member_pwd1;
+	}
+	
 	public RentalDTO getMember(String id) throws Exception {
 		String sql = "SELECT * FROM MEMBER_LIST WHERE MEMBER_ID = ? ";
 		RentalDTO dto = null;
@@ -152,7 +195,6 @@ public class RentalDAO { // Controller (Data Access Object)
 		CloseUtil.close(pstmt); CloseUtil.close(conn);
 	}//update(dto) end
 	
-	// MY PAGE 에서 수정할 부분 -delete
 	public int delete(String id, String pwd) throws Exception {
 		String sql ="SELECT MEMBER_PWD FROM MEMBER_LIST WHERE MEMBER_ID = ?";
 		String dbpwd= ""; 
@@ -179,6 +221,5 @@ public class RentalDAO { // Controller (Data Access Object)
 		CloseUtil.close(rs);   CloseUtil.close(pstmt);  CloseUtil.close(conn);
 		return result;
 	} // delete(id, pwd) end	
-	
 	
 }

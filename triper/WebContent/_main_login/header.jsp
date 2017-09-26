@@ -129,7 +129,7 @@ nav .fa.fa-angle-down {
 					<ul>
 						<li><a href="../_car/CarMain.jsp">렌트카 테스트</a></li>
 						<li><a href="../_business/businessAddSelectForm.jsp">다음지도</a></li>
-						<li><a href="../_event_board/eblist.jsp">게시판 테스트</a></li>
+						<li><a href="../_event_board/eblist.eb">게시판 테스트</a></li>
 						<li><a href="../_business/myList.business">사업장리스트</a></li>
 						<li><a href="../_business/businessAllListForm.jsp">렌트하기</a></li>
 					</ul></li>
