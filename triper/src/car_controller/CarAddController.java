@@ -40,12 +40,12 @@ public class CarAddController extends HttpServlet {
 	
 		request.setCharacterEncoding("UTF-8");
 	      response.setContentType("text/html;charset=UTF-8");
-	
+	      String business_id = request.getParameter("business_id");
 	      MultipartRequest multi = Fileutil.createFile(request);
 	         String product_carimg = multi.getFilesystemName("product_carimg");
 	     
 	         CarListBean cbean = new CarListBean();
-
+	         System.out.println(business_id+"asd");
 			cbean.setProduct_carno(Integer.parseInt(multi.getParameter("product_carno")));
 
 			cbean.setProduct_carname(multi.getParameter("product_carname")); 
@@ -55,12 +55,13 @@ public class CarAddController extends HttpServlet {
 			cbean.setProduct_carinfo(multi.getParameter("product_carinfo")); 
 			cbean.setProduct_carimg(Fileutil.rename(multi.getFilesystemName("product_carimg")));
 			cbean.setProduct_carcategory(multi.getParameter("product_carcategory"));
+			cbean.setBusiness_id(multi.getParameter("business_id"));
 
 		
 		CarDAO cdao = new CarDAO();
 		//�ֹ� ��Ȳ�� ����
 		cdao.insertCarAdd(cbean);
-		RequestDispatcher dis =request.getRequestDispatcher("/_car/CarListController.do");
+		RequestDispatcher dis =request.getRequestDispatcher("/_car/CarListController.do?business_id="+business_id);
 		dis.forward(request, response);
 	}
 

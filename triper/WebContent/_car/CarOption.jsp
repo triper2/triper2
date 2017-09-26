@@ -8,7 +8,7 @@
 <center>
 	<img src="img/option.jpg" border="0">
 	
-	<form action="../CarOptionController.do" method="post">
+	<form action="../_car/CarOptionController.do?business_id=${param.business_id }" method="post">
 	<table width="1000" border="0" align="center">
 	<tr align="center">
 		<td rowspan="9" width="600">
@@ -63,7 +63,7 @@
 		<input type="hidden" name="carno" value="${param.carno }">
 		<input type="hidden" name="carqty" value="${param.carqty }">
 		<input type="hidden" name="carprice" value="${param.carprice }">
-		<input type="button" onclick="location.href='../CarListController.do'"
+		<input type="button" onclick="location.href='../_car/CarListController.do?business_id=${param.business_id }'"
 		 value="차량목록보기"></td>
 		<td align="center">
 			<input type="submit" value="예약하기"></td> 

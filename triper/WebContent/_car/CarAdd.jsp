@@ -28,9 +28,7 @@
 		<h2>차량 등록 하기<button class="button button2" style="float: right;" onclick="location.href='CarMain.jsp'">되돌아가기</button></h2>
 	
 	</div>
-
-	<form class="w3-container" action="../CarAddController.do" method="post" encType="multipart/form-data">
-	
+	<form class="w3-container" action="../_car/CarAddController.do?business_id=${param.business_id }" method="post" encType="multipart/form-data">
 		<p>
 			<label>차량 번호</label> <input class="w3-input" type="text" name="product_carno" placeholder="숫자만 입력하세요">
 		</p>

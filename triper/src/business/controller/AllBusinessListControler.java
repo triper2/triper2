@@ -47,6 +47,7 @@ public class AllBusinessListControler extends HttpServlet {
 					+ "\", \"phone\":\"" + command.getList().get(i).getBusiness_tel()
 					+ "\", \"x\":\"" + command.getList().get(i).getBusiness_x()
 					+ "\", \"y\":\"" + command.getList().get(i).getBusiness_y()
+					+ "\", \"id\":\"" + command.getList().get(i).getBusiness_id()
 					+ "\"}";
 			if(i!=size-1) str+=",";
 		}
