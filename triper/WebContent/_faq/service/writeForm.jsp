@@ -13,7 +13,7 @@
 function writeSave(){
     
     if(document.writeform.member_id.value==""){
-      alert("작성자를 입력하십시요.");
+      alert("로그인 해야 작성이 됩니다.");
       document.writeform.member_id.focus();
       return false;
     }
