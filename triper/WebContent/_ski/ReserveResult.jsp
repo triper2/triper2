@@ -67,7 +67,7 @@ th {
 			<button  class="button button4"onclick="location.href='SkiUpdateController.do?s_orderid=${sv.s_orderid}&skiimg=${sv.product_skiimg }'">수정</button>
 		</td>
 		<td align="center" width="70">
-			<button  class="button button4" onclick="location.href='/SkiReserVation/_ski/SkiMain.jsp?center=ConfirmDelete.jsp&s_orderid=${sv.s_orderid}&bl_orderid=0&sc_orderid=0&b_orderid=0'">삭제</button>
+			<button  class="button button4" onclick="location.href='/triper/_ski/SkiMain.jsp?center=ConfirmDelete.jsp&s_orderid=${sv.s_orderid}&bl_orderid=0&sc_orderid=0&b_orderid=0'">삭제</button>
 		</td>
 	</c:forEach>	 
 	</tbody>
@@ -100,7 +100,7 @@ th {
 		<td align="center" width="100">${scv.product_skiclothprice } </td>
 		<td align="center" width="70"><button class="button button4" onclick="location.href='SkiclothUpdateController.do?sc_orderid=${scv.sc_orderid}&skiclothimg=${scv.product_skiclothimg }'">수정</button></td>
 		<td align="center" width="70">
-			<button  class="button button4" onclick="location.href='/SkiReserVation/_ski/SkiMain.jsp?center=ConfirmDelete.jsp&sc_orderid=${scv.sc_orderid}&b_orderid=0&bl_orderid=0&s_orderid=0'">삭제</button>
+			<button  class="button button4" onclick="location.href='/triper/_ski/SkiMain.jsp?center=ConfirmDelete.jsp&sc_orderid=${scv.sc_orderid}&b_orderid=0&bl_orderid=0&s_orderid=0'">삭제</button>
 		</td>
 	</c:forEach>	
 	
@@ -134,7 +134,7 @@ th {
 		<td align="center" width="100">${bv.product_boardprice } </td>
 			<td align="center" width="70"><button class="button button4"  onclick="location.href='BoardUpdateController.do?b_orderid=${bv.b_orderid}&boardimg=${bv.product_boardimg }'">수정</button></td>
 		<td align="center" width="70">
-			<button  class="button button4" onclick="location.href='/SkiReserVation/_ski/SkiMain.jsp?center=ConfirmDelete.jsp&b_orderid=${bv.b_orderid}&s_orderid=0&sc_orderid=0&bl_orderid=0'">삭제</button>
+			<button  class="button button4" onclick="location.href='/triper/_ski/SkiMain.jsp?center=ConfirmDelete.jsp&b_orderid=${bv.b_orderid}&s_orderid=0&sc_orderid=0&bl_orderid=0'">삭제</button>
 		</td>
 	</c:forEach>	
 	
@@ -168,7 +168,7 @@ th {
 		<td align="center" width="100">${bcv.product_boardclothprice } </td>
 			<td align="center" width="70"><button class="button button4" onclick="location.href='BoardClothUpdateController1.do?bl_orderid=${bcv.bl_orderid}&boardclothimg=${bcv.product_boardclothimg }'">수정</button></td>
 		<td align="center" width="70">
-			<button  class="button button4" onclick="location.href='/SkiReserVation/_ski/SkiMain.jsp?center=ConfirmDelete.jsp&bl_orderid=${bcv.bl_orderid}&s_orderid=0&sc_orderid=0&b_orderid=0'">삭제</button>
+			<button  class="button button4" onclick="location.href='/triper	/_ski/SkiMain.jsp?center=ConfirmDelete.jsp&bl_orderid=${bcv.bl_orderid}&s_orderid=0&sc_orderid=0&b_orderid=0'">삭제</button>
 		</td>
 	</c:forEach>	
 	

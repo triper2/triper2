@@ -44,7 +44,7 @@ public class SkiOrder extends HttpServlet {
 	
 		dao.insertSkiOrder(bean);
 	
-		RequestDispatcher dis = request.getRequestDispatcher("SkiListController1.do");
+		RequestDispatcher dis = request.getRequestDispatcher("SkiListController2.ski");
 		dis.forward(request, response);
 	}
 

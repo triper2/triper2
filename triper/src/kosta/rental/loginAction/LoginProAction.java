@@ -53,8 +53,8 @@ public class LoginProAction extends HttpServlet {
 	private void actionDo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, Exception {
 		String viewPage = null;
 		String uri = request.getRequestURI(); // http://localhost:8080/triper/_main_login/loginPro.do
-		String conPath = request.getContextPath(); // http://localhost:8080/triper 여기까지 길이 구하기 /_main_login/loginPro.do
-		String com = uri.substring(conPath.length()); // 길이값 빼고(이후의) /_main_login/loginPro.do
+		String conPath = request.getContextPath(); // http://localhost:8080/triper �뿬湲곌퉴吏� 湲몄씠 援ы븯湲� /_main_login/loginPro.do
+		String com = uri.substring(conPath.length()); // 湲몄씠媛� 鍮쇨퀬(�씠�썑�쓽) /_main_login/loginPro.do
 		int check = 0;
 		ServletRequest session = null;
 		String page = request.getParameter("page");
@@ -112,7 +112,7 @@ public class LoginProAction extends HttpServlet {
 			String id = request.getParameter("member_id");
 			RentalDAO dao = RentalDAO.getInstance();
 			try {
-				PrintWriter out = response.getWriter(); //ajax때문에 이렇게 write를 써야함
+				PrintWriter out = response.getWriter(); //ajax�븣臾몄뿉 �씠�젃寃� write瑜� �뜥�빞�븿
 				out.write(dao.idCheck(id)+"");
 				out.close();
 			} catch (Exception e) {
@@ -124,7 +124,7 @@ public class LoginProAction extends HttpServlet {
 			RentalDAO dao = RentalDAO.getInstance();
 			try {
 				PrintWriter out = response.getWriter();
-				out.write(dao.pwCheck(pwd)+""); //ajax때문에 이렇게 write를 써야함
+				out.write(dao.pwCheck(pwd)+""); //ajax�븣臾몄뿉 �씠�젃寃� write瑜� �뜥�빞�븿
 				out.close();
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -135,7 +135,7 @@ public class LoginProAction extends HttpServlet {
 			RentalDAO dao = RentalDAO.getInstance();
 			try {
 				PrintWriter out = response.getWriter();
-				out.write(dao.phoneCheck(phone)+""); //ajax때문에 이렇게 write를 써야함
+				out.write(dao.phoneCheck(phone)+""); //ajax�븣臾몄뿉 �씠�젃寃� write瑜� �뜥�빞�븿
 				out.close();
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -146,7 +146,7 @@ public class LoginProAction extends HttpServlet {
 			RentalDAO dao = RentalDAO.getInstance();
 			try {
 				PrintWriter out = response.getWriter();
-				out.write(dao.emailCheck(email)+""); //ajax때문에 이렇게 write를 써야함
+				out.write(dao.emailCheck(email)+""); //ajax�븣臾몄뿉 �씠�젃寃� write瑜� �뜥�빞�븿
 				out.close();
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -165,10 +165,10 @@ public class LoginProAction extends HttpServlet {
 			dto.setMember_img(multi.getParameter("member_img"));
 //			dto.setMember_img(request.getParameter("member_img"));
 			/*if (member_img != null) {
-				// 이미지가 변경되었을 경우
+				// �씠誘몄�媛� 蹂�寃쎈릺�뿀�쓣 寃쎌슦
 				dto.setMember_img(FileUtil.rename(member_img));
 			} else {
-				// 이미지가 변경되지 않았을경우
+				// �씠誘몄�媛� 蹂�寃쎈릺吏� �븡�븯�쓣寃쎌슦
 				dto.setMember_img(member_img);
 			}*/
 			System.out.println(member_img);
@@ -212,7 +212,7 @@ public class LoginProAction extends HttpServlet {
 		
 		
 		else { //if (com.equals("/_main_login/naverlogin.do")) 
-			String clientId = "jG6JK4zeWYdD6NtIKfw4"; //애플리케이션 클라이언트 아이디값";
+			String clientId = "jG6JK4zeWYdD6NtIKfw4"; //�븷�뵆由ъ��씠�뀡 �겢�씪�씠�뼵�듃 �븘�씠�뵒媛�";
 			String redirectURI = URLEncoder.encode("http://localhost:8080/triper/_main_login/index.jsp", "UTF-8");
 			SecureRandom random = new SecureRandom();
 			String state = new BigInteger(130, random).toString();
