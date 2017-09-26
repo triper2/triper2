@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import ski_db.BoardClothListBean;
 import ski_db.BoardDAO;
+import ski_db.BoardListBean;
 import ski_db.SkiDAO;
 
 /**
@@ -45,3 +46,6 @@ public class BoardClothListController extends HttpServlet {
 	}
 
 }
+
+
+

@@ -27,7 +27,7 @@ public class SkiDAO {
 			/*Context initctx =new InitialContext();*/
 			Context ctx = new InitialContext();
 			Context envctx =(Context) ctx.lookup("java:comp/env");
-			DataSource ds = (DataSource) envctx.lookup("jdbc:TriperDB");
+			DataSource ds = (DataSource) envctx.lookup("jdbc:SkiReserveDB");
 			//DataSource ds = (DataSource)ctx.lookup("java:comp/env/jdbc:RentCarDB");
 			conn =ds.getConnection();
 		} catch (Exception e) {
@@ -277,6 +277,7 @@ public class SkiDAO {
 				sbean.setProduct_skiname(rs.getString(6));
 				sbean.setProduct_skiprice(rs.getInt(7));
 				sbean.setProduct_skiimg(rs.getString(8));
+				sbean.setMemberpass(rs.getString(9));
 				sv.add(sbean);
 			}
 			pstmt.close();
@@ -404,6 +405,7 @@ public class SkiDAO {
 				ssbean.setSkibeginday(rs.getString(1));
 				ssbean.setSkiendday(rs.getString(2));
 				ssbean.setSkisize(rs.getString(3));
+		
 				
 				
 			}
@@ -422,15 +424,16 @@ public class SkiDAO {
 	public void SkiOrderUpdate(Skiorder1 sbean) {
 		try {
 			getCon();
-			String sql = "update reserve_ski set skibeginday =?,skiendday =?,skisize =? where s_orderid=? and memberpass=?";
+			String sql = "update reserve_ski set skibeginday =?,skiendday =?,skisize =?,product_skiprice=? where s_orderid=? and memberpass=?";
 				
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, sbean.getSkibeginday());
 			pstmt.setString(2, sbean.getSkiendday());
 			pstmt.setString(3,sbean.getSkisize());
-			pstmt.setInt(4, sbean.getS_orderid());
-			pstmt.setString(5, sbean.getMemberpass());
+			pstmt.setInt(4, sbean.getProduct_skiprice());
+			pstmt.setInt(5, sbean.getS_orderid());
+			pstmt.setString(6, sbean.getMemberpass());
 			pstmt.executeUpdate();
 			
 			
@@ -482,14 +485,15 @@ public class SkiDAO {
 	try {
 		getCon();
 		
-		String sql = "update reserve_skicloth set skiclothbeginday =?,skiclothendday =?,skiclothsize =? where sc_orderid=? and memberpass=?";
+		String sql = "update reserve_skicloth set skiclothbeginday =?,skiclothendday =?,skiclothsize =?, product_skiclothprice=? where sc_orderid=? and memberpass=?";
 		
 		pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, scbean.getSkiclothbeginday());
 		pstmt.setString(2, scbean.getSkiclothendday());
 		pstmt.setString(3, scbean.getSkiclothsize());
-		pstmt.setInt(4, scbean.getSc_orderid());
-		pstmt.setString(5, scbean.getMemberpass());
+		pstmt.setInt(4, scbean.getProduct_skiclothprice());
+		pstmt.setInt(5, scbean.getSc_orderid());
+		pstmt.setString(6, scbean.getMemberpass());
 		pstmt.executeUpdate();
 		
 		conn.close();
@@ -498,4 +502,124 @@ public class SkiDAO {
 	}
 		
 	}
+
+
+
+
+
+	public Skiorder1 getSkiOneprice(String skiimg) {
+		//리턴 타입선언
+		Skiorder1 spbean = null;
+		try {
+			getCon();
+			String sql = "select * from product_ski_list where product_skiimg=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, skiimg);
+			
+			rs = pstmt.executeQuery();
+			if(rs.next()){
+				spbean = new Skiorder1();
+				spbean.setProduct_skiimg(skiimg);
+				spbean.setProduct_skiprice(rs.getInt(3));
+		
+		
+				
+				
+			}
+			conn.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return spbean;
+	}
+
+
+
+
+
+	public SkiClothOrder getSkiclothOneprice(String skiclothimg) {
+		//리턴 타입선언
+		SkiClothOrder scpbean = null;
+				try {
+					getCon();
+					String sql = "select * from product_skicloth_list where product_skiclothimg=?";
+					pstmt = conn.prepareStatement(sql);
+					pstmt.setString(1, skiclothimg);
+					
+					rs = pstmt.executeQuery();
+					if(rs.next()){
+						scpbean = new SkiClothOrder();
+						scpbean.setProduct_skiclothimg(skiclothimg);
+						scpbean.setProduct_skiclothprice(rs.getInt(3));
+				
+				
+						
+						
+					}
+					conn.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				
+				return scpbean;
+			}
+
+
+
+
+
+	public void insertskiAdd(SkiListBean sbean) {
+	try {
+			
+			getCon();
+			String sql="insert into product_ski_list values(?,?,?,?,?)";
+			pstmt=conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, sbean.getProduct_skino());
+			pstmt.setString(2, sbean.getProduct_skiname());
+			pstmt.setInt(3, sbean.getProduct_skiprice());
+			pstmt.setString(4, sbean.getProduct_skiinfo());
+			pstmt.setString(5,sbean.getProduct_skiimg());
+		
+			
+			pstmt.executeUpdate();
+			conn.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+
+
+
+
+
+	public void insertskiclothAdd(SkiClothListBean scbean) {
+		try {
+			
+			getCon();
+			String sql="insert into product_skicloth_list values(?,?,?,?,?)";
+			pstmt=conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, scbean.getProduct_skiclothno());
+			pstmt.setString(2, scbean.getProduct_skiclothname());
+			pstmt.setInt(3, scbean.getProduct_skiclothprice());
+			pstmt.setString(4, scbean.getProduct_skiclothinfo());
+			pstmt.setString(5,scbean.getProduct_skiclothimg());
+		
+			
+			pstmt.executeUpdate();
+			conn.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+
+
+
 }
+

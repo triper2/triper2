@@ -35,10 +35,13 @@ public class BoardUpdateController extends HttpServlet {
 		String boardimg = request.getParameter("boardimg");
 		
 		BoardDAO bdao = new BoardDAO();
+		
+		BoardOrder bpbean = bdao.getBoardOneprice(boardimg);
 		BoardOrder bbean = bdao.getBoardOneOrder(b_orderid);
 		
 		bbean.setProduct_boardimg(boardimg);
 		
+		request.setAttribute("bpbean", bpbean);
 		request.setAttribute("bbean", bbean);
 		
 		RequestDispatcher dis = request.getRequestDispatcher("/_ski/SkiMain.jsp?center=BoardUpdate.jsp");

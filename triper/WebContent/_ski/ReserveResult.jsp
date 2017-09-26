@@ -63,6 +63,7 @@ th {
 		<td align="center" width="50">${sv.skisize } </td>
 		<td align="center" width="100">${sv.product_skiprice } </td>
 		<td align="center" width="70">
+		<input type="hidden" name="memberpass" value="${sv.memberpass }">
 			<button  class="button button4"onclick="location.href='SkiUpdateController.do?s_orderid=${sv.s_orderid}&skiimg=${sv.product_skiimg }'">수정</button>
 		</td>
 		<td align="center" width="70">
@@ -165,7 +166,7 @@ th {
 		<td align="center" width="100">${bcv.boardclothendnday }</td>
 		<td align="center" width="50">${bcv.boardclothsize } </td>
 		<td align="center" width="100">${bcv.product_boardclothprice } </td>
-			<td align="center" width="70"><button class="button button4" onclick="location.href='BoardClothUpdateController.do?bl_orderid=${bcv.bl_orderid}&boardclothimg=${bcv.product_boardclothimg }'">수정</button></td>
+			<td align="center" width="70"><button class="button button4" onclick="location.href='BoardClothUpdateController1.do?bl_orderid=${bcv.bl_orderid}&boardclothimg=${bcv.product_boardclothimg }'">수정</button></td>
 		<td align="center" width="70">
 			<button  class="button button4" onclick="location.href='/SkiReserVation/_ski/SkiMain.jsp?center=ConfirmDelete.jsp&bl_orderid=${bcv.bl_orderid}&s_orderid=0&sc_orderid=0&b_orderid=0'">삭제</button>
 		</td>

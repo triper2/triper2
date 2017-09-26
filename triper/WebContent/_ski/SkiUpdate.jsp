@@ -9,7 +9,7 @@
 <body>
 <center>
 	<h1>  주문 수정 페이지 </h1>
-	<form action ="SkiUpdateProcController.do?s_orderid=${ssbean.s_orderid }" method="post">
+	<form action ="SkiUpdateProcController.do?s_orderid=${ssbean.s_orderid }&skiprice=${spbean.product_skiprice}" method="post">
 	<table width="1000" border="0" align="center">
 		<tr align="center">
 			<td rowspan="8" width="600">
@@ -27,7 +27,7 @@
 		<input type="date" name="skiendday" value="${ssbean.skiendday }"></td>
 	</tr>
 	<tr>
-		<td align="center" colspan="2">사이즈 <select name="skisize">
+		<td align="center" colspan="2">사이즈<select name="skisize">
 					<option value="250">250</option>
 						<option value="255">255</option>
 						<option value="260">260</option>
@@ -40,7 +40,9 @@
 		
 		비밀번호 입력 : <input type="password" name="memberpass" size="10">
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		
+			
+		<%-- <input type="hidden" name="skiprice" value="${param.skiprice }"> --%>
+	
 			
 		</td>
 		
@@ -53,7 +55,9 @@
 	</table>
 	
 	</form>
+	
 </center>
 
 </body>
+
 </html>

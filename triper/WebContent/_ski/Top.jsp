@@ -216,7 +216,7 @@ body {
 	</head>
 	<body>
 			
-
+<form>
 		<div class='menu'>
 			<ul>
 				<li>
@@ -231,6 +231,7 @@ body {
 						<li class='sub'>
 							<a href='#'>SKI</a>
 							<ul>
+							
 								<li>
 									<a href='/SkiReserVation/SkiListController1.do'>SKI</a>
 								</li>
@@ -238,6 +239,7 @@ body {
 									<a href='/SkiReserVation/SkiClothListController.do'>SKI CLOTH</a>
 								</li>
 							</ul>
+							
 						</li>
 						<li class='sub'>
 							<a href='#'>Board</a>
@@ -256,10 +258,10 @@ body {
 					<a href='/SkiReserVation/_ski/SkiMain.jsp?center=ReserveConfirm.jsp'>예약확인</a>
 				</li>
 				<li class='last'>
-					<a href='#'>Downloads</a>
+					<a href='/SkiReserVation/_ski/SkiMain.jsp?center=Add.jsp'> 상품 추가</a>
 				</li>
 			</ul>
 		</div>
-
+</form>
 	</body>
 </html>

@@ -28,6 +28,8 @@ public class BoardListController extends HttpServlet {
 		requestpro(request, response);
 	}
 	protected void requestpro(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		
 		//데이터 베이스에 접근하기위한 Model클래스를 생성
 		BoardDAO sdao = new BoardDAO();
 		//실제 데이터 베이스에 접근하여 자동차 정보를 모두 읽어서 백터에 저장

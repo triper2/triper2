@@ -1,6 +1,8 @@
 package ski_controller;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -19,15 +21,25 @@ import ski_db.SkiDAO;
 public class SkiClothUpdateProcController extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		requestpro(request, response);
+		try {
+			requestpro(request, response);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		requestpro(request, response);
+		try {
+			requestpro(request, response);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
-	protected void requestpro(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void requestpro(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		int sc_orderid=Integer.parseInt(request.getParameter("sc_orderid"));
 		String skiclothimg = request.getParameter("skiclothimg");
 		String skiclothbeginday = request.getParameter("skiclothbeginday");
@@ -35,10 +47,7 @@ public class SkiClothUpdateProcController extends HttpServlet {
 		String skiclothsize = request.getParameter("skiclothsize");
 		
 		String memberpass = request.getParameter("memberpass");
-		System.out.println(sc_orderid);
-		System.out.println(skiclothbeginday);
-		System.out.println(skiclothendday);
-		System.out.println(skiclothsize);
+		int skiclothprice = Integer.parseInt(request.getParameter("skiclothprice"));
 		
 		SkiClothOrder scbean = new SkiClothOrder();
 		scbean.setSc_orderid(sc_orderid);
@@ -46,6 +55,33 @@ public class SkiClothUpdateProcController extends HttpServlet {
 		scbean.setSkiclothendday(skiclothendday);
 		scbean.setSkiclothsize(skiclothsize);
 		scbean.setMemberpass(memberpass);
+		
+		//날짜 비교
+		
+		Date d1=new Date();
+		Date d2=new Date();
+		Date d3=new Date();
+		//날짜를 2016-4-4 포맷 해주는 클래스 선언
+		SimpleDateFormat sdf =new SimpleDateFormat("yyyy-MM-dd");
+		
+		d1=sdf.parse(scbean.getSkiclothbeginday());
+		d2=sdf.parse(scbean.getSkiclothendday());
+		d3=sdf.parse(sdf.format(d3));
+		
+		//날짜 비교 메소드를 사용
+		 long calDate = d1.getTime() - d2.getTime(); 
+	        
+	        // Date.getTime() 은 해당날짜를 기준으로1970년 00:00:00 부터 몇 초가 흘렀는지를 반환해준다. 
+	        // 이제 24*60*60*1000(각 시간값에 따른 차이점) 을 나눠주면 일수가 나온다.
+	        int calDateDays = (int) (calDate / ( 24*60*60*1000)); 
+	 
+	        calDateDays = Math.abs(calDateDays);
+
+		int compare =d1.compareTo(d3);
+		int compare1 =d2.compareTo(d3);
+		
+		int sc_total = skiclothprice * calDateDays;
+		scbean.setProduct_skiclothprice(sc_total);
 		
 		
 		SkiDAO sdao = new SkiDAO();

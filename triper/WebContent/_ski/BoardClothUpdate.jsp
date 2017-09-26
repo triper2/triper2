@@ -9,7 +9,7 @@
 <body>
 <center>
 	<h1>  주문 수정 페이지 </h1>
-	<form action ="BoardClothUpdateProcController.do?bl_orderid=${bcbean.bl_orderid }" method="post">
+	<form action ="BoardClothUpdateProcController.do?bl_orderid=${bcbean.bl_orderid }&boardclothprice=${bcp.product_boardclothprice}" method="post">
 	<table width="1000" border="0" align="center">
 		<tr align="center">
 			<td rowspan="8" width="600">
@@ -17,14 +17,14 @@
 			</td>
 		</tr>
 	<tr>
-		<td align="center" >대여일</td>
+		<td align="center" >대여일 ${bcp.product_boardclothprice}</td>
 		<td align="center">
-		<input type="date" name="boardclothbeginday" value="${bbean.boardclothbeginday }"></td>
+		<input type="date" name="boardclothbeginday" value="${bcbean.boardclothbeginday }"></td>
 	</tr>
 	<tr>
 		<td align="center" >반납일</td>
 		<td align="center">
-		<input type="date" name="boardclothendnday" value="${bbean.boardclothendnday }"></td>
+		<input type="date" name="boardclothendnday" value="${bcbean.boardclothendnday }"></td>
 	</tr>
 	<tr>
 		<td align="center" colspan="2">사이즈 <select name="boardclothsize">

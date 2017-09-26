@@ -36,8 +36,12 @@ public class SkiclothUpdateController extends HttpServlet {
 		
 		SkiDAO sdao=new SkiDAO();
 		
+		SkiClothOrder scpbean = sdao.getSkiclothOneprice(skiclothimg);
 		SkiClothOrder scbean = sdao.getSkiblothOneorder(sc_orderid);
 		scbean.setProduct_skiclothimg(skiclothimg);
+		
+		
+		request.setAttribute("scpbean", scpbean);
 		request.setAttribute("scbean", scbean);
 		RequestDispatcher dis = request.getRequestDispatcher("/_ski/SkiMain.jsp?center=SkiClothUpdate.jsp");
 		dis.forward(request, response);

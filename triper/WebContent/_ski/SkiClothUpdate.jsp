@@ -9,7 +9,7 @@
 <body>
 <center>
 	<h1>  주문 수정 페이지 </h1>
-	<form action ="SkiClothUpdateProcController.do?sc_orderid=${scbean.sc_orderid }" method="post">
+	<form action ="SkiClothUpdateProcController.do?sc_orderid=${scbean.sc_orderid }&skiclothprice=${scpbean.product_skiclothprice}" method="post">
 	<table width="1000" border="0" align="center">
 		<tr align="center">
 			<td rowspan="8" width="600">

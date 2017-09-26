@@ -9,6 +9,24 @@
 <title>Insert title here</title>
 </head>
 <body>
+<c:if test="${compare <0 }">
+<script>
+			alert("날짜를 다시 선택해 주세요.");
+			history.go(-1);
+		</script>
+</c:if>
+<c:if test="${compare1 <0 }">
+<script>
+			alert("날짜를 다시 선택해 주세요.");
+			history.go(-1);
+		</script>
+</c:if>
+<c:if test="${calDateDays <0 }">
+<script>
+			alert("날짜를 다시 선택해 주세요.");
+			history.go(-1);
+		</script>
+</c:if>
 <form action="BoardOrder.do" method="post"> 
 	<center>
 
@@ -17,7 +35,7 @@
 <td><img src="img/${bean.product_boardimg }" width="300" height="300"></td>
 </tr>
 			<tr>
-				<td align="center">총 비 용 : ${total } 원</td>
+				<td align="center">총 비 용 : ${b_total } 원</td>
 				
 			</tr>
 			<tr>
@@ -36,7 +54,7 @@
 	<input type="hidden" name="boardsize" value="${bean.boardsize }">
 	<input type="hidden" name="product_boardno" value="${bean.product_boardno }">
 	<input type="hidden" name="product_boardname" value="${bean.product_boardname }">
-	<input type="hidden" name="product_boardprice" value="${bean.product_boardprice }">
+	<input type="hidden" name="product_boardprice" value="${b_total }">
 	
 		<p>
 			비회원 전화번호 예약 : <input type="text" name="memberphone" size="10"><br><br>

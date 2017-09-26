@@ -26,7 +26,7 @@ public class BoardDAO {
 			/*Context initctx =new InitialContext();*/
 			Context ctx = new InitialContext();
 			Context envctx =(Context) ctx.lookup("java:comp/env");
-			DataSource ds = (DataSource) envctx.lookup("jdbc:TriperDB");
+			DataSource ds = (DataSource) envctx.lookup("jdbc:SkiReserveDB");
 			//DataSource ds = (DataSource)ctx.lookup("java:comp/env/jdbc:RentCarDB");
 			conn =ds.getConnection();
 		} catch (Exception e) {
@@ -364,13 +364,14 @@ public class BoardDAO {
 	public void Boardupdate(BoardOrder bbean) {
 		try {
 			getCon();
-			String sql =  "update reserve_board set boardbeginday =?,boardendday =?,boardsize =? where b_orderid=? and memberpass=?";
+			String sql =  "update reserve_board set boardbeginday =?,boardendday =?,boardsize =?,product_boardprice=? where b_orderid=? and memberpass=?";
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setString(1, bbean.getBoardbeginday());
 			pstmt.setString(2, bbean.getBoardendday());
 			pstmt.setString(3, bbean.getBoardsize());
-			pstmt.setInt(4,bbean.getB_orderid());
-			pstmt.setString(5, bbean.getMemberpass());
+			pstmt.setInt(4, bbean.getProduct_boardprice());
+			pstmt.setInt(5,bbean.getB_orderid());
+			pstmt.setString(6, bbean.getMemberpass());
 			
 			pstmt.executeUpdate();
 			
@@ -382,7 +383,7 @@ public class BoardDAO {
 		
 	}
 
-	public BoardClothOrder getboardblothOneorder(int bl_orderid) {
+	public BoardClothOrder getboardbclothOneorder(int bl_orderid) {
 		BoardClothOrder bcbean = null;
 		
 		try {
@@ -414,14 +415,15 @@ public class BoardDAO {
 		try {
 			getCon();
 			
-			String sql = "update reserve_boardcloth set boardclothbeginday =?,boardclothendnday =?,boardclothsize =? where bl_orderid=? and memberpass=?";
+			String sql = "update reserve_boardcloth set boardclothbeginday =?,boardclothendnday =?,boardclothsize =?,product_boardclothprice=? where bl_orderid=? and memberpass=?";
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, bcbean.getBoardclothbeginday());
 			pstmt.setString(2, bcbean.getBoardclothendnday());
 			pstmt.setString(3, bcbean.getBoardclothsize());
-			pstmt.setInt(4, bcbean.getBl_orderid());
-			pstmt.setString(5, bcbean.getMemberpass());
+			pstmt.setInt(4, bcbean.getProduct_boardclothprice());
+			pstmt.setInt(5, bcbean.getBl_orderid());
+			pstmt.setString(6, bcbean.getMemberpass());
 			pstmt.executeUpdate();
 			
 			conn.close();
@@ -431,4 +433,113 @@ public class BoardDAO {
 			
 		}
 
+	public BoardOrder getBoardOneprice(String boardimg) {
+		BoardOrder bpbean = null;
+		try {
+			getCon();
+			String sql = "select * from product_board_list where product_boardimg=?";
+			pstmt= conn.prepareStatement(sql);
+			pstmt.setString(1, boardimg);
+			
+			rs = pstmt.executeQuery();
+			while(rs.next()){
+				bpbean = new BoardOrder();
+				bpbean.setProduct_boardimg(boardimg);
+				bpbean.setProduct_boardprice(rs.getInt(3));
+				
+			}
+			conn.close();
+		} catch (Exception e) {
+			
+		}
+		return bpbean;
+	}
+
+	public BoardClothOrder getBoardClothoneprice(String boardclothimg) {
+		BoardClothOrder bcpbean = null;
+		try {
+			getCon();
+			String sql = "select * from product_boardcloth_list where product_boardclothimg=?";
+			pstmt= conn.prepareStatement(sql);
+			pstmt.setString(1, boardclothimg);
+			pstmt.executeQuery();
+			while(rs.next()){
+				bcpbean = new BoardClothOrder();
+				bcpbean.setProduct_boardclothimg(boardclothimg);
+				bcpbean.setProduct_boardclothprice(rs.getInt(3));
+				
+				
+			}
+			conn.close();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return bcpbean;
+	}
+
+	public void insertboardAdd(BoardListBean bbean) {
+	try {
+			
+			getCon();
+			String sql="insert into product_board_list values(?,?,?,?,?)";
+			pstmt=conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, bbean.getProduct_boardno());
+			pstmt.setString(2, bbean.getProduct_boardname());
+			pstmt.setInt(3, bbean.getProduct_boardprice());
+			pstmt.setString(4, bbean.getProduct_boardinfo());
+			pstmt.setString(5,bbean.getProduct_boardimg());
+		
+			
+			pstmt.executeUpdate();
+			conn.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void insertboardclothAdd(BoardClothListBean bcbean) {
+try {
+			
+			getCon();
+			String sql="insert into product_boardcloth_list values(?,?,?,?,?)";
+			pstmt=conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, bcbean.getProduct_boardclothno());
+			pstmt.setString(2, bcbean.getProduct_boardclothname());
+			pstmt.setInt(3, bcbean.getProduct_boardclothprice());
+			pstmt.setString(4, bcbean.getProduct_boardclothinfo());
+			pstmt.setString(5,bcbean.getProduct_boardclothimg());
+		
+			
+			pstmt.executeUpdate();
+			conn.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public BoardClothOrder getBoardClothprice(String boardclothimg) {
+		BoardClothOrder bcp = null;
+		try {
+			getCon();
+			String sql = "select * from product_boardcloth_list where product_boardclothimg=?";
+			pstmt= conn.prepareStatement(sql);
+			pstmt.setString(1, boardclothimg);
+			pstmt.executeQuery();
+			while(rs.next()){
+				bcp = new BoardClothOrder();
+				bcp.setProduct_boardclothimg(boardclothimg);
+				bcp.setProduct_boardclothprice(rs.getInt(3));
+				
+				
+			}
+			conn.close();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return bcp;
+	}
 }
