@@ -20,6 +20,21 @@
 <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 <script type="../js/bootstrap.js"></script>
 
+
+
+<script>
+$(document).ready(function(){
+    $("#writeButton").click(function(){
+    	if ('${ sessionScope.dto }'==null||'${ sessionScope.dto }'==""){
+    	alert('로그인을 하세요');
+    	location.href='bbs.review';
+    	}
+    });
+});
+
+</script>
+
+
 </head>
 <body>
 	<jsp:include page="../_main_login/header.jsp"></jsp:include>
@@ -69,7 +84,7 @@
 
 					<td colspan="1"><input type="submit" class="btn btn-primary" value="검색"> 
 					</form>
-						<a class="btn btn-primary" href="write.review">글쓰기</a>
+						<a class="btn btn-primary" id="writeButton">글쓰기</a>
 					</td>
 				</tr>
 			</table>

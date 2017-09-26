@@ -17,7 +17,6 @@ public class BbsCommand implements Command {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
-		
 		int pageNumber = 1;
 		String review_Title = null;
 		BbsDAO dao = new BbsDAO();

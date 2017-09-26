@@ -53,7 +53,14 @@ $(document).ready(function(){
 
 
 function submitFunction() {
-	
+	if ('${ sessionScope.dto }'==null||'${ sessionScope.dto }'==""){
+    	alert('로그인을 하세요');
+    	location.href='bbs.review';
+    	}
+	else if ($('#review_comment_content').val()==null||$('#review_comment_content').val()==""){
+    	alert('내용을 입력하세요');
+    	}
+	else{
 	var review_comment_content = $('#review_comment_content').val();
 	var review_ID = ${bbs.review_ID};
 	var member_ID = "${sessionScope.id}";
@@ -83,7 +90,7 @@ function submitFunction() {
 		}
 	});
 	$('#review_comment_content').val('');
- 
+	}
 }
 function commentListFunction(type) {
 	var review_ID = ${bbs.review_ID};
@@ -306,15 +313,9 @@ function addComment(commentName, commentContent,commentImage,commentID, commentT
 			</tr>
 
 
-			<tr>
-				<td colspan="3"><textarea class="form-control"
-						placeholder="댓글 달기" name="review_comment_content"
-						id="review_comment_content" maxlength="500" style="height: 100px;"></textarea></td>
-			</tr>
-			<tr>
-				<td colspan="3" style="background-color: #dddddd;"><button
-						type="button" class="btn btn-primary pull-right"
-						onclick="submitFunction();">댓글 달기</button></td>
+			<tr style="background-color: #dddddd;">
+				<td colspan="3" ><div class="col-xs-10"><textarea class="form-control" placeholder="댓글 달기" name="review_comment_content" id="review_comment_content" maxlength="500" style="height: 100px;"></textarea></div>
+				<button type="button" class="btn btn-primary pull-right" onclick="submitFunction();" style="font-size: 20px; width:15%; height: 100px;">댓글 등록</button></td>
 			</tr>
 			<tbody id=commentList></tbody>
 			<tr>

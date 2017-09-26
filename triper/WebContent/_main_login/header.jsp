@@ -109,7 +109,6 @@ nav .fa.fa-angle-down {
 }
 </style>
 
-${ sessionScope.dto }
 <c:set var="dto" value="${ sessionScope.dto }"/>
 
 </head>
@@ -118,7 +117,7 @@ ${ sessionScope.dto }
 	<nav>
 		<div class="container">
 			<ul>
-				<li style="z-index: 999;"><a href="../_main_login/main.jsp">Home</a></li>
+				<li style="z-index: 999;"><a href="../_main_login/main.jsp"><img src="../image/tripericon.png" height="40px" width="80px"></a></li>
 				<li style="z-index: 999;"><a href="bbs.review">리뷰 아직<i class='fa fa-angle-down'></i></a>
 					<ul>
 						<li><a href="bbs.review">리뷰 테스트</a></li>
