@@ -122,7 +122,7 @@ ${ sessionScope.dto }
 				<li style="z-index: 999;"><a href="bbs.review">리뷰 아직<i class='fa fa-angle-down'></i></a>
 					<ul>
 						<li><a href="bbs.review">리뷰 테스트</a></li>
-						<li><a href="#">샘플2</a></li>
+						<li><a href="../_ski/SkiMain.jsp">skrlvkf</a></li>
 						<li><a href="#">샘플3</a></li>
 						<li><a href="#">샘플4</a></li>
 					</ul></li>
