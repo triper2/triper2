@@ -220,8 +220,9 @@ body {
 		<div class='menu'>
 			<ul>
 				<li>
-					<a href='/SkiReserVation/_ski/SkiMain.jsp'>Home</a>
+					<a href='/triper/_main_login/main.jsp'>Home</a>
 				</li>
+				
 				<li>
 					<a href='#'>About Us</a>
 				</li>
@@ -229,36 +230,62 @@ body {
 					<a href='#'>장비렌탈</a>
 					<ul>
 						<li class='sub'>
-							<a href='#'>SKI</a>
-							<ul>
+							<a href='/triper/SkiListController1.jsp'>SKI</a>
+						<!-- 	<ul>
 							
 								<li>
-									<a href='/SkiReserVation/SkiListController1.do'>SKI</a>
+									<a href='/triper/SkiListController1.jsp'>SKI</a>
 								</li>
 								<li class='last'>
-									<a href='/SkiReserVation/SkiClothListController.do'>SKI CLOTH</a>
+									<a href='/triper/SkiClothListController.do'>SKI CLOTH</a>
 								</li>
-							</ul>
+							</ul> -->
 							
 						</li>
 						<li class='sub'>
-							<a href='#'>Board</a>
-							<ul>
+							<a href='/triper/SkiClothListController.do'>SKICLOTH</a>
+						<!-- 	<ul>
+							
 								<li>
-									<a href='/SkiReserVation/BoardListController.do'>Board</a>
+									<a href='/triper/SkiListController1.jsp'>SKI</a>
 								</li>
 								<li class='last'>
-									<a href='/SkiReserVation/BoardClothListController.do'>Board Cloth</a>
+									<a href='/triper/SkiClothListController.do'>SKI CLOTH</a>
 								</li>
-							</ul>
+							</ul> -->
+							
+						</li>
+						<li class='sub'>
+							<a href='/triper/BoardListController.do'>Board</a>
+						<!-- 	<ul>
+							
+								<li>
+									<a href='/triper/SkiListController1.jsp'>SKI</a>
+								</li>
+								<li class='last'>
+									<a href='/triper/SkiClothListController.do'>SKI CLOTH</a>
+								</li>
+							</ul> -->
+							
+						</li>
+						<li class='sub'>
+							<a href='/triper/BoardClothListController.do'>BoardCLOTH</a>
+							<!-- <ul>
+								<li>
+									<a href='/triper/BoardListController.do'>Board</a>
+								</li>
+								<li class='last'>
+									<a href='/triper/BoardClothListController.do'>Board Cloth</a>
+								</li>
+							</ul> -->
 						</li>
 					</ul>
 				</li>
 				<li>
-					<a href='/SkiReserVation/_ski/SkiMain.jsp?center=ReserveConfirm.jsp'>예약확인</a>
+					<a href='/triper/_ski/SkiMain.jsp?center=ReserveConfirm.jsp'>예약확인</a>
 				</li>
 				<li class='last'>
-					<a href='/SkiReserVation/_ski/SkiMain.jsp?center=Add.jsp'> 상품 추가</a>
+					<a href='/triper/_ski/SkiMain.jsp?center=Add.jsp'> 상품 추가</a>
 				</li>
 			</ul>
 		</div>
