@@ -22,7 +22,7 @@ public class CommentServlet extends HttpServlet {
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
 		int review_ID = Integer.parseInt(URLDecoder.decode(request.getParameter("review_ID"),"UTF-8"));
@@ -32,8 +32,12 @@ public class CommentServlet extends HttpServlet {
 		if(listType == null || listType.equals("")){
 			response.getWriter().write("");
 		}
+		else if(listType.equals("count")) response.getWriter().write(new BbsDAO().commentCount(review_ID)+"");
 		else if(listType.equals("today")) response.getWriter().write(getToday(review_ID, commentPageNumber));
-		
+		else if(listType.equals("page")){
+			BbsDAO BbsDAO = new BbsDAO();
+			response.getWriter().write(BbsDAO.commentPageingCount(review_ID)+"");
+		}
 		
 	}
 	

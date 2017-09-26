@@ -44,7 +44,10 @@
 
 $(document).ready(function(){
 	commentListFunction('today');
-
+	commentpageFunction('page');
+	commentcountFunction('count');
+	likelistFunction();
+	likeButtonServlet();
 });
 
 
@@ -64,8 +67,9 @@ function submitFunction() {
 		},
 		success : function(result) {
 			if (result == 1) {
-				
 				commentListFunction('today');
+				commentpageFunction('page');
+				commentcountFunction('count');
 				autoClosingAlert('#successMessage', 2000);
 			} else if (result == 0) {
 				autoClosingAlert('#dangerMessage', 2000);
@@ -104,7 +108,51 @@ function commentListFunction(type) {
 			}
 		}
 	});
+	
+}
 
+function commentpageFunction(type) {
+	var review_ID = ${bbs.review_ID};
+	var commentPageNumber = ${commentPageNumber};
+	$.ajax({
+		type : "POST",
+		url : "../CommentServlet",
+		data : {
+			review_ID :  encodeURIComponent(review_ID),
+			commentPageNumber :  encodeURIComponent(commentPageNumber),
+			listType : type,
+			
+		},
+		success : function(data) {
+			if(data == "") return;
+			date =  Number(data);
+			$('#comment').html("");
+			for (var i = 1; i < date+1; i++) {
+				$('#comment').append(
+				'<a href="view.review?review_ID=${review_ID}&commentPageNumber='+i+'" class="btn btn-success" onclick="commentListFunction("today");">'+ i +'</a> ');
+			}
+		}
+	});
+}
+function commentcountFunction(type) {
+	var review_ID = ${bbs.review_ID};
+	var commentPageNumber = ${commentPageNumber};
+	$.ajax({
+		type : "POST",
+		url : "../CommentServlet",
+		data : {
+			review_ID :  encodeURIComponent(review_ID),
+			commentPageNumber :  encodeURIComponent(commentPageNumber),
+			listType : type,
+			
+		},
+		success : function(data) {
+			if(data == "") return;
+			date =  Number(data);
+			$('#commentcount').html("");
+			$('#commentcount').append(data);
+		}
+	});
 }
 
 function deletecommentFunction(type) {
@@ -122,7 +170,78 @@ function deletecommentFunction(type) {
 	}); 
 }
 
+function likelistFunction() {
+	var review_ID = ${bbs.review_ID};
+	var member_ID = "${sessionScope.id}";
+	 $.ajax({
+		type : "POST",
+		url : "../LikeListServlet",
+		data : {
+			review_ID :  encodeURIComponent(review_ID),
+			member_ID :  encodeURIComponent(member_ID),
+		},
+		success : function(data) {
+				if(data == "") return;
+				date =  Number(data);
+				$('#likelist').html("");
+				$('#likelist').append(data);
+		}
+	}); 
+}
 
+function likeButtonServlet() {
+	var review_ID = ${bbs.review_ID};
+	var member_ID = "${sessionScope.id}";
+	 $.ajax({
+		type : "POST",
+		url : "../LikeButtonServlet",
+		data : {
+			review_ID :  encodeURIComponent(review_ID),
+			member_ID :  encodeURIComponent(member_ID),
+		},
+		success : function(data) {
+				if(data == "") return;
+				date =  Number(data);
+
+				if(data==1){
+					$('#likebutton').html("");
+					$('#likebutton').append('싫어요');
+				}else if(data==0){
+					$('#likebutton').html("");
+					$('#likebutton').append('좋아요');
+				}
+		}
+	}); 
+}
+
+
+
+function likeFunction() {
+	var review_ID = ${bbs.review_ID};
+	var member_ID = "${sessionScope.id}";
+	 $.ajax({
+		type : "POST",
+		url : "../LikeServlet",
+		data : {
+			review_ID :  encodeURIComponent(review_ID),
+			member_ID :  encodeURIComponent(member_ID),
+			
+		},
+		success : function(data) {
+			if(data == "-1") return;
+			date =  Number(data);
+			if(data==2){
+				$('#likebutton').html("");
+				$('#likebutton').append('싫어요');
+				likelistFunction();
+			}else if(data==3){
+				$('#likebutton').html("");
+				$('#likebutton').append('좋아요');
+				likelistFunction();
+			}
+		}
+	}); 
+}
 function addComment(commentName, commentContent,commentImage,commentID, commentTime) {
 	var str = '<c:set var="commentName" value="'+commentName+'"/>'
 			+'<tr><td rowspan="2" colspan="1" width="20"><img class="media-object img-circle" src="../_main_login/mem_img/'+commentImage+'" height="100" width="100" alt=""></td>'
@@ -159,27 +278,15 @@ function addComment(commentName, commentContent,commentImage,commentID, commentT
 								width="150" alt=""> ${bbs.member_ID}
 						</center>
 						<hr>
-						<form method="get" action="LikeHateCommand.review">
 						<button type="submit" class="btn btn-primary "
-							aria-label="right Align">
-							<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>좋아요!
+							aria-label="right Align" onclick="likeFunction();">
+							<span class="glyphicon glyphicon-thumbs-up" id="likebutton" aria-hidden="true"></span>
 							<input type="hidden" name="like" value="1">
 							<input type="hidden" name="review_ID" value="${bbs.review_ID}">
 						</button>
-						</form>
-						<hr>
-						<form method="get" action="LikeHateCommand.review">
-						<button type="submit" class="btn btn-primary"
-							aria-label="right Align">
-							<span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>나빠요!
-							<input type="hidden" name="hate" value="-1">
-							<input type="hidden" name="review_ID" value="${bbs.review_ID}">
-						</button>
-						</form>
-						<hr> <span class="glyphicon glyphicon-thumbs-up pull-left"aria-hidden="true"> 좋아요:</span>${bbs.review_Like}<br> 
-						<span class="glyphicon glyphicon-thumbs-down pull-left" aria-hidden="true"> 나빠요:</span>${bbs.review_Hate}<br> 
+						<hr> <span class="glyphicon glyphicon-thumbs-up pull-left"aria-hidden="true"> 좋아요:</span><div id="likelist"></div>
 						<span class="glyphicon glyphicon-eye-open pull-left" aria-hidden="true"> 조회수:</span>${bbs.review_Viewcount}<br> 
-						<span class="glyphicon glyphicon-user pull-left" aria-hidden="true"> 댓 글:</span>${commentCount}
+						<span class="glyphicon glyphicon-user pull-left" aria-hidden="true"> 댓 글:</span><div id="commentcount"></div>
 					</td>
 				</tr>
 				
@@ -209,62 +316,11 @@ function addComment(commentName, commentContent,commentImage,commentID, commentT
 						type="button" class="btn btn-primary pull-right"
 						onclick="submitFunction();">댓글 달기</button></td>
 			</tr>
-			<tbody id=commentList>
-
-			</tbody>
-
+			<tbody id=commentList></tbody>
 			<tr>
-				<td colspan="3"><c:forEach var="page" begin="1"
-						end="${commentPageCount}" step="1">
-						<a
-							href="view.review?review_ID=${review_ID}&commentPageNumber=${page}"
-							class="btn btn-success" onclick="commentListFunction('today');">
-							${page} </a>
-					</c:forEach></td>
+				<td id="comment" colspan="3"></td>
 			</tr>
 		</table>
-		<%-- <div id="layer_fixed">
-			<table class="table table"
-				style="text-align: center; color: #D5D5D5;">
-				<tr style="text-align: center; color: #D5D5D5;">
-					<td>
-						<center>
-							<img class="media-object img-circle"
-								src="../_main_login/mem_img/${bbs.member_image}" height="150"
-								width="150" alt="">
-						</center> ${bbs.member_ID}
-						<hr>
-						<form method="get" action="LikeHateCommand.review">
-						<button type="submit" class="btn btn-primary "
-							aria-label="right Align">
-							<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>좋아요!
-							<input type="hidden" name="like" value="1">
-							<input type="hidden" name="review_ID" value="${bbs.review_ID}">
-						</button>
-						</form>
-						<hr>
-						<form method="get" action="LikeHateCommand.review">
-						<button type="submit" class="btn btn-primary"
-							aria-label="right Align">
-							<span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>나빠요!
-							<input type="hidden" name="hate" value="-1">
-							<input type="hidden" name="review_ID" value="${bbs.review_ID}">
-						
-						</button>
-						</form>
-						<hr> <span class="glyphicon glyphicon-thumbs-up pull-left"
-						aria-hidden="true"> 좋아요:</span> <br> <span
-						class="glyphicon glyphicon-thumbs-down pull-left"
-						aria-hidden="true"> 나빠요:</span> <br> <span
-						class="glyphicon glyphicon-eye-open pull-left" aria-hidden="true">
-							조회수:</span> <br> <span class="glyphicon glyphicon-user pull-left"
-						aria-hidden="true"> 댓 글:</span>
-					</td>
-				</tr>
-			</table>
-
-
-		</div> --%>
 
 
 </body>

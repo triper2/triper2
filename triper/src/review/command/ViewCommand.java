@@ -33,7 +33,7 @@ public class ViewCommand implements Command {
 					script = response.getWriter();
 					script.println("<script>");
 					script.println("alert('로그인을 하세요')");
-					script.println("location.href = 'bbs.review'");// 로그인 페이지
+					script.println("location.href = 'bbs.review'");
 					script.println("</script>");
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
@@ -61,6 +61,7 @@ public class ViewCommand implements Command {
 				commentPageNumber = Integer.parseInt(request.getParameter("commentPageNumber"));
 			}
 			BbsDAO dao = new BbsDAO();
+			
 			BbsVO bbs = new BbsDAO().getBbs(review_ID);
 			dao.viewcountUpdate(bbs.getReview_Viewcount(), review_ID);
 			bbs = new BbsDAO().getBbs(review_ID);

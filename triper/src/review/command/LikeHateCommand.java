@@ -1,4 +1,4 @@
-package review.command;
+/*package review.command;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -15,8 +15,6 @@ public class LikeHateCommand implements Command {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		
-		String like = request.getParameter("like");
-		String hate = request.getParameter("hate");
 		int review_ID=Integer.parseInt(request.getParameter("review_ID"));
 		String member_id=null;
 		
@@ -89,3 +87,4 @@ public class LikeHateCommand implements Command {
 	}
 
 }
+*/

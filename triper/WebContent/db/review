@@ -45,3 +45,12 @@ minvalue 1
 increment by 1
 cycle
 nocache;
+
+
+CONSTRAINT PK_USERS PRIMARY KEY(USERNO)
+
+create table like(
+reivew_ID number,
+member_id varchar2(30),
+like number
+)

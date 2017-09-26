@@ -363,39 +363,81 @@ public class BbsDAO {
 		}
 		return -1;
 	}
-
-	public int likeUpdate(int review_Like, int review_ID) {
+	public int liketable(String member_id, int review_ID) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		String sql = "update review_board set review_Like= ? where review_ID = ?";
-
+		String sql = "insert into review_like values(?,?)";
 		try {
 			conn = loadOracleDriver();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, review_Like + 1);
-			pstmt.setInt(2, review_ID);
-			return pstmt.executeUpdate();
+			pstmt.setInt(1, review_ID);
+			pstmt.setString(2, member_id);
+			pstmt.executeUpdate();
+			return 2;
 		} catch (Exception e) {
-			e.printStackTrace();
+			return -1;
 		}
-		return -1;
 	}
-
-	public int hateUpdate(int review_Hate, int review_ID) {
+	
+	public int hateUpdate(String member_id, int review_ID) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		String sql = "update review_board set review_Hate= ? where review_ID = ?";
+		String sql = "delete from review_like where member_id= ? and review_ID = ?";
 
 		try {
 			conn = loadOracleDriver();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, review_Hate - 1);
+			pstmt.setString(1, member_id);
 			pstmt.setInt(2, review_ID);
-			return pstmt.executeUpdate();
+			pstmt.executeUpdate();
+			return 3;
 		} catch (Exception e) {
-			e.printStackTrace();
+			return -1;
 		}
-		return -1;
+	}
+	
+	public int likeCount(int review_ID) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int likeNum=0;
+		String sql = "select count(*) from review_like where review_ID = ?";
+		try {
+			conn = loadOracleDriver();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, review_ID);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				likeNum = rs.getInt(1);
+			}
+		} catch (Exception e) {
+			return likeNum;
+		}
+		return likeNum;
+	}
+	
+	
+
+	public int likeUpdate(String member_id, int review_ID) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int likecount=0;
+		String sql = "select count(*) from review_like where member_id = ? and review_ID=?";
+
+		try {
+			conn = loadOracleDriver();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, member_id);
+			pstmt.setInt(2, review_ID);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				likecount = rs.getInt(1);
+			}
+		} catch (Exception e) {
+			return -1;
+		}
+		return likecount;
 	}
 
 	public int viewcountUpdate(int review_Viewcount, int review_ID) {
