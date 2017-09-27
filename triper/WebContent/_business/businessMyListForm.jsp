@@ -35,7 +35,7 @@
 			<th>${list1.business_category }</th>
 			<th>${list1.business_assent }</th>
 			<c:if test="${sessionScope.dto.member_id=='admin' and list1.business_assent=='대기중'}">
-				<form>
+				<form >
 					<td><input type="submit" value="승인"></td>
 				</form>
 				<form>

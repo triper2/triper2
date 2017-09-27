@@ -94,12 +94,12 @@ th {
 				<dd id="c_0"><br><img src="./help/images/faq_a1.png" align="left" width="25px">
 				<div style="margin-left: 30px;">아이디의 변경은 불가능합니다. <br>
 				아이디 변경을 하시려면 탈퇴 후 재가입(동일 아이디 사용 불가)을 하셔야 하며,<br>
-				비밀번호 변경은 사이트에서 로그인 후 [회원정보수정］에서 변경하실 수 있습니다.<br></div>
+				비밀번호 변경은 사이트에서 로그인 후 [마이페이지 - 회원정보수정］에서 변경하실 수 있습니다.<br></div>
 				</dd><br>
 			<!-- <hr style="border: solid 1px;"> -->
 				<br><dt id="dt_1" ><a id="a_1"   style="text-decoration: none; color: black; margin-left: 12px;" ><img src="./help/images/faq_q1.png" align="left" style="width: 25px;"><b id="b_1">회원탈퇴는 어떻게 하나요?</b><img id="img2_1" src="./help/images/sort_down1.png" align="right" width="40px"/></a></dt>
 				<dd id="c_1"><br><img src="./help/images/faq_a1.png" align="left" width="25px">
-				<div style="margin-left: 30px;">탈퇴신청은 로그인 후 홈페이지 상단의 ［회원탈퇴]에서 신청해 주시면 됩니다.<br>
+				<div style="margin-left: 30px;">탈퇴신청은 로그인 후 홈페이지 상단의 ［마이페이지 - 회원탈퇴]에서 신청해 주시면 됩니다.<br>
 				탈퇴와 관련한 자세한 사항은 회원 이용약관을 참고하여 주시길 바랍니다.<br>
 				</div>
 				</dd><br>
@@ -122,10 +122,17 @@ th {
 				<br><dt id="dt_4" ><a id="a_4"   style="text-decoration: none; color: black; margin-left: 12px;" ><img src="./help/images/faq_q1.png" align="left" style="width: 25px;"><b id="b_4">위치가 어떻게 되나요?</b> <img  id="img2_4" src="./help/images/sort_down1.png" align="right" width="40px"/></a></dt>
 				<dd id="4"><br><img src="./help/images/faq_a1.png" align="left" width="25px">
 				<div style="margin-left: 30px;">판교에 위치하고 있습니다.<br>
-				자세한 문의는 010-000-0000으로 전화 주시면 감사하겠습니다<br>
+				자세한 문의는 <b>[대표번호 : 031)114 FAX : 01-112-119]</b> 으로 주시면 감사하겠습니다<br>
 				</div>
 				</dd><br>
 			<!-- <hr style="border: solid 1px;">	 -->
+			<br><dt id="dt_4" ><a id="a_4"   style="text-decoration: none; color: black; margin-left: 12px;" ><img src="./help/images/faq_q1.png" align="left" style="width: 25px;"><b id="b_4">사업자 등록 어떻게 하나요?</b> <img  id="img2_4" src="./help/images/sort_down1.png" align="right" width="40px"/></a></dt>
+				<dd id="4"><br><img src="./help/images/faq_a1.png" align="left" width="25px">
+				<div style="margin-left: 30px;">로그인 후 [마이페이지 - 사업자등록]을 통해 등록 가능 합니다.<br>
+				등록 신청 완료 후 저희가 사업자 이름과 사업자 번호를 비교 확인 후 승인해드립니다.<br>
+				자세한 문의는 <b>[대표번호 : 031)114 &nbsp;&nbsp; FAX : 01-112-119]</b> 으로 주시면 감사하겠습니다<br>
+				</div>
+				</dd><br>
 
 </body>
 </html>
