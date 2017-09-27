@@ -83,7 +83,7 @@ public class LoginProAction extends HttpServlet {
 			dp.forward(request, response);
 		} 
 		else if (com.equals("/_main_login/loginForm.do")) { ///////////////////////////////////loginForm.do
-			viewPage = "/_main_login/header.jsp";
+			viewPage = "/_main_login/main.jsp";
 			RequestDispatcher dp = request.getRequestDispatcher(viewPage);
 			dp.forward(request, response);
 		} 
