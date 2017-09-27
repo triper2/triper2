@@ -35,11 +35,9 @@
 			<th>${list1.business_category }</th>
 			<th>${list1.business_assent }</th>
 			<c:if test="${sessionScope.dto.member_id=='admin' and list1.business_assent=='대기중'}">
-				<form >
+				<form action="../_business/assent.business" method="post">
+				<input type="hidden" name="business_id" value="${list1.business_id }">
 					<td><input type="submit" value="승인"></td>
-				</form>
-				<form>
-					<td><input type="submit" value="거절"></td>
 				</form>
 			</c:if>
 		</tr>

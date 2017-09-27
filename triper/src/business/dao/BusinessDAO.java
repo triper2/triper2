@@ -3,6 +3,7 @@ package business.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.naming.Context;
@@ -173,5 +174,22 @@ public class BusinessDAO {
 			}
 		}
 	    return list;
+	}
+	public void assentBusiness(String business_id) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		conn = loadOracleDriver();
+		String sql = "update business_list set BUSINESS_ASSENT ='승인' where business_id=?";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, business_id);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 }
