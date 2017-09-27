@@ -205,13 +205,18 @@
 			<div class="option">
 				<div onmouseover="">
 					<form onsubmit="searchPlaces(); return false;">
-						<table>
+						<table class="table table-striped"style=" text-align: center; border: 1px solid #dddddd">
 							<tr align="center">
-								<td><input type="radio" id="category1" name="category" value="ski" checked="checked" >ski<td>
-								<td><input type="radio" id="category2" name="category" value="car">car<td>
+								<td><input type="radio" id="category1" name="category" value="ski" checked="checked" >ski</td>
+								<td><input type="radio" id="category2" name="category" value="car">car</td>
 							</tr>
 							<tr>
-								<td rowspan="2">키워드 : <input type="text" value="판교 렌트카" id="keyword" size="15" ><button type="submit">검색하기</button></td>
+								<td colspan="2"><input class="form-control" placeholder="키워드" type="text"  value="판교 렌트카" id="keyword" size="15" >
+								</td>
+							</tr>
+							<tr>
+								<td colspan="2">
+								<button type="submit" class="btn btn-primary">검색하기</button></td>
 							</tr>
 						</table>
 					</form>
@@ -502,7 +507,7 @@
 					+'road_address_name='+ places.road_address_name + '&'
 					+'address_name='+ places.address_name + '&'
 					+'phone='+ places.phone */
-			content += '<div style="margin-top: 15px" class="info">'
+			content += '<div style="margin-top: 10px;"  class="info">'
 					+ '<h5>' + places.place_name + '</h5>';
 			if (places.road_address_name) {
 				content += '    <span>'+ places.road_address_name + '</span><br>';
@@ -512,7 +517,7 @@
 
 			content += '  <span class="tel">' + places.phone + '</span>'
 					+ '<input type="hidden" name="business_id" value="'+places.id+'"></input>'
-					+ '<input type="submit" value="예약하기"/><br><br><br></form>';
+					+ '<input class="btn btn-primary" type="submit" value="예약하기"/><br><br><br></form>';
 
 			infowindow.setContent(content);
 			infowindow.open(map, marker);

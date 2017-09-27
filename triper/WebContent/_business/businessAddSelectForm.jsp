@@ -208,8 +208,8 @@
 			<div class="option">
 				<div>
 					<form onsubmit="searchPlaces(); return false;">
-						키워드 : <input type="text" value="판교 렌트카" id="keyword" size="15">
-						<button type="submit">검색하기</button>
+						<input type="text" class="form-control" placeholder="키워드" value="판교 렌트카" id="keyword" size="15">
+						<button type="submit" class="btn btn-primary" style="margin-top: 10px">검색하기</button>
 					</form>
 				</div>
 			</div>
@@ -461,7 +461,7 @@
 					+ '<input type="hidden" name="business_tel" value="'+places.phone+'"></input>'
 					+ '</div><input name="business_x" type="hidden" value="'+places.x+'"/>'
 					+ '<input name="business_y" type="hidden" value="'+places.y+'"/>'
-					+ '<input type="submit" value="사업장 등록"/><br><br><br></form>';
+					+ '<input type="submit" class="btn btn-primary" value="사업장 등록"/><br><br><br></form>';
 
 			infowindow.setContent(content);
 			infowindow.open(map, marker);
