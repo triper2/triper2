@@ -206,15 +206,14 @@
 				<div onmouseover="">
 					<form onsubmit="searchPlaces(); return false;">
 						<table>
-							<tr >
+							<tr align="center">
 								<td><input type="radio" id="category1" name="category" value="ski" checked="checked" >ski<td>
 								<td><input type="radio" id="category2" name="category" value="car">car<td>
 							</tr>
 							<tr>
-								<td rowspan="2">키워드 : <input type="text" value="판교 렌트카" id="keyword" size="15"></td>
+								<td rowspan="2">키워드 : <input type="text" value="판교 렌트카" id="keyword" size="15" ><button type="submit">검색하기</button></td>
 							</tr>
 						</table>
-						<button type="submit">검색하기</button>
 					</form>
 				</div>
 			</div>
