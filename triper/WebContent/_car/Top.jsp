@@ -2,7 +2,7 @@
     pageEncoding="EUC-KR"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<body>
+<bady style="background-color:white;">
 <!-- 	
 	메인 로고를 누르면 메인페이지로 이동하도록 소스를 작성
 	<a href="CarMain.jsp"> <img src="img/RENT.jpg" align="left" 
@@ -32,7 +32,7 @@
 		 </td>	
 	</table>
 	<center> -->
-	<table width="1000" border="1" bordercolor="white">
+	<table width="100%" border="1" bordercolor="white">
 			<!-- <tr height="70">
 				<td colspan="4"><a href="CarMain.jsp"
 					style="text-decoration: none"> <img src="img/aa.jpg"
@@ -40,15 +40,14 @@
 				</a></td>
 			</tr> -->
 			<tr height="50">
-			<td align="center" width="200" bgcolor="red">
-				<font color="green" size="4">
-				<a href="CarMain.jsp?center=CarReservation.jsp&business_id=${param.business_id }" style="text-decoration:none">예약하기</a></font>
+			<td align="center" width="200" bgcolor="black">
+				<a href="CarMain.jsp?center=CarReservation.jsp&business_id=${param.business_id }"style="color:white;">예약하기</a></font>
 			</td>
-			<td align="center" width="200" bgcolor="red">
-				<font color="white" size="4"><a href="../_car/CarReserveConfirmController.do?business_id=${param.business_id }" style="text-decoration:none">예약확인</a></font>
+			<td align="center" width="200" bgcolor="black">
+				<a href="../_car/CarReserveConfirmController.do?business_id=${param.business_id }"style="color:white;">예약확인</a></font>
 			</td>
-			<td align="center" width="200" bgcolor="red">
-				<font color="white" size="4"><a href="CarMain.jsp?center=CarAdd.jsp&business_id=${param.business_id }" style="text-decoration:none">차량 추가</a></font>
+			<td align="center" width="200" bgcolor="black">
+				<a href="CarMain.jsp?center=CarAdd.jsp&business_id=${param.business_id }"style="color:white;">차량 추가</a></font>
 			</td>
 		</tr>
 	</table>

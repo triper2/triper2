@@ -3,11 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<body>
-<center>
-	<img alt="" src="img/naeyeok.jpg" border="0">
-	<p></p>
-	<table width="1000" border="1" align="center">
+<bady>
+	<table class="table table-striped"style="text-align: center; border: 1px solid #dddddd">
 	<tr align="center">
 		<td align="center" width="150">차량이미지</td>
 		<td align="center" width="100">차량명</td>
@@ -58,7 +55,6 @@
 	
 	
 	</table>
-</center>
 </body>
 </html>
 

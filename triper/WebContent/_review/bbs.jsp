@@ -28,6 +28,8 @@ $(document).ready(function(){
     	if ('${ sessionScope.dto }'==null||'${ sessionScope.dto }'==""){
     	alert('로그인을 하세요');
     	location.href='bbs.review';
+    	}else{
+    		location.href='write.review';
     	}
     });
 });
