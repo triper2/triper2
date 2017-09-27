@@ -220,7 +220,7 @@ body {
 		<div class='menu'>
 			<ul>
 				<li>
-					<a href='/triper/_main_login/main.jsp'>Home</a>
+					<a href='/triper/_main_login/main.jsp'><img src="../image/tripericon.png" height="40px" width="80px"></a>
 				</li>
 				<li>
 					<a href='#'>About Us</a>

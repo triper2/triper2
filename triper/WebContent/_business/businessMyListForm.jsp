@@ -12,7 +12,7 @@
 <body>
 <jsp:include page="../_command/loginChecker.jsp?page=businessMyList"></jsp:include>
 <jsp:include page="../_main_login/header.jsp"></jsp:include>
-<table border="1" style="text-align: center;">
+<table class="table table-striped"style="text-align: left; border: 3px solid #dddddd">
 	<tr>
 		<th>상호명</th>
 		<th>사업자번호</th>
