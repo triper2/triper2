@@ -14,9 +14,9 @@ height:500px;
 
 <script type="text/javascript">
 function setCookie(name, value, expiredays) {
-	var today = new Date();
-    today.setDate(today.getDate() + expiredays);
-    document.cookie = name + '=' + escape(value) + '; path=/; expires=' + today.toGMTString() + ';'
+	var todayDate = new Date();
+    todayDate.setDate(todayDate.getDate() + expiredays);
+    document.cookie = name + '=' + escape(value) + '; path=/; expires=' + todayDate.toGMTString() + ';'
 }
 
 function closePop() {        
@@ -25,7 +25,7 @@ function closePop() {
 }
 
 function eventView() {        
-	location.href="../_event_board/view.eb?ebNum=1";
+	location.href="../_event_board/view.eb?ebNum=2";
 }
 
 </script>

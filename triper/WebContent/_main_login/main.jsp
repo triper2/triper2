@@ -7,10 +7,31 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<title> Triper </title>
 <script type="text/javascript">
-window.open("eventPopup.html", "a", "resizable=yes, scrollbars=no, width=480, height=530, left=200, top=50"); //function함수에 안넣으면 자동으로 열림
+//window.open("eventPopup.html", "a", "resizable=yes, scrollbars=no, width=480, height=530, left=200, top=50"); //function함수에 안넣으면 자동으로 열림
+
+function getcookie( name ){
+    var nameOfcookie = name + "=";
+    var x = 0;
+    while ( x <= document.cookie.length )
+    {
+            var y = (x+nameOfcookie.length);
+            if ( document.cookie.substring( x, y ) == nameOfcookie ) {
+                    if ( (endOfcookie=document.cookie.indexOf( ";", y )) == -1 )
+                            endOfcookie = document.cookie.length;
+                    return unescape( document.cookie.substring( y, endOfcookie ) );
+            }
+            x = document.cookie.indexOf( " ", x ) + 1;
+            if ( x == 0 )
+                    break;
+    }
+    return "";
+}
+if ( getcookie( "todayPop" ) != "popBox" )
+{
+	window.open("eventPopup.html", "a", "resizable=yes, scrollbars=no, width=480, height=530, left=200, top=50");
+}
 </script>
 <style type="text/css">
-
 body {
 	margin : 0;
 	padding : 0;
@@ -26,7 +47,6 @@ video {
 	z-index : -1;
 	muted : false;
 }
-
 </style>
 
 </head>
