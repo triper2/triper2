@@ -124,7 +124,6 @@ nav .fa.fa-angle-down {
 					</ul></li>
 				<li style="z-index: 999;"><a href="../_car/CarMain.jsp">렌트하기<i class='fa fa-angle-down'></i></a>
 					<ul>
-						<li><a href="../_ski/Skimain2.jsp">SKI 예약</a></li>
 						<li><a href="../_business/businessAllListForm.jsp">렌트하기</a></li>
 						<li><a href="../_event_board/eblist.eb">이벤트</a></li>
 					</ul></li>
