@@ -1,9 +1,8 @@
 package car_controller;
 
 import java.io.IOException;
-import java.text.ParseException;
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
@@ -14,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import car_db.CarOrderBean;
+import kosta.rental.loginModel.RentalDTO;
 
 
 @WebServlet("/_car/CarOptionController.do")
@@ -38,8 +38,61 @@ public class CarOptionController extends HttpServlet {
 		}
 	}
 	protected void requestpro(HttpServletRequest request, HttpServletResponse response) throws Exception  {
+		
+		
+		
+		
+		
+		
+		
 		request.setCharacterEncoding("UTF-8");
 	      response.setContentType("text/html;charset=UTF-8");
+	      
+	      
+	      String member_id = null;
+	         
+	         
+	         try {
+	            RentalDTO dto = (RentalDTO)request.getSession().getAttribute("dto");
+	            member_id = dto.getMember_id();
+	         } catch (Exception e) {
+	            member_id = null;
+	         }
+	         
+	         if (member_id == null) {
+	        	 System.out.println("여긴오니???");
+	            PrintWriter script;
+	            try {
+	               script = response.getWriter();
+	               script.println("<script>");
+	               script.println("alert('로그인을 하세요')");
+	               script.println("location.href = '/triper/_main_login/loginForm.jsp'");
+	               script.println("</script>");
+	            } catch (IOException e) {
+	               // TODO Auto-generated catch block
+	               e.printStackTrace();
+	            }
+
+	         }else{
+	      
+	      
+//	      String member_id=null;
+//	       member_id = ((RentalDTO)request.getSession().getAttribute("dto")).getMember_id();
+//	      System.out.println(member_id);
+//	      if(member_id!=null){
+//	    	  PrintWriter script;
+//	            try {
+//	               script = response.getWriter();
+//	               script.println("<script>");
+//	               script.println("alert('로그인을 하세요')");
+//	               script.println("location.href = '/triper/_main_login/loginForm.jsp'");
+//	               script.println("</script>");
+//	            } catch (IOException e) {
+//	               // TODO Auto-generated catch block
+//	               e.printStackTrace();
+//	            }
+//	      }
+//	      
 	      
 	      String business_id = request.getParameter("business_id");
 		
@@ -126,6 +179,7 @@ public class CarOptionController extends HttpServlet {
 		cbean.setCalDateDays(calDateDays);
 		System.out.println(totalprice);
 		//carOrder.jsp ������ �ѱ�
+		request.setAttribute("member_id", member_id);
 		request.setAttribute("cbean", cbean);
 		request.setAttribute("totalreserve", totalreserve);
 		request.setAttribute("totaloption", totaloption);
@@ -135,5 +189,6 @@ public class CarOptionController extends HttpServlet {
 	
 		RequestDispatcher dis = request.getRequestDispatcher("/_car/CarMain.jsp?center=CarOrder.jsp&top=_Top.jsp&business_id="+business_id);
 		dis.forward(request, response);
+	}
 	}
 }

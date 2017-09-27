@@ -3,6 +3,8 @@
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+
+
 <body>
 <center>
 	<img alt="" src="img/cis.jpg" border="0">
@@ -52,10 +54,10 @@
 		<input type="hidden" name="carno" value="${bean.product_carno }">
 		<input type="hidden" name="carimg" value="${bean.product_carimg }">
 		<input type="hidden" name="carprice" value="${bean.product_carprice }">
-		<input type="button" value="이전" onclick="location.href='../_car/CarListController.do?business_id=${param.business_id }'">
+		<input type="button"  value="이전" onclick="location.href='../_car/CarListController.do?business_id=${param.business_id }'">
 		</td>
 		<td align="center" width="200"> 
-			<input type="submit" value="옵션 선택하기">
+			<input type="submit"value="옵션 선택하기">
 		 </td> 
 	</tr>
 	</table>

@@ -1,4 +1,9 @@
 eclipse.preferences.version=1
+encoding//src/business/dao=UTF-8
+encoding//src/business/dao/BusinessDAO.java=UTF-8
+encoding//src/car_controller=UTF-8
+encoding//src/car_controller/CarConfirmUpdateProcController.java=UTF-8
+encoding//src/car_db/CarDAO.java=UTF-8
 encoding//src/faq/service/controller=UTF-8
 encoding//src/kosta/rental/loginAction/LoginProAction.java=UTF-8
 encoding//src/review/command=UTF-8

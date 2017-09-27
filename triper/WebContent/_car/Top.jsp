@@ -33,12 +33,12 @@
 	</table>
 	<center> -->
 	<table width="1000" border="1" bordercolor="white">
-			<tr height="70">
+			<!-- <tr height="70">
 				<td colspan="4"><a href="CarMain.jsp"
 					style="text-decoration: none"> <img src="img/aa.jpg"
 						width="300" height="80" border="0">
 				</a></td>
-			</tr>
+			</tr> -->
 			<tr height="50">
 			<td align="center" width="200" bgcolor="red">
 				<font color="green" size="4">
