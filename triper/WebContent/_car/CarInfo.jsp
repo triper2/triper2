@@ -5,11 +5,10 @@
 <html>
 
 
-<body>
+<body style="background-color:white;">
 <center>
-	<img alt="" src="img/cis.jpg" border="0">
 	<form action="./CarMain.jsp?center=CarOption.jsp&business_id=${param.business_id }" method="post">
-	<table width="1000" border="0" align="center">
+	<table class="table table-striped"style="text-align: center; border: 1px solid #dddddd">
 	<tr align="center">
 		<td rowspan="6" width="600">
 		<img alt="" src="img/${bean.product_carimg }" width="450" border="0">
@@ -19,7 +18,7 @@
 	</tr>
 	<tr>
 		<td align="center" width="200"> 대여수량  </td>
-		<td align="center" width="200"> <select name="carqty">
+		<td align="center" width="200"> <select class="form-control" name="carqty">
 										<option value="1">1</option>
 										<option value="2">2</option>
 										<option value="3">3</option>
@@ -54,10 +53,10 @@
 		<input type="hidden" name="carno" value="${bean.product_carno }">
 		<input type="hidden" name="carimg" value="${bean.product_carimg }">
 		<input type="hidden" name="carprice" value="${bean.product_carprice }">
-		<input type="button"  value="이전" onclick="location.href='../_car/CarListController.do?business_id=${param.business_id }'">
+		<input class="btn btn-primary" type="button"  value="이전" onclick="location.href='../_car/CarListController.do?business_id=${param.business_id }'">
 		</td>
 		<td align="center" width="200"> 
-			<input type="submit"value="옵션 선택하기">
+			<input class="btn btn-primary" type="submit"value="옵션 선택하기">
 		 </td> 
 	</tr>
 	</table>
