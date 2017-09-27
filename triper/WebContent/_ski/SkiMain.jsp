@@ -23,7 +23,7 @@
 	<c:set var="top" value="Skimain2.jsp" />
 	</c:if>
 	<center>
-		<table width="1000" height="700">
+		<table width="100%">
 		<tr align="center">
 			<td> <jsp:include page="${top}"/></td> 	
 		</tr>

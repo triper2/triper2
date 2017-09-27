@@ -5,20 +5,22 @@
 <head>
 <link rel="stylesheet" href="./css/button.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<link rel="stylesheet" href="../css/bootstrap.css">
+<link rel="stylesheet" href="../css/custom.css">
+<title></title>
+<script type="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script type="../js/bootstrap.js"></script>
 </head>
 <body>
 <center>
 	
 	<form action="../ReserveConfirmController.do" method="post">
-	<table width="400" border="0">
+	<table width="50%" border="0" style=" background : rgba(0, 0, 0, 0.6); border-radius: 10px;">
 		<tr height="60" align="center">
-			<td align="center"	width="200"> 전화번호 입력 : </td>
-			<td align="center"><input type="text" name="memberphone"></td>
+			<td align="center"><div class="col-xs-12"><input class="form-control" placeholder="전화번호 입력" type="text" name="memberphone"></div></td>
 		</tr>
 		<tr height="60" align="center">
-			<td align="center"	width="200"> 비밀번호 입력 : </td>
-			<td align="center"><input type="password" name="memberpass"></td>
+			<td align="center"><div class="col-xs-12"><input class="form-control" placeholder="비밀번호 입력" type="password" name="memberpass"></div></td>
 		</tr>
 		<tr height="60" align="center">
 			<td colspan="2" align="center">

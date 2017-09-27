@@ -6,7 +6,11 @@
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<link rel="stylesheet" href="../css/bootstrap.css">
+<link rel="stylesheet" href="../css/custom.css">
+<title></title>
+<script type="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script type="../js/bootstrap.js"></script>
 </head>
 <style>
 
@@ -36,7 +40,7 @@ th {
 
 
 
-	
+	<div class="container">
 	<h2> 스 키 </h2>
 	<center>
 	<table width="1000" height="120"align="center" boarder="0">
@@ -177,5 +181,6 @@ th {
 	
 	 
 </center>
+</div>
 </body>
 </html>

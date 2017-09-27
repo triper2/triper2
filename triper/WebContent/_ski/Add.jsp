@@ -194,10 +194,9 @@ nav .fa.fa-angle-down {
 
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <body>
-	<div class="container">
-		<h2>차량 등록 하기<button class="button button2" style="float: right;" onclick="location.href='/triper/_ski/Skimain2.jsp'">되돌아가기</button></h2>
-	
-	</div>
+	<center>
+	<div class="container" style="margin-top:25px; background : rgba(0, 0, 0, 0.6); border-radius: 10px; color:white;">
+		
 
 	<form class="w3-container" action="../AddController.do" method="post" encType="multipart/form-data">
 	
@@ -228,9 +227,10 @@ nav .fa.fa-angle-down {
 		
 	<div class="w3-panel">
 	
-  			<input type="submit" class="w3-btn w3-block" value="등ㅇ" >
+  			<input type="submit" class="w3-btn w3-block" value="등록하기" >
 	</div>
 	</form>
-
+</div>
+</center>
 </body>
 </html>
