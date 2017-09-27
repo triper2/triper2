@@ -118,38 +118,35 @@ nav .fa.fa-angle-down {
 		<div class="container">
 			<ul>
 				<li style="z-index: 999;"><a href="../_main_login/main.jsp"><img src="../image/tripericon.png" height="40px" width="80px"></a></li>
-				<li style="z-index: 999;"><a href="bbs.review">리뷰 아직<i class='fa fa-angle-down'></i></a>
+				<li style="z-index: 999;"><a href="bbs.review">여행 리뷰<i class='fa fa-angle-down'></i></a>
 					<ul>
-						<li><a href="bbs.review">리뷰 테스트</a></li>
-						<li><a href="../_ski/Skimain2.jsp">SKI</a></li>
-						<li><a href="#">샘플3</a></li>
-						<li><a href="#">샘플4</a></li>
+						<li><a href="bbs.review">리뷰</a></li>
 					</ul></li>
-				<li style="z-index: 999;"><a href="../_car/CarMain.jsp">예약(지도) 아직<i class='fa fa-angle-down'></i></a>
+				<li style="z-index: 999;"><a href="../_ski/Skimain2.jsp">렌트하기<i class='fa fa-angle-down'></i></a>
 					<ul>
-						<li><a href="../_car/CarMain.jsp">렌트카 테스트</a></li>
-						<li><a href="../_business/businessAddSelectForm.jsp">다음지도</a></li>
-						<li><a href="../_event_board/eblist.eb">게시판 테스트</a></li>
-						<li><a href="../_business/myList.business">사업장리스트</a></li>
+						<li><a href="../_ski/Skimain2.jsp">SKI 예약</a></li>
 						<li><a href="../_business/businessAllListForm.jsp">렌트하기</a></li>
+						<li><a href="../_event_board/eblist.eb">이벤트</a></li>
 					</ul></li>
-				<li style="z-index: 999;"><a href="../_faq/help.jsp">고객센터 아직<i class='fa fa-angle-down'></i></a>
+				<li style="z-index: 999;"><a href="../_faq/help.jsp">고객센터 <i class='fa fa-angle-down'></i></a>
 					<ul>
 						<li><a href="../_faq/help.jsp">FAQ</a></li>
-						<li><a href="list.service">고객센터 테스트</a></li>
-						<li><a href="#">샘플3</a></li>
-						<li><a href="#">샘플4</a></li>
+						<li><a href="list.service">고객센터</a></li>
 					</ul></li>
 				<li style="z-index: 999;"><a href="#">회사소개 아직</a></li>
 				<c:if test="${ sessionScope.dto != null }">
 				<li style="float:right"><a href="../_main_login/logoutPro.jsp">Log out</a></li>
 				<li style="float:right; margin-top:10px;">  
 				<img class="media-object img-circle" src="../_main_login/mem_img/${ dto.member_img }" height="35" width="35" alt="">
-					<ul>
+					<ul style="z-index: 999;">
 						<li><a href="#">예매결제내역조회 아직</a></li>
+						<!-- <li><a href="../_car/CarMain.jsp">자동차 렌탈</a></li> -->
+						
 						<li><a href="../_main_login/modifyFrom.jsp">회원 정보 수정</a></li>
 						<!-- Fade & scale -->
 						<li><a href="../_main_login/deleteForm.jsp">회원 탈퇴</a></li>
+						<li><a href="../_business/businessAddSelectForm.jsp">사업장등록</a></li>
+						<li><a href="../_business/myList.business">사업장 등록 리스트</a></li>
 					</ul>
 				</li>
 				</c:if>

@@ -34,6 +34,8 @@ body {
 	font-family: "Roboto", sans-serif;
 	font-size: 14px;
 	margin: 0;
+	padding : 0;
+	background : url (img.jpg) center center fixed no-repeat;
 }
 
 a {
@@ -107,6 +109,24 @@ nav ul li ul li a:hover {
 nav .fa.fa-angle-down {
 	margin-left: 6px;
 }
+
+body {
+	margin : 0;
+	padding : 0;
+	background : url (img.jpg) center center fixed no-repeat;
+}
+video {
+	position : fixed;
+	top : -70px; 
+	left : 0;
+	min-width : 100 %;
+	min-height : 100 %;
+	width : 100%;
+	z-index : -1;
+	muted : false;
+}
+
+
 </style>
 
 
@@ -116,7 +136,7 @@ nav .fa.fa-angle-down {
 	<nav>
 		<div class="container">
 			<ul>
-				<li style="z-index: 999;"><a href="/triper/_main_login/main.jsp">Home</a></li>
+				<li style="z-index: 999;"><a href="/triper/_main_login/main.jsp"><div style="width:80px; height: 40px;">Home</div></a></li>
 				<li style="z-index: 999;"><a href="/triper/_ski/Skimain2.jsp">Ski Home</a></li>
 				<li style="z-index: 999;"><a href="#">SKI<i class='fa fa-angle-down'></i></a>
 					<ul>
@@ -179,5 +199,10 @@ nav .fa.fa-angle-down {
 		<br/><br/>
 			<input type="submit" onclick="javascript:window.location='deletePro.jsp'" value="탈퇴"> 
 			<input type="submit" onclick="javascript:window.location='index.html'" value="취소"> -->
+			
+	<video autoplay loop poster = "img.jpg" muted="false">
+		<source src = "../image/Untitled.mp4"type = "video/mp4">
+	</video>
+			
 </body>
 </html>
