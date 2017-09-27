@@ -15,6 +15,7 @@ function writeSave(){
     if(document.writeform.member_id.value==""){
       alert("로그인 해야 작성이 됩니다.");
       document.writeform.member_id.focus();
+      location.href="../_main_login/loginForm.jsp";
       return false;
     }
     if(document.writeform.service_title.value==""){
