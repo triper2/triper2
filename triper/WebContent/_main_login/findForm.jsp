@@ -7,7 +7,7 @@
 <html lang="kr">
 	<head>
 	<meta charset="UTF-8">
-	<title>modifyForm.jsp</title>
+	<title> Triper </title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -130,7 +130,6 @@ a.other:link, a.other:visited, a.other:hover, a.other:active {
 </style>
 
 <script type="text/javascript">
-
 function FindAjax1() {
 	$.ajax({
 		url : "findID.do",
@@ -145,7 +144,6 @@ function FindAjax1() {
 		}
 	});
 }
-	
 function FindAjax2() {
 	$.ajax({
 		url : "findPWD.do",
@@ -159,12 +157,9 @@ function FindAjax2() {
 			}
 		}
 	});
-}
-	
+}	
 </script>
-
 </head>
-
 <body>
 
 <div class="form">
@@ -177,7 +172,6 @@ function FindAjax2() {
           <label for="username"><b>ID 찾기</b></label>
           <input type="text" id="member_email" name="member_email" placeholder="Email 입력"/>
           <button type="submit" onclick="FindAjax1()">찾기</button>
-          <%-- <input type="text" name="namecheck" value="${ dto.member_id }"> --%>
         </div>
         <br><br>
         <div class="form-group">
@@ -185,7 +179,6 @@ function FindAjax2() {
           <input type="text" id="member_id" name="member_id" placeholder="ID 입력"/>
           <input type="text" id="member_phone" name="member_phone" placeholder="Phone 입력"/>
           <button type="submit" onclick="FindAjax2()">찾기</button>
-          <%-- <input type="text" name="phonecheck" value="${ dto.member_pwd }"> --%>
         </div>
     </div>
   </div>

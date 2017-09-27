@@ -3,7 +3,8 @@
 <%@ page import = "com.domain.Album" %>
 <html>
 <head>
-<title>ÀÌ¹ÌÁö</title>
+	<title> Triper </title>
+
 </head>
 <%
    int service_id = Integer.parseInt(request.getParameter("service_id"));

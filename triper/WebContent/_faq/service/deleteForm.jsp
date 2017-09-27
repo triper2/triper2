@@ -11,7 +11,8 @@
 <link rel="stylesheet" href="../../css/bootstrap.css">
 <link rel="stylesheet" href="../../css/custom.css">
 
-<head><title>글삭제</title>
+<head>	<title> Triper </title>
+
 <link href="style.css" rel="stylesheet" type="text/css">
 <script type="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script type="../../js/bootstrap.js"></script>

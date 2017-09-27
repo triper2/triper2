@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title></title>
+	<title> Triper </title>
 <script type="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 </head>
 <body>

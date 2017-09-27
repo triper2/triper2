@@ -8,7 +8,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko" id="top">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <title> 비밀번호 확인 팝업창 </title>
+	<title> Triper </title>
   <link type="text/css" rel="stylesheet" href="../_faq/service/css/popup.css" media="all" />
   <!--[if IE 6]>
     <link type="text/css" rel="stylesheet" href="/site/inc/css/design_ie6_fix.css" />

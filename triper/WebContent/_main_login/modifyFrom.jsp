@@ -7,7 +7,7 @@
 <html lang="kr">
 	<head>
 	<meta charset="UTF-8">
-	<title>modifyForm.jsp</title>
+	<title> Triper </title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -421,7 +421,6 @@ $(function() {
 });
 </script>
 
-${ sessionScope.dto }
 <c:set var="dto" value="${ sessionScope.dto }"/>
 
 </head>

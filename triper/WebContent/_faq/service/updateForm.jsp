@@ -12,7 +12,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>글수정</title>
+	<title> Triper </title>
 <script type="text/javascript">
 <!--
     function checkIt(){

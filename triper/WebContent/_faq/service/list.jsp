@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="../../css/bootstrap.css">
 <link rel="stylesheet" href="../../css/custom.css">
 
-<title>글목록</title>
+	<title> Triper </title>
 
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <!-- <script type="../../js/bootstrap.js"></script> -->

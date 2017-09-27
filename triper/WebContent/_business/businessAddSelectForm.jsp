@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>키워드로 장소검색하고 목록으로 표출하기</title>
+	<title> Triper </title>
 <style>
 .map_wrap, .map_wrap * {
 	margin: 0;

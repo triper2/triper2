@@ -5,5 +5,5 @@
 
 <c:remove scope="session" var="dto" />
 
-<meta http-equiv="Refresh" content="0; url=header.jsp">
+<meta http-equiv="Refresh" content="0; url=main.jsp">
 	

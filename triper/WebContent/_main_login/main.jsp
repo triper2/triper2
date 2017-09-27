@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title></title>
+	<title> Triper </title>
 <script type="text/javascript">
 window.open("eventPopup.html", "a", "resizable=yes, scrollbars=no, width=480, height=530, left=200, top=50"); //function함수에 안넣으면 자동으로 열림
 </script>

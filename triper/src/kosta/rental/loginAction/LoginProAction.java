@@ -198,7 +198,7 @@ public class LoginProAction extends HttpServlet {
 			dto.setMember_img(member_img);
 			dao.modify(dto);
 			request.getSession().setAttribute("dto", dto);
-			viewPage = "/_main_login/header.jsp";
+			viewPage = "/_main_login/main.jsp";
 			RequestDispatcher dp = request.getRequestDispatcher(viewPage);
 			dp.forward(request, response);
 		} 
@@ -222,7 +222,7 @@ public class LoginProAction extends HttpServlet {
 			dp.forward(request, response);
 		} 
 		 else if (com.equals("/_main_login/mypage.do")) { ///////////////////////////////////mypage.do
-			viewPage = "/_main_login/header.jsp";
+			viewPage = "/_main_login/main.jsp";
 			RequestDispatcher dp = request.getRequestDispatcher(viewPage);
 			dp.forward(request, response);
 		} 	

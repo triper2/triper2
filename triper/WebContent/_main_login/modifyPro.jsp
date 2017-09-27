@@ -8,4 +8,4 @@
 <!-- <c:remove scope="session" var="sessionInfo" />
 <c:remove scope="session" var="id" /> -->
 
-<meta http-equiv="Refresh" content="2; url=mypage.jsp">
+<meta http-equiv="Refresh" content="2; url=main.jsp">
