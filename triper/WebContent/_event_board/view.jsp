@@ -13,7 +13,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width">
 <link rel="stylesheet" href="css/bootstrap/css">
-<title> 게시판 </title>
+<title> Triper </title>
 </head>
 <body>
 <jsp:include page="../_main_login/header.jsp"></jsp:include>

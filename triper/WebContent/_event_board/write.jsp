@@ -12,7 +12,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width", initial-scale="1">
 <link rel="stylesheet" href="css/bootstrap/css">
-<title> 게시판 </title>
+<title> Triper </title>
 
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
