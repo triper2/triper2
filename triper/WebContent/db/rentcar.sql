@@ -7,8 +7,11 @@ product_carusepeople number not null,
 product_carinfo varchar2(500) not null,
 product_carimg varchar2(500) not null,
 product_carcategory varchar2(10) not null,
- PRIMARY KEY (product_carno)
+business_id varchar2(100),
+ PRIMARY KEY (product_carno),
+ foreign Key (business_id) REFERENCES business_list (business_id)
  );
+ 
  delete from product_list where	product_carno=868686;
  delete from product_list where	product_carno=123;
  delete from product_list where	product_carno=3434;
@@ -48,7 +51,12 @@ product_carcategory varchar2(10) not null,
  memberpass varchar2(50) not null,
  totalprice number,
  calDateDays number,
- c_total number
+ c_total number,
+ member_id varchar(30) not null,
+ business_id varchar(100) not null,
+ primary key (orderid),
+foreign Key (member_id) REFERENCES member_list (member_id),
+foreign Key (business_id) REFERENCES business_list (business_id)
  );
  select * from reserved_list;
 drop table reserved_list;

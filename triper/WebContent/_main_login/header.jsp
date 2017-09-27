@@ -122,7 +122,7 @@ nav .fa.fa-angle-down {
 					<ul>
 						<li><a href="bbs.review">리뷰</a></li>
 					</ul></li>
-				<li style="z-index: 999;"><a href="../_car/CarMain.jsp">렌트하기<i class='fa fa-angle-down'></i></a>
+				<li style="z-index: 999;"><a href="../_business/businessAllListForm.jsp">렌트하기<i class='fa fa-angle-down'></i></a>
 					<ul>
 						<li><a href="../_business/businessAllListForm.jsp">렌트하기</a></li>
 						<li><a href="../_event_board/eblist.eb">이벤트</a></li>
@@ -136,7 +136,12 @@ nav .fa.fa-angle-down {
 				<c:if test="${ sessionScope.dto != null }">
 				<li style="float:right; margin-top:10px;"><a href="../_main_login/logoutPro.jsp">Log out</a></li>
 				<li style="float:right; margin-top:17px;">  
-				<img class="media-object img-circle" src="../_main_login/mem_img/${ dto.member_img }" height="35" width="35" alt="">
+				<c:if test="${ dto.member_img==null}">
+					<img class="media-object img-circle" src="../_main_login/mem_img/basicface.jpg" height="35" width="35" alt="">
+				</c:if>
+				<c:if test="${ dto.member_img!=null}">
+					<img class="media-object img-circle" src="../_main_login/mem_img/${ dto.member_img }" height="35" width="35" alt="">
+				</c:if>
 					<ul style="z-index: 999;">
 						<li><a href="#">예매결제내역조회 아직</a></li>
 						<!-- <li><a href="../_car/CarMain.jsp">자동차 렌탈</a></li> -->

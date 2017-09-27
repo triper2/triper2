@@ -6,7 +6,8 @@ ebDate date,
 ebContent varchar(2048),
 ebAvailable int,
 ebImg varchar2(40),
-primary key (ebNum)
+primary key (ebNum),
+foreign Key (member_id) REFERENCES member_list (member_id)
 );
 
 SELECT * FROM event_board;
