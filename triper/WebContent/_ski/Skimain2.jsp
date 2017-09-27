@@ -136,41 +136,44 @@ video {
 	<nav>
 		<div class="container">
 			<ul>
-				<li style="z-index: 999;"><a href="/triper/_main_login/main.jsp"><div style="width:80px; height: 40px;">Home</div></a></li>
-				<li style="z-index: 999;"><a href="/triper/_ski/Skimain2.jsp">Ski Home</a></li>
-				<li style="z-index: 999;"><a href="#">SKI<i class='fa fa-angle-down'></i></a>
+				<li style="z-index: 999; margin-top:10px;"><a href="/triper/_main_login/main.jsp"><div style="width:80px; height: 30px;">Home</div></a></li>
+				<li style="z-index: 999; margin-top:10px;"><a href="/triper/_ski/Skimain2.jsp">Ski Home</a></li>
+				<li style="z-index: 999; margin-top:10px;"><a href="#">SKI<i class='fa fa-angle-down'></i></a>
 					<ul>
 						<li><a href="/triper/SkiListController2.ski">SKI</a></li>
 						<li><a href="/triper/SkiClothListController.do">SKICLOTH</a></li>
 						
 					</ul></li>
-				<li style="z-index: 999;"><a href="#">BOARD<i class='fa fa-angle-down'></i></a>
+				<li style="z-index: 999; margin-top:10px;"><a href="#">BOARD<i class='fa fa-angle-down'></i></a>
 					<ul>
 						<li><a href="/triper/BoardListController.do">BOARD</a></li>
 						<li><a href="/triper/BoardClothListController.do">BOARDCLOTH</a></li>
 					</ul></li>
-				<li style="z-index: 999;"><a href="/triper/_ski/SkiMain.jsp?center=ReserveConfirm.jsp">예약확인<i class='fa fa-angle-down'></i></a>
+				<li style="z-index: 999; margin-top:10px;"><a href="/triper/_ski/SkiMain.jsp?center=ReserveConfirm.jsp">예약확인<i class='fa fa-angle-down'></i></a>
 					</li>
-				<li style="z-index: 999;"><a href="/triper/_ski/SkiMain.jsp?center=Add.jsp">상품추가</a></li>
+				<li style="z-index: 999; margin-top:10px;"><a href="/triper/_ski/SkiMain.jsp?center=Add.jsp">상품추가</a></li>
 				<c:if test="${ sessionScope.dto != null }">
-				<li style="float:right"><a href="../_main_login/logoutPro.jsp">Log out</a></li>
-				<li style="float:right; margin-top:10px;">  
+				<li style="float:right; margin-top:10px;"><a href="../_main_login/logoutPro.jsp">Log out</a></li>
+				<li style="float:right; margin-top:17px;">  
 				<img class="media-object img-circle" src="../_main_login/mem_img/${ dto.member_img }" height="35" width="35" alt="">
-					<ul>
+					<ul style="z-index: 999;">
 						<li><a href="#">예매결제내역조회 아직</a></li>
+						<!-- <li><a href="../_car/CarMain.jsp">자동차 렌탈</a></li> -->
+						
 						<li><a href="../_main_login/modifyFrom.jsp">회원 정보 수정</a></li>
 						<!-- Fade & scale -->
 						<li><a href="../_main_login/deleteForm.jsp">회원 탈퇴</a></li>
+						<li><a href="../_business/businessAddSelectForm.jsp">사업장등록</a></li>
+						<li><a href="../_business/myList.business">사업장 등록 리스트</a></li>
 					</ul>
 				</li>
 				</c:if>
 				<c:if test="${ sessionScope.dto == null }">
-				<li style="float:right"> <a href="../_main_login/loginForm.jsp">Login</a></li>
+				<li style="float:right;z-index: 999; margin-top:10px;"> <a href="../_main_login/loginForm.jsp">Login</a></li>
 				</c:if>
 			</ul>
 		</div>
 	</nav>
-
 	<script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
 	<script>
 		$('nav li').hover(function() {
