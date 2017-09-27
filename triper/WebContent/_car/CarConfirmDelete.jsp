@@ -24,9 +24,9 @@
 	
 	
 	<tr align="center">
-		<td align="center"> 비밀번호 입력 : 
+	<!-- 	<td align="center"> 비밀번호 입력 :  -->
 		<input type="hidden" value="${ param.orderid }" name="orderid">
-		<input type="password" name="memberpass"> &nbsp;&nbsp;&nbsp;
+		<!-- <input type="password" name="memberpass"> --> &nbsp;&nbsp;&nbsp;
 		<input type="submit" value="삭제 하기"></td>
 	</tr>	
 			

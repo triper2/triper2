@@ -30,7 +30,8 @@ public class CarOrderController extends HttpServlet {
 		String uri = request.getRequestURI();
 	      String conPath = request.getContextPath();
 	      String com = uri.substring(conPath.length());
-	      
+	      String memberpass="1";
+	      String memberphone="1";
 	      System.out.println(uri);
 	      System.out.println(conPath);
 	      System.out.println(com);
@@ -47,8 +48,8 @@ public class CarOrderController extends HttpServlet {
 		cbean.setReserved_option_carwifi(Integer.parseInt(request.getParameter("carwifi")));
 		cbean.setReserved_option_carnavi(Integer.parseInt(request.getParameter("carnavi")));
 		cbean.setReserved_option_carbabyseat(Integer.parseInt(request.getParameter("carbabyseat")));
-		cbean.setMemberphone(request.getParameter("memberphone"));
-		cbean.setMemberpass(request.getParameter("memberpass"));
+		cbean.setMemberphone("memberphone");
+		cbean.setMemberpass("memberpass");
 		cbean.setTotalprice(Integer.parseInt(request.getParameter("totalprice")));
 		cbean.setCalDateDays(Integer.parseInt(request.getParameter("caldateDays")));
 		cbean.setMember_id(((RentalDTO)request.getSession().getAttribute("dto")).getMember_id());

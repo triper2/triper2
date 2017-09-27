@@ -36,9 +36,9 @@ public class CarDAO {
 		}
 	}
 	
-	//��ü ��������
+	//占쏙옙체 占쏙옙占쏙옙占쏙옙占쏙옙
 	public Vector<CarListBean> getAllCarlist(String business_id){
-		//������ vector ��ü ����
+		//占쏙옙占쏙옙占쏙옙 vector 占쏙옙체 占쏙옙占쏙옙
 		Vector<CarListBean> v = new Vector<CarListBean>();
 		CarListBean bean = null;
 		
@@ -74,10 +74,10 @@ public class CarDAO {
 	}
 
 	
-		//category �� ������ ���̽�
+		//category 占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占싱쏙옙
 	public Vector<CarListBean> getCategoryCarList(String carcategory, String business_id) {
 		
-		//������ vector ��ü ����
+		//占쏙옙占쏙옙占쏙옙 vector 占쏙옙체 占쏙옙占쏙옙
 				Vector<CarListBean> v = new Vector<CarListBean>();
 				CarListBean bean = null;
 				
@@ -109,7 +109,7 @@ public class CarDAO {
 	}
 
 	
-	//�ϳ��� �ڵ��� ���� ����
+	//占싹놂옙占쏙옙 占쌘듸옙占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙
 	public CarListBean getOneCar(int carno) {
 		CarListBean bean = null;
 		
@@ -139,17 +139,17 @@ public class CarDAO {
 		return bean;
 	}
 	
-	//�ֹ���Ȳ �����ϴ� �޼ҵ�
+	//占쌍뱄옙占쏙옙황 占쏙옙占쏙옙占싹댐옙 占쌨소듸옙
 	public void insertCarOrder(CarOrderBean cbean){
 		try {
 			getCon();
-			//����
+			//占쏙옙占쏙옙
 			String sql = "insert into reserved_list values(order_seq.NEXTVAL,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			
 			
-			//������ ��ü ����
+			//占쏙옙占쏙옙占쏙옙 占쏙옙체 占쏙옙占쏙옙
 			pstmt=conn.prepareStatement(sql);
-			//? �� ����
+			//? 占쏙옙 占쏙옙占쏙옙
 			pstmt.setInt(1, cbean.getProduct_carno());
 			pstmt.setInt(2, cbean.getReserved_product_count());
 			pstmt.setString(3, cbean.getReserved_carbegindate());
@@ -172,10 +172,10 @@ public class CarDAO {
 		}
 	}
 	
-	//�ش� ��ȭ��ȣ�� �н������ ������ �ֹ������� ��� �����´�
+	//占쌔댐옙 占쏙옙화占쏙옙호占쏙옙 占싻쏙옙占쏙옙占쏙옙占� 占쏙옙占쏙옙占쏙옙 占쌍뱄옙占쏙옙占쏙옙占쏙옙 占쏙옙占� 占쏙옙占쏙옙占승댐옙
 	public Vector<CarConfirmBean> getAllCarOrder(String member_id){
 		
-		//return Ÿ��
+		//return 타占쏙옙
 		Vector<CarConfirmBean> v =new Vector<CarConfirmBean>();
 		
 		CarConfirmBean bean = null;
@@ -217,7 +217,7 @@ public class CarDAO {
 
 	public CarConfirmBean getOnOrder(int orderid) {
 		
-		//���� Ÿ�Լ���
+		//占쏙옙占쏙옙 타占쌉쇽옙占쏙옙
 		CarConfirmBean cbean = null;
 		try {
 			getCon();
@@ -245,18 +245,17 @@ public class CarDAO {
 	}
 
 	
-	//�ϳ��� �ֹ� ������ �����ϴ� �޼ҵ�
+	//占싹놂옙占쏙옙 占쌍뱄옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占싹댐옙 占쌨소듸옙
 	public int CarOrderDelete(int orderid, String memberpass) {
 		int result=0;
 		try {
 			getCon();
 			
-			String sql ="delete from reserved_list  where orderid=? and memberpass=?";
+			String sql ="delete from reserved_list  where orderid=?";
 			pstmt = conn.prepareStatement(sql);
-			//?�� ���� ����
+			//?占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙
 			pstmt.setInt(1, orderid);
-			pstmt.setString(2, memberpass);
-			//������ ������� �ʾҴٸ� 0���� ���� ������ �Ǹ� 1�� ���ϵ˴ϴ�.
+			//占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙占� 占십았다몌옙 0占쏙옙占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占실몌옙 1占쏙옙 占쏙옙占싹됩니댐옙.
 			result = pstmt.executeUpdate();
 			conn.close();
 		} catch (Exception e) {
@@ -270,7 +269,7 @@ public class CarDAO {
 		try {
 			getCon();
 			String sql = "update reserved_list set reserved_carbegindate =?,reserved_carenddate=?,reserved_product_count =?,reserved_option_usein =?,"
-					+ "reserved_option_carwifi =?,reserved_option_carseat =?,totalprice=?,caldatedays=? where orderid=? and memberpass=?";
+					+ "reserved_option_carwifi =?,reserved_option_carseat =?,totalprice=?,caldatedays=? where orderid=?";
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, bean.getReserved_carbegindate());
@@ -282,7 +281,6 @@ public class CarDAO {
 			pstmt.setInt(7, bean.getTotalprice());
 			pstmt.setInt(8, bean.getCalDateDays());
 			pstmt.setInt(9,bean.getOrderid());
-			pstmt.setString(10, bean.getMemberpass());
 			pstmt.executeUpdate();
 			
 			conn.close();

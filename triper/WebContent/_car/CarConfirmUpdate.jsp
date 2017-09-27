@@ -65,7 +65,7 @@
 	<tr>
 		<td	align="center" colspan="2">
 		
-		비밀번호 입력 : <input type="password" name="memberpass" size="10">
+	<!-- 	비밀번호 입력 : <input type="password" name="memberpass" size="10"> -->
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			
 		</td>

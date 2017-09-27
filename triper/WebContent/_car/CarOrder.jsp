@@ -26,6 +26,7 @@
 			history.go(-1);
 		</script>
 </c:if>
+
 <center>
 
 
@@ -54,10 +55,10 @@
 	
 	
 	<p>
-	비회원 전화번호 예약 : 
+	<!-- 비회원 전화번호 예약 : 
 	<input type="text" name = "memberphone" size="10">&nbsp;&nbsp;&nbsp;
 	비밀 번호 : 
-	<input type="password" name = "memberpass" size="10">
+	<input type="password" name = "memberpass" size="10"> -->
 	<input type="submit" value="결재하기">
 	</form>
 </center>

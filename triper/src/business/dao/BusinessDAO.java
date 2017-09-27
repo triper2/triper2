@@ -139,7 +139,7 @@ public class BusinessDAO {
 			}
 		}
 		sql += ")";
-		
+		System.out.println(sql);
 		ArrayList<BusinessVO> list = new ArrayList<BusinessVO>();
 		try {
 			conn = loadOracleDriver();
