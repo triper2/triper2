@@ -34,6 +34,14 @@
 			<th>${list1.business_tel }</th>
 			<th>${list1.business_category }</th>
 			<th>${list1.business_assent }</th>
+			<c:if test="${sessionScope.dto.member_id=='admin' and list1.business_assent=='대기중'}">
+				<form>
+					<td><input type="submit" value="승인"></td>
+				</form>
+				<form>
+					<td><input type="submit" value="거절"></td>
+				</form>
+			</c:if>
 		</tr>
 	</c:forEach>
 </table>

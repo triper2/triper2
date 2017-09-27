@@ -80,12 +80,12 @@ public class BusinessDAO {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "select * from business_list where member_id=?";
+		String sql = "select * from business_list ";
+		if(!member_id.equals("admin")) sql += " where member_id='"+member_id+"'";
 		ArrayList<BusinessVO> list = new ArrayList<BusinessVO>();
 		try {
 			conn = loadOracleDriver();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, member_id);
 			rs = pstmt.executeQuery();
 			while(rs.next()){
 				BusinessVO businessVO = new BusinessVO();
