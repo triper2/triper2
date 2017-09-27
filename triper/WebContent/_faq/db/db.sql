@@ -1,20 +1,27 @@
 create table service_board(
-service_id number primary key, 			-- num service_id 번호
+service_id number, 			-- num service_id 번호
 member_id varchar2(20) NOT NULL, 		-- writer member_id 아이디
 service_title varchar2(100) NOT NULL, 	-- subject service_tilte 제목
 service_email varchar2(40),				-- email service_email 메일
 service_content clob NOT NULL,			-- content service_content 내용
-service_pwd varchar2(10) NOT NULL,		-- passwd service_pwd 비밀번호
+service_pwd varchar2(10),		-- passwd service_pwd 비밀번호
 service_reg_date TIMESTAMP NOT NULL,	-- reg_date service_reg_date 날짜
 service_readcount number(4) DEFAULT 0,	-- readcount service_readcount 조회수
 service_ip varchar2(20) NOT NULL,		-- ip service_ip 아이피
 service_img varchar2(40),				-- image service_img 이미지 저장
 service_ref  number  not null, 			-- 그룹( 글에 대한...)
 service_re_step number not null,		-- 그룹 스텝
-service_level  number not null);			-- 그룹 레벨
-create sequence service_board_seq;
+service_level  number not null,
+foreign Key (member_id) REFERENCES member_list (member_id)
+);			-- 그룹 레벨
 
-select * from service_board;
+create sequence service_board_seq
+start with 1
+maxvalue 9999
+minvalue 0
+increment by 1
+cycle
+nocache;
 
 drop table service_board;
 drop sequence service_board_seq; 

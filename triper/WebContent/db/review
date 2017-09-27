@@ -1,10 +1,3 @@
-select * from REVIEW_BOARD
-
-
-drop table review_board
-select * from review_board
-delete REVIEW_BOARD
-///이게 진짜입니다
 create table review_board(
 review_id number PRIMARY KEY,
 review_title varchar2(100),
@@ -16,8 +9,9 @@ review_image_1 varchar2(30),
 review_image_2 varchar2(30),
 review_Like number,
 review_Hate number,
-review_Viewcount number
-)
+review_Viewcount number,
+foreign Key (member_id) REFERENCES member_list (member_id)
+);
 
 create sequence seq_review_id
 start with 1
@@ -27,6 +21,8 @@ increment by 1
 cycle
 nocache;
 
+drop table review_board;
+
 //이게 댓글 테이블
 create table review_comment(
 review_comment_id number, 
@@ -35,8 +31,10 @@ member_ID varchar2(30),
 review_comment_date date,
 review_comment_content varchar2(500),
 review_comment_available number,
-member_image varchar2(30)
-)
+member_image varchar2(30),
+foreign Key (member_id) REFERENCES member_list (member_id),
+foreign Key (review_ID) REFERENCES review_board (review_ID)
+);
 
 create sequence seq_review_comment_id
 start with 1
@@ -46,11 +44,16 @@ increment by 1
 cycle
 nocache;
 
+drop sequence seq_review_id;
 
 CONSTRAINT PK_USERS PRIMARY KEY(USERNO)
 
-create table like(
-reivew_ID number,
+create table review_like(
+review_ID number,
 member_id varchar2(30),
-like number
-)
+foreign Key (member_id) REFERENCES member_list (member_id),
+foreign Key (review_ID) REFERENCES review_board (review_ID)
+);
+
+
+drop table review_like;
